@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App;
+use App\Costumer;
 use Illuminate\Http\Request;
 
 class CostumerController extends Controller
@@ -13,7 +15,7 @@ class CostumerController extends Controller
      */
     public function index()
     {
-        //
+        return view('costumers.index', ['costumers' => Costumer::all()]);
     }
 
     /**
