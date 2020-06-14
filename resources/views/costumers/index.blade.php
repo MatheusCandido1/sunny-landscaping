@@ -5,7 +5,7 @@
 <h1 class="mt-4">Costumers</h1>
 <div class="card mb-4">
     <div class="card-header">All your costumers are here!
-      <a href="" class="btn btn-primary float-right btn-sm">
+      <a href="{{ route('costumers.create') }}" class="btn btn-primary float-right btn-sm">
         New Costumer
     </a>
   </div>
@@ -29,7 +29,7 @@
                         <td >{{ $costumer->phone}}</td>
                         <td >{{ $costumer->email}}</td>
                         <td style="text-align: center;" scope="col">
-                          <button type="button"  class="btn btn-outline-primary btn-sm btn-block">Details</button>
+                          <a type="button" href="{{ route('costumers.show',$costumer->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
                         </td>
                         <td style="text-align: center;" scope="col">
                           <button class="btn btn-success"><i class="fas fa-pencil-alt"></i></button>
