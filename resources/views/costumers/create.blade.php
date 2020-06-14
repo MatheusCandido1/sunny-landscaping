@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-lg-12">
     <div class="card mb-4">
-        <div class="card-header"><i class="fas fa-portrait"></i> Visit</div>
+        <div class="card-header"><i class="fas fa-user-check"></i> Costumers</div>
         <div class="card-body">
           <form  method="POST" class="form-horizontal style-form" action="{{ route('costumers.store') }}" > 
             @csrf

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use Illuminate\Http\Request;
-use App\Costumer;
+use App\Visit;
 class VisitController extends Controller
 {
     /**
@@ -35,18 +35,10 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-        'date' => 'required',
-        'call_costumer_in' => 'required|min:1|numeric',
-        'hoa' => 'required',
-        'water_smart_rebate' => 'required',
-        'type' => 'required',
-        'costumer_id' => 'required|numeric'
-        ]);
 
-        $visit = new Visit($request->only('date','call_costumer_in','hoa','water_smart_rebate','type','costumer_id'));
+        $visit = new Visit($request->only('date', 'call_costumer_in', 'hoa', 'water_smart_rebate', 'type', 'costumer_id'));
         $visit->save();
-        return redirect()->route('costumers');
+        return redirect()->route('costumers.index');
     }
 
     /**

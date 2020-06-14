@@ -97,80 +97,52 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" class="form-horizontal style-form" action="{{ route('visits.store') }}" > 
+          <form  method="POST" class="form-horizontal style-form" action="{{ route('visits.store') }}" > 
             @csrf
-            <div class="form-row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="" for="inputFirstName">Date and Time</label>
-                        <input name="date" class="form-control py-4" id="inputFirstName" type="datetime-local" placeholder="" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="" for="inputLastName">Call costumer in</label>
-                        <input name="call_costumer_in" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-6">
-            <div class="form-group">
-                <label class="col-sm-2 ">HOA: </label>
-                <div class="col-sm-10">
-                <div class="form-check-inline">
-                    <label class="form-check-label">
-                      <input name="hoa" type="radio" class="form-check-input" value="1">Yes
-                    </label>
+          <div class="form-row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label class="" for="inputFirstName">Date</label>
+                      <input name="date" class="form-control py-4" id="inputFirstName" type="date" placeholder="" />
                   </div>
-                  <div class="form-check-inline">
-                    <label class="form-check-label">
-                      <input value="0" type="radio" class="form-check-input" name="hoa">No
-                    </label>
-                  </div>            
-                </div>
-            </div>
-                </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label class="col-sm-12">Water Smart Rebate: </label>
-                <div class="col-sm-12">
-                <div class="form-check-inline">
-                    <label class="form-check-label">
-                      <input value="1" type="radio" class="form-check-input" name="hoa">Yes
-                    </label>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label class="" for="inputLastName">Call costumer in</label>
+                      <input name="call_costumer_in" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
                   </div>
-                  <div class="form-check-inline">
-                    <label class="form-check-label">
-                      <input value="0" type="radio" class="form-check-input" name="hoa">No
-                    </label>
-                  </div>            
-                </div>
-            </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-6">
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Service type</label>
-                    <select name="type" onchange="yesnoCheck(this);" class="form-control" id="exampleFormControlSelect1">
-                      <option value="Pavers">Pavers</option>
-                      <option value="Artificial Grass">Artificial Grass</option>
-                      <option value="Landscaping">Landscaping</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-            </div>
-            <div id="ifYes" style="display:none;" class="col-md-6">
-                <div class="form-group">
-                    <label class="" for="inputPassword">Other</label>
-                    <input name="type" class="form-control py-4" id="inputPassword" type="text" placeholder="" />
+                    <label class="" for="inputFirstName">HOA</label>
+                    <input name="hoa" class="form-control py-4" id="inputFirstName" type="text" placeholder="" />
                 </div>
             </div>
-            
-            </div>     
-          <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
-        </form>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="" for="inputLastName">Water</label>
+                    <input name="water_smart_rebate" class="form-control py-4" id="inputLastName" type="text" placeholder="" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="" for="inputFirstName">Type</label>
+                    <input name="type" class="form-control py-4" id="inputFirstName" type="text" placeholder="" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="" for="inputLastName">Costumer</label>
+                    <input name="costumer_id" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
+      </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
