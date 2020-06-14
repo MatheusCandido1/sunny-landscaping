@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App;
-use App\Costumer;
 use Illuminate\Http\Request;
-
-class CostumerController extends Controller
+use App\Costumer;
+class VisitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class CostumerController extends Controller
      */
     public function index()
     {
-        return view('costumers.index', ['costumers' => Costumer::all()]);
+        //
     }
 
     /**
@@ -25,8 +24,7 @@ class CostumerController extends Controller
      */
     public function create()
     {
-        return view('costumers.create');
-
+        return view('visits.create', ['costumers' => \App\Costumer::all()]);
     }
 
     /**
@@ -37,9 +35,18 @@ class CostumerController extends Controller
      */
     public function store(Request $request)
     {
-            $costumer = new Costumer($request->only('name', 'address', 'gate_code', 'phone', 'cellphone', 'email'));
-            $costumer->save();
-            return redirect()->route('costumers.index');
+        $request->validate([
+        'date' => 'required',
+        'call_costumer_in' => 'required|min:1|numeric',
+        'hoa' => 'required',
+        'water_smart_rebate' => 'required',
+        'type' => 'required',
+        'costumer_id' => 'required|numeric'
+        ]);
+
+        $visit = new Visit($request->only('date','call_costumer_in','hoa','water_smart_rebate','type','costumer_id'));
+        $visit->save();
+        return redirect()->route('costumers');
     }
 
     /**
@@ -48,10 +55,9 @@ class CostumerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Costumer $costumer)
+    public function show($id)
     {
-        return view('costumers.show', ['costumer' => $costumer]);
-
+        //
     }
 
     /**
