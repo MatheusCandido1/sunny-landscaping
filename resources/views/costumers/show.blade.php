@@ -46,7 +46,7 @@
             </div>
             
             <div class="btn-group special" role="group" aria-label="Basic example">
-                <button type="button" disabled class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</button>
+                <a href="{{ route('costumers.quote') }}" type="button" disabled class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a>
               </div>
             </div>
         </div>

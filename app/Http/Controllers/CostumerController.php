@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Costumer;
+use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
@@ -55,6 +56,12 @@ class CostumerController extends Controller
         ->where('costumers.id','=', $id)
         ->get();
         return view('costumers.projects', ['projects' => $projects, 'id' => $id]);
+    }
+
+    public function Quote()
+    {
+        return view('costumers.quote', ['items' => \App\Item::all()]);
+
     }
 
     

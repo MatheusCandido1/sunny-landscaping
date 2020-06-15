@@ -20,6 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group( function () {
 Route::get('/projects/{costumer}', 'CostumerController@projectsByCostumer')->name('costumers.projectsByCostumer');
 Route::get('/project/{visit}', 'CostumerController@visitByCostumer')->name('costumers.visitByCostumer');
+Route::get('/quote', 'CostumerController@quote')->name('costumers.quote');
+
 
 Route::resources([
     'costumers' => 'CostumerController',
