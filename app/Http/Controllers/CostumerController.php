@@ -49,7 +49,7 @@ class CostumerController extends Controller
     public function projectsByCostumer($id) 
     {
         $projects = DB::table('costumer_visit')
-        ->selectRaw('visits.id, costumers.name, visits.date, visits.type')
+        ->selectRaw(' costumer_visit.id as project_id, visits.id, costumers.name, visits.date, visits.type')
         ->join('visits','visits.id','=','costumer_visit.visit_id')
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('costumers.id','=', $id)
