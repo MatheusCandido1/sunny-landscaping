@@ -49,12 +49,12 @@ class CostumerController extends Controller
     public function projectsByCostumer($id) 
     {
         $projects = DB::table('costumer_visit')
-        ->selectRaw('costumers.id, costumers.name, visits.date, visits.type')
+        ->selectRaw('visits.id, costumers.name, visits.date, visits.type')
         ->join('visits','visits.id','=','costumer_visit.visit_id')
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('costumers.id','=', $id)
         ->get();
-        return view('costumers.projects', ['projects' => $projects]);
+        return view('costumers.projects', ['projects' => $projects, 'id' => $id]);
     }
 
     
@@ -64,10 +64,18 @@ class CostumerController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function show(Costumer $costumer)
+    
+    */
+
+    public function visitByCostumer($id)
     {
-        return view('costumers.show', ['costumer' => $costumer]);
+        $data = DB::table('costumer_visit')
+        ->selectRaw('costumers.*, visits.*')
+        ->join('visits','visits.id','=','costumer_visit.visit_id')
+        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
+        ->where('visits.id','=', $id)
+        ->get();
+        return view('costumers.show', ['data' => $data[0]]);
 
     }
 

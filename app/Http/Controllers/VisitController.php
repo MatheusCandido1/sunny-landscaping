@@ -39,7 +39,7 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-
+        try {
         $visit = Visit::create([
             'date' => $request->date,
             'call_costumer_in' => $request->call_costumer_in,
@@ -49,9 +49,22 @@ class VisitController extends Controller
         ]);
 
         $visit->costumers()->sync($request->costumer_id);
-        
 
-        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id]);
+        $notification = array(
+            'message' => 'Visit created successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id])->with($notification);
+
+        }catch(\Exception $e) {
+
+            $notification = array(
+                'message' => 'There was an error!',
+                'alert-type' => 'warning'
+            ); 
+        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id])->with($notification);
+
+        }
     }
 
     /**

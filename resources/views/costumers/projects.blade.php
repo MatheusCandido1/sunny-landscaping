@@ -4,12 +4,21 @@
 <div class="container-fluid">
 <h1 class="mt-4">Projects</h1>
 <div class="card mb-4">
-<div class="card-header">Here you can see all {{$projects[0]->name}}'s' projects!
+  @if(empty($projects[0]->id))
+<div class="card-header">Here you can see all projects!
       <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">
         New Project
     </button>
   </div>
+  @else
+  <div class="card-header">Here you can see all {{$projects[0]->name}}'s projects!
+    <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">
+      New Project
+  </button>
+</div>
+@endif
     <div class="card-body">
+
         <div class="table-responsive">
            
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -29,7 +38,7 @@
                         <td >{{ \Carbon\Carbon::parse($project->date)->format("m/d/Y")}}</td>
                         <td >{{ $project->type}}</td>
                         <td style="text-align: center;" scope="col">
-                          <a type="button" href="" class="btn btn-primary btn-sm btn-block">Details</a>
+                          <a type="button" href="{{ route('costumers.visitByCostumer',$project->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
                         </td>
                     </tr>
                     @endforeach
@@ -108,7 +117,8 @@
                 </div>
             </div>
             <div class="col-md-6">
-            <input  name="costumer_id" class="form-control py-4" value="{{$projects[0]->id}}" type="hidden" placeholder="" />
+            <input  name="costumer_id" value="{{$id[0]}}" class="form-control py-4" type="hidden"  placeholder="" />
+            
             </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   

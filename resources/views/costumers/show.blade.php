@@ -19,19 +19,15 @@
             <div class="card-body">
                 <div class="row">
                 <div class="col-12 col-lg-8 col-md-6">
-                    <h3 class="mb-0 text-truncated">{{$costumer->name}}</h3>
-                    <p class="lead"> <i class="fas fa-envelope-square"></i> E-mail: {{$costumer->email}}</p>
-                    <p class="lead"> <i class="fas fa-phone-square"></i> Phone: {{$costumer->phone}}</p>
-                    <p class="lead"> <i class="fas fa-mobile-alt"></i> Cellphone: {{$costumer->cellphone}}</p>
-                    <p class="lead"> <i class="fas fa-map-marked-alt"></i> Address: {{$costumer->address}}</p>
-                    <p class="lead"> <i class="fas fa-warehouse"></i> Gate code: <span class="badge badge-secondary">{{$costumer->gate_code}}</span></p>
+                    <h3 class="mb-0 text-truncated">{{$data->name}}</h3>
+                    <p class="lead"> <i class="fas fa-envelope-square"></i> E-mail: {{$data->email}}</p>
+                    <p class="lead"> <i class="fas fa-phone-square"></i> Phone: {{$data->phone}}</p>
+                    <p class="lead"> <i class="fas fa-mobile-alt"></i> Cellphone: {{$data->cellphone}}</p>
+                    <p class="lead"> <i class="fas fa-map-marked-alt"></i> Address: {{$data->address}}</p>
+                    <p class="lead"> <i class="fas fa-warehouse"></i> Gate code: <span class="badge badge-secondary">{{$data->gate_code}}</span></p>
                 </div>
                 <!--/col-->
             </div>
-            
-            <div class="btn-group special" role="group" aria-label="Basic example">
-                <button type="button" disabled class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</button>
-              </div>
             </div>
         </div>
     </div>
@@ -39,14 +35,19 @@
         <div class="card mb-4">
             <div class="card-header"><i class="fas fa-home"></i> Visit</div>
             <div class="card-body">
-                    <div class="container">
-                      <h1 class="display-4">Please schedule a visit!</h1>
-                      <p class="lead">After scheduling a visit, all the information will be displayed here.</p>
-                    </div>
-                    <div class="btn-group special" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-home"></i> Visit</button>
-                    </div>
-
+                <div class="row">
+                <div class="col-12 col-lg-12 col-md-12">
+                    <p class="lead"><i class="fas fa-calendar"></i> Date: {{ \Carbon\Carbon::parse($data->date)->format('l, jS \\of F Y h:i:s A')}}</p>
+                    <p class="lead"> <i class="fas fa-phone-square"></i> Call costumer in : {{$data->call_costumer_in}} minutes</p>
+                    <p class="lead"> <i class="fas fa-mobile-alt"></i> HOA: {{ $data->hoa == 0 ? 'No' : 'Yes'}}</p>
+                    <p class="lead"> <i class="fas fa-map-marked-alt"></i> Water Smart Rebate: {{$data->water_smart_rebate == 0 ? 'No' : 'Yes'}}</p>
+                </div>
+                <!--/col-->
+            </div>
+            
+            <div class="btn-group special" role="group" aria-label="Basic example">
+                <button type="button" disabled class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</button>
+              </div>
             </div>
         </div>
     </div>
@@ -86,77 +87,4 @@
     </div>
 </div>
 </div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Schedule Visit</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form  method="POST" class="form-horizontal style-form" action="{{ route('visits.store') }}" > 
-            @csrf
-          <div class="form-row">
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <label class="" for="inputFirstName">Date</label>
-                      <input name="date" class="form-control py-4" id="inputFirstName" type="date" placeholder="" />
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <label class="" for="inputLastName">Call costumer in</label>
-                      <input name="call_costumer_in" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
-                  </div>
-              </div>
-          </div>
-          <div class="form-row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="" for="inputFirstName">HOA</label>
-                    <input name="hoa" class="form-control py-4" id="inputFirstName" type="text" placeholder="" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="" for="inputLastName">Water</label>
-                    <input name="water_smart_rebate" class="form-control py-4" id="inputLastName" type="text" placeholder="" />
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="" for="inputFirstName">Type</label>
-                    <input name="type" class="form-control py-4" id="inputFirstName" type="text" placeholder="" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="" for="inputLastName">Costumer</label>
-                    <input name="costumer_id" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
-      </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<script> 
-function yesnoCheck(that) {
-    if (that.value == "other") {
-        document.getElementById("ifYes").style.display = "block";
-    } else {
-        document.getElementById("ifYes").style.display = "none";
-    }
-}
-</script>
 @endsection

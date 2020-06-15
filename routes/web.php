@@ -19,9 +19,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group( function () {
 Route::get('/projects/{costumer}', 'CostumerController@projectsByCostumer')->name('costumers.projectsByCostumer');
+Route::get('/project/{visit}', 'CostumerController@visitByCostumer')->name('costumers.visitByCostumer');
+
 Route::resources([
     'costumers' => 'CostumerController',
-    'visits' => 'VisitController',
-    'projects' => 'ProjectController'
+    'visits' => 'VisitController'
 ]);
 });
