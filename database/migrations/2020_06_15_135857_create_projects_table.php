@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVisitsTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateVisitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('visits', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('date');
-            $table->integer('call_costumer_in')->nullable();
-            $table->boolean('hoa')->nullable();
-            $table->boolean('water_smart_rebate')->nullable();
-            $table->string('type')->nullable();
+            $table->integer('costumer_id');
+            $table->integer('visit_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateVisitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('visits');
+        Schema::dropIfExists('projects');
     }
 }
