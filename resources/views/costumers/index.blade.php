@@ -18,7 +18,7 @@
                         <th style="text-align: center" scope="col" >Name</th>
                         <th style="text-align: center" scope="col">Phone</th>
                         <th style="text-align: center" scope="col">Email</th>
-                        <th style="text-align: center" scope="col">Information</th>
+                        <th style="text-align: center" scope="col">Projects</th>
                         <th style="text-align: center" scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -29,7 +29,7 @@
                         <td >{{ $costumer->phone}}</td>
                         <td >{{ $costumer->email}}</td>
                         <td style="text-align: center;" scope="col">
-                          <a type="button" href="{{ route('costumers.show',$costumer->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
+                          <a type="button" href="{{ route('projects.projectsByCostumer',$costumer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
                         </td>
                         <td style="text-align: center;" scope="col">
                           <button class="btn btn-success"><i class="fas fa-pencil-alt"></i></button>

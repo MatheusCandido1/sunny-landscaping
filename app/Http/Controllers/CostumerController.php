@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App;
 use App\Costumer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class CostumerController extends Controller
 {
@@ -41,6 +45,19 @@ class CostumerController extends Controller
             $costumer->save();
             return redirect()->route('costumers.index');
     }
+
+    public function projectsByCostumer($id) 
+    {
+        $projects = DB::table('costumer_visit')
+        ->selectRaw('costumers.id, costumers.name, visits.date, visits.type')
+        ->join('visits','visits.id','=','costumer_visit.visit_id')
+        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
+        ->where('costumers.id','=', $id)
+        ->get();
+        return view('costumers.projects', ['projects' => $projects]);
+    }
+
+    
 
     /**
      * Display the specified resource.

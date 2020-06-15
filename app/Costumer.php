@@ -10,7 +10,8 @@ class Costumer extends Model
         'name', 'address', 'gate_code', 'phone', 'cellphone', 'email'
     ];
 
-    public function visits(){
-        return $this->hasMany("App\Visit");
+    public function visits()
+    {
+        return $this->hasMany('App\Visit');
     }
 }

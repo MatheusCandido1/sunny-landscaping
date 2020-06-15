@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App;
-use Illuminate\Http\Request;
 use App\Visit;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 class VisitController extends Controller
 {
     /**
@@ -36,9 +40,18 @@ class VisitController extends Controller
     public function store(Request $request)
     {
 
-        $visit = new Visit($request->only('date', 'call_costumer_in', 'hoa', 'water_smart_rebate', 'type', 'costumer_id'));
-        $visit->save();
-        return redirect()->route('costumers.index');
+        $visit = Visit::create([
+            'date' => $request->date,
+            'call_costumer_in' => $request->call_costumer_in,
+            'hoa' => $request->hoa,
+            'water_smart_rebate' => $request->water_smart_rebate,
+            'type' => $request->type
+        ]);
+
+        $visit->costumers()->sync($request->costumer_id);
+        
+
+        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id]);
     }
 
     /**
