@@ -427,7 +427,7 @@
               </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Print Quote</button>
+          <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Save Quote</button>
         </div>
 
 </ul>

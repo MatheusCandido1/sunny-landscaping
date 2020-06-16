@@ -62,7 +62,7 @@
                       <p class="lead">
                           <div class="row">
                         <div class="col-lg-3 text-center">
-                            <button type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</button>
+                            <a href="{{ route('costumers.pdfquote', $data->visit_id)}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
                         </div>
                         <div class="col-lg-9 text-center">
                             <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</button>

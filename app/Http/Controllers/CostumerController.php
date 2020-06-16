@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use PDF;
 
 class CostumerController extends Controller
 {
@@ -64,6 +65,18 @@ class CostumerController extends Controller
 
     }
 
+    public function generatePdf($id)
+    {
+        $data = DB::table('costumer_visit')
+        ->selectRaw('costumers.*, visits.*')
+        ->join('visits','visits.id','=','costumer_visit.visit_id')
+        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
+        ->where('visits.id','=', $id)
+        ->get();
+
+        $pdf = PDF::loadView('costumers.pdfquote', compact('data'));
+        return $pdf->setPaper('a4')->stream('items.pdf');
+    }
     
 
     /**
@@ -77,7 +90,7 @@ class CostumerController extends Controller
     public function visitByCostumer($id)
     {
         $data = DB::table('costumer_visit')
-        ->selectRaw('costumers.*, visits.*')
+        ->selectRaw('costumers.*, visits.*, visits.id as visit_id')
         ->join('visits','visits.id','=','costumer_visit.visit_id')
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('visits.id','=', $id)
