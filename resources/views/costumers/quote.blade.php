@@ -20,22 +20,23 @@
       <div id="collapse1" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            
+            @for ($i = 0; $i < 24; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -50,22 +51,22 @@
       <div id="collapse2" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 24; $i < 32; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -80,22 +81,22 @@
       <div id="collapse3" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 32; $i < 42; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -110,22 +111,22 @@
       <div id="collapse4" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 42; $i < 53; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -140,22 +141,22 @@
       <div id="collapse5" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 53; $i < 63; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -170,22 +171,22 @@
       <div id="collapse6" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 63; $i < 91; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -200,22 +201,22 @@
       <div id="collapse7" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 91; $i < 94; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -230,22 +231,22 @@
       <div id="collapse8" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 94; $i < 96; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -260,22 +261,22 @@
       <div id="collapse9" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 96; $i < 101; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -290,22 +291,22 @@
       <div id="collapse10" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 101; $i < 103; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -320,22 +321,22 @@
       <div id="collapse11" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 103; $i < 131; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -350,22 +351,22 @@
       <div id="collapse12" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            @foreach ($items->slice(0,3) as $item)
+            @for ($i = 131; $i < 132; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$item->description}}</span>
+                <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$item->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$item->type}}</span>
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+              <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$item->id}}value" disabled class="form-control val" value="{{number_format($item->unit_cost,2)}}">
-              <span class="input-group-text">{{$item->type_per}}</span>
-              <input type="text" id="{{$item->id}}total" disabled  class="form-control items" placeholder="Investment">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+              <span class="input-group-text">{{$items[0]->type_per}}</span>
+              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
             </div>
-            @endforeach
+            @endfor
           </div>
         </div>
       </div>
@@ -459,14 +460,14 @@ function Discount(){
   document.getElementById('totalwithoutdiscount').value = new_total.toFixed(2);
 }
   function findTotal(){
-    for(i = 1; i < 4; i++){
+    for(i = 1; i <= 132; i++){
     var value = document.getElementById(i+"value").value;
     var qnt = document.getElementById(i+"qnt").value;
     var investment = parseFloat(value) * parseFloat(qnt);
     document.getElementById(i+"total").value = investment.toFixed(2)   
     }
     var total = 0
-    for(i = 1; i < 4;i++){
+    for(i = 1; i <= 132;i++){
       total += Number(document.getElementById(i+"total").value);
     }
     document.getElementById('total').value =total.toFixed(2);

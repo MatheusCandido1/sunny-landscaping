@@ -51,10 +51,10 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Home</div>
-                            <a class="nav-link" href="index.html"
+                            <a class="nav-link" href="{{ route ('home')}}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Dashboard</a>
-                                <a class="nav-link" href="index.html"
+                        <a class="nav-link" href="{{ route('costumers.index') }}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-user-check"></i></div>
                                 Costumers</a>
                                 <a class="nav-link" href="index.html"
