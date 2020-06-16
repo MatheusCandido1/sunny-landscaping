@@ -10,4 +10,9 @@ class Item extends Model
         'description', 'unit_cost', 'type', 'type_per'
     ];
 
+    public function services()
+    {
+        return $this->belongsToMany('App\Service');
+    }
+
 }

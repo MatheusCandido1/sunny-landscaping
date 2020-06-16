@@ -14,4 +14,9 @@ class Visit extends Model
     {
         return $this->belongsToMany('App\Costumer');
     }
+
+    public function services()
+    {
+        return $this->hasMany('App\Service');
+    }
 }
