@@ -20,8 +20,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group( function () {
 Route::get('/projects/{costumer}', 'CostumerController@projectsByCostumer')->name('costumers.projectsByCostumer');
 Route::get('/project/{visit}', 'CostumerController@visitByCostumer')->name('costumers.visitByCostumer');
-Route::get('/quote', 'CostumerController@quote')->name('costumers.quote');
+Route::get('/quote/{visit}', 'CostumerController@quote')->name('costumers.quote');
 Route::get('/pdfquote/{visit}', 'CostumerController@generatePdf')->name('costumers.pdfquote');
+Route::post('/addItems', 'ItemController@storeItems')->name('items.storeItems');
 
 Route::resources([
     'costumers' => 'CostumerController',

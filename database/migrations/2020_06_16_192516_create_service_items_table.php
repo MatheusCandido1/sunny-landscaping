@@ -17,6 +17,8 @@ class CreateServiceItemsTable extends Migration
             $table->increments('id');
             $table->integer('service_id');
             $table->integer('item_id');
+            $table->integer('quantity');
+            $table->float('subtotal');
             $table->timestamps();
         });
     }

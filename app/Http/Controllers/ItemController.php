@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Item;
 use Illuminate\Http\Request;
+use App\Service;
 
 class ItemController extends Controller
 {
@@ -36,6 +38,30 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function storeItems(Request $request)
+    {
+      /*  $service = Service::create([
+            'final_balance' => $request->final_balance,
+            'status' => $request->status,
+            'visit_id' => $request->visit_id
+        ]); */
+
+      /*  $rows = $request->input('rows');
+        foreach($rows as $row)
+        {
+            $items[] = [
+               'item_id' => $row['id'],
+               'quantity' => $row['qnt'],
+               'subtotal' => $row['total']
+            ];
+        } */
+
+        dd($request->id[0]);
+
+
+
     }
 
     /**

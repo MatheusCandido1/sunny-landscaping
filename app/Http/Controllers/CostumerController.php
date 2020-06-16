@@ -59,11 +59,12 @@ class CostumerController extends Controller
         return view('costumers.projects', ['projects' => $projects, 'id' => $id]);
     }
 
-    public function Quote()
+    public function Quote($id)
     {
-        return view('costumers.quote', ['items' => \App\Item::all()]);
+        return view('costumers.quote', ['items' => \App\Item::all(), 'visit_id' => $id]);
 
     }
+
 
     public function generatePdf($id)
     {

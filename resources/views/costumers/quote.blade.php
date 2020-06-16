@@ -1,12 +1,17 @@
 @extends('layouts.partials')
 @section('title', 'Costumers')
 @section('content')
+<form  method="POST" class="form-horizontal style-form" action="{{ route('items.storeItems') }}" > 
+  @csrf
+  <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
+  
 <div class="container-fluid">
   <h1 class="mt-4">New Quote</h1>
 <div class="row">
 <div class="col-lg-12">
 <div class="card mb-4">
-<div class="card-header"><i class="fas fa-list-ul"></i> Quote</div>
+<div class="card-header">
+  <i class="fas fa-list-ul"></i> Quote</div>
 <div class="card-body">
 <div> 
   <div id="accordion">
@@ -26,12 +31,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input type="hidden" name="id[][id]" value="{{$items[$i]}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[][qnt]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" name="total[][total]" value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
               <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
               
@@ -412,9 +418,10 @@
                     <td >Final Balance</td>
                     <td>
                     <div class="input-group mb-3">
-                      <input type="text" id="finalbalance" class="form-control" placeholder="The final balance will be displayed here" disabled>
+                      <input type="text" id="finalbalance" name="final_balance" class="form-control" placeholder="The final balance will be displayed here" value="0" >
+                      <input type="hidden"  name="status" class="form-control" value="1" placeholder="The final balance will be displayed here"  >                    
                       <div class="input-group-append">
-                        <button onclick="getFinalBalance()" class="btn btn-success" type="submit">Get Final Balance</button>
+                        <button onclick="getFinalBalance()" class="btn btn-success" type="button">Get Final Balance</button>
                       </div>
                     </div>
                   </td>
@@ -427,11 +434,11 @@
               </tr>
                 </tbody>
             </table>
-          <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Save Quote</button>
+          <button type="submit" class="btn btn-success btn-block"><i class="fas fa-check"></i> Save Quote</button>
         </div>
 
 </ul>
-  
+</form>
 
 </div>
 </div>
@@ -448,7 +455,7 @@ function getFinalBalance(){
     final = final * 1;
   }
   
-  document.getElementById('finalbalance').value ="$" + final.toFixed(2);
+  document.getElementById('finalbalance').value = final.toFixed(2);
 }
 
 function PayDown(){
