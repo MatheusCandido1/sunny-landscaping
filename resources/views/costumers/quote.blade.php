@@ -379,37 +379,51 @@
   <div class="table-responsive">
             <table class="table table-bordered"  width="100%" cellspacing="0">
                 <tbody>
+               
+                <tr>
+                  <td >Discount</td>
+                  <td >
+                    <input onchange="Discount()" type="text" class="form-control" id="discount" value="0.00" placeholder="Discount" aria-describedby="basic-addon2">
+                  </td>
+              </tr>
+              <tr>
+                <td >Total</td>
+                <td style="text-align: right"  scope="col" >
+                  <input type="text" id="totalwithoutdiscount" disabled   class="form-control">
+
+                </td>
+            </tr>
                   <tr>
                         <td >Accepting Proposal</td>
                         <td style="text-align: right"  scope="col" >
-                          <input type="text" id="acpt_val"   class="form-control" disabled placeholder="Final Balance ($)">
+                          <input type="text" onchange="PayDown()" id="acpt_val" value="0"   class="form-control" placeholder="Final Balance ($)">
 
                         </td>
                     </tr>
                     <tr>
                       <td >Down Payment</td>
                       <td >
-                        <input type="text" id="down_payment"   class="form-control" disabled placeholder="Final Balance ($)">
+                        <input type="text" id="down_payment" disabled class="form-control"  placeholder="Payment Down">
 
                       </td>
                   </tr>
                   <tr>
-                    <td >Discount</td>
-                    <td >
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Discount" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-success" type="button">Apply Discount</button>
-                        </div>
-                      </div>
-                    </td>
-                </tr>
-                  <tr>
                     <td >Final Balance</td>
-                    <td style="text-align: right" scope="col" >
-                      <input type="text"   class="form-control" disabled placeholder="Final Balance ($)">
-                    </td>
+                    <td>
+                    <div class="input-group mb-3">
+                      <input type="text" id="finalbalance" class="form-control" placeholder="The final balance will be displayed here" disabled>
+                      <div class="input-group-append">
+                        <button onclick="getFinalBalance()" class="btn btn-success" type="submit">Get Final Balance</button>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
+                <tr style="display: none">
+                  <td >Total Without Discount</td>
+                  <td style="text-align: right" scope="col" >
+                    <input type="text" id="total" disabled class="form-control" disabled placeholder="">
+                  </td>
+              </tr>
                 </tbody>
             </table>
             <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Print Quote</button>
@@ -425,18 +439,37 @@
 </div>
 </div>
 <script type="text/javascript">
+function getFinalBalance(){
+  var final = document.getElementById('totalwithoutdiscount').value - document.getElementById('down_payment').value - document.getElementById('acpt_val').value;
+  if(final < 0){
+    final = final * (-1);
+  }else{
+    final = final * 1;
+  }
+  
+  document.getElementById('finalbalance').value ="$" + final.toFixed(2);
+}
+
+function PayDown(){
+  var pay = 0.30 * document.getElementById('totalwithoutdiscount').value;
+  document.getElementById('down_payment').value = pay.toFixed(2);
+}
+function Discount(){
+  var new_total = (document.getElementById('total').value) - (document.getElementById('discount').value);
+  document.getElementById('totalwithoutdiscount').value = new_total.toFixed(2);
+}
   function findTotal(){
     for(i = 1; i < 4; i++){
     var value = document.getElementById(i+"value").value;
     var qnt = document.getElementById(i+"qnt").value;
     var investment = parseFloat(value) * parseFloat(qnt);
-    document.getElementById(i+"total").value =investment.toFixed(2)   
+    document.getElementById(i+"total").value = investment.toFixed(2)   
     }
     var total = 0
     for(i = 1; i < 4;i++){
       total += Number(document.getElementById(i+"total").value);
     }
-    document.getElementById('acpt_val').value ="$" + total.toFixed(2);
+    document.getElementById('total').value =total.toFixed(2);
   }
       </script>
 @endsection
