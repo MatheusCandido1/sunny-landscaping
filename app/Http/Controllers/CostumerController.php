@@ -96,6 +96,8 @@ class CostumerController extends Controller
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('visits.id','=', $id)
         ->get();
+
+        //$quotes = DB::table
         return view('costumers.show', ['data' => $data[0]]);
 
     }

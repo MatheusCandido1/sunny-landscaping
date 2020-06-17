@@ -1,7 +1,7 @@
 @extends('layouts.partials')
 @section('title', 'Costumers')
 @section('content')
-<form  method="POST" class="form-horizontal style-form" action="{{ route('items.storeItems') }}" > 
+<form  method="POST" class="form-horizontal style-form" action="{{ route('service.storeItems') }}" > 
   @csrf
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
   
@@ -25,21 +25,20 @@
       <div id="collapse1" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <div>
-            
             @for ($i = 0; $i < 24; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input type="hidden" name="id[][id]" value="{{$items[$i]}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[][qnt]" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" name="total[][total]" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -62,14 +61,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -92,14 +92,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -122,14 +123,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -152,14 +154,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -182,14 +185,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -212,14 +216,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -242,14 +247,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -272,14 +278,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -302,14 +309,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -332,14 +340,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -362,14 +371,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">{{$items[$i]->description}}</span>
               </div>
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt" type="text" class="form-control qnt" placeholder="Quantity">
+            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
+            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
               <span class="input-group-text">{{$items[$i]->type}}</span>
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" disabled class="form-control val" value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" disabled  class="form-control items" placeholder="Investment">
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
             </div>
             @endfor
@@ -390,27 +400,27 @@
                 <tr>
                   <td >Discount</td>
                   <td >
-                    <input onchange="Discount()" type="text" class="form-control" id="discount" value="0.00" placeholder="Discount" aria-describedby="basic-addon2">
+                    <input onchange="Discount()" name="discount" type="text" class="form-control" id="discount" value="0.00" placeholder="Discount" aria-describedby="basic-addon2">
                   </td>
               </tr>
               <tr>
                 <td >Total</td>
                 <td style="text-align: right"  scope="col" >
-                  <input type="text" id="totalwithoutdiscount" disabled   class="form-control">
+                  <input type="text" id="totalwithoutdiscount" name="subtotal" readonly   class="form-control">
 
                 </td>
             </tr>
                   <tr>
                         <td >Accepting Proposal</td>
                         <td style="text-align: right"  scope="col" >
-                          <input type="text" onchange="PayDown()" id="acpt_val" value="0"   class="form-control" placeholder="Final Balance ($)">
+                          <input type="text" onchange="PayDown()" name="accepting_proposal" id="accepting_proposal" value="0"   class="form-control" placeholder="Total with discount">
 
                         </td>
                     </tr>
                     <tr>
                       <td >Down Payment</td>
                       <td >
-                        <input type="text" id="down_payment" disabled class="form-control"  placeholder="Payment Down">
+                        <input type="text" id="down_payment" name="down_payment" readonly class="form-control"  placeholder="Payment Down">
 
                       </td>
                   </tr>
@@ -419,7 +429,6 @@
                     <td>
                     <div class="input-group mb-3">
                       <input type="text" id="finalbalance" name="final_balance" class="form-control" placeholder="The final balance will be displayed here" value="0" >
-                      <input type="hidden"  name="status" class="form-control" value="1" placeholder="The final balance will be displayed here"  >                    
                       <div class="input-group-append">
                         <button onclick="getFinalBalance()" class="btn btn-success" type="button">Get Final Balance</button>
                       </div>
@@ -429,7 +438,7 @@
                 <tr style="display: none">
                   <td >Total Without Discount</td>
                   <td style="text-align: right" scope="col" >
-                    <input type="text" id="total" disabled class="form-control" disabled placeholder="">
+                    <input type="text" id="total"  class="form-control" placeholder="">
                   </td>
               </tr>
                 </tbody>
@@ -448,7 +457,7 @@
 </div>
 <script type="text/javascript">
 function getFinalBalance(){
-  var final = document.getElementById('totalwithoutdiscount').value - document.getElementById('down_payment').value - document.getElementById('acpt_val').value;
+  var final = document.getElementById('totalwithoutdiscount').value - document.getElementById('down_payment').value - document.getElementById('accepting_proposal').value;
   if(final < 0){
     final = final * (-1);
   }else{

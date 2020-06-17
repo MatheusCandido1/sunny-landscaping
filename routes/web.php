@@ -22,7 +22,7 @@ Route::get('/projects/{costumer}', 'CostumerController@projectsByCostumer')->nam
 Route::get('/project/{visit}', 'CostumerController@visitByCostumer')->name('costumers.visitByCostumer');
 Route::get('/quote/{visit}', 'CostumerController@quote')->name('costumers.quote');
 Route::get('/pdfquote/{visit}', 'CostumerController@generatePdf')->name('costumers.pdfquote');
-Route::post('/addItems', 'ItemController@storeItems')->name('items.storeItems');
+Route::post('/addItems', 'ServiceController@storeItems')->name('service.storeItems');
 
 Route::resources([
     'costumers' => 'CostumerController',

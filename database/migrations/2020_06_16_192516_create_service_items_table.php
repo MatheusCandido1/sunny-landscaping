@@ -13,7 +13,7 @@ class CreateServiceItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_items', function (Blueprint $table) {
+        Schema::create('item_service', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('service_id');
             $table->integer('item_id');

@@ -6,6 +6,8 @@ use App;
 use App\Item;
 use Illuminate\Http\Request;
 use App\Service;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
 
 class ItemController extends Controller
 {
@@ -40,29 +42,7 @@ class ItemController extends Controller
         //
     }
 
-    public function storeItems(Request $request)
-    {
-      /*  $service = Service::create([
-            'final_balance' => $request->final_balance,
-            'status' => $request->status,
-            'visit_id' => $request->visit_id
-        ]); */
-
-      /*  $rows = $request->input('rows');
-        foreach($rows as $row)
-        {
-            $items[] = [
-               'item_id' => $row['id'],
-               'quantity' => $row['qnt'],
-               'subtotal' => $row['total']
-            ];
-        } */
-
-        dd($request->id[0]);
-
-
-
-    }
+    
 
     /**
      * Display the specified resource.
