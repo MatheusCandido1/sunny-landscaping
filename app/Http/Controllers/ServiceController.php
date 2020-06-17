@@ -37,9 +37,4 @@ class ServiceController extends Controller
         return redirect()->route('home');
     }
 
-    public function getQuoteResults(){
-        /* 
-        select services.status, services.final_balance, sum(item_service.subtotal), services.discount, services.accepting_proposal, services.down_payment from services inner join item_service on item_service.service_id = services.id inner join visits on visits.id = services.visit_id inner join costumer_visit on costumer_visit.visit_id = visits.id inner join costumers on costumers.id = costumers.id = costumer_visit.costumer_id where costumer_visit.visit_id = 1
-        */
-    }
 }

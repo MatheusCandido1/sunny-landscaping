@@ -46,7 +46,12 @@
             </div>
             
             <div class="btn-group special" role="group" aria-label="Basic example">
-                <a href="{{ route('costumers.quote', $data->visit_id) }}" type="button" disabled class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a>
+                @if(!($quote_info))
+                <a href="{{ route('costumers.quote', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a> 
+                @else
+                <button type="button" class="btn btn-success"><i class="fas fa-print"></i> Print Quote</button>
+  <button type="button"  class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
+  @endif
               </div>
             </div>
         </div>

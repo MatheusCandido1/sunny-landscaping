@@ -97,8 +97,30 @@ class CostumerController extends Controller
         ->where('visits.id','=', $id)
         ->get();
 
-        //$quotes = DB::table
-        return view('costumers.show', ['data' => $data[0]]);
+        $quoteStatus = DB::table('services')
+        ->selectRaw('services.status, services.final_balance, sum(item_service.subtotal), services.discount, services.accepting_proposal, services.down_payment')
+        ->join('item_service','item_service.service_id','=','services.id')
+        ->join('visits','visits.id','=','services.visit_id')
+        ->join('costumer_visit','costumer_visit.visit_id','=','visits.id')
+        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
+        ->where('costumer_visit.visit_id', '=', $id)
+        ->get();
+
+        if(is_null($quoteStatus[0]->status))
+        {
+            $check = false;
+        }
+        else
+        {
+            $check = true;
+        }
+
+       // dd($quoteStatus[0]->status);
+        return view('costumers.show', ['data' => $data[0], 'quote_info' => $check]);
+
+    }
+
+    public function show(){
 
     }
 
