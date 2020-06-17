@@ -26,6 +26,7 @@ Route::post('/addItems', 'ServiceController@storeItems')->name('service.storeIte
 
 Route::resources([
     'costumers' => 'CostumerController',
-    'visits' => 'VisitController'
+    'visits' => 'VisitController',
+    'services' => 'ServiceController'
 ]);
 });

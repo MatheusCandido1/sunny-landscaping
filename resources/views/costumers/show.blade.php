@@ -50,8 +50,12 @@
                 <a href="{{ route('costumers.quote', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a> 
                 @else
                 <button type="button" class="btn btn-success"><i class="fas fa-print"></i> Print Quote</button>
-  <button type="button"  class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
-  @endif
+                <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this Quote?')) { document.getElementById('destroy-form-{{$quote_data->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                <form id="destroy-form-{{$quote_data->id}}" action="{{ route('services.destroy',$quote_data->id) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+                @endif
               </div>
             </div>
         </div>

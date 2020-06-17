@@ -4,7 +4,6 @@
 <form  method="POST" class="form-horizontal style-form" action="{{ route('service.storeItems') }}" > 
   @csrf
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
-  
 <div class="container-fluid">
   <h1 class="mt-4">New Quote</h1>
 <div class="row">

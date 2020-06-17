@@ -98,7 +98,7 @@ class CostumerController extends Controller
         ->get();
 
         $quoteStatus = DB::table('services')
-        ->selectRaw('services.status, services.final_balance, sum(item_service.subtotal), services.discount, services.accepting_proposal, services.down_payment')
+        ->selectRaw('services.id, services.status, services.final_balance, sum(item_service.subtotal), services.discount, services.accepting_proposal, services.down_payment')
         ->join('item_service','item_service.service_id','=','services.id')
         ->join('visits','visits.id','=','services.visit_id')
         ->join('costumer_visit','costumer_visit.visit_id','=','visits.id')
@@ -109,14 +109,14 @@ class CostumerController extends Controller
         if(is_null($quoteStatus[0]->status))
         {
             $check = false;
+            return view('costumers.show', ['data' => $data[0], 'quote_info' => $check]);
         }
         else
         {
             $check = true;
+        return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'quote_data' => $quoteStatus[0]]);
         }
 
-       // dd($quoteStatus[0]->status);
-        return view('costumers.show', ['data' => $data[0], 'quote_info' => $check]);
 
     }
 

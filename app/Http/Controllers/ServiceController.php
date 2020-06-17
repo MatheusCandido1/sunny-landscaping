@@ -34,7 +34,13 @@ class ServiceController extends Controller
             }
         } 
         $service->items()->sync($items);
-        return redirect()->route('home');
+        return redirect()->route('costumers.visitByCostumer',$request->visit_id);
+    }
+
+    public function destroy(Service $service)
+    {
+        Service::destroy($service->id);
+        return redirect()->back();
     }
 
 }
