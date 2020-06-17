@@ -21,7 +21,7 @@ Route::middleware('auth')->group( function () {
 Route::get('/projects/{costumer}', 'CostumerController@projectsByCostumer')->name('costumers.projectsByCostumer');
 Route::get('/project/{visit}', 'CostumerController@visitByCostumer')->name('costumers.visitByCostumer');
 Route::get('/quote/{visit}', 'CostumerController@quote')->name('costumers.quote');
-Route::get('/pdfquote/{visit}', 'CostumerController@generatePdf')->name('costumers.pdfquote');
+Route::get('/pdf/proposal/{visit}', 'CostumerController@generatePdf')->name('costumers.pdfproposal');
 Route::post('/addItems', 'ServiceController@storeItems')->name('service.storeItems');
 
 Route::resources([
