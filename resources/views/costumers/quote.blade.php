@@ -35,7 +35,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
+            <input type="text" id="{{$items[$i]->id}}value" class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
               <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
               
@@ -399,7 +399,12 @@
                 <tr>
                   <td >Discount</td>
                   <td >
-                    <input onchange="Discount()" name="discount" type="text" class="form-control" id="discount" value="0.00" placeholder="Discount" aria-describedby="basic-addon2">
+                    <div class="input-group mb-3">
+                      <input name="discount" type="text" class="form-control" id="discount" value="0.00" placeholder="Discount" aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button onclick="Discount()" class="btn btn-success" type="button">Get Discount</button>
+                      </div>
+                    </div>
                   </td>
               </tr>
               <tr>
@@ -412,7 +417,12 @@
                   <tr>
                         <td >Accepting Proposal</td>
                         <td style="text-align: right"  scope="col" >
-                          <input type="text" onchange="PayDown()" name="accepting_proposal" id="accepting_proposal" value="0"   class="form-control" placeholder="Total with discount">
+                          <div class="input-group mb-3">
+                            <input type="text" value="500.00" name="accepting_proposal" id="accepting_proposal" value="0"   class="form-control" placeholder="Total with discount">
+                            <div class="input-group-append">
+                              <button onclick="PayDown()" class="btn btn-success" type="button">Get Payment Down</button>
+                            </div>
+                          </div>
 
                         </td>
                     </tr>

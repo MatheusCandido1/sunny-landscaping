@@ -17,6 +17,7 @@ class CreateCostumersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
+            $table->string('city');
             $table->string('gate_code');
             $table->string('phone');
             $table->string('cellphone');

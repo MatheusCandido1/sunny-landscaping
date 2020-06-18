@@ -101,16 +101,16 @@ border:none'>
 border:none'><span >{{ \Carbon\Carbon::now()->format('F d, Y')}} </span></p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
-style='font-size:14.0pt;line-height:120%;'>XXX</span></b></p>
+style='font-size:14.0pt;line-height:120%;'>{{$data[0]->name}}</span></b></p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
-style='font-size:10.0pt;line-height:120%;'>123 xxx,</span></p>
+style='font-size:10.0pt;line-height:120%;'>{{$data[0]->address}}</span></p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
-style='font-size:10.0pt;line-height:120%;'>Las Vegas, NV 89xxx</span></p>
+style='font-size:10.0pt;line-height:120%;'>{{$data[0]->city}}</span></p>
 
 <p class=MsoNormal style='margin-bottom:24.0pt;border:none'><span
-style='font-size:10.0pt;line-height:120%;'>Cell: (702) xxx-xxx</span></p>
+style='font-size:10.0pt;line-height:120%;'>Cell: {{$data[0]->cellphone}}</span></p>
 
 <p class=MsoNormal>Dear <span >Customer,</span></p>
 
@@ -120,7 +120,7 @@ your home’s landscaping improvement.</p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>The <b>anticipated value</b> of investment to install pavers and
-improve your landscaping is estimated in <b>US$ <span>xxx.00</span></b>
+improve your landscaping is estimated in <b>US$ <span>{{$data[0]->final_balance}}</span></b>
 <b>(materials and labor, tax included).</b></p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:

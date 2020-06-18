@@ -43,7 +43,7 @@ class CostumerController extends Controller
      */
     public function store(Request $request)
     {
-            $costumer = new Costumer($request->only('name', 'address', 'gate_code', 'phone', 'cellphone', 'email'));
+            $costumer = new Costumer($request->only('name', 'address','city', 'gate_code', 'phone', 'cellphone', 'email'));
             $costumer->save();
             return redirect()->route('costumers.index');
     }

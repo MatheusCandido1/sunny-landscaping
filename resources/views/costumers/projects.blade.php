@@ -24,7 +24,6 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                      <th style="text-align: center" scope="col" >Project</th>
                         <th style="text-align: center" scope="col" >Costumer's name</th>
                         <th style="text-align: center" scope="col">Date</th>
                         <th style="text-align: center" scope="col">Service type</th>
@@ -35,7 +34,6 @@
                 <tbody>
                   @foreach($projects as $project)
                     <tr>
-                      <td >#{{ $project->project_id}}</td>
                         <td >{{ $project->name}}</td>
                         <td >{{ \Carbon\Carbon::parse($project->date)->format("m/d/Y")}}</td>
                         <td >{{ $project->type}}</td>

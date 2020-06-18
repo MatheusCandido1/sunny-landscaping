@@ -53,6 +53,7 @@
                 @if(!($quote_info))
                 <a href="{{ route('costumers.quote', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a> 
                 @else
+                <button type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Edit Quote</button>
                 <button type="button" class="btn btn-success"><i class="fas fa-print"></i> Print Quote</button>
                 <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this Quote?')) { document.getElementById('destroy-form-{{$quote_data->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                 <form id="destroy-form-{{$quote_data->id}}" action="{{ route('services.destroy',$quote_data->id) }}" method="POST" style="display: none;">
@@ -75,7 +76,11 @@
                       <p class="lead">
                           <div class="row">
                         <div class="col-lg-3 text-center">
-                            <a href="{{ route('costumers.pdfproposal', $data->visit_id)}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
+                            @if(!($quote_info))
+                             <button disabled type="button" class="btn btn-danger  btn-block"><i class="fas fa-print"></i> Proposal Disabled</button>
+                            @else
+                            <a target="_blank" href="{{ route('pdf.proposal', $data->visit_id)}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
+                            @endif
                         </div>
                         <div class="col-lg-9 text-center">
                             <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</button>
@@ -83,13 +88,10 @@
                     </div>
                     <hr class="my-4">
                     <div class="row">
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-6 text-center">
                             <button type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Contract</button>
                         </div>
-                        <div class="col-lg-4 text-center">
-                            <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Quote</button>
-                        </div>
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-6 text-center">
                             <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</button>
                         </div>
                     </div>

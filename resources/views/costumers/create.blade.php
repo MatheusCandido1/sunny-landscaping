@@ -11,18 +11,24 @@
           <form  method="POST" class="form-horizontal style-form" action="{{ route('costumers.store') }}" > 
             @csrf
           <div class="form-row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputFirstName">Name</label>
                       <input name="name" class="form-control py-4" id="inputFirstName" type="text" placeholder="" />
                   </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputLastName">Address</label>
                       <input name="address" class="form-control py-4" id="inputLastName" type="text" placeholder="" />
                   </div>
               </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                    <label class="" for="inputLastName">City / State / Zip Code</label>
+                    <input name="city" class="form-control py-4" id="inputLastName" type="text" placeholder="" />
+                </div>
+            </div>
           </div>
           <div class="form-row">
             <div class="col-md-6">
