@@ -9,6 +9,36 @@
 .special .btn {
   flex: 1
 }
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #5cb85c;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
 </style>
         <div class="container-fluid">
             <h1 class="mt-4">Information</h1>
@@ -66,7 +96,7 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="card mb-4">
             <div class="card-header"><i class="fas fa-file-alt"></i> Files and Documents</div>
             <div class="card-body">
@@ -75,14 +105,14 @@
                       <p class="lead">Click in any button and a PDF will be displayed.</p>
                       <p class="lead">
                           <div class="row">
-                        <div class="col-lg-3 text-center">
+                        <div class="col-lg-6 text-center">
                             @if(!($quote_info))
                              <button disabled type="button" class="btn btn-danger  btn-block"><i class="fas fa-print"></i> Proposal Disabled</button>
                             @else
                             <a target="_blank" href="{{ route('pdf.proposal', $data->visit_id)}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
                             @endif
                         </div>
-                        <div class="col-lg-9 text-center">
+                        <div class="col-lg-6 text-center">
                             <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</button>
                         </div>
                     </div>
@@ -96,6 +126,35 @@
                         </div>
                     </div>
                       </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-sticky-note"></i> Notes</div>
+            <div class="card-body">
+                    <div class="container">
+                        <div>
+                            <ul class="timeline">
+                                @foreach($notes as $note)
+                                <li>
+                                    <a href="">Note #{{$note->id}}</a>
+                                <a href="" class="float-right">{{ \Carbon\Carbon::parse($note->created_at)->format(' m/d/Y h:i')}}</a>
+                                    <p>{{$note->note}}</p>
+                                </li>
+                                @endforeach
+                            </ul>
+                            <form  method="POST" class="form-horizontal style-form" action="{{ route('notes.store') }}" >
+                                @csrf 
+                            <div class="input-group">
+                                <input type="hidden" value="{{$data->visit_id}}" name="visit_id">
+                                <textarea required class="form-control" name="note" rows="3" style="resize:none"></textarea>     
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                            </div>
+                            </form>
+                        </div>
                     </div>
             </div>
         </div>

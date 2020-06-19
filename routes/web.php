@@ -28,5 +28,6 @@ Route::resources([
     'costumers' => 'CostumerController',
     'visits' => 'VisitController',
     'services' => 'ServiceController',
+    'notes' => 'NoteController'
 ]);
 });

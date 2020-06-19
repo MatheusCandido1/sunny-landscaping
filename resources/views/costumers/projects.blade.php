@@ -24,7 +24,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="text-align: center" scope="col" >Costumer's name</th>
+                        <th style="text-align: center" scope="col" >Project's name</th>
                         <th style="text-align: center" scope="col">Date</th>
                         <th style="text-align: center" scope="col">Service type</th>
                         <th style="text-align: center" scope="col">Actions</th>
@@ -62,13 +62,19 @@
           <form  method="POST" class="form-horizontal style-form" action="{{ route('visits.store') }}" > 
             @csrf
           <div class="form-row">
-              <div class="col-md-6">
+            <div class="col-md-4">
+              <div class="form-group">
+                  <label class="" for="inputFirstName">Name</label>
+                  <input name="name" class="form-control py-4" type="text" placeholder="" />
+              </div>
+          </div>
+              <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputFirstName">Date</label>
                       <input name="date" class="form-control py-4" id="inputFirstName" type="datetime-local" placeholder="" />
                   </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputLastName">Call costumer in (minutes)</label>
                       <input name="call_costumer_in" class="form-control py-4" id="inputLastName" type="number" placeholder="" />

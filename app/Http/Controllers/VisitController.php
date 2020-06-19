@@ -41,6 +41,7 @@ class VisitController extends Controller
     {
         try {
         $visit = Visit::create([
+            'name' => $request->name,
             'date' => $request->date,
             'call_costumer_in' => $request->call_costumer_in,
             'hoa' => $request->hoa,

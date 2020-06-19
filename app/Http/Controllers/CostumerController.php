@@ -51,7 +51,7 @@ class CostumerController extends Controller
     public function projectsByCostumer($id) 
     {
         $projects = DB::table('costumer_visit')
-        ->selectRaw(' costumer_visit.id as project_id, visits.id, costumers.name, visits.date, visits.type')
+        ->selectRaw(' costumer_visit.id as project_id, visits.id, visits.name, visits.date, visits.type')
         ->join('visits','visits.id','=','costumer_visit.visit_id')
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('costumers.id','=', $id)
@@ -63,20 +63,6 @@ class CostumerController extends Controller
     {
         return view('costumers.quote', ['items' => \App\Item::all(), 'visit_id' => $id]);
 
-    }
-
-
-    public function generatePdf($id)
-    {
-        $data = DB::table('costumer_visit')
-        ->selectRaw('costumers.*, visits.*')
-        ->join('visits','visits.id','=','costumer_visit.visit_id')
-        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
-        ->where('visits.id','=', $id)
-        ->get();
-
-        $pdf = PDF::loadView('costumers.pdfquote', compact('data'));
-        return $pdf->setPaper('a4')->stream('items.pdf');
     }
     
 
@@ -106,15 +92,22 @@ class CostumerController extends Controller
         ->where('costumer_visit.visit_id', '=', $id)
         ->get();
 
+        $note = DB::table('notes')
+        ->selectRaw('notes.id, notes.note, notes.created_at')
+        ->join('visits', 'visits.id','=','notes.visit_id')
+        ->where('notes.visit_id','=',$id)
+        ->orderBy('created_at','ASC')
+        ->get();
+
         if(is_null($quoteStatus[0]->status))
         {
             $check = false;
-            return view('costumers.show', ['data' => $data[0], 'quote_info' => $check]);
+            return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'notes' => $note]);
         }
         else
         {
-            $check = true;
-        return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'quote_data' => $quoteStatus[0]]);
+         $check = true;
+        return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'quote_data' => $quoteStatus[0], 'notes' => $note]);
         }
 
 
