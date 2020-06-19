@@ -40,13 +40,18 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         try {
+            if($request->type == "Others"){
+                $type = $request->type2;
+            }else{
+                $type = $request->type;
+            }
         $visit = Visit::create([
             'name' => $request->name,
             'date' => $request->date,
             'call_costumer_in' => $request->call_costumer_in,
             'hoa' => $request->hoa,
             'water_smart_rebate' => $request->water_smart_rebate,
-            'type' => $request->type
+            'type' => $type
         ]);
 
         $visit->costumers()->sync($request->costumer_id);

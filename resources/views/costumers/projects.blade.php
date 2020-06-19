@@ -116,15 +116,24 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="" for="inputFirstName">Type</label>
-                    <input name="type" class="form-control py-4" id="inputFirstName" type="text" placeholder="" />
-                </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                  <label class="" for="">Type</label>
+                  <select required class="form-control" name="type" id="type" onchange='checkvalue(this.value)'>
+                    <option value="">Select...</option>
+                    <option value="Pavers">Pavers</option>
+                    <option value="Artificial Grass">Artificial Grass</option>
+                    <option value="Landscaping">Landscaping</option>
+                    <option value="Others">Others</option>
+                  </select>
             </div>
+        </div>
             <div class="col-md-6">
-            <input  name="costumer_id" value="{{$id[0]}}" class="form-control py-4" type="hidden"  placeholder="" />
-            
+            <input  name="costumer_id" value="{{$id[0]}}" class="form-control" type="hidden"  placeholder="" />
+            <div id="color"  style='display:none'>
+              <label class="" for="">Other type</label>
+            <input name="type2" class="form-control py-4" type="text"/>
+            </div>
             </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
@@ -136,4 +145,13 @@
       </div>
     </div>
   </div>
+  <script>
+    function checkvalue(val)
+{
+if(val==="Others")
+   document.getElementById('color').style.display='block';
+else
+   document.getElementById('color').style.display='none'; 
+}
+</script>
 @endsection
