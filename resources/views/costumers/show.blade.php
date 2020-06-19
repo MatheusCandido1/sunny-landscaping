@@ -39,6 +39,10 @@ ul.timeline > li:before {
     height: 20px;
     z-index: 400;
 }
+.scroll {
+    max-height: 250px;
+    overflow-y: scroll;
+}
 </style>
         <div class="container-fluid">
             <h1 class="mt-4">Information</h1>
@@ -133,16 +137,16 @@ ul.timeline > li:before {
     </div>
 
     <div class="col-lg-6">
-        <div class="card mb-4">
+        <div class="card mb-4 ">
             <div class="card-header"><i class="fas fa-sticky-note"></i> Notes</div>
             <div class="card-body">
                     <div class="container">
                         <div>
-                            <ul class="timeline">
+                            <ul class="timeline scroll">
                                 @foreach($notes as $note)
                                 <li>
-                                    <a href="">Note #{{$note->id}}</a>
-                                <a href="" class="float-right">{{ \Carbon\Carbon::parse($note->created_at)->format(' m/d/Y h:i')}}</a>
+                                    <a style="color: #5cb85c" href="">Note #{{$loop->iteration}}</a>
+                                <a style="color: #5cb85c" href="" class="float-right">{{ \Carbon\Carbon::parse($note->created_at)->format(' m/d/Y h:i')}}</a>
                                     <p>{{$note->note}}</p>
                                 </li>
                                 @endforeach

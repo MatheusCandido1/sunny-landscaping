@@ -17,11 +17,16 @@ class CreateCostumersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
-            $table->string('city');
+            $table->string('cross_street1');
+            $table->string('cross_street2');
             $table->string('gate_code');
+            $table->string('city');
+            $table->string('state');
+            $table->string('zipcode');
             $table->string('phone');
-            $table->string('cellphone');
+            $table->boolean('cellphone');
             $table->string('email')->unique();
+            $table->string('referred');
             $table->timestamps();
         });
     }

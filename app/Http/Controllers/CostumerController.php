@@ -43,9 +43,37 @@ class CostumerController extends Controller
      */
     public function store(Request $request)
     {
-            $costumer = new Costumer($request->only('name', 'address','city', 'gate_code', 'phone', 'cellphone', 'email'));
-            $costumer->save();
-            return redirect()->route('costumers.index');
+        $data = $request->all();
+        if(isset($data['cellphone'])){
+            $cellphone = true;
+        }else{
+            $cellphone = false;
+
+        }
+
+        if($data['referred'] == "Others"){
+            $referred = $data['referred2'];
+        }else{
+            $referred = $data['referred'];
+        }
+
+        $costumer = costumer::create([
+            'name' => $data['name'],
+            'address' => $data['address'],
+            'cross_street1' => $data['cross_street1'],
+            'cross_street2' => $data['cross_street2'],
+            'gate_code' => $data['gate_code'],
+            'city' => $data['city'],
+            'state' => $data['state'],
+            'zipcode' => $data['zipcode'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'cellphone' => $cellphone,
+            'referred' => $referred
+        ]);
+
+        $costumer->save();
+        return redirect()->route('costumers.index'); 
     }
 
     public function projectsByCostumer($id) 
