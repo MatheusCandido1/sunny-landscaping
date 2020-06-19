@@ -77,7 +77,7 @@ class CostumerController extends Controller
     public function visitByCostumer($id)
     {
         $data = DB::table('costumer_visit')
-        ->selectRaw('costumers.*, visits.*, visits.id as visit_id')
+        ->selectRaw('costumers.name as costumer_name, costumers.email, costumers.phone, costumers.cellphone, costumers.address, costumers.gate_code, visits.name as visit_name, visits.date, visits.call_costumer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
         ->join('visits','visits.id','=','costumer_visit.visit_id')
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('visits.id','=', $id)
@@ -96,7 +96,7 @@ class CostumerController extends Controller
         ->selectRaw('notes.id, notes.note, notes.created_at')
         ->join('visits', 'visits.id','=','notes.visit_id')
         ->where('notes.visit_id','=',$id)
-        ->orderBy('created_at','ASC')
+        ->orderBy('created_at','DESC')
         ->get();
 
         if(is_null($quoteStatus[0]->status))

@@ -49,7 +49,7 @@ ul.timeline > li:before {
             <div class="card-body">
                 <div class="row">
                 <div class="col-12 col-lg-8 col-md-6">
-                    <h3 class="mb-0 text-truncated">{{$data->name}}</h3>
+                    <h3 class="mb-0 text-truncated">{{$data->costumer_name}}</h3>
                     <p class="lead"> <i class="fas fa-envelope-square"></i> E-mail: {{$data->email}}</p>
                     <p class="lead"> <i class="fas fa-phone-square"></i> Phone: {{$data->phone}}</p>
                     <p class="lead"> <i class="fas fa-mobile-alt"></i> Cellphone: {{$data->cellphone}}</p>
@@ -71,6 +71,7 @@ ul.timeline > li:before {
             <div class="card-body">
                 <div class="row">
                 <div class="col-12 col-lg-12 col-md-12">
+                    <p class="lead"><i class="far fa-image"></i> Project: {{ $data->visit_name}}</p>
                     <p class="lead"><i class="fas fa-calendar"></i> Date: {{ \Carbon\Carbon::parse($data->date)->format('l, jS \\of F Y h:i:s A')}}</p>
                     <p class="lead"> <i class="fas fa-phone-square"></i> Call costumer in : {{$data->call_costumer_in}} minutes</p>
                     <p class="lead"> <i class="fas fa-mobile-alt"></i> HOA: {{ $data->hoa == 0 ? 'No' : 'Yes'}}</p>
