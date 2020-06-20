@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Costumer;
 use App\Item;
+use App\Suppllier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
@@ -89,7 +90,7 @@ class CostumerController extends Controller
 
     public function Quote($id)
     {
-        return view('costumers.quote', ['items' => \App\Item::all(), 'visit_id' => $id]);
+        return view('costumers.quote', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
 
     }
     

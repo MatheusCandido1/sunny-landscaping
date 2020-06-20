@@ -30,4 +30,13 @@ class PdfController extends Controller
        // $pdf->setWatermarkImage(public_path('img/watermark.jpg'));
         return $pdf->setPaper('a4')->stream('items.pdf');
     }
+
+    public function generateQuote() 
+    {
+       
+
+        $pdf = PDF::loadView('pdfs.quote');
+       // $pdf->setWatermarkImage(public_path('img/watermark.jpg'));
+        return $pdf->setPaper('a4')->stream('quote.pdf');
+    }
 }
