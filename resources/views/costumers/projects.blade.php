@@ -1,6 +1,15 @@
 @extends('layouts.partials')
 @section('title', 'Costumers')
 @section('content')
+<style>
+  .btn-group.special {
+display: flex;
+}
+
+.special .btn {
+flex: 1
+}
+</style>
 <div class="container-fluid">
 <h1 class="mt-4">Projects</h1>
 <div class="card mb-4">
@@ -11,7 +20,7 @@
     </button>
   </div>
   @else
-  <div class="card-header">Here you can see all {{$projects[0]->name}}'s projects!
+  <div class="card-header">Here you can see all {{$projects[0]->cost_name}}'s projects!
     <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">
       New Project
   </button>
@@ -44,6 +53,11 @@
                     @endforeach
                 </tbody>
             </table>
+            
+        </div><br>
+        <div class="btn-group special" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary"><i class="fas fa-print"></i> Print all proposals</button>  
+          <button type="button" class="btn btn-success"><i class="fas fa-print"></i> Send all proposals to costumer</button>                         
         </div>
     </div>
 </div>
