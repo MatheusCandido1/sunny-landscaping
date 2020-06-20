@@ -20,7 +20,7 @@
           <a class="card-link" data-toggle="collapse" href="#collapse1">
           Pavers #1
           </a>
-          <button type="button" onclick="addNewInput()" class="btn btn-primary float-right btn-sm">
+          <button type="button" onclick="addNewPaver()" class="btn btn-primary float-right btn-sm">
           <i class="fas fa-plus"></i> New Item
           </button>
         </div>
@@ -38,48 +38,49 @@
                 </tr>
               </thead>
               <tbody  id="item_fields">
-                <tr>
-                  <td>
-                    <select required id="1supplier"  onchange="getUnitValue()" class="form-control">
-                      <option value="">Select a supplier </option>
-                      @foreach($suppliers as $supplier)
-                      <option value="{{$supplier->value}}"> {{$supplier->name}} </option>
-                      @endforeach
-                    </select>
-                  </td>
-                  <td>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <input type="text" class="form-control" value="" placeholder="Description"/>
-                      </div>
-                  </td>
-                  <td> <input  id="1qnt" value="0" onchange="findTotal()"  name="qnt[]"  type="text" class="form-control" placeholder="Quantity"></td>
-                  <td>
-                  <input type="text" class="form-control">
-                  </td>
-                  <td>
-                  <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
-                  </div>
-                  <input type="text" value="0"     id="1value" class="form-control"   placeholder="Unit cost">
-                  </div>
-                  </td>
-                  <td> <input type="text" id="1total" readonly name="total[]"  class="form-control items" placeholder="Investment"> </td>    
-                </tr>
               </tbody>
             </table>
             </div>
           </div>
         </div>
       </div>
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapse2">
+            Retaining Wall #2
+            </a>
+            <button type="button" onclick="addNewRetainingWall()" class="btn btn-primary float-right btn-sm">
+            <i class="fas fa-plus"></i> New Item
+            </button>
+          </div>
+          <div id="collapse2" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+              <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th style="" scope="col" >Supplier</th>
+                    <th style="" scope="col" >Description</th>
+                    <th style="" scope="col" >Quantity</th>
+                    <th style="" scope="col" >Type</th>
+                    <th style="" scope="col" >Unit Price</th>
+                    <th style="" scope="col" >Investment</th>
+                  </tr>
+                </thead>
+                <tbody  id="item_fields2">
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
         <div id="accordion">
           <div class="card">
             <div class="card-header">
               <a class="card-link" data-toggle="collapse" href="#collapse3" >
               Others
               </a>
-              <button type="button" onclick="addNewInput()" class="btn btn-primary float-right btn-sm">
+              <button type="button" onclick="addNewOther()" class="btn btn-primary float-right btn-sm">
               <i class="fas fa-plus"></i> New Item
               </button>
             </div>
@@ -96,31 +97,7 @@
                       <th style="" scope="col" >Investment</th>
                     </tr>
                   </thead>
-                  <tbody  id="item_fields">
-                    <tr>
-                      <td>
-                        <input type="text" class="form-control" value="" placeholder="Supplier"/>
-                      </td>
-                      <td>
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <input type="text" class="form-control" value="" placeholder="Description"/>
-                          </div>
-                      </td>
-                      <td> <input  id="qnt" value="0" onchange="findTotal()" name="qnt[]"  type="text" class="form-control" placeholder="Quantity"></td>
-                      <td>
-                      <input type="text" class="form-control">
-                      </td>
-                      <td>
-                      <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                      <span class="input-group-text">$</span>
-                      </div>
-                      <input type="text" value="0"     id="value" class="form-control"   placeholder="Unit cost">
-                      </div>
-                      </td>
-                      <td> <input type="text" id="total" readonly name="total[]"  class="form-control items" placeholder="Investment"> </td>    
-                    </tr>
+                  <tbody  id="item_fields3">
                   </tbody>
                 </table>
                 </div>
@@ -192,14 +169,31 @@
   </div>
   </ul>
 </form>
+
 <script type="text/javascript">
-  var item = 1;
-  function addNewInput() {
+  var item = 0;
+  function addNewPaver() {
   item++;
       var objTo = document.getElementById('item_fields')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<td> <select required id="'+item+'supplier" onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}"> {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="text" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"></td> <td> <input type="text" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="total[]" class="form-control items" placeholder="Investment"> </td>';
+      divtest.innerHTML = '<td> <select required id="'+item+'supplier" onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}"> {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="text" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"></td> <td> <input type="text" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()"  class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="total[]" class="form-control items" placeholder="Investment"> </td>';
       objTo.appendChild(divtest)
+  }
+
+  function addNewRetainingWall() {
+  item++;
+      var objTo = document.getElementById('item_fields2')
+      var divtest2 = document.createElement("tr");
+      divtest2.innerHTML = '<td> <select required id="'+item+'supplier" onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}"> {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="text" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"></td> <td> <input type="text" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()"  class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="total[]" class="form-control items" placeholder="Investment"> </td>';
+      objTo.appendChild(divtest2)
+  }
+
+  function addNewOther() {
+  item++;
+      var objTo = document.getElementById('item_fields3')
+      var divtest3 = document.createElement("tr");
+      divtest3.innerHTML = '<td> <input type="text" class="form-control" value="" placeholder="Supplier"/> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="text" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"></td> <td> <input type="text" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" onchange="findTotal()" id="'+item+'value" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="total[]" class="form-control items" placeholder="Investment"> </td>';
+      objTo.appendChild(divtest3)
   }
   
   function getUnitValue()
@@ -226,12 +220,15 @@
     var new_total = (document.getElementById('total').value) - (document.getElementById('discount').value);
     document.getElementById('totalwithoutdiscount').value = new_total.toFixed(2);
   }
+
+
     function findTotal(){
       for(i = 1; i <= item; i++){
       var value = document.getElementById(i+"value").value;
       var qnt = document.getElementById(i+"qnt").value;
       var investment = parseFloat(value) * parseFloat(qnt);
-      document.getElementById(i+"total").value = investment.toFixed(2)   
+      document.getElementById(i+"total").value = investment.toFixed(2);   
+
       }
       var total = 0
       for(i = 1; i <= item;i++){
