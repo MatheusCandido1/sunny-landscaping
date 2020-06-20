@@ -14,7 +14,6 @@
 <div class="card-body">
 <div> 
   <div id="accordion">
-
     <div class="card">
       <div class="card-header">
         <a class="card-link" data-toggle="collapse" href="#collapse1">
@@ -27,7 +26,7 @@
             @for ($i = 0; $i < 24; $i++)
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
+                <input type="text" class="form-control" value="{{$items[$i]->description}}"/>
               </div>
             <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
             <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
@@ -37,365 +36,76 @@
               </div>
             <input type="text" id="{{$items[$i]->id}}value" class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
               <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
+              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">           
             </div>
             @endfor
           </div>
         </div>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse2">
-          Retaining Wall #2
-        </a>
-      </div>
-      <div id="collapse2" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 24; $i < 32; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header">
+          <a class="card-link" data-toggle="collapse" >
+            Others
+          </a>
+            <button type="button" onclick="addNewInput()" class="btn btn-primary float-right btn-sm">
+              <i class="fas fa-plus"></i> New Item
+        </button>
         </div>
-      </div>
+        
+          
+          <div class="card-body">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th style="" scope="col" >Item description</th>
+                  <th style="" scope="col" >Quantity</th>
+                  <th style="" scope="col" >Type</th>
+                  <th style="" scope="col" >Unit Price</th>
+                  <th style="" scope="col" >Per type</th>
+                  <th style="" scope="col" >Investment</th>
+              </tr>
+              </thead>
+              <tbody  id="item_fields">
+<tr>
+  <td>
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <input type="text" class="form-control" value="" placeholder="Description"/>
     </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse3">
-          Artificial or Natural Grass #3
-        </a>
-      </div>
-      <div id="collapse3" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 32; $i < 42; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
+  </td>
+ <td> <input  id="25qnt" value="0"  name="qnt[]"  type="text" class="form-control" placeholder="Quantity"></td>
+    <td>
+<input type="text" class="form-control">
+    </td>
+ <td>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
     </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse4">
-          Trees and Plants #4
-        </a>
-      </div>
-      <div id="collapse4" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 42; $i < 53; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse5">
-          Irrigation #5
-        </a>
-      </div>
-      <div id="collapse5" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 53; $i < 63; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse6">
-          Rocks #6
-        </a>
-      </div>
-      <div id="collapse6" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 63; $i < 91; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse7">
-          Fire Pit #7
-        </a>
-      </div>
-      <div id="collapse7" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 91; $i < 94; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse8">
-          Drainage #8
-        </a>
-      </div>
-      <div id="collapse8" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 94; $i < 96; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse9">
-          Transformer and Led Lights #9
-        </a>
-      </div>
-      <div id="collapse9" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 96; $i < 101; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse10">
-          Dumpster #10
-        </a>
-      </div>
-      <div id="collapse10" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 101; $i < 103; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse11">
-          Labor #11
-        </a>
-      </div>
-      <div id="collapse11" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 103; $i < 131; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapse12">
-          Extra #12
-        </a>
-      </div>
-      <div id="collapse12" class="collapse" data-parent="#accordion">
-        <div class="card-body">
-          <div>
-            @for ($i = 131; $i < 132; $i++)
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">{{$items[$i]->description}}</span>
-              </div>
-            <input  name="id[]" type="hidden" value="{{$items[$i]->id}}" >
-            <input onblur="findTotal()" value="0" id="{{$items[$i]->id}}qnt"  name="qnt[]" type="text" class="form-control qnt" placeholder="Quantity">
-              <span class="input-group-text">{{$items[$i]->type}}</span>
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-            <input type="text" id="{{$items[$i]->id}}value" readonly class="form-control val"  value="{{number_format($items[$i]->unit_cost,2)}}">
-              <span class="input-group-text">{{$items[0]->type_per}}</span>
-              <input type="text" id="{{$items[$i]->id}}total" readonly name="total[]"  class="form-control items" placeholder="Investment">
-              
-            </div>
-            @endfor
-          </div>
-        </div>
-      </div>
-    </div>
-  
-  
-  
+    <input type="text" value="0"  onchange="findTotal()"   id="25value" class="form-control"   placeholder="Unit cost">
   </div>
-  <br>
+</td>
+    <td><input type="text" class="form-control">
+    </td>
+    <td> <input type="text" id="25total" readonly name="total[]"  class="form-control items" placeholder="Investment"> </td>    
+  
+</tr>
 
+              </tbody>
+            </table>
+          </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+<br>
   <div class="table-responsive">
             <table class="table table-bordered"  width="100%" cellspacing="0">
                 <tbody>
-               
                 <tr>
                   <td >Discount</td>
                   <td >
@@ -444,12 +154,10 @@
                     </div>
                   </td>
                 </tr>
-                <tr style="display: none">
                   <td >Total Without Discount</td>
                   <td style="text-align: right" scope="col" >
                     <input type="text" id="total"  class="form-control" placeholder="">
                   </td>
-              </tr>
                 </tbody>
             </table>
           <button type="submit" class="btn btn-success btn-block"><i class="fas fa-check"></i> Save Quote</button>
@@ -457,14 +165,15 @@
 
 </ul>
 </form>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 <script type="text/javascript">
+var item= 25;
+function addNewInput() {
+item++;
+    var objTo = document.getElementById('item_fields')
+    var divtest = document.createElement("tr");
+    divtest.innerHTML = '<td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="text" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" name="qnt[]" type="text" class="form-control" placeholder="Quantity"></td> <td> <input type="text" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" onchange="findTotal()" id="'+item+'value" class="form-control" placeholder="Unit cost"> </div> </td> <td><input type="text" class="form-control"> </td> <td> <input type="text" id="'+item+'total" readonly name="total[]" class="form-control items" placeholder="Investment"> </td>';
+    objTo.appendChild(divtest)
+}
 function getFinalBalance(){
   var final = document.getElementById('totalwithoutdiscount').value - document.getElementById('down_payment').value - document.getElementById('accepting_proposal').value;
   if(final < 0){
@@ -472,7 +181,6 @@ function getFinalBalance(){
   }else{
     final = final * 1;
   }
-  
   document.getElementById('finalbalance').value = final.toFixed(2);
 }
 
@@ -485,14 +193,14 @@ function Discount(){
   document.getElementById('totalwithoutdiscount').value = new_total.toFixed(2);
 }
   function findTotal(){
-    for(i = 1; i <= 132; i++){
+    for(i = 1; i <= item; i++){
     var value = document.getElementById(i+"value").value;
     var qnt = document.getElementById(i+"qnt").value;
     var investment = parseFloat(value) * parseFloat(qnt);
     document.getElementById(i+"total").value = investment.toFixed(2)   
     }
     var total = 0
-    for(i = 1; i <= 132;i++){
+    for(i = 1; i <= item;i++){
       total += Number(document.getElementById(i+"total").value);
     }
     document.getElementById('total').value =total.toFixed(2);
