@@ -112,14 +112,15 @@ class CostumerController extends Controller
         ->where('visits.id','=', $id)
         ->get();
 
-        /*$quoteStatus = DB::table('services')
-        ->selectRaw('services.id, services.status, services.final_balance, sum(item_service.investment), services.discount, services.accepting_proposal, services.down_payment')
+        $quoteStatus = DB::table('services')
+        ->selectRaw('services.id, services.status, services.final_balance, sum(items.investment), services.discount, services.accepting_proposal, services.down_payment')
         ->join('item_service','item_service.service_id','=','services.id')
         ->join('visits','visits.id','=','services.visit_id')
+        ->join('items', 'item_service.item_id','=', 'items.id')
         ->join('costumer_visit','costumer_visit.visit_id','=','visits.id')
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('costumer_visit.visit_id', '=', $id)
-        ->get();*/
+        ->get();
 
         $note = DB::table('notes')
         ->selectRaw('notes.id, notes.note, notes.created_at')
@@ -128,8 +129,16 @@ class CostumerController extends Controller
         ->orderBy('created_at','DESC')
         ->get();
 
-        $check = false;
-        return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'notes' => $note]);
+        if(is_null($quoteStatus[0]->status))
+        {
+            $check = false;
+            return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'notes' => $note]);
+        }
+        else
+        {
+         $check = true;
+        return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'quote_data' => $quoteStatus[0], 'notes' => $note]);
+        }
         
 
     }

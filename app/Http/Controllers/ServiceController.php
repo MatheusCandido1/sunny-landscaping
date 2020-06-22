@@ -33,7 +33,7 @@ class ServiceController extends Controller
             $item[$i]->save();
          $service->items()->attach($item[$i]);
         }
-        
+
         return redirect()->route('costumers.visitByCostumer',$request->visit_id);
         /*
 

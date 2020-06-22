@@ -12,6 +12,6 @@ class Item extends Model
 
     public function service()
     {
-        return $this->belongsToMany('App\Service','item_service',  'service_id', 'item_id');
+        return $this->belongsToMany('App\Service','item_service',  'service_id', 'item_id')->withTimestamps();;
     }
 }
