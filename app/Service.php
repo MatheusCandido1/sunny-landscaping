@@ -12,7 +12,7 @@ class Service extends Model
 
     public function items()
     {
-        return $this->belongsToMany('App\Item');
+        return $this->belongsToMany('App\Item', 'item_service',  'service_id', 'item_id');
     }
 
     public function visit()

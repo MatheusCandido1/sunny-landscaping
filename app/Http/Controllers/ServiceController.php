@@ -22,19 +22,35 @@ class ServiceController extends Controller
             'visit_id' => $request->visit_id
         ]); 
 
-        $items = [];
+        for ($i = 0; $i < count($request->input('id')); $i++) {
+            $item[$i] = new Item();
+            $item[$i]->supplier = $request->input('supplier')[$i];
+            $item[$i]->description = $request->input('description')[$i];
+            $item[$i]->quantity = $request->input('qnt')[$i];
+            $item[$i]->type = $request->input('type')[$i];
+            $item[$i]->unit_price = $request->input('unit_price')[$i];
+            $item[$i]->investment = $request->input('investment')[$i];
+            $item[$i]->save();
+         $service->items()->attach($item[$i]);
+        }
+        
+        return redirect()->route('costumers.visitByCostumer',$request->visit_id);
+        /*
 
+        $items = [];
         for ($i = 0; $i < count($request->input('id')); $i++) {
             if($request->input('qnt')[$i] > 0) {
             $items[$i] = [
-                'item_id' => $request->input('id')[$i],
+                'supplier' => $request->input('supplier')[$i],
+                'description' => $request->input('description')[$i],
                 'quantity' => $request->input('qnt')[$i],
-                'subtotal' => $request->input('total')[$i]
+                'type' => $request->input('type')[$i],
+                'unit_price' => $request->input('unit_price')[$i],
+                'investment' => $request->input('investment')[$i]
                 ];
             }
         } 
-        $service->items()->sync($items);
-        return redirect()->route('costumers.visitByCostumer',$request->visit_id);
+        $service->items()->sync($items);*/
     }
 
     public function destroy(Service $service)

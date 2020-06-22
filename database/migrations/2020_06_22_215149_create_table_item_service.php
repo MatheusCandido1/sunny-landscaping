@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemServiceTable extends Migration
+class CreateTableItemService extends Migration
 {
     /**
      * Run the migrations.
@@ -17,9 +17,8 @@ class CreateItemServiceTable extends Migration
             $table->increments('id');
             $table->integer('service_id')->unsigned();
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->integer('item_id');
-            $table->float('quantity');
-            $table->float('subtotal');
+            $table->integer('item_id')->unsigned();
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateItemServiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_service');
+        //
     }
 }
