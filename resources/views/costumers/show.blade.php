@@ -55,10 +55,11 @@ ul.timeline > li:before {
                 <div class="col-12 col-lg-8 col-md-6">
                     <h3 class="mb-0 text-truncated">{{$data->costumer_name}}</h3>
                     <p class="lead"> <i class="fas fa-envelope-square"></i> E-mail: {{$data->email}}</p>
-                    <p class="lead"> <i class="fas fa-phone-square"></i> Phone: {{$data->phone}}</p>
-                    <p class="lead"> <i class="fas fa-mobile-alt"></i> Cellphone: {{$data->cellphone}}</p>
-                    <p class="lead"> <i class="fas fa-map-marked-alt"></i> Address: {{$data->address}}</p>
-                    <p class="lead"> <i class="fas fa-warehouse"></i> Gate code: <span class="badge badge-secondary">{{$data->gate_code}}</span></p>
+                    <p class="lead"> <i class="fas fa-phone-square"></i> Phone: {{$data->phone}} (Cellphone: {{ $data->cellphone == 0 ? 'No' : 'Yes'}})</p>
+                <p class="lead"> <i class="fas fa-map-marked-alt"></i> Address: {{$data->address}}, {{$data->city}}, {{$data->state}} - {{$data->zipcode}}</p>
+                <p class="lead"> <i class="fas fa-warehouse"></i> Gate code: <span class="badge badge-secondary">{{$data->gate_code}}</span></p>
+                <p class="lead"> <i class="fas fa-road"></i> Cross Streets: {{$data->cross_street1}}/{{$data->cross_street2}}</p>
+                <p class="lead"> <i class="fas fa-globe"></i> Referred: {{$data->referred}}</p>
                 </div>
                 <!--/col-->
             </div>

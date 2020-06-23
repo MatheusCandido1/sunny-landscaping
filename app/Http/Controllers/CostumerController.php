@@ -106,7 +106,7 @@ class CostumerController extends Controller
     public function visitByCostumer($id)
     {
         $data = DB::table('costumer_visit')
-        ->selectRaw('costumers.name as costumer_name, costumers.email, costumers.phone, costumers.cellphone, costumers.address, costumers.gate_code, visits.name as visit_name, visits.date, visits.call_costumer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
+        ->selectRaw('costumers.referred, costumers.city, costumers.state,costumers.zipcode,costumers.cross_street1, costumers.cross_street2,costumers.name as costumer_name, costumers.email, costumers.phone, costumers.cellphone, costumers.address, costumers.gate_code, visits.name as visit_name, visits.date, visits.call_costumer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
         ->join('visits','visits.id','=','costumer_visit.visit_id')
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('visits.id','=', $id)
