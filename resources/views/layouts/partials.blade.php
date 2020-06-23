@@ -57,14 +57,17 @@
                             <a class="nav-link" href="{{ route ('home')}}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Dashboard</a>
-                        <a class="nav-link" href="{{ route('costumers.index') }}"
+                                <a class="nav-link" href="{{ route('costumers.index') }}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-user-check"></i></div>
                                 Costumers</a>
-                                <a class="nav-link" href="index.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Quote</a>
-                                 <a class="nav-link" href="index.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <a class="nav-link" href="{{ route('costumers.index') }}"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-tree"></i></div>
+                                Services</a>
+                                <a class="nav-link" href="{{ route('costumers.index') }}"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
+                                Suppliers</a>
+                                <a class="nav-link" href="{{ route('costumers.index') }}"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Users</a>
                         </div>
                     </div>
