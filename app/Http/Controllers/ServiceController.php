@@ -32,25 +32,10 @@ class ServiceController extends Controller
             $item[$i]->investment = $request->input('investment')[$i];
             $item[$i]->save();
          $service->items()->attach($item[$i]);
-        }
+        } 
 
         return redirect()->route('costumers.visitByCostumer',$request->visit_id);
-        /*
-
-        $items = [];
-        for ($i = 0; $i < count($request->input('id')); $i++) {
-            if($request->input('qnt')[$i] > 0) {
-            $items[$i] = [
-                'supplier' => $request->input('supplier')[$i],
-                'description' => $request->input('description')[$i],
-                'quantity' => $request->input('qnt')[$i],
-                'type' => $request->input('type')[$i],
-                'unit_price' => $request->input('unit_price')[$i],
-                'investment' => $request->input('investment')[$i]
-                ];
-            }
-        } 
-        $service->items()->sync($items);*/
+        
     }
 
     public function destroy(Service $service)

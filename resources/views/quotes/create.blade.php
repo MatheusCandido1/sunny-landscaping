@@ -38,7 +38,7 @@
                 </tr>
               </thead>
               <tbody  id="item_fields">
-                  
+              
               </tbody>
             </table>
             </div>
@@ -177,7 +177,7 @@
   item++;
       var objTo = document.getElementById('item_fields')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<td> <select required id="'+item+'supplier" name="supplier[]" onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}" id="sup{{$supplier->value}}"> {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value="'+item+'"> <input type="text" name="description[]" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> </td> <td> <input type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td>';
+      divtest.innerHTML = '<td><input type="hidden" id="'+item+'sup" name="supplier[]" value=""> <select required id="'+item+'supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}" id="sup{{$supplier->value}}"> {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value="'+item+'"> <input type="text" name="description[]" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> </td> <td> <input type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td>';
       objTo.appendChild(divtest)
   }
 
@@ -185,7 +185,7 @@
   item++;
       var objTo = document.getElementById('item_fields2')
       var divtest2 = document.createElement("tr");
-      divtest2.innerHTML = '<td> <select required id="'+item+'supplier" onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}"> {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="text" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"></td> <td> <input type="text" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()"  class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="total[]" class="form-control items" placeholder="Investment"> </td>';
+      divtest2.innerHTML = '<td><input type="hidden" id="'+item+'sup" name="supplier[]" value=""> <select required id="'+item+'supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}" id="sup{{$supplier->value}}"> {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value="'+item+'"> <input type="text" name="description[]" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> </td> <td> <input type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td>';
       objTo.appendChild(divtest2)
   }
 
@@ -193,16 +193,16 @@
   item++;
       var objTo = document.getElementById('item_fields3')
       var divtest3 = document.createElement("tr");
-      divtest3.innerHTML = '<td> <input type="text" class="form-control" value="" placeholder="Supplier"/> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="text" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"></td> <td> <input type="text" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" onchange="findTotal()" id="'+item+'value" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="total[]" class="form-control items" placeholder="Investment"> </td>';
+      divtest3.innerHTML = '<td><input type="hidden" id="'+item+'sup" name="supplier[]" value=""> <select required id="'+item+'supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}" id="sup{{$supplier->value}}"> {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value="'+item+'"> <input type="text" name="description[]" class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> </td> <td> <input type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td>';
       objTo.appendChild(divtest3)
   }
   
   function getUnitValue()
   {
-    for(i = 1; i <= item; i++){
-    document.getElementById(i+"value").value = document.getElementById(i+"supplier").value
-    document.getElementById(i+"value").value = document.getElementById(i+"supplier").value
-    }
+  for(i = 1; i <= item; i++){
+    document.getElementById(i+"sup").value = document.getElementById(i+"supplier").selectedIndex;
+    document.getElementById(i+"value").value = document.getElementById(i+"supplier").value;
+   }
   }
   function getFinalBalance(){
     var final = document.getElementById('totalwithoutdiscount').value - document.getElementById('down_payment').value - document.getElementById('accepting_proposal').value;
