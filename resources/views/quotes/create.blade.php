@@ -1,7 +1,7 @@
 @extends('layouts.partials')
-@section('title', 'Costumers')
+@section('title', 'Quote')
 @section('content')
-<form  method="POST" class="form-horizontal style-form" action="{{ route('service.storeItems') }}" >
+<form  method="POST" class="form-horizontal style-form" action="{{ route('quotes.store') }}" >
   @csrf
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
   <div class="container-fluid">

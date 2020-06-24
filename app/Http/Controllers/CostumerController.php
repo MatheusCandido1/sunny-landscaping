@@ -126,7 +126,7 @@ class CostumerController extends Controller
         ->selectRaw('notes.id, notes.note, notes.created_at')
         ->join('visits', 'visits.id','=','notes.visit_id')
         ->where('notes.visit_id','=',$id)
-        ->orderBy('created_at','DESC')
+        ->orderBy('created_at','ASC')
         ->get();
 
         if(is_null($quoteStatus[0]->status))

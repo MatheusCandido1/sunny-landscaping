@@ -86,7 +86,7 @@
                       <label class="" for="">Referral</label>
                       <select required class="form-control" name="referred" id="referred" onchange='checkvalue(this.value)'>
                         <option value="">Select...</option>
-                        <option value="Craiglist">Craiglist</option>
+                        <option value="Craiglist">Craigslist</option>
                         <option value="Friend">Friend</option>
                         <option value="From Advertisement">From Advertisement</option>
                         <option value="Google">Google</option>

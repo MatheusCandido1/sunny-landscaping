@@ -89,7 +89,7 @@ ul.timeline > li:before {
                 @if(!($quote_info))
                 <a href="{{ route('costumers.quote', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a> 
                 @else
-                <button type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Edit Quote</button>
+            <a href="{{route('quotes.edit', ['visit'=>$data->visit_id, 'service'=>$quote_data->id])}}" type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Edit Quote</a>
                 <button type="button" class="btn btn-success"><i class="fas fa-print"></i> Print Quote</button>
                 <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this Quote?')) { document.getElementById('destroy-form-{{$quote_data->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                 <form id="destroy-form-{{$quote_data->id}}" action="{{ route('services.destroy',$quote_data->id) }}" method="POST" style="display: none;">
@@ -147,9 +147,18 @@ ul.timeline > li:before {
                                 @foreach($notes as $note)
                                 <li>
                                     <a style="color: #5cb85c" href="">Note #{{$loop->iteration}}</a>
-                                <a style="color: #5cb85c" href="" class="float-right">{{ \Carbon\Carbon::parse($note->created_at)->format(' m/d/Y h:i')}}</a>
+                                <a style="color: #5cb85c" href="" class="float-right">{{ \Carbon\Carbon::parse($note->created_at)->format(' m/d/Y h:i:s')}}</a>
+
                                     <p>{{$note->note}}</p>
+                                    <div class="text-right">
+                                        <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this note?')) { document.getElementById('destroy-form-{{$note->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        <form id="destroy-form-{{$note->id}}" action="{{ route('notes.destroy',$note->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>                                    
+                                    </div>
                                 </li>
+                                <hr>
                                 @endforeach
                             </ul>
                             <form  method="POST" class="form-horizontal style-form" action="{{ route('notes.store') }}" >

@@ -23,12 +23,13 @@ Route::get('/project/{visit}', 'CostumerController@visitByCostumer')->name('cost
 Route::get('/quote/{visit}', 'CostumerController@quote')->name('costumers.quote');
 Route::get('/pdf/proposal/{visit}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('/pdf/quote/{visit}', 'PdfController@generateQuote')->name('pdf.quote');
-Route::post('/addItems', 'ServiceController@storeItems')->name('service.storeItems');
+Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
+Route::get('/visit/{visit}/service/{service}', 'quoteController@edit')->name('quotes.edit');
 
 Route::resources([
     'costumers' => 'CostumerController',
     'visits' => 'VisitController',
     'services' => 'ServiceController',
-    'notes' => 'NoteController'
+    'notes' => 'NoteController',
 ]);
 });
