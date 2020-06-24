@@ -83,7 +83,7 @@ class QuoteController extends Controller
      */
     public function edit($id, $service_id)
     {
-        $serviceData = DB::table('services')->select('discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$id)->first();
+        $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$id)->first();
 
         $itemData = DB::table('items')
         ->selectRaw('items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
@@ -91,8 +91,8 @@ class QuoteController extends Controller
         ->join('services','services.id','=','item_service.service_id')
         ->where('services.id', '=', $service_id)
         ->get();
-        
-        return view('quotes.edit', ['services' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
+
+        return view('quotes.edit', ['service' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
     }
 
     /**
@@ -104,7 +104,12 @@ class QuoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $service = Service::where('id','=', $id)->first();
+        $service->fill($request->only('discount','total','accepting_proposal','down_payment','status','visit','final_balance'));
+        $service->save();
+
+        
+        return redirect()->route('costumers.visitByCostumer',$request->visit_id);
     }
 
     /**

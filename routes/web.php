@@ -24,7 +24,8 @@ Route::get('/quote/{visit}', 'CostumerController@quote')->name('costumers.quote'
 Route::get('/pdf/proposal/{visit}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('/pdf/quote/{visit}', 'PdfController@generateQuote')->name('pdf.quote');
 Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
-Route::get('/visit/{visit}/service/{service}', 'quoteController@edit')->name('quotes.edit');
+Route::get('/visit/{visit}/service/{service}', 'QuoteController@edit')->name('quotes.edit');
+Route::put('/update/{service}', 'QuoteController@update')->name('quotes.update');
 
 Route::resources([
     'costumers' => 'CostumerController',

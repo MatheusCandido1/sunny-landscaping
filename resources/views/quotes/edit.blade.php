@@ -1,8 +1,10 @@
 @extends('layouts.partials')
 @section('title', 'Quote')
 @section('content')
-<form  method="POST" class="form-horizontal style-form" action="{{ route('quotes.store') }}" >
+<form  method="POST" class="form-horizontal style-form" action="{{ route('quotes.update',$service->id) }}" >
   @csrf
+  @method('PUT')
+
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
   <div class="container-fluid">
   <h1 class="mt-4">Update Quote</h1>
@@ -76,7 +78,7 @@
           <td >Discount</td>
           <td >
             <div class="input-group mb-3">
-            <input name="discount" type="text" class="form-control" id="discount"  value="{{$services->discount}}" placeholder="Discount" aria-describedby="basic-addon2">
+            <input name="discount" type="text" class="form-control" id="discount"  value="{{$service->discount}}" placeholder="Discount" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button onclick="Discount()" class="btn btn-success" type="button">Get Discount</button>
               </div>
@@ -86,14 +88,14 @@
         <tr>
           <td >Total</td>
           <td style="text-align: right"  scope="col" >
-          <input type="text" required id="totalwithoutdiscount" name="subtotal" readonly value="{{$services->total}}"   class="form-control">
+          <input type="text" required id="totalwithoutdiscount" name="subtotal" readonly value="{{$service->total}}"   class="form-control">
           </td>
         </tr>
         <tr>
           <td >Accepting Proposal</td>
           <td style="text-align: right"  scope="col" >
             <div class="input-group mb-3">
-              <input type="text" value="{{$services->accepting_proposal}}" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Total with discount">
+              <input type="text" value="{{$service->accepting_proposal}}" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Total with discount">
               <div class="input-group-append">
                 <button onclick="PayDown()" class="btn btn-success" type="button">Get Payment Down</button>
               </div>
@@ -103,14 +105,14 @@
         <tr>
           <td >Down Payment</td>
           <td >
-            <input type="text" id="down_payment" required name="down_payment" value="{{$services->down_payment}}" readonly class="form-control"  placeholder="Payment Down">
+            <input type="text" id="down_payment" required name="down_payment" value="{{$service->down_payment}}" readonly class="form-control"  placeholder="Payment Down">
           </td>
         </tr>
         <tr>
           <td >Final Balance</td>
           <td>
             <div class="input-group mb-3">
-              <input type="text" id="finalbalance" onkeypress="return false;" required name="final_balance" class="form-control" placeholder="The final balance will be displayed here" value="{{$services->final_balance}}" >
+              <input type="text" id="finalbalance" onkeypress="return false;" required name="final_balance" class="form-control" placeholder="The final balance will be displayed here" value="{{$service->final_balance}}" >
               <div class="input-group-append">
                 <button onclick="getFinalBalance()" class="btn btn-success" type="button">Get Final Balance</button>
               </div>
