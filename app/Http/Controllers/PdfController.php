@@ -19,7 +19,7 @@ class PdfController extends Controller
     public function generateProposal($id) 
     {
         $data = DB::table('costumer_visit')
-        ->selectRaw('costumers.name, costumers.address, costumers.city, costumers.cellphone, services.final_balance')
+        ->selectRaw('costumers.name, costumers.address, costumers.state, costumers.phone, costumers.zipcode, costumers.city, costumers.cellphone, services.final_balance')
         ->join('visits','visits.id','=','costumer_visit.visit_id')
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->join('services','services.visit_id','=','visits.id')

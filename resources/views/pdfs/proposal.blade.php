@@ -107,10 +107,14 @@ style='font-size:14.0pt;line-height:120%;'>{{$data[0]->name}}</span></b></p>
 style='font-size:10.0pt;line-height:120%;'>{{$data[0]->address}}</span></p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
-style='font-size:10.0pt;line-height:120%;'>{{$data[0]->city}}</span></p>
+style='font-size:10.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}} - {{$data[0]->zipcode}}</span></p>
 
-<p class=MsoNormal style='margin-bottom:24.0pt;border:none'><span
-style='font-size:10.0pt;line-height:120%;'>Cell: {{$data[0]->cellphone}}</span></p>
+<p class=MsoNormal style='margin-bottom:24.0pt;border:none'>
+@if($data[0]->cellphone == 1)
+<span style='font-size:10.0pt;line-height:120%;'>Cellphone: {{$data[0]->phone}}</span></p>
+@else
+<span style='font-size:10.0pt;line-height:120%;'>Phone: {{$data[0]->phone}}</span></p>
+@endif
 
 <p class=MsoNormal>Dear <span >Customer,</span></p>
 
@@ -120,7 +124,7 @@ your home’s landscaping improvement.</p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>The <b>anticipated value</b> of investment to install pavers and
-improve your landscaping is estimated in <b>US$ <span>{{$data[0]->final_balance}}</span></b>
+improve your landscaping is estimated in <b>US$ <span>{{number_format($data[0]->final_balance,2)}}</span></b>
 <b>(materials and labor, tax included).</b></p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
