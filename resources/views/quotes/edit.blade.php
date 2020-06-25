@@ -55,10 +55,10 @@
                                <div class="input-group-prepend">
                                   <span class="input-group-text">$</span>
                                  </div> 
-                                 <input type="text" id="{{$loop->iteration}}value" value="{{$item->unit_price}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                 <input type="text" id="{{$loop->iteration}}value" value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
                                  </td> 
                                  <td> 
-                                   <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{$item->investment}}" class="form-control items" placeholder="Investment">
+                                   <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                    </td>
                                    <td style="text-align: center;" scope="col">
                                     <button onclick="" class="btn btn-danger"><i class="fas fa-trash"></i></button>
@@ -78,7 +78,7 @@
           <td >Discount</td>
           <td >
             <div class="input-group mb-3">
-            <input name="discount" type="text" class="form-control" id="discount"  value="{{$service->discount}}" placeholder="Discount" aria-describedby="basic-addon2">
+            <input name="discount" type="text" class="form-control" id="discount"  value="{{number_format($service->discount,2)}}" placeholder="Discount" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button onclick="Discount()" class="btn btn-success" type="button">Get Discount</button>
               </div>
@@ -88,14 +88,14 @@
         <tr>
           <td >Total</td>
           <td style="text-align: right"  scope="col" >
-          <input type="text" required id="totalwithoutdiscount" name="total" readonly value="{{$service->total}}"   class="form-control">
+          <input type="text" required id="totalwithoutdiscount" name="total" readonly value="{{number_format($service->total,2)}}"   class="form-control">
           </td>
         </tr>
         <tr>
           <td >Accepting Proposal</td>
           <td style="text-align: right"  scope="col" >
             <div class="input-group mb-3">
-              <input type="text" value="{{$service->accepting_proposal}}" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Total with discount">
+              <input type="text" value="{{number_format($service->accepting_proposal,2)}}" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Total with discount">
               <div class="input-group-append">
                 <button onclick="PayDown()" class="btn btn-success" type="button">Get Payment Down</button>
               </div>
@@ -105,14 +105,14 @@
         <tr>
           <td >Down Payment</td>
           <td >
-            <input type="text" id="down_payment" required name="down_payment" value="{{$service->down_payment}}" readonly class="form-control"  placeholder="Payment Down">
+            <input type="text" id="down_payment" required name="down_payment" value="{{number_format($service->down_payment,2)}}" readonly class="form-control"  placeholder="Payment Down">
           </td>
         </tr>
         <tr>
           <td >Final Balance</td>
           <td>
             <div class="input-group mb-3">
-              <input type="text" id="finalbalance" onkeypress="return false;" required name="final_balance" class="form-control" placeholder="The final balance will be displayed here" value="{{$service->final_balance}}" >
+              <input type="text" id="finalbalance" onkeypress="return false;" required name="final_balance" class="form-control" placeholder="The final balance will be displayed here" value="{{number_format($service->final_balance,2)}}" >
               <div class="input-group-append">
                 <button onclick="getFinalBalance()" class="btn btn-success" type="button">Get Final Balance</button>
               </div>
@@ -122,7 +122,7 @@
         <tr style="display: none">
           <td >Total Without Discount</td>
           <td style="text-align: right" scope="col" >
-          <input type="text" value="{{$service->total}}" id="total"  class="form-control" placeholder="">
+          <input type="text" value="{{number_format($service->total,2)}}" id="total"  class="form-control" placeholder="">
           </td>
         </tr>
       </tbody>

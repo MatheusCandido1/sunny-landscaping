@@ -92,7 +92,9 @@ class VisitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $visit = DB::table('visits')->select('id','name','date','call_costumer_in','hoa','water_smart_rebate','type')->where('visits.id','=',$id)->first();
+        return view('visits.edit', ['visit' => $visit]);
+
     }
 
     /**
@@ -104,7 +106,12 @@ class VisitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $visit = Visit::where('id','=', $id)->first();
+        $visit->fill($request->only('name','date','call_costumer_in','hoa','status','water_smart_rebate','type'));
+        $visit->save();
+
+        
+        return redirect()->route('costumers.visitByCostumer',$id);
     }
 
     /**
