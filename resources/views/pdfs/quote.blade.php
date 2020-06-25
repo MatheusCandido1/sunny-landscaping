@@ -29,6 +29,7 @@
 
 
 
+
 .invoice {
     position: relative;
     background-color: #FFF;
@@ -99,8 +100,6 @@
     
 }
 
-
-
 footer {
                 position: fixed; 
                 bottom: 0px; 
@@ -114,32 +113,49 @@ footer {
                 color: #777;
     border-top: 1px solid #f5a15c;
             }
+
+            .watermark {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-repeat: no-repeat;
+            z-index: 9999;
+            opacity: 0.2;
+            background-image: url("https://i.ibb.co/n0p0469/Logo-Sun.jpg");
+            -webkit-user-select: none;
+            margin: auto;
+            cursor: zoom-in;
+            }
 </style>
 <body>
+  <div class="watermark"></div>
+  
   <footer>Invoice was created on a computer and is valid without the signature and seal.
   </footer>
   <div id="invoice">
     <div class="invoice overflow-auto">
         <div style="min-width: 600px">
-            <header>
-              <div class="row">
-                <div class="col">
-                    <a target="_blank" href="https://lobianijs.com">
-                      <img src="http://www.sunnypavers.com/wp-content/uploads/2016/03/SunnyWebsiteLogo2.png" data-holder-rendered="true" />
-                    </a>
-                </div>
-                <div class="col company-details">
-                    <h2 class="name">
-                        <a style="color: #f5a15c" target="_blank" href="https://sunnypavers.com">
-                          Sunny  Landscaping & Pavers Design LLC
-                        </a>
-                    </h2>
-                    <div>NV State Business License # NV20151085480</div>
-                    <div>NV Contractor's Board Licenses:    </div>
-                    <div>C-18 # 0080493 - Limit: $245,000 / C-10 # 0081661 - Limit: $245,000</div>
-                </div>
-            </div>
-            </header>
+          <header>
+            <div class="row">
+              <div class="col">
+                  <a target="_blank" href="https://lobianijs.com">
+                    <img src="http://www.sunnypavers.com/wp-content/uploads/2016/03/SunnyWebsiteLogo2.png" data-holder-rendered="true" />
+                  </a>
+              </div>
+              <div class="col company-details">
+                  <h2 class="name">
+                      <a style="color: #f5a15c" target="_blank" href="https://sunnypavers.com">
+                        Sunny  Landscaping & Pavers Design LLC
+                      </a>
+                  </h2>
+                  <div>NV State Business License # NV20151085480</div>
+                  <div>NV Contractor's Board Licenses:    </div>
+                  <div>C-18 # 0080493 - Limit: $245,000 / C-10 # 0081661 - Limit: $245,000</div>
+              </div>
+          </div>
+          </header>
             <main>
                 <div class="row contacts">
                     <div class="col invoice-to">
@@ -244,9 +260,9 @@ footer {
           
         </div>
         <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
-        <div></div>
+        <div>
+          <div class="watermark"></div></div>
     </div>
 </div>
- 
 </body>
 </html>

@@ -39,12 +39,27 @@
 	margin:49.5pt 1.0in 40.5pt 1.25in;}
 div.WordSection1
 	{page:WordSection1;}
--->
+
+  .watermark {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-repeat: no-repeat;
+            z-index: 9999;
+            opacity: 0.2;
+            background-image: url("https://i.ibb.co/n0p0469/Logo-Sun.jpg");
+            -webkit-user-select: none;
+            margin: auto;
+            cursor: zoom-in;
+            }
 </style>
 
 </head>
 
 <body lang=EN-US>
+  <div class="watermark"></div>
 
 <div class=WordSection1>
 
