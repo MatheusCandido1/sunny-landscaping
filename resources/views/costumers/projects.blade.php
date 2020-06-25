@@ -57,7 +57,7 @@ flex: 1
         </div><br>
         <div class="btn-group special" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-primary"><i class="fas fa-print"></i> Print all proposals</button>  
-          <button type="button" class="btn btn-success"><i class="fas fa-print"></i> Send all proposals to costumer</button>                         
+          <button type="button" class="btn btn-success"><i class="fas fa-envelope"></i> Send all proposals to costumer</button>                         
         </div>
     </div>
 </div>
