@@ -90,7 +90,7 @@ ul.timeline > li:before {
                 <a href="{{ route('costumers.quote', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a> 
                 @else
             <a href="{{route('quotes.edit', ['visit'=>$data->visit_id, 'service'=>$quote_data->id])}}" type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Edit Quote</a>
-                <button type="button" class="btn btn-success"><i class="fas fa-print"></i> Print Quote</button>
+            <a target="_blank" href="{{ route ('pdf.quote', $data->visit_id)}}" class="btn btn-success"><i class="fas fa-print"></i> Print Quote</a>
                 <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this Quote?')) { document.getElementById('destroy-form-{{$quote_data->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                 <form id="destroy-form-{{$quote_data->id}}" action="{{ route('services.destroy',$quote_data->id) }}" method="POST" style="display: none;">
                     @csrf
