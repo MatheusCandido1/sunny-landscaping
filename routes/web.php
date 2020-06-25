@@ -22,7 +22,7 @@ Route::get('/projects/{costumer}', 'CostumerController@projectsByCostumer')->nam
 Route::get('/project/{visit}', 'CostumerController@visitByCostumer')->name('costumers.visitByCostumer');
 Route::get('/quote/{visit}', 'CostumerController@quote')->name('costumers.quote');
 Route::get('/pdf/proposal/{visit}', 'PdfController@generateProposal')->name('pdf.proposal');
-Route::get('/pdf/quote/{visit}', 'PdfController@generateQuote')->name('pdf.quote');
+Route::get('/pdf/quote/{service}/{visit}', 'PdfController@generateQuote')->name('pdf.quote');
 Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
 Route::get('/visit/{visit}/service/{service}', 'QuoteController@edit')->name('quotes.edit');
 Route::put('/update/{service}', 'QuoteController@update')->name('quotes.update');

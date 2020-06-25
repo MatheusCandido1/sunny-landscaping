@@ -490,7 +490,7 @@
         </tr>
         <tr style="display:">
           <td >Total Without Discount</td>
-          <td style="text-align: right" scope="col" >
+          <td style="text-align: none" scope="col" >
             <input type="text" id="total"  class="form-control" placeholder="">
           </td>
         </tr>
