@@ -36,11 +36,14 @@ class PdfController extends Controller
         $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$visit_id)->first();
 
         $itemData = DB::table('items')
-        ->selectRaw('items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
+        ->selectRaw('items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
         ->join('item_service','item_service.item_id','=','items.id')
         ->join('services','services.id','=','item_service.service_id')
         ->where('services.id', '=', $service_id)
-        ->get();
+        ->get()
+        ->groupBy('group_type');
+
+       // dd($itemData);
 
         $costumerData = DB::table('costumer_visit')
         ->selectRaw('costumers.referred, costumers.city, costumers.state,costumers.zipcode,costumers.cross_street1, costumers.cross_street2,costumers.name as costumer_name, costumers.email, costumers.phone, costumers.cellphone, costumers.address, costumers.gate_code, visits.name as visit_name, visits.date, visits.call_costumer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
@@ -51,7 +54,7 @@ class PdfController extends Controller
 
        
         $pdf = PDF::loadView('pdfs.quote', compact('serviceData','itemData','costumerData'));
-       // $pdf->setWatermarkImage(public_path('img/watermark.jpg'));
-        return $pdf->setPaper('a4')->stream('quote.pdf');
+        
+        return $pdf->setPaper('a4')->stream('quote.pdf'); 
     }
 }

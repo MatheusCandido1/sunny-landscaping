@@ -166,10 +166,16 @@ footer {
                         <div class="date">Date: {{ date('m/d/Y') }}</div>
                     </div>
                 </div>
-                <h3>1 - PAVERS </h3>
+                @foreach($itemData as $group_type => $items)
+                <h4>{{$group_type}} </h4>
                 <table class="table" width="">
                   <thead>
                     <tr>
+                      @if($group_type == "1 - PAVERS" || $group_type == "2 - RETAINING WALL")
+                      <th style="" scope="col" >Supplier</th>
+                      @else
+                      <th style="" scope="col" >&nbsp;</th>
+                      @endif
                       <th style="" scope="col" >Description</th>
                       <th style="" scope="col" >Quantity</th>
                       <th style="" scope="col" >Type</th>
@@ -178,8 +184,13 @@ footer {
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($itemData as $item)
+                    @foreach($items as $item)
                     <tr>
+                      @if($item->group_type == "1 - PAVERS" || $item->group_type == "2 - RETAINING WALL")
+                      <td>{{$item->supplier}}</td>
+                      @else 
+                      <td>&nbsp;</td>
+                      @endif
                       <td>{{$item->description}} </td>
                       <td>{{$item->quantity}} </td>
                       <td>{{$item->type}} </td>
@@ -187,13 +198,17 @@ footer {
                       <td>$ {{number_format($item->investment,2)}}</td>
                     </tr>
                     @endforeach
+                  </tbody>
+                </table>
+                @endforeach
+                    <table class="table" width="">
                     <tr>
-                      <td class="thick-line"></td>
-                      <td class="thick-line"></td>
-                      <td class="thick-line"></td>
-                      <td class="thick-line"></td>
-                      <td class="thick-line"></td>
-                      <td class="thick-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
                     </tr>
                     <tr>
                       <td class="no-line"></td>
@@ -240,6 +255,7 @@ footer {
                     </tr>
                   </tbody>
                 </table>
+                <hr>
                 <div class="page_break"></div>
 
                 <div class="notices">

@@ -21,6 +21,7 @@ class CreateTableItems extends Migration
             $table->string('type');
             $table->float('unit_price');
             $table->float('investment');
+            $table->string('group_type');
             $table->timestamps();
         });
     }

@@ -56,6 +56,7 @@ class QuoteController extends Controller
             $item[$i]->type = $request->input('type')[$i];
             $item[$i]->unit_price = $request->input('unit_price')[$i];
             $item[$i]->investment = $request->input('investment')[$i];
+            $item[$i]->group_type = $request->input('group_type')[$i];
             $item[$i]->save();
          $service->items()->attach($item[$i]);
         } 
@@ -108,6 +109,7 @@ class QuoteController extends Controller
         $service->fill($request->only('discount','total','accepting_proposal','down_payment','status','visit','final_balance'));
         $service->save();
 
+        dd($request);
         for ($i = 0; $i < count($request->input('id')); $i++) {
             if($request->input('id')[$i] == null){
                 $item[$i] = new Item();
@@ -117,9 +119,9 @@ class QuoteController extends Controller
                 $item[$i]->type = $request->input('type')[$i];
                 $item[$i]->unit_price = $request->input('unit_price')[$i];
                 $item[$i]->investment = $request->input('investment')[$i];
-                dd($request->input('id')[$i]);
-               // $item[$i]->save();
-               // $service->items()->attach($item[$i]);
+                $item[$i]->group_type = $request->input('group_type')[$i];
+                $item[$i]->save();
+                $service->items()->attach($item[$i]);
                 
             }else{
                 $item[$i] = Item::where('id','=', $request->input('id')[$i])->first();
@@ -129,10 +131,8 @@ class QuoteController extends Controller
                 $item[$i]->type = $request->input('type')[$i];
                 $item[$i]->unit_price = $request->input('unit_price')[$i];
                 $item[$i]->investment = $request->input('investment')[$i];
-                $teste = Item::where('id','=',$request->input('id'))->get();
-                
-                    dd($teste); 
-               // $item[$i]->save();
+                $item[$i]->group_type = $request->input('group_type')[$i];
+                $item[$i]->save();
             }
         } 
         return redirect()->route('costumers.visitByCostumer',$request->visit_id);
