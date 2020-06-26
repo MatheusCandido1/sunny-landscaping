@@ -17,7 +17,8 @@ class ServiceController extends Controller
 
     public function destroy(Service $service)
     {
-        Service::destroy($service->id);
+        $service = Service::where('id','=', $service->id)->first();
+        $service->delete();
         return redirect()->back();
     }
 

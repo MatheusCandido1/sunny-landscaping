@@ -37,13 +37,15 @@
     padding: 15px
 }
 
+
 .invoice header {
     padding: 10px 0;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     border-bottom: 1px solid #f5a15c
 }
 
 .invoice .company-details {
+  
     text-align: right
 }
 
@@ -114,7 +116,7 @@ footer {
     border-top: 1px solid #f5a15c;
             }
 
-            .watermark {
+            /*.watermark {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -127,10 +129,10 @@ footer {
             -webkit-user-select: none;
             margin: auto;
             cursor: zoom-in;
-            }
+            }*/
 </style>
 <body>
-  <div class="watermark"></div>
+  <!-- <div class="watermark"></div> -->
   
   <footer>Invoice was created on a computer and is valid without the signature and seal.
   </footer>
@@ -140,18 +142,13 @@ footer {
           <header>
             <div class="row">
               <div class="col">
-                  <a target="_blank" href="https://lobianijs.com">
-                    <img src="http://www.sunnypavers.com/wp-content/uploads/2016/03/SunnyWebsiteLogo2.png" data-holder-rendered="true" />
+                  <a target="_blank" href="https://sunnypavers.com">
+                    <img  style="height: 150px; width: 147px; position: fixed"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
                   </a>
               </div>
               <div class="col company-details">
-                  <h2 class="name">
-                      <a style="color: #f5a15c" target="_blank" href="https://sunnypavers.com">
-                        Sunny  Landscaping & Pavers Design LLC
-                      </a>
-                  </h2>
                   <div>NV State Business License # NV20151085480</div>
-                  <div>NV Contractor's Board Licenses:    </div>
+                  <div>NV State Contractor's Board Licenses:    </div>
                   <div>C-18 # 0080493 - Limit: $245,000 / C-10 # 0081661 - Limit: $245,000</div>
               </div>
           </div>
@@ -166,13 +163,13 @@ footer {
                         <div class="email">{{$costumerData->email}}</div>
                     </div>
                     <div class="col invoice-details">
-                        <div class="date">Date of Quote: {{ date('m/d/Y') }}</div>
+                        <div class="date">Date: {{ date('m/d/Y') }}</div>
                     </div>
                 </div>
+                <h3>1 - PAVERS </h3>
                 <table class="table" width="">
                   <thead>
                     <tr>
-                      <th style="" scope="col" >Supplier</th>
                       <th style="" scope="col" >Description</th>
                       <th style="" scope="col" >Quantity</th>
                       <th style="" scope="col" >Type</th>
@@ -183,7 +180,6 @@ footer {
                   <tbody>
                     @foreach($itemData as $item)
                     <tr>
-                      <td>{{$item->supplier}} </td>
                       <td>{{$item->description}} </td>
                       <td>{{$item->quantity}} </td>
                       <td>{{$item->type}} </td>
