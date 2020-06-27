@@ -12,72 +12,860 @@
 
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
   <div class="container-fluid">
-  <h1 class="mt-4">Update Quote</h1>
+    <h1 class="mt-4">Edit Quote</h1>
 
-  <div class="card">
+  <div class="row">
+    <div class="col-lg-12">
+    <div class="card mb-4">
     <div class="card-header">
-      <a class="card-link" data-toggle="collapse" >
-      Items
-      </a>
-      <button type="button" onclick="add()" class="btn btn-primary float-right btn-sm">
-        <i class="fas fa-plus"></i> New Item
-        </button>
-
+      <i class="fas fa-list-ul"></i> Edit Quote
     </div>
-      <div class="card-body">
-        <table disabled id="tb13" class="table table-bordered" width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th style="" scope="col" >Supplier</th>
-              <th style="" scope="col" >Description</th>
-              <th style="" scope="col" >Quantity</th>
-              <th style="" scope="col" >Type</th>
-              <th style="" scope="col" >Unit Price</th>
-              <th style="" scope="col" >Investment</th>
-              <th style="" scope="col" >Action</th>
-            </tr>
-          </thead>
-          <tbody  id="item_fields13">
-            @foreach($items as $item) 
-            <tr>
-              <td>
-              <input type="text" value="{{$item->supplier}}" placeholder="Supplier" class="form-control" name="supplier[]" >
-              </td>
-               <td> 
-                 <div class="input-group mb-3"> 
-                   <div class="input-group-prepend"> 
-                    <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
-                     <input type="hidden" name="id[]" value="{{$item->id}}"> 
-                     <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
-                     </td> 
+    
+    <div class="card-body">
+    <div>
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapse1">
+            1 - Pavers
+            </a>
+            <button type="button" onclick="add1()" class="btn btn-primary float-right btn-sm">
+            <i class="fas fa-plus"></i> New Item
+            </button>
+          </div>
+          <div id="collapse1" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+              <table id="tb1" class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th style="" scope="col" >Supplier</th>
+                    <th style="" scope="col" >Description</th>
+                    <th style="" scope="col" >Quantity</th>
+                    <th style="" scope="col" >Type</th>
+                    <th style="" scope="col" >Unit Price</th>
+                    <th style="" scope="col" >Investment</th>
+                    <th style="" scope="col" >Action</th>
+  
+                  </tr>
+                </thead>
+                <tbody  id="item_fields">
+                  @foreach($items as $item)
+                  @if($item->group_type == "1 - PAVERS") 
+                  <tr>
+                    <td>
+                    <input type="text" value="{{$item->supplier}}" placeholder="Supplier" class="form-control" name="supplier[]" >
+                    </td>
                      <td> 
-                       <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                        <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                       <div class="input-group mb-3"> 
+                         <div class="input-group-prepend"> 
+                          <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                           <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                           <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                           </td> 
+                           <td> 
+                             <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                              <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                            </td>
+                             <td> 
+                               <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                               </td>
+                                <td> 
+                                  <div class="input-group mb-3">
+                                     <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                       </div> 
+                                       <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                       </td> 
+                                       <td> 
+                                         <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                         </td>
+                                         <td style="text-align: center;" scope="col">
+                                         <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                        </td>
+                  </tr>
+                  @endif
+                  @endforeach
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header">
+              <a class="card-link" data-toggle="collapse" href="#collapse2">
+              2 - Retaining Wall
+              </a>
+              <button type="button" onclick="add2()" class="btn btn-primary float-right btn-sm">
+              <i class="fas fa-plus"></i> New Item
+              </button>
+            </div>
+            <div id="collapse2" class="collapse" data-parent="#accordion">
+              <div class="card-body">
+                <table id="tb2" class="table table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th style="" scope="col" >Supplier</th>
+                      <th style="" scope="col" >Description</th>
+                      <th style="" scope="col" >Quantity</th>
+                      <th style="" scope="col" >Type</th>
+                      <th style="" scope="col" >Unit Price</th>
+                      <th style="" scope="col" >Investment</th>
+                      <th style="" scope="col" >Action</th>
+    
+                    </tr>
+                  </thead>
+                  <tbody  id="item_fields2">
+                    @foreach($items as $item)
+                    @if($item->group_type == "2 - RETAINING WALL") 
+                    <tr>
+                      <td>
+                      <input type="text" value="{{$item->supplier}}" placeholder="Supplier" class="form-control" name="supplier[]" >
                       </td>
                        <td> 
-                         <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
-                         </td>
-                          <td> 
-                            <div class="input-group mb-3">
-                               <div class="input-group-prepend">
-                                  <span class="input-group-text">$</span>
-                                 </div> 
-                                 <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                         <div class="input-group mb-3"> 
+                           <div class="input-group-prepend"> 
+                            <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                             <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                             <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                             </td> 
+                             <td> 
+                               <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                              </td>
+                               <td> 
+                                 <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                 </td>
+                                  <td> 
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text">$</span>
+                                         </div> 
+                                         <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                         </td> 
+                                         <td> 
+                                           <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                           </td>
+                                           <td style="text-align: center;" scope="col">
+                                           <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                          </td>
+                    </tr>
+                    @endif
+                    @endforeach
+                  </tbody>
+                </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapse3">
+                3 - Grass
+                </a>
+                <button type="button" onclick="add3()" class="btn btn-primary float-right btn-sm">
+                <i class="fas fa-plus"></i> New Item
+                </button>
+              </div>
+              <div id="collapse3" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                  <table id="tb3" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th style="" scope="col" >Description</th>
+                        <th style="" scope="col" >Quantity</th>
+                        <th style="" scope="col" >Type</th>
+                        <th style="" scope="col" >Unit Price</th>
+                        <th style="" scope="col" >Investment</th>
+                        <th style="" scope="col" >Action</th>
+      
+                      </tr>
+                    </thead>
+                    <tbody  id="item_fields3">
+                      @foreach($items as $item)
+                      @if($item->group_type == "3 - GRASS") 
+                      <tr>
+                         <td> 
+                           <div class="input-group mb-3"> 
+                             <div class="input-group-prepend"> 
+                              <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                               <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                               <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                               </td> 
+                               <td> 
+                                 <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                  <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                </td>
+                                 <td> 
+                                   <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                   </td>
+                                    <td> 
+                                      <div class="input-group mb-3">
+                                         <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                           </div> 
+                                           <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                           </td> 
+                                           <td> 
+                                             <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                             </td>
+                                             <td style="text-align: center;" scope="col">
+                                             <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            </td>
+                      </tr>
+                      @endif
+                      @endforeach
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="accordion">
+              <div class="card">
+                <div class="card-header">
+                  <a class="card-link" data-toggle="collapse" href="#collapse4">
+                  4 - Tress and Plants
+                  </a>
+                  <button type="button" onclick="add4()" class="btn btn-primary float-right btn-sm">
+                  <i class="fas fa-plus"></i> New Item
+                  </button>
+                </div>
+                <div id="collapse4" class="collapse" data-parent="#accordion">
+                  <div class="card-body">
+                    <table id="tb4" class="table table-bordered" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th style="" scope="col" >Description</th>
+                          <th style="" scope="col" >Quantity</th>
+                          <th style="" scope="col" >Type</th>
+                          <th style="" scope="col" >Unit Price</th>
+                          <th style="" scope="col" >Investment</th>
+                          <th style="" scope="col" >Action</th>
+        
+                        </tr>
+                      </thead>
+                      <tbody  id="item_fields4">
+                        @foreach($items as $item)
+                        @if($item->group_type == "4 - TREES AND PLANTS") 
+                        <tr>
+                           <td> 
+                             <div class="input-group mb-3"> 
+                               <div class="input-group-prepend"> 
+                                <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                 <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                 <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                  </td> 
                                  <td> 
-                                   <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
-                                   </td>
-                                   <td style="text-align: center;" scope="col">
-                                   <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                   <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                    <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                   </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-        </div>
-    </div>
-  <br>
-  
+                                   <td> 
+                                     <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                     </td>
+                                      <td> 
+                                        <div class="input-group mb-3">
+                                           <div class="input-group-prepend">
+                                              <span class="input-group-text">$</span>
+                                             </div> 
+                                             <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                             </td> 
+                                             <td> 
+                                               <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                               </td>
+                                               <td style="text-align: center;" scope="col">
+                                               <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                              </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                      </tbody>
+                    </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="accordion">
+                <div class="card">
+                  <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapse5">
+                    5 - Irrigation
+                    </a>
+                    <button type="button" onclick="add5()" class="btn btn-primary float-right btn-sm">
+                    <i class="fas fa-plus"></i> New Item
+                    </button>
+                  </div>
+                  <div id="collapse5" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                      <table id="tb5" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th style="" scope="col" >Description</th>
+                            <th style="" scope="col" >Quantity</th>
+                            <th style="" scope="col" >Type</th>
+                            <th style="" scope="col" >Unit Price</th>
+                            <th style="" scope="col" >Investment</th>
+                            <th style="" scope="col" >Action</th>
+          
+                          </tr>
+                        </thead>
+                        <tbody  id="item_fields5">
+                          @foreach($items as $item)
+                          @if($item->group_type == "5 - IRRIGATION") 
+                          <tr>
+                             <td> 
+                               <div class="input-group mb-3"> 
+                                 <div class="input-group-prepend"> 
+                                  <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                   <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                   <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                   </td> 
+                                   <td> 
+                                     <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                      <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                    </td>
+                                     <td> 
+                                       <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                       </td>
+                                        <td> 
+                                          <div class="input-group mb-3">
+                                             <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
+                                               </div> 
+                                               <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                               </td> 
+                                               <td> 
+                                                 <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                 </td>
+                                                 <td style="text-align: center;" scope="col">
+                                                 <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </td>
+                          </tr>
+                          @endif
+                          @endforeach
+                        </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="accordion">
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapse6">
+                      6 - Rocks
+                      </a>
+                      <button type="button" onclick="add6()" class="btn btn-primary float-right btn-sm">
+                      <i class="fas fa-plus"></i> New Item
+                      </button>
+                    </div>
+                    <div id="collapse6" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        <table id="tb6" class="table table-bordered" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th style="" scope="col" >Description</th>
+                              <th style="" scope="col" >Quantity</th>
+                              <th style="" scope="col" >Type</th>
+                              <th style="" scope="col" >Unit Price</th>
+                              <th style="" scope="col" >Investment</th>
+                              <th style="" scope="col" >Action</th>
+            
+                            </tr>
+                          </thead>
+                          <tbody  id="item_fields6">
+                            @foreach($items as $item)
+                            @if($item->group_type == "6 - ROCKS") 
+                            <tr>
+                               <td> 
+                                 <div class="input-group mb-3"> 
+                                   <div class="input-group-prepend"> 
+                                    <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                     <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                     <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                     </td> 
+                                     <td> 
+                                       <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                        <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                      </td>
+                                       <td> 
+                                         <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                         </td>
+                                          <td> 
+                                            <div class="input-group mb-3">
+                                               <div class="input-group-prepend">
+                                                  <span class="input-group-text">$</span>
+                                                 </div> 
+                                                 <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                                 </td> 
+                                                 <td> 
+                                                   <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                   </td>
+                                                   <td style="text-align: center;" scope="col">
+                                                   <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                  </td>
+                            </tr>
+                            @endif
+                            @endforeach
+                          </tbody>
+                        </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="accordion">
+                    <div class="card">
+                      <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapse7">
+                        7 - Fire Pit
+                        </a>
+                        <button type="button" onclick="add7()" class="btn btn-primary float-right btn-sm">
+                        <i class="fas fa-plus"></i> New Item
+                        </button>
+                      </div>
+                      <div id="collapse7" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                          <table id="tb7" class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th style="" scope="col" >Description</th>
+                                <th style="" scope="col" >Quantity</th>
+                                <th style="" scope="col" >Type</th>
+                                <th style="" scope="col" >Unit Price</th>
+                                <th style="" scope="col" >Investment</th>
+                                <th style="" scope="col" >Action</th>
+              
+                              </tr>
+                            </thead>
+                            <tbody  id="item_fields7">
+                              @foreach($items as $item)
+                              @if($item->group_type == "7 - FIRE PIT") 
+                              <tr>
+                                 <td> 
+                                   <div class="input-group mb-3"> 
+                                     <div class="input-group-prepend"> 
+                                      <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                       <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                       <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                       </td> 
+                                       <td> 
+                                         <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                          <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                        </td>
+                                         <td> 
+                                           <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                           </td>
+                                            <td> 
+                                              <div class="input-group mb-3">
+                                                 <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                   </div> 
+                                                   <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                                   </td> 
+                                                   <td> 
+                                                     <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                     </td>
+                                                     <td style="text-align: center;" scope="col">
+                                                     <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                    </td>
+                              </tr>
+                              @endif
+                              @endforeach
+                            </tbody>
+                          </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="accordion">
+                      <div class="card">
+                        <div class="card-header">
+                          <a class="card-link" data-toggle="collapse" href="#collapse8">
+                          8 - Drainage
+                          </a>
+                          <button type="button" onclick="add8()" class="btn btn-primary float-right btn-sm">
+                          <i class="fas fa-plus"></i> New Item
+                          </button>
+                        </div>
+                        <div id="collapse8" class="collapse" data-parent="#accordion">
+                          <div class="card-body">
+                            <table id="tb8" class="table table-bordered" width="100%" cellspacing="0">
+                              <thead>
+                                <tr>
+                                  <th style="" scope="col" >Description</th>
+                                  <th style="" scope="col" >Quantity</th>
+                                  <th style="" scope="col" >Type</th>
+                                  <th style="" scope="col" >Unit Price</th>
+                                  <th style="" scope="col" >Investment</th>
+                                  <th style="" scope="col" >Action</th>
+                
+                                </tr>
+                              </thead>
+                              <tbody  id="item_fields8">
+                                @foreach($items as $item)
+                                @if($item->group_type == "8 - DRAINAGE") 
+                                <tr>
+                                   <td> 
+                                     <div class="input-group mb-3"> 
+                                       <div class="input-group-prepend"> 
+                                        <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                         <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                         <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                         </td> 
+                                         <td> 
+                                           <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                            <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                          </td>
+                                           <td> 
+                                             <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                             </td>
+                                              <td> 
+                                                <div class="input-group mb-3">
+                                                   <div class="input-group-prepend">
+                                                      <span class="input-group-text">$</span>
+                                                     </div> 
+                                                     <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                                     </td> 
+                                                     <td> 
+                                                       <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                       </td>
+                                                       <td style="text-align: center;" scope="col">
+                                                       <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                      </td>
+                                </tr>
+                                @endif
+                                @endforeach
+                              </tbody>
+                            </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="accordion">
+                        <div class="card">
+                          <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#collapse9">
+                            9 - transformer and Led Lights
+                            </a>
+                            <button type="button" onclick="add9()" class="btn btn-primary float-right btn-sm">
+                            <i class="fas fa-plus"></i> New Item
+                            </button>
+                          </div>
+                          <div id="collapse9" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                              <table id="tb9" class="table table-bordered" width="100%" cellspacing="0">
+                                <thead>
+                                  <tr>
+                                    <th style="" scope="col" >Description</th>
+                                    <th style="" scope="col" >Quantity</th>
+                                    <th style="" scope="col" >Type</th>
+                                    <th style="" scope="col" >Unit Price</th>
+                                    <th style="" scope="col" >Investment</th>
+                                    <th style="" scope="col" >Action</th>
+                  
+                                  </tr>
+                                </thead>
+                                <tbody  id="item_fields9">
+                                  @foreach($items as $item)
+                                  @if($item->group_type == "9 - TRANSFORMER AND LED LIGHTS") 
+                                  <tr>
+                                     <td> 
+                                       <div class="input-group mb-3"> 
+                                         <div class="input-group-prepend"> 
+                                          <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                           <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                           <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                           </td> 
+                                           <td> 
+                                             <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                              <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                            </td>
+                                             <td> 
+                                               <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                               </td>
+                                                <td> 
+                                                  <div class="input-group mb-3">
+                                                     <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                       </div> 
+                                                       <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                                       </td> 
+                                                       <td> 
+                                                         <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                         </td>
+                                                         <td style="text-align: center;" scope="col">
+                                                         <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                        </td>
+                                  </tr>
+                                  @endif
+                                  @endforeach
+                                </tbody>
+                              </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="accordion">
+                          <div class="card">
+                            <div class="card-header">
+                              <a class="card-link" data-toggle="collapse" href="#collapse10">
+                              10 - Dumpster
+                              </a>
+                              <button type="button" onclick="add10()" class="btn btn-primary float-right btn-sm">
+                              <i class="fas fa-plus"></i> New Item
+                              </button>
+                            </div>
+                            <div id="collapse10" class="collapse" data-parent="#accordion">
+                              <div class="card-body">
+                                <table id="tb10" class="table table-bordered" width="100%" cellspacing="0">
+                                  <thead>
+                                    <tr>
+                                      <th style="" scope="col" >Description</th>
+                                      <th style="" scope="col" >Quantity</th>
+                                      <th style="" scope="col" >Type</th>
+                                      <th style="" scope="col" >Unit Price</th>
+                                      <th style="" scope="col" >Investment</th>
+                                      <th style="" scope="col" >Action</th>
+                    
+                                    </tr>
+                                  </thead>
+                                  <tbody  id="item_fields10">
+                                    @foreach($items as $item)
+                                    @if($item->group_type == "10 - DUMPSTER") 
+                                    <tr>
+                                       <td> 
+                                         <div class="input-group mb-3"> 
+                                           <div class="input-group-prepend"> 
+                                            <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                             <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                             <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                             </td> 
+                                             <td> 
+                                               <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                                <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                              </td>
+                                               <td> 
+                                                 <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                                 </td>
+                                                  <td> 
+                                                    <div class="input-group mb-3">
+                                                       <div class="input-group-prepend">
+                                                          <span class="input-group-text">$</span>
+                                                         </div> 
+                                                         <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                                         </td> 
+                                                         <td> 
+                                                           <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                           </td>
+                                                           <td style="text-align: center;" scope="col">
+                                                           <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                          </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                  </tbody>
+                                </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="accordion">
+                            <div class="card">
+                              <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapse11">
+                                11 - Labor
+                                </a>
+                                <button type="button" onclick="add11()" class="btn btn-primary float-right btn-sm">
+                                <i class="fas fa-plus"></i> New Item
+                                </button>
+                              </div>
+                              <div id="collapse11" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                  <table id="tb11" class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                      <tr>
+                                        <th style="" scope="col" >Description</th>
+                                        <th style="" scope="col" >Quantity</th>
+                                        <th style="" scope="col" >Type</th>
+                                        <th style="" scope="col" >Unit Price</th>
+                                        <th style="" scope="col" >Investment</th>
+                                        <th style="" scope="col" >Action</th>
+                      
+                                      </tr>
+                                    </thead>
+                                    <tbody  id="item_fields11">
+                                      @foreach($items as $item)
+                                      @if($item->group_type == "11 - LABOR") 
+                                      <tr>
+                                         <td> 
+                                           <div class="input-group mb-3"> 
+                                             <div class="input-group-prepend"> 
+                                              <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                               <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                               <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                               </td> 
+                                               <td> 
+                                                 <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                                  <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                                </td>
+                                                 <td> 
+                                                   <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                                   </td>
+                                                    <td> 
+                                                      <div class="input-group mb-3">
+                                                         <div class="input-group-prepend">
+                                                            <span class="input-group-text">$</span>
+                                                           </div> 
+                                                           <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                                           </td> 
+                                                           <td> 
+                                                             <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                             </td>
+                                                             <td style="text-align: center;" scope="col">
+                                                             <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                            </td>
+                                      </tr>
+                                      @endif
+                                      @endforeach
+                                    </tbody>
+                                  </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div id="accordion">
+                              <div class="card">
+                                <div class="card-header">
+                                  <a class="card-link" data-toggle="collapse" href="#collapse12">
+                                  12 - Extra
+                                  </a>
+                                  <button type="button" onclick="add12()" class="btn btn-primary float-right btn-sm">
+                                  <i class="fas fa-plus"></i> New Item
+                                  </button>
+                                </div>
+                                <div id="collapse12" class="collapse" data-parent="#accordion">
+                                  <div class="card-body">
+                                    <table id="tb12" class="table table-bordered" width="100%" cellspacing="0">
+                                      <thead>
+                                        <tr>
+                                          <th style="" scope="col" >Description</th>
+                                          <th style="" scope="col" >Quantity</th>
+                                          <th style="" scope="col" >Type</th>
+                                          <th style="" scope="col" >Unit Price</th>
+                                          <th style="" scope="col" >Investment</th>
+                                          <th style="" scope="col" >Action</th>
+                        
+                                        </tr>
+                                      </thead>
+                                      <tbody  id="item_fields12">
+                                        @foreach($items as $item)
+                                        @if($item->group_type == "12 - EXTRA") 
+                                        <tr>
+                                           <td> 
+                                             <div class="input-group mb-3"> 
+                                               <div class="input-group-prepend"> 
+                                                <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                                 <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                                 <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                                 </td> 
+                                                 <td> 
+                                                   <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                                    <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                                  </td>
+                                                   <td> 
+                                                     <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                                     </td>
+                                                      <td> 
+                                                        <div class="input-group mb-3">
+                                                           <div class="input-group-prepend">
+                                                              <span class="input-group-text">$</span>
+                                                             </div> 
+                                                             <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                                             </td> 
+                                                             <td> 
+                                                               <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                               </td>
+                                                               <td style="text-align: center;" scope="col">
+                                                               <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                              </td>
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                      </tbody>
+                                    </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="accordion">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <a class="card-link" data-toggle="collapse" href="#collapse13">
+                                    13 - Others
+                                    </a>
+                                    <button type="button" onclick="add13()" class="btn btn-primary float-right btn-sm">
+                                    <i class="fas fa-plus"></i> New Item
+                                    </button>
+                                  </div>
+                                  <div id="collapse13" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                      <table id="tb13" class="table table-bordered" width="100%" cellspacing="0">
+                                        <thead>
+                                          <tr>
+                                            <th style="" scope="col" >Supplier</th>
+                                            <th style="" scope="col" >Description</th>
+                                            <th style="" scope="col" >Quantity</th>
+                                            <th style="" scope="col" >Type</th>
+                                            <th style="" scope="col" >Unit Price</th>
+                                            <th style="" scope="col" >Investment</th>
+                                            <th style="" scope="col" >Action</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody  id="item_fields13">
+                                          @foreach($items as $item)
+                                          @if($item->group_type == "13 - OTHERS") 
+                                          <tr>
+                                            <td>
+                                            <input type="text" value="{{$item->supplier}}" placeholder="Supplier" class="form-control" name="supplier[]" >
+                                            </td>
+                                             <td> 
+                                               <div class="input-group mb-3"> 
+                                                 <div class="input-group-prepend"> 
+                                                  <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                                                   <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                                   <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
+                                                   </td> 
+                                                   <td> 
+                                                     <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                                      <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                                                    </td>
+                                                     <td> 
+                                                       <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
+                                                       </td>
+                                                        <td> 
+                                                          <div class="input-group mb-3">
+                                                             <div class="input-group-prepend">
+                                                                <span class="input-group-text">$</span>
+                                                               </div> 
+                                                               <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
+                                                               </td> 
+                                                               <td> 
+                                                                 <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                                 </td>
+                                                                 <td style="text-align: center;" scope="col">
+                                                                 <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                                </td>
+                                          </tr>
+                                          @endif
+                                          @endforeach
+                                        </tbody>
+                                      </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
   <div class="table-responsive">
     <table class="table table-bordered"  width="100%" cellspacing="0">
       <tbody>

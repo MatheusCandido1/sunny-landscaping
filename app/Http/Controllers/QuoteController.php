@@ -87,7 +87,7 @@ class QuoteController extends Controller
         $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$id)->first();
 
         $itemData = DB::table('items')
-        ->selectRaw('items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
+        ->selectRaw('items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment, items.group_type')
         ->join('item_service','item_service.item_id','=','items.id')
         ->join('services','services.id','=','item_service.service_id')
         ->where('services.id', '=', $service_id)
