@@ -53,8 +53,7 @@
                   @if($item->group_type == "1 - PAVERS") 
                   <tr>
                     <td>
-                    <input type="text" value="{{$item->supplier}}" placeholder="Supplier" class="form-control" name="supplier[]" >
-                    </td>
+<select required id="supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
                      <td> 
                        <div class="input-group mb-3"> 
                          <div class="input-group-prepend"> 
@@ -121,7 +120,7 @@
                     @if($item->group_type == "2 - RETAINING WALL") 
                     <tr>
                       <td>
-                      <input type="text" value="{{$item->supplier}}" placeholder="Supplier" class="form-control" name="supplier[]" >
+                        <select required id="supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
                       </td>
                        <td> 
                          <div class="input-group mb-3"> 

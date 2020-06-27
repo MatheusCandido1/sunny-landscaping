@@ -93,7 +93,7 @@ class QuoteController extends Controller
         ->where('services.id', '=', $service_id)
         ->get();
 
-        return view('quotes.edit', ['service' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
+        return view('quotes.edit', ['suppliers' => \App\Supplier::all(), 'service' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
     }
 
     /**
