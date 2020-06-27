@@ -53,7 +53,8 @@
                   @if($item->group_type == "1 - PAVERS") 
                   <tr>
                     <td>
-<select required id="supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
+                    <input type="hidden" id="{{$loop->iteration}}sup" name="supplier[]" value="">
+<select required id="{{$loop->iteration}}supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
                      <td> 
                        <div class="input-group mb-3"> 
                          <div class="input-group-prepend"> 
@@ -120,8 +121,8 @@
                     @if($item->group_type == "2 - RETAINING WALL") 
                     <tr>
                       <td>
-                        <select required id="supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
-                      </td>
+                      <input type="hidden" id="{{$loop->iteration}}sup" name="supplier[]" value="">
+  <select required id="{{$loop->iteration}}supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
                        <td> 
                          <div class="input-group mb-3"> 
                            <div class="input-group-prepend"> 
@@ -928,6 +929,17 @@
 <script type="text/javascript">
   var item = document.getElementById('loopsize').value;
 
+  function getUnitValue()
+  {
+  for(i = 1; i <= item; i++){
+    if(document.getElementById(i+"supplier") != null){
+    document.getElementById(i+"sup").value = document.getElementById(i+"supplier").options[document.getElementById(i+"supplier").selectedIndex].text;
+    document.getElementById(i+"value").value = document.getElementById(i+"supplier").value
+    
+    }
+   }
+   findTotal();
+  }
  function getFinalBalance(){
     var final = document.getElementById('totalwithoutdiscount').value - document.getElementById('down_payment').value - document.getElementById('accepting_proposal').value;
     if(final < 0){
