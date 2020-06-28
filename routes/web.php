@@ -34,6 +34,7 @@ Route::resources([
     'visits' => 'VisitController',
     'services' => 'ServiceController',
     'notes' => 'NoteController',
-    'items' => 'ItemController'
+    'items' => 'ItemController',
+    'suppliers' => 'SupplierController'
 ]);
 });
