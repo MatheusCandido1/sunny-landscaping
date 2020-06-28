@@ -31,7 +31,7 @@ class PdfController extends Controller
         return $pdf->setPaper('a4')->stream('items.pdf');
     }
 
-    public function generateQuote($service_id,$visit_id) 
+    public function generateQuote($service_id,$visit_id, $type) 
     {
         $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$visit_id)->first();
 
@@ -43,7 +43,6 @@ class PdfController extends Controller
         ->get()
         ->groupBy('group_type');
 
-       // dd($itemData);
 
         $costumerData = DB::table('costumer_visit')
         ->selectRaw('costumers.referred, costumers.city, costumers.state,costumers.zipcode,costumers.cross_street1, costumers.cross_street2,costumers.name as costumer_name, costumers.email, costumers.phone, costumers.cellphone, costumers.address, costumers.gate_code, visits.name as visit_name, visits.date, visits.call_costumer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
@@ -52,9 +51,12 @@ class PdfController extends Controller
         ->where('visits.id','=', $visit_id)
         ->first();
 
-       
         $pdf = PDF::loadView('pdfs.quote', compact('serviceData','itemData','costumerData'));
-        
+
+        if($type == "1")
         return $pdf->setPaper('a4')->stream('quote.pdf'); 
+        
+        return $pdf->setPaper('a4','landscape')->stream('quote.pdf'); 
+
     }
 }

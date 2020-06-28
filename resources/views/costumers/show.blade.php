@@ -90,7 +90,16 @@ ul.timeline > li:before {
                 <a href="{{ route('costumers.quote', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a> 
                 @else
             <a href="{{route('quotes.edit', ['visit'=>$data->visit_id, 'service'=>$quote_data->id])}}" type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Edit Quote</a>
-            <a target="_blank" href="{{ route ('pdf.quote', ['visit'=>$data->visit_id, 'service'=>$quote_data->id])}}" class="btn btn-success"><i class="fas fa-print"></i> Print Quote</a>
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-print"></i> Print Quote
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a target="_blank" href="{{ route ('pdf.quote', ['visit'=>$data->visit_id, 'service'=>$quote_data->id, 'type'=> 1])}}" class="dropdown-item">Portrait</a>
+
+                    <a target="_blank" href="{{ route ('pdf.quote', ['visit'=>$data->visit_id, 'service'=>$quote_data->id, 'type'=> 0])}}" class="dropdown-item">Landscape</a>
+                </div>
+              </div>
             <a type="button"  style="color: white"href="" class="btn btn-warning"><i class="fas fa-envelope"></i> Send Quote</a>    
             <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this quote?')) { document.getElementById('destroy-form-{{$quote_data->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                 <form id="destroy-form-{{$quote_data->id}}" action="{{ route('services.destroy',$quote_data->id) }}" method="POST" style="display: none;">
