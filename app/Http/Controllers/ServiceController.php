@@ -13,11 +13,15 @@ class ServiceController extends Controller
 
     public function destroy(Service $service)
     {
-        //$service = Service::where('id','=', $service->id)->first();
-        //$teste = $service->items()->select('id')->get();
-        //dd($teste[0]->id);
-        //$service->delete();
-        //return redirect()->back();
+        $service = Service::where('id','=', $service->id)->first();
+        $items = $service->items()->select('id')->get();
+
+        for($i = 0; $i < $items->count(); $i++){
+           Item::where('id','=', $items[$i]->id)->delete();
+        }
+        $service->delete();
+        
+        return redirect()->back();
     }
 
 }
