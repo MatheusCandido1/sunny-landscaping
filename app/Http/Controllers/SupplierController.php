@@ -11,4 +11,11 @@ class SupplierController extends Controller
     {
         return view('suppliers.index', ['suppliers' => Supplier::all()]);
     }
+
+    public function destroy(Supplier $supplier)
+    {
+        $supplier = Supplier::where('id','=', $supplier->id)->first();
+        $supplier->delete();
+        return redirect()->back();
+    }
 }

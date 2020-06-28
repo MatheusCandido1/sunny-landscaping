@@ -26,7 +26,11 @@
                         <td style="text-align: center;" >${{ number_format($supplier->value,2)}}</td>
                         <td style="text-align: right;" scope="col">
                           <button class="btn btn-success"><i class="fas fa-pencil-alt"></i></button>
-                          <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                          <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this supplier?')) { document.getElementById('destroy-form-{{$supplier->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                <form id="destroy-form-{{$supplier->id}}" action="{{ route('suppliers.destroy',$supplier->id) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
                         </td>
                     </tr>
                     @endforeach
