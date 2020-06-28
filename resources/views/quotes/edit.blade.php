@@ -50,10 +50,11 @@
                 </thead>
                 <tbody  id="item_fields">
                   @foreach($items as $item)
-                  @if($item->group_type == "1 - PAVERS") 
+                  @if($item->group_type == "1 - PAVERS")
                   <tr>
                     <td>
-                    <input type="hidden" id="{{$loop->iteration}}sup" name="supplier[]" value="">
+                      <input type="hidden" value="1 - PAVERS" name="group_type[]">
+                    <input type="hidden" id="{{$loop->iteration}}sup" name="supplier[]" value="{{$item->supplier}}">
 <select required id="{{$loop->iteration}}supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
                      <td> 
                        <div class="input-group mb-3"> 
@@ -80,8 +81,16 @@
                                          <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                          </td>
                                          <td style="text-align: center;" scope="col">
-                                         <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
+                                          <a href="" type="button" onclick="event.preventDefault();
+                                           if(confirm('Are you sure you want to delete this item?')) 
+                                           { document.getElementById('form-{{$item->id}}').submit(); }"
+                                            class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                            <form></form>
+                                           <form id="form-{{$item->id}}" action="{{ route('items.destroy', $item->id) }}" method="POST" style="display: none;">
+                                              @csrf
+                                              @method('DELETE')
+                                          </form>      
+                                      </td>
                   </tr>
                   @endif
                   @endforeach
@@ -121,7 +130,8 @@
                     @if($item->group_type == "2 - RETAINING WALL") 
                     <tr>
                       <td>
-                      <input type="hidden" id="{{$loop->iteration}}sup" name="supplier[]" value="">
+                        <input type="hidden" value="2 - RETAINING WALL" name="group_type[]">
+                      <input type="hidden" id="{{$loop->iteration}}sup" name="supplier[]" value="{{$item->supplier}}">
   <select required id="{{$loop->iteration}}supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
                        <td> 
                          <div class="input-group mb-3"> 
@@ -147,9 +157,7 @@
                                          <td> 
                                            <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                            </td>
-                                           <td style="text-align: center;" scope="col">
-                                           <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                          </td>
+                                           <td style="text-align: center;" scope="col"></td>                                      </td>
                     </tr>
                     @endif
                     @endforeach
@@ -188,6 +196,7 @@
                       @if($item->group_type == "3 - GRASS") 
                       <tr>
                          <td> 
+                          <input type="hidden" value="3 - GRASS" name="group_type[]">
                            <div class="input-group mb-3"> 
                              <div class="input-group-prepend"> 
                               <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -212,7 +221,7 @@
                                              <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                              </td>
                                              <td style="text-align: center;" scope="col">
-                                             <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                             <button onclick="deleteAndRefresh3(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                             </td>
                       </tr>
                       @endif
@@ -251,7 +260,8 @@
                         @foreach($items as $item)
                         @if($item->group_type == "4 - TREES AND PLANTS") 
                         <tr>
-                           <td> 
+                           <td>
+                            <input type="hidden" value="4 - TREES AND PLANTS" name="group_type[]"> 
                              <div class="input-group mb-3"> 
                                <div class="input-group-prepend"> 
                                 <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -276,7 +286,7 @@
                                                <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                </td>
                                                <td style="text-align: center;" scope="col">
-                                               <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                               <button onclick="deleteAndRefresh4(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                               </td>
                         </tr>
                         @endif
@@ -316,6 +326,7 @@
                           @if($item->group_type == "5 - IRRIGATION") 
                           <tr>
                              <td> 
+                              <input type="hidden" value="5 - IRRIGATION" name="group_type[]">
                                <div class="input-group mb-3"> 
                                  <div class="input-group-prepend"> 
                                   <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -340,7 +351,7 @@
                                                  <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                  </td>
                                                  <td style="text-align: center;" scope="col">
-                                                 <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                 <button onclick="deleteAndRefresh5(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                 </td>
                           </tr>
                           @endif
@@ -380,6 +391,7 @@
                             @if($item->group_type == "6 - ROCKS") 
                             <tr>
                                <td> 
+                                  <input type="hidden" value="6 - ROCKS" name="group_type[]">
                                  <div class="input-group mb-3"> 
                                    <div class="input-group-prepend"> 
                                     <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -404,7 +416,7 @@
                                                    <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                    </td>
                                                    <td style="text-align: center;" scope="col">
-                                                   <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                   <button onclick="deleteAndRefresh6(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                   </td>
                             </tr>
                             @endif
@@ -443,7 +455,8 @@
                               @foreach($items as $item)
                               @if($item->group_type == "7 - FIRE PIT") 
                               <tr>
-                                 <td> 
+                                 <td>
+                                  <input type="hidden" value="7 - FIRE PIT" name="group_type[]"> 
                                    <div class="input-group mb-3"> 
                                      <div class="input-group-prepend"> 
                                       <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -468,7 +481,7 @@
                                                      <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                      </td>
                                                      <td style="text-align: center;" scope="col">
-                                                     <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                     <button onclick="deleteAndRefresh7(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                     </td>
                               </tr>
                               @endif
@@ -508,6 +521,7 @@
                                 @if($item->group_type == "8 - DRAINAGE") 
                                 <tr>
                                    <td> 
+                                    <input type="hidden" value="8 - DRAINAGE" name="group_type[]"> 
                                      <div class="input-group mb-3"> 
                                        <div class="input-group-prepend"> 
                                         <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -532,7 +546,7 @@
                                                        <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                        </td>
                                                        <td style="text-align: center;" scope="col">
-                                                       <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                       <button onclick="deleteAndRefresh8(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                       </td>
                                 </tr>
                                 @endif
@@ -572,6 +586,7 @@
                                   @if($item->group_type == "9 - TRANSFORMER AND LED LIGHTS") 
                                   <tr>
                                      <td> 
+                                      <input type="hidden" value="9 - TRANSFORMER AND LED LIGHTS" name="group_type[]"> 
                                        <div class="input-group mb-3"> 
                                          <div class="input-group-prepend"> 
                                           <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -596,7 +611,7 @@
                                                          <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                          </td>
                                                          <td style="text-align: center;" scope="col">
-                                                         <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                         <button onclick="deleteAndRefresh9(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                         </td>
                                   </tr>
                                   @endif
@@ -636,6 +651,7 @@
                                     @if($item->group_type == "10 - DUMPSTER") 
                                     <tr>
                                        <td> 
+                                        <input type="hidden" value="10 - DUMPSTER" name="group_type[]"> 
                                          <div class="input-group mb-3"> 
                                            <div class="input-group-prepend"> 
                                             <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -660,7 +676,7 @@
                                                            <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                            </td>
                                                            <td style="text-align: center;" scope="col">
-                                                           <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                           <button onclick="deleteAndRefresh10(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                           </td>
                                     </tr>
                                     @endif
@@ -700,6 +716,7 @@
                                       @if($item->group_type == "11 - LABOR") 
                                       <tr>
                                          <td> 
+                                          <input type="hidden" value="11 - LABOR" name="group_type[]"> 
                                            <div class="input-group mb-3"> 
                                              <div class="input-group-prepend"> 
                                               <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -724,7 +741,7 @@
                                                              <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                              </td>
                                                              <td style="text-align: center;" scope="col">
-                                                             <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                             <button onclick="deleteAndRefresh11(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                             </td>
                                       </tr>
                                       @endif
@@ -764,6 +781,7 @@
                                         @if($item->group_type == "12 - EXTRA") 
                                         <tr>
                                            <td> 
+                                            <input type="hidden" value="12 - EXTRA" name="group_type[]"> 
                                              <div class="input-group mb-3"> 
                                                <div class="input-group-prepend"> 
                                                 <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
@@ -788,7 +806,7 @@
                                                                <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                                </td>
                                                                <td style="text-align: center;" scope="col">
-                                                               <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                               <button onclick="deleteAndRefresh12(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                               </td>
                                         </tr>
                                         @endif
@@ -828,6 +846,8 @@
                                           @if($item->group_type == "13 - OTHERS") 
                                           <tr>
                                             <td>
+                                              <input type="hidden" value="13 - OTHERS" name="group_type[]"> 
+
                                             <input type="text" value="{{$item->supplier}}" placeholder="Supplier" class="form-control" name="supplier[]" >
                                             </td>
                                              <td> 
@@ -855,7 +875,7 @@
                                                                  <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
                                                                  </td>
                                                                  <td style="text-align: center;" scope="col">
-                                                                 <button onclick="deleteAndRefresh(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                                 <button onclick="deleteAndRefresh13(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                                 </td>
                                           </tr>
                                           @endif
@@ -965,15 +985,231 @@
   }
 
   function deleteItem(button){
+    var empTab = document.getElementById('tb1');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh2(button){
+    deleteItem2(button);
+    findTotal();
+  }
+
+  function deleteItem2(button){
+    var empTab = document.getElementById('tb2');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh3(button){
+    deleteItem3(button);
+    findTotal();
+  }
+
+  function deleteItem3(button){
+    var empTab = document.getElementById('tb3');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh4(button){
+    deleteItem4(button);
+    findTotal();
+  }
+
+  function deleteItem4(button){
+    var empTab = document.getElementById('tb4');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh5(button){
+    deleteItem5(button);
+    findTotal();
+  }
+
+  function deleteItem5(button){
+    var empTab = document.getElementById('tb5');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh6(button){
+    deleteItem6(button);
+    findTotal();
+  }
+
+  function deleteItem6(button){
+    var empTab = document.getElementById('tb6');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh7(button){
+    deleteItem7(button);
+    findTotal();
+  }
+
+  function deleteItem7(button){
+    var empTab = document.getElementById('tb7');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh8(button){
+    deleteItem8(button);
+    findTotal();
+  }
+
+  function deleteItem8(button){
+    var empTab = document.getElementById('tb8');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh9(button){
+    deleteItem9(button);
+    findTotal();
+  }
+
+  function deleteItem9(button){
+    var empTab = document.getElementById('tb9');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh10(button){
+    deleteItem10(button);
+    findTotal();
+  }
+
+  function deleteItem10(button){
+    var empTab = document.getElementById('tb10');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh11(button){
+    deleteItem11(button);
+    findTotal();
+  }
+
+  function deleteItem11(button){
+    var empTab = document.getElementById('tb11');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh12(button){
+    deleteItem12(button);
+    findTotal();
+  }
+
+  function deleteItem12(button){
+    var empTab = document.getElementById('tb12');
+    empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+  }
+
+  function deleteAndRefresh13(button){
+    deleteItem13(button);
+    findTotal();
+  }
+
+  function deleteItem13(button){
     var empTab = document.getElementById('tb13');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
   }
 
-  function add() {
+
+  function add1() {
+  item++;
+      var objTo = document.getElementById('item_fields')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<td><input type="hidden" value="1 - PAVERS" name="group_type[]"><input type="hidden" id="'+item+'sup" name="supplier[]" value=""> <select required id="'+item+'supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value="'+item+'"> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control"  placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div>  </td> <td> <input required type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td> <td style="text-align: center;" scope="col"><button onclick="deleteItem1(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add2() {
+  item++;
+      var objTo = document.getElementById('item_fields2')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<td><input type="hidden" value="2 - RETAINING WALL" name="group_type[]"><input type="hidden" id="'+item+'sup" name="supplier[]" value=""> <select required id="'+item+'supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value="'+item+'"> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input required type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td> <td style="text-align: center;" scope="col"><button onclick="deleteItem2(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+  function add3() {
+    item++;
+      var objTo = document.getElementById('item_fields3')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="3 - GRASS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem3(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add4() {
+    item++;
+      var objTo = document.getElementById('item_fields4')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="4 - TREES AND PLANTS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem4(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add5() {
+    item++;
+      var objTo = document.getElementById('item_fields5')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="5 - IRRIGATION" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem5(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add6() {
+    item++;
+      var objTo = document.getElementById('item_fields6')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="6 - ROCKS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem6(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add7() {
+    item++;
+      var objTo = document.getElementById('item_fields7')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="7 - FIRE PIT" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem7(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add8() {
+    item++;
+      var objTo = document.getElementById('item_fields8')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="8 - DRAINAGE" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem8(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add9() {
+    item++;
+      var objTo = document.getElementById('item_fields9')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="9 - TRANSFORMER AND LED LIGHTS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem9(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add10() {
+    item++;
+      var objTo = document.getElementById('item_fields10')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="10 - DUMPSTER" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem10(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add11() {
+    item++;
+      var objTo = document.getElementById('item_fields11')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="11 - LABOR" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem11(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add12() {
+    item++;
+      var objTo = document.getElementById('item_fields12')
+      var divtest = document.createElement("tr");
+      divtest.innerHTML = '<input type="hidden" value="12 - EXTRA" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem12(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      objTo.appendChild(divtest)
+  }
+
+  function add13() {
   item++;
       var objTo = document.getElementById('item_fields13')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<td> <input type="text" value="" placeholder="Supplier" class="form-control" name="supplier[]" > </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" onload="findTotal()" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" value="" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" id="'+item+'value" onload="findTotal()" value="0" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" value="" class="form-control items" placeholder="Investment"> </td> <td style="text-align: center;" scope="col"> <button onclick="deleteItem(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button> </td>';
+      divtest.innerHTML = '<input type="hidden" value="13 - OTHERS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem13(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest);
   }
 

@@ -109,7 +109,6 @@ class QuoteController extends Controller
         $service->fill($request->only('discount','total','accepting_proposal','down_payment','status','visit','final_balance'));
         $service->save();
 
-        dd($request);
         for ($i = 0; $i < count($request->input('id')); $i++) {
             if($request->input('id')[$i] == null){
                 $item[$i] = new Item();

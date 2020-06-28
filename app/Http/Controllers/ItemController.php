@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Service;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -86,6 +87,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item = Item::where('id','=', $item->id)->first();
+        $item->delete();
+        return redirect()->back();
     }
 }
