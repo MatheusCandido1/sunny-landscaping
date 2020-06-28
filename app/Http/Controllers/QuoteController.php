@@ -110,6 +110,24 @@ class QuoteController extends Controller
         $service->save();
 
         for ($i = 0; $i < count($request->input('id')); $i++) {
+            if($request->input('id')[$i] != null){
+            $arrayInput[$i] = $request->input('id')[$i];
+            }
+        }
+        $items = $service->items()->select('id')->get();
+        for($i = 0; $i < $items->count(); $i++){
+            $arrayExist[$i] = $items[$i]->id;
+        }
+        $arr1 = array_diff($arrayExist, $arrayInput);
+        $arr2 = array_diff($arrayInput, $arrayExist);
+        $itemsToBeDeleted = array_merge($arr1, $arr2);
+
+        for($i = 0; $i < count($itemsToBeDeleted); $i++){
+            Item::where('id','=', $itemsToBeDeleted[$i])->delete();
+        } 
+
+
+        for ($i = 0; $i < count($request->input('id')); $i++) {
             if($request->input('id')[$i] == null){
                 $item[$i] = new Item();
                 $item[$i]->supplier = $request->input('supplier')[$i];
@@ -133,7 +151,9 @@ class QuoteController extends Controller
                 $item[$i]->group_type = $request->input('group_type')[$i];
                 $item[$i]->save();
             }
-        } 
+        }
+
+        
         return redirect()->route('costumers.visitByCostumer',$request->visit_id);
     }
 
