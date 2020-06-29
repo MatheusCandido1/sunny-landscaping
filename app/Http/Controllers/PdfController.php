@@ -25,6 +25,7 @@ class PdfController extends Controller
         ->join('services','services.visit_id','=','visits.id')
         ->where('visits.id','=', $id)
         ->get();
+        
 
         $pdf = PDF::loadView('pdfs.proposal', compact('data'));
        // $pdf->setWatermarkImage(public_path('img/watermark.jpg'));
@@ -33,6 +34,14 @@ class PdfController extends Controller
 
     public function generateQuote($service_id,$visit_id, $type) 
     {
+        $data = DB::table('costumer_visit')
+        ->selectRaw('costumers.name, costumers.address, costumers.state, costumers.phone, costumers.zipcode, costumers.city, costumers.cellphone, services.final_balance')
+        ->join('visits','visits.id','=','costumer_visit.visit_id')
+        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
+        ->join('services','services.visit_id','=','visits.id')
+        ->where('visits.id','=', $visit_id)
+        ->get();
+
         $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$visit_id)->first();
 
         $itemData = DB::table('items')
@@ -51,12 +60,12 @@ class PdfController extends Controller
         ->where('visits.id','=', $visit_id)
         ->first();
 
-        $pdf = PDF::loadView('pdfs.quote', compact('serviceData','itemData','costumerData'));
-
+        $pdf = PDF::loadView('pdfs.quote', compact('data','serviceData','itemData','costumerData'));
         if($type == "1")
         return $pdf->setPaper('a4')->stream('quote.pdf'); 
         
         return $pdf->setPaper('a4','landscape')->stream('quote.pdf'); 
+
 
     }
 }
