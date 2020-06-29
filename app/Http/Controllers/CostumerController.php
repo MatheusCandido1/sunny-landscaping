@@ -6,6 +6,7 @@ use App;
 use App\Costumer;
 use App\Item;
 use App\Suppllier;
+use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
@@ -85,7 +86,7 @@ class CostumerController extends Controller
         ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
         ->where('costumers.id','=', $id)
         ->get();
-        return view('costumers.projects', ['projects' => $projects, 'id' => $id]);
+        return view('costumers.projects', ['types' => Type::all(), 'projects' => $projects, 'id' => $id]);
     }
 
     public function Quote($id)
