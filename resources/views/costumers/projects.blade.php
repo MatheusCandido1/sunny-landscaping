@@ -35,7 +35,6 @@ flex: 1
                     <tr>
                         <th style="text-align: center" scope="col" >Project's name</th>
                         <th style="text-align: center" scope="col">Date</th>
-                        <th style="text-align: center" scope="col">Service type</th>
                         <th style="text-align: center" scope="col">Actions</th>
 
                     </tr>
@@ -45,7 +44,6 @@ flex: 1
                     <tr>
                         <td >{{ $project->name}}</td>
                         <td >{{ \Carbon\Carbon::parse($project->date)->format("m/d/Y")}}</td>
-                        <td >{{ $project->type}}</td>
                         <td style="text-align: center;" scope="col">
                           <a type="button" href="{{ route('costumers.visitByCostumer',$project->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
                         </td>
@@ -139,6 +137,7 @@ flex: 1
                     @endforeach
                   </select>
             </div>
+            <input  name="costumer_id" value="{{$id[0]}}" class="form-control" type="hidden"  placeholder="" />
         </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCostumerVisitsTable extends Migration
+class CreateVisitTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCostumerVisitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('costumer_visit', function (Blueprint $table) {
+        Schema::create('visit_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('costumer_id')->unsigned();
             $table->integer('visit_id')->unsigned();
-            $table->foreign('costumer_id')->references('id')->on('costumers')->onDelete('cascade');
+            $table->integer('type_id')->unsigned();
             $table->foreign('visit_id')->references('id')->on('visits')->onDelete('cascade');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCostumerVisitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('costumer_visit');
+        Schema::dropIfExists('visit_type');
     }
 }

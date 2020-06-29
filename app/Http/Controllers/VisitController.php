@@ -39,6 +39,7 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
+
         try {
             if($request->type == "Others"){
                 $type = $request->type2;
@@ -50,12 +51,13 @@ class VisitController extends Controller
             'date' => $request->date,
             'call_costumer_in' => $request->call_costumer_in,
             'hoa' => $request->hoa,
-            'water_smart_rebate' => $request->water_smart_rebate,
-            'type' => $type
+            'water_smart_rebate' => $request->water_smart_rebate
         ]);
-
         $visit->costumers()->sync($request->costumer_id);
 
+        for($i = 0; $i < count($request->type); $i++){
+            $visit->types()->attach($request->type[$i]);
+        }
         $notification = array(
             'message' => 'Visit created successfully!',
             'alert-type' => 'success'
@@ -68,9 +70,10 @@ class VisitController extends Controller
                 'message' => 'There was an error!',
                 'alert-type' => 'warning'
             ); 
+            
         return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id])->with($notification);
-
         }
+      
     }
 
     /**
@@ -92,7 +95,7 @@ class VisitController extends Controller
      */
     public function edit($id)
     {
-        $visit = DB::table('visits')->select('id','name','date','call_costumer_in','hoa','water_smart_rebate','type')->where('visits.id','=',$id)->first();
+        $visit = DB::table('visits')->select('id','name','date','call_costumer_in','hoa','water_smart_rebate')->where('visits.id','=',$id)->first();
         return view('visits.edit', ['visit' => $visit]);
 
     }
@@ -107,7 +110,7 @@ class VisitController extends Controller
     public function update(Request $request, $id)
     {
         $visit = Visit::where('id','=', $id)->first();
-        $visit->fill($request->only('name','date','call_costumer_in','hoa','status','water_smart_rebate','type'));
+        $visit->fill($request->only('name','date','call_costumer_in','hoa','status','water_smart_rebate'));
         $visit->save();
 
         

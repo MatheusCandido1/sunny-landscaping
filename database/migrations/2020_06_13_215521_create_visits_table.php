@@ -20,7 +20,6 @@ class CreateVisitsTable extends Migration
             $table->integer('call_costumer_in')->nullable();
             $table->boolean('hoa')->nullable();
             $table->boolean('water_smart_rebate')->nullable();
-            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

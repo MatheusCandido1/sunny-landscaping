@@ -14,7 +14,6 @@ class CreateTableItemService extends Migration
     public function up()
     {
         Schema::create('item_service', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('service_id')->unsigned();
             $table->integer('item_id')->unsigned();
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
