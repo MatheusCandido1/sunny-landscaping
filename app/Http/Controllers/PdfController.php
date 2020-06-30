@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App;
-use App\Costumer;
+use App\Customer;
 use App\Item;
 use App\Service;
 use App\Visit;

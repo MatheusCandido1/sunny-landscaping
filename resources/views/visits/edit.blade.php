@@ -1,5 +1,5 @@
 @extends('layouts.partials')
-@section('title', 'Costumers')
+@section('title', 'Customers')
 @section('content')
         <div class="container-fluid">
             <h1 class="mt-4">Update Visit</h1>
@@ -26,7 +26,7 @@
               </div>
               <div class="col-md-4">
                   <div class="form-group">
-                      <label class="" for="inputLastName">Call costumer in (minutes)</label>
+                      <label class="" for="inputLastName">Call Customer in (minutes)</label>
                   <input name="call_customer_in" value="{{$visit->call_customer_in}}" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
                   </div>
               </div>
@@ -93,7 +93,7 @@
         </div>
         </div>
             <div class="col-md-6">
-            <input  name="costumer_id" value="{{$visit->id}}" class="form-control" type="hidden"  placeholder="" />
+            <input  name="customer_id" value="{{$visit->id}}" class="form-control" type="hidden"  placeholder="" />
            
             </div>
         </div>

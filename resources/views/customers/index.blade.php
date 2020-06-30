@@ -1,12 +1,12 @@
 @extends('layouts.partials')
-@section('title', 'Costumers')
+@section('title', 'Customers')
 @section('content')
 <div class="container-fluid">
-<h1 class="mt-4">Costumers</h1>
+<h1 class="mt-4">Customers</h1>
 <div class="card mb-4">
-    <div class="card-header">All your costumers are here!
+    <div class="card-header">All your customers are here!
       <a href="{{ route('customers.create') }}" class="btn btn-primary float-right btn-sm">
-        New Costumer
+        New Customer
     </a>
   </div>
     <div class="card-body">

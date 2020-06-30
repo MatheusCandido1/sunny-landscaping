@@ -1,5 +1,5 @@
 @extends('layouts.partials')
-@section('title', 'Costumers')
+@section('title', 'Customers')
 @section('content')
 <style>
     .btn-group.special {
@@ -49,7 +49,7 @@ ul.timeline > li:before {
   <div class="row">
     <div class="col-lg-6">
         <div class="card mb-4">
-            <div class="card-header"><i class="fas fa-portrait"></i> Costumers Information</div>
+            <div class="card-header"><i class="fas fa-portrait"></i> Customer Information</div>
             <div class="card-body">
                 <div class="row">
                 <div class="col-12 col-lg-8 col-md-6">
@@ -69,7 +69,7 @@ ul.timeline > li:before {
     <div class="col-lg-6">
         <div class="card mb-4">
             <div class="card-header">
-                <i class="fas fa-home"></i> Visit
+                <i class="fas fa-home"></i> Visit and Quotes
 
             </div>
             
@@ -78,37 +78,16 @@ ul.timeline > li:before {
                 <div class="col-12 col-lg-12 col-md-12">
                     <p class="lead"><i class="far fa-image"></i> Project: {{ $data->visit_name}}</p>
                     <p class="lead"><i class="fas fa-calendar"></i> Date: {{ \Carbon\Carbon::parse($data->date)->format('l, jS \\of F Y h:i:s A')}}</p>
-                    <p class="lead"> <i class="fas fa-phone-square"></i> Call costumer in : {{$data->call_customer_in}} minutes</p>
+                    <p class="lead"> <i class="fas fa-phone-square"></i> Call customer in : {{$data->call_customer_in}} minutes</p>
                     <p class="lead"> <i class="fas fa-mobile-alt"></i> HOA: {{ $data->hoa == 0 ? 'No' : 'Yes'}}</p>
-                <p class="lead"> <i class="fas fa-map-marked-alt"></i> Water Smart Rebate: {{$data->water_smart_rebate == 0 ? 'No' : 'Yes'}}                     <a href="{{route('visits.edit', $data->visit_id)}}" class="btn btn-primary float-right"><i class="fas fa-pencil-alt"></i> Edit Visit </a>
+                <p class="lead"> <i class="fas fa-map-marked-alt"></i> Water Smart Rebate: {{$data->water_smart_rebate == 0 ? 'No' : 'Yes'}}                 
                     </p>
                 </div>
                 <!--/col-->
             </div>
-            <!--
             <div class="btn-group special" role="group" aria-label="Basic example">
-                @if(!($quote_info))
-                <a href="{{ route('customers.quote', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Quote</a> 
-                @else
-            <a href="{{route('quotes.edit', ['visit'=>$data->visit_id, 'service'=>$quote_data->id])}}" type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Edit Quote</a>
-            <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-print"></i> Print Quote
-                </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <a target="_blank" href="{{ route ('pdf.quote', ['visit'=>$data->visit_id, 'service'=>$quote_data->id, 'type'=> 1])}}" class="dropdown-item">Portrait</a>
-
-                    <a target="_blank" href="{{ route ('pdf.quote', ['visit'=>$data->visit_id, 'service'=>$quote_data->id, 'type'=> 0])}}" class="dropdown-item">Landscape</a>
-                </div>
-              </div>
-            <a type="button"  style="color: white"href="" class="btn btn-warning"><i class="fas fa-envelope"></i> Send Quote</a>    
-            <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this quote?')) { document.getElementById('destroy-form-{{$quote_data->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
-                <form id="destroy-form-{{$quote_data->id}}" action="{{ route('services.destroy',$quote_data->id) }}" method="POST" style="display: none;">
-                    @csrf
-                    @method('DELETE')
-                </form>
-                @endif
-              </div> -->
+                <a href="{{ route('services.servicesByVisit', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i>Manage Quotes</a>                
+              </div> 
             </div>
         </div>
     </div>

@@ -94,23 +94,6 @@ class CustomerController extends Controller
         
     }
 
-    /*public function projectsByCustumer($id) 
-    {
-        try {
-            $projects = DB::table('cstumer_visit')
-            ->selectRaw('costumers.name as cost_name, costumer_visit.id as project_id, visits.seller as seller, visits.id, visits.name, visits.date')
-            ->join('visits','visits.id','=','costumer_visit.visit_id')
-            ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
-            ->where('costumers.id','=', $id)
-            ->get();
-            return view('costumers.projects', ['types' => Type::all(), 'projects' => $projects, 'id' => $id]);
-        } catch (Throwable $e) {
-            toast('Pleasy try again!','error');
-
-        }
-       
-    }*/
-
     public function Quote($id)
     {
         try {
@@ -130,50 +113,6 @@ class CustomerController extends Controller
     
     */
 
-    /*public function visitByCostumer($id)
-    {
-        try{
-        $data = DB::table('costumer_visit')
-        ->selectRaw('costumers.referred, costumers.city, costumers.state,costumers.zipcode,costumers.cross_street1, costumers.cross_street2,costumers.name as costumer_name, costumers.email, costumers.phone, costumers.cellphone, costumers.address, costumers.gate_code, visits.name as visit_name, visits.date, visits.call_costumer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
-        ->join('visits','visits.id','=','costumer_visit.visit_id')
-        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
-        ->where('visits.id','=', $id)
-        ->get();
-
-        $quoteStatus = DB::table('services')
-        ->selectRaw('services.id, services.status, services.final_balance, sum(items.investment), services.discount, services.accepting_proposal, services.down_payment')
-        ->join('item_service','item_service.service_id','=','services.id')
-        ->join('visits','visits.id','=','services.visit_id')
-        ->join('items', 'item_service.item_id','=', 'items.id')
-        ->join('costumer_visit','costumer_visit.visit_id','=','visits.id')
-        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
-        ->where('costumer_visit.visit_id', '=', $id)
-        ->get();
-
-        $note = DB::table('notes')
-        ->selectRaw('notes.id, notes.note, notes.created_at')
-        ->join('visits', 'visits.id','=','notes.visit_id')
-        ->where('notes.visit_id','=',$id)
-        ->orderBy('created_at','ASC')
-        ->get();
-
-        if(is_null($quoteStatus[0]->status))
-        {
-            $check = false;
-            return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'notes' => $note]);
-        }
-        else
-        {
-         $check = true;
-        return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'quote_data' => $quoteStatus[0], 'notes' => $note]);
-        }
-    }catch (Throwable $e) {
-        toast('Pleasy try again!','error');
-    }
-
-        
-
-    }*/
 
     public function show(){
 
@@ -225,10 +164,10 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         try{
-            $costumer = Costumer::where('id','=', $id)->first();
-            $costumer->delete();
+            $customer = Customer::where('id','=', $id)->first();
+            $customer->delete();
 
-            toast('Costumer deleted with success!','success');
+            toast('Customer deleted with success!','success');
             return redirect()->back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

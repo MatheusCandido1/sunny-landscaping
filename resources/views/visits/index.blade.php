@@ -1,5 +1,5 @@
 @extends('layouts.partials')
-@section('title', 'Costumers')
+@section('title', 'Customers')
 @section('content')
 <style>
   .btn-group.special {
@@ -67,7 +67,7 @@ flex: 1
         </div><br>
         <div class="btn-group special" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-primary"><i class="fas fa-print"></i> Print all proposals</button>  
-          <button type="button" class="btn btn-success"><i class="fas fa-envelope"></i> Send all proposals to costumer</button>                         
+          <button type="button" class="btn btn-success"><i class="fas fa-envelope"></i> Send all proposals to customer</button>                         
         </div>
     </div>
 </div>
@@ -100,7 +100,7 @@ flex: 1
               </div>
               <div class="col-md-4">
                   <div class="form-group">
-                      <label class="" for="inputLastName">Call costumer in (minutes)</label>
+                      <label class="" for="inputLastName">Call customer in (minutes)</label>
                       <input name="call_customer_in" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
                   </div>
               </div>
@@ -149,7 +149,7 @@ flex: 1
                     @endforeach
                   </select>
             </div>
-          <input  name="customer_id" value="{{$costumer[0]}}" class="form-control" type="hidden"  placeholder="" />
+          <input  name="customer_id" value="{{$customer[0]}}" class="form-control" type="hidden"  placeholder="" />
         </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   

@@ -21,7 +21,7 @@ Route::middleware('auth')->group( function () {
 
 Route::get('/customer/{customer}/visits', 'VisitController@visitsByCustomer')->name('visits.visitsByCustomer');
 Route::get('/visit/{visit}', 'VisitController@details')->name('visits.details');
-Route::get('/quote/{visit}', 'CustomerController@quote')->name('customers.quote');
+Route::get('/service/visit/{visit}', 'ServiceController@servicesByVisit')->name('services.servicesByVisit');
 Route::get('/pdf/proposal/{visit}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('/pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
 Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
@@ -38,6 +38,7 @@ Route::resources([
     'services' => 'ServiceController',
     'notes' => 'NoteController',
     'items' => 'ItemController',
-    'suppliers' => 'SupplierController'
+    'suppliers' => 'SupplierController',
+    'quotes' => 'QuoteController'
 ]);
 });

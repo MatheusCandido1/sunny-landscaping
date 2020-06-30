@@ -13,6 +13,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ServiceController extends Controller
 {
 
+    public function servicesByVisit($id){
+        try {
+            $services = Service::where('visit_id','=',$id)->get();
+            return view('services.index', ['services' => $services]);
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+
+        }
+    }
+
     public function destroy(Service $service)
     {
         try{

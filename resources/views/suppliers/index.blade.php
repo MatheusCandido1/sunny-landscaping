@@ -1,5 +1,5 @@
 @extends('layouts.partials')
-@section('title', 'Costumers')
+@section('title', 'Customers')
 @section('content')
 <div class="container-fluid">
 <h1 class="mt-4">Suppliers</h1>

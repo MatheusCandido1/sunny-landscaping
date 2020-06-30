@@ -21,6 +21,7 @@ class QuoteController extends Controller
         //
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +29,11 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        //
+        try{
+            return view('quotes.create');
+        }catch (Throwable $e) {
+        toast('Pleasy try again!','error');
+     }
     }
 
     /**

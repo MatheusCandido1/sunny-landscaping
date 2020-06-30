@@ -28,7 +28,7 @@ class VisitController extends Controller
     public function visitsByCustomer($id){
         try {
             $visits = Visit::with('customers')->where('customer_id','=',$id)->get();
-            return view('visits.index', ['costumer' => $id, 'visits' => $visits,'types' => Type::all()]);
+            return view('visits.index', ['customer' => $id, 'visits' => $visits,'types' => Type::all()]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
 
@@ -95,16 +95,6 @@ class VisitController extends Controller
             ->join('referrals', 'customers.referral_id','=','referrals.id')
             ->where('visits.id','=', $id)
             ->get();
-    
-          /*  $quoteStatus = DB::table('services')
-            ->selectRaw('services.id, services.status, services.final_balance, sum(items.investment), services.discount, services.accepting_proposal, services.down_payment')
-            ->join('item_service','item_service.service_id','=','services.id')
-            ->join('visits','visits.id','=','services.visit_id')
-            ->join('items', 'item_service.item_id','=', 'items.id')
-            ->join('costumer_visit','costumer_visit.visit_id','=','visits.id')
-            ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
-            ->where('costumer_visit.visit_id', '=', $id)
-            ->get();*/
     
             $note = DB::table('notes')
             ->selectRaw('notes.id, notes.note, notes.created_at')
