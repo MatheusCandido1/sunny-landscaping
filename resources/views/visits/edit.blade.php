@@ -27,7 +27,7 @@
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputLastName">Call costumer in (minutes)</label>
-                  <input name="call_costumer_in" value="{{$visit->call_costumer_in}}" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
+                  <input name="call_customer_in" value="{{$visit->call_customer_in}}" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
                   </div>
               </div>
           </div>

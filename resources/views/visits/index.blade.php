@@ -51,7 +51,7 @@ flex: 1
                           <a type="button" href="" class="btn btn-primary btn-block">Details</a>
                         </td>
                         <td style="text-align: center;" scope="col">
-                        <a  href="" type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                        <a  href="{{route('visits.edit', $visit->id)}}" type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                         <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this visit?')) { document.getElementById('destroy-form-{{$visit->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                         <form id="destroy-form-{{$visit->id}}" action="{{ route('visits.destroy',$visit->id) }}" method="POST" style="display: none;">
                                             @csrf

@@ -25,7 +25,7 @@ class VisitController extends Controller
        
     }
 
-    public function visitsByCostumer($id){
+    public function visitsByCustomer($id){
         try {
             $visits = Visit::with('customers')->where('customer_id','=',$id)->get();
             return view('visits.index', ['costumer' => $id, 'visits' => $visits,'types' => Type::all()]);
@@ -101,7 +101,6 @@ class VisitController extends Controller
         for($i = 0; $i < count($typesSelected); $i++){
             $selecteds[$i] = $typesSelected[$i]->type_id;
         }
-       // dd($selecteds);
         return view('visits.edit', ['types' => Type::all(),'visit' => $visit, 'selecteds' => $selecteds]);
     }catch (Throwable $e) {
         toast('Pleasy try again!','error');
@@ -130,7 +129,7 @@ class VisitController extends Controller
             $visit->types()->attach($request->type[$i]);
         }
         toast('Visit updated with success!','success');
-        return redirect()->route('visits.visitByCostumer',$id);
+        return redirect()->route('visits.visitsByCustomer',$visit->customer_id);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
