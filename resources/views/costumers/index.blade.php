@@ -33,7 +33,11 @@
                         </td>
                         <td style="text-align: center;" scope="col">
                           <a href="{{route('costumers.edit', $costumer->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                          <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                          <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this quote?')) { document.getElementById('destroy-form-{{$costumer->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                          <form id="destroy-form-{{$costumer->id}}" action="{{ route('costumers.destroy',$costumer->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                         </td>
                     </tr>
                     @endforeach

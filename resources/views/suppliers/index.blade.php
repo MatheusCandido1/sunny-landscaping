@@ -16,7 +16,7 @@
                     <tr>
                         <th style="text-align: center" scope="col" >Name</th>
                         <th style="text-align: center" scope="col">Unit price</th>
-                        <th style="text-align: center; width: 10%" scope="col">Actions</th>
+                        <th style="text-align: center; width: 15%" scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,7 +25,7 @@
                         <td >{{ $supplier->name}}</td>
                         <td style="text-align: center;" >${{ number_format($supplier->value,2)}}</td>
                         <td style="text-align: right;" scope="col">
-                          <button class="btn btn-success"><i class="fas fa-pencil-alt"></i></button>
+                          <a href="" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                           <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this supplier?')) { document.getElementById('destroy-form-{{$supplier->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 <form id="destroy-form-{{$supplier->id}}" action="{{ route('suppliers.destroy',$supplier->id) }}" method="POST" style="display: none;">
                     @csrf

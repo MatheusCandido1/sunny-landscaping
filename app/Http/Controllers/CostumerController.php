@@ -7,6 +7,7 @@ use App\Costumer;
 use App\Item;
 use App\Suppllier;
 use App\Type;
+use App\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
@@ -219,6 +220,15 @@ class CostumerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $costumer = Costumer::where('id','=', $id)->first();
+            $costumer->delete();
+
+            toast('Costumer deleted with success!','success');
+            return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+        
     }
 }

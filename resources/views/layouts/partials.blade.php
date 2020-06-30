@@ -63,13 +63,13 @@
                                 <a class="nav-link" href="{{ route('costumers.index') }}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-user-check"></i></div>
                                 Costumers</a>
-                                <a class="nav-link" href="{{ route('costumers.index') }}"
+                                <a class="nav-link" href="#"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tree"></i></div>
                                 Services</a>
-                                <a class="nav-link" href="{{ route('costumers.index') }}"
+                                <a class="nav-link" href="{{ route('suppliers.index') }}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
                                 Suppliers</a>
-                                <a class="nav-link" href="{{ route('costumers.index') }}"
+                                <a class="nav-link" href="#"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Users</a>
                         </div>
