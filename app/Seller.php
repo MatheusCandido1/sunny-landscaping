@@ -9,4 +9,9 @@ class Seller extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function customers()
+    {
+        return $this->hasMany('App\Customer');
+    }
 }

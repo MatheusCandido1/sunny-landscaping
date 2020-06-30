@@ -25,11 +25,13 @@ class CreateCustomersTable extends Migration
             $table->string('phone');
             $table->boolean('cellphone');
             $table->string('email')->unique();;
-            $table->string('parcel');
-            $table->string('referral_id')>unsigned();
-            $table->foreign('referral_id')->references('id')->on('referral')->onDelete('cascade');
+            $table->string('parcel_number');
+            $table->integer('referral_id')->unsigned();
+            $table->foreign('referral_id')->references('id')->on('referrals')->onDelete('cascade');
             $table->integer('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('city')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->integer('seller_id')->unsigned();
+            $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,13 +16,10 @@ class CreateVisitsTable extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('seller');
             $table->dateTime('date');
             $table->integer('call_costumer_in')->nullable();
             $table->boolean('hoa')->nullable();
             $table->boolean('water_smart_rebate')->nullable();
-            $table->integer('costumer_id')->unsigned();
-            $table->foreign('costumer_id')->references('id')->on('costumers')->onDelete('cascade');
             $table->timestamps();
         });
     }

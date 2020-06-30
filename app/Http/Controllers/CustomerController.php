@@ -9,6 +9,9 @@ use App\Item;
 use App\Suppllier;
 use App\Type;
 use App\Visit;
+use App\City;
+use App\Seller;
+use App\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
@@ -28,7 +31,7 @@ class CustomerController extends Controller
     public function index()
     {
         try {
-            return view('customers.index', ['customers' => Costumer::all()]);
+            return view('customers.index', ['customers' => Customer::all()]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
 
@@ -42,7 +45,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customers.create');
+        return view('customers.create',['referrals' => Referral::all(),'cities' => City::all(),'sellers' => Seller::all()]);
 
     }
 
@@ -63,23 +66,25 @@ class CustomerController extends Controller
 
         }
 
-        $costumer = costumer::create([
+        $customer = Customer::create([
             'name' => $data['name'],
             'address' => $data['address'],
             'cross_street1' => $data['cross_street1'],
             'cross_street2' => $data['cross_street2'],
             'gate_code' => $data['gate_code'],
-            'city' => $data['city'],
             'state' => $data['state'],
             'zipcode' => $data['zipcode'],
             'phone' => $data['phone'],
             'email' => $data['email'],
-            'cellphone' => $cellphone,
-            'referred' => $referred
+            'parcel_number' => $data['parcel_number'],
+            'referral_id' => $data['referral_id'],
+            'city_id' => $data['city_id'],
+            'seller_id' => $data['seller_id'],
+            'cellphone' => $cellphone
         ]);
-        toast('New costumer added with success!','success');
+        toast('New customer added with success!','success');
 
-        $costumer->save();
+        $customer->save();
 
         return redirect()->route('customers.index'); 
         } catch (Throwable $e) {
@@ -88,11 +93,11 @@ class CustomerController extends Controller
         }
         
     }
-
-    public function projectsByCostumer($id) 
+/*
+    public function projectsByCustumer($id) 
     {
         try {
-            $projects = DB::table('costumer_visit')
+            $projects = DB::table('cstumer_visit')
             ->selectRaw('costumers.name as cost_name, costumer_visit.id as project_id, visits.seller as seller, visits.id, visits.name, visits.date')
             ->join('visits','visits.id','=','costumer_visit.visit_id')
             ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
@@ -104,7 +109,7 @@ class CustomerController extends Controller
 
         }
        
-    }
+    }*/
 
     public function Quote($id)
     {

@@ -7,8 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     protected $fillable = [
-        'name', 'address', 'cross_street1', 'cross_street2', 'gate_code', 'city', 'state', 'zipcode', 'phone', 'cellphone', 'email','referred'
+        'name', 'address', 'cross_street1', 'cross_street2', 'gate_code',  'state', 'zipcode', 'phone', 'cellphone', 'email','parcel_number','referral_id','city_id','seller_id'
     ];
+
+    public function referral()
+    {
+        return $this->belongsTo('App\Referral');
+    }
+
+    public function City()
+    {
+        return $this->belongsTo('App\City');
+    }
+
+    public function Seller()
+    {
+        return $this->belongsTo('App\Seller');
+    }
 
     public function visits()
     {
