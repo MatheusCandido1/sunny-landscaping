@@ -13,7 +13,7 @@ class CustomersTableSeeder extends Seeder
     public function run()
     {
         Customer::insert([
-            ['name' => 'Frank Castle', 'address' => '3025, Via Della Amore', 'cross_street1' => 'Meridiana','cross_street2' => 'Suzana','gate_code' => '435', 'state' => 'Nevada', 'zipcode' => '89052', 'phone' => '(702) 435-5430','cellphone' => '1', 'email' => 'frank.castle@email.com']
+            ['name' => 'Frank Castle', 'address' => '3025, Via Della Amore', 'cross_street1' => 'Meridiana','cross_street2' => 'Suzana','gate_code' => '435', 'state' => 'Nevada', 'zipcode' => '89052', 'parcel_number' => '32432', 'phone' => '(702) 435-5430','cellphone' => '1', 'email' => 'frank.castle@email.com','referral_id' => '1','city_id' => '1','seller_id'=>'1']
         ]);
     }
 }

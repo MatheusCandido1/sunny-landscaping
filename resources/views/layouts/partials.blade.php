@@ -56,7 +56,7 @@
                 <nav  class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Home</div>
+                            <div class="sb-sidenav-menu-heading">Sunny Pavers</div>
                             <a class="nav-link" href="{{ route ('home')}}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Dashboard</a>

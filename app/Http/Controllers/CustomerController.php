@@ -188,8 +188,8 @@ class CustomerController extends Controller
     public function edit($id)
     {
         try{
-            $costumer = DB::table('costumers')->select('id','name','address','cross_street1','cross_street2','gate_code','city','state','zipcode','phone','cellphone','email','referred')->where('costumers.id','=',$id)->first();
-            return view('costumers.edit', ['costumer' => $costumer]);
+            $customer = DB::table('customers')->select('id','name','address','cross_street1','cross_street2','parcel_number','gate_code','city_id', 'seller_id','state','zipcode','phone','cellphone','email','referral_id','seller_id')->where('customers.id','=',$id)->first();
+            return view('customers.edit', ['customer' => $customer,'referrals' => Referral::all(),'cities' => City::all(),'sellers' => Seller::all()]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -205,12 +205,12 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $costumer = costumer::where('id','=', $id)->first();
-            $costumer->fill($request->only('name','address','cross_street1','cross_street2','gate_code','city','state','zipcode','phone','cellphone','email','referred'));
-            $costumer->save();
-            toast('Costumer updated with success!','success');
+            $customer = customer::where('id','=', $id)->first();
+            $customer->fill($request->only('name','address','cross_street1','cross_street2','gate_code','city_id','state','zipcode','phone','cellphone','email','referral_id','seller_id','parcel_number'));
+            $customer->save();
+            toast('Customer updated with success!','success');
     
-            return redirect()->route('costumers.index');
+            return redirect()->route('customers.index');
             }catch (Throwable $e) {
                 toast('Pleasy try again!','error');
             }
