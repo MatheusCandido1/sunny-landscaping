@@ -13,6 +13,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use PDF;
+use TJGazel\Toastr\Facades\Toastr;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
 
 class CostumerController extends Controller
 {
@@ -23,7 +27,12 @@ class CostumerController extends Controller
      */
     public function index()
     {
-        return view('costumers.index', ['costumers' => Costumer::all()]);
+        try {
+            return view('costumers.index', ['costumers' => Costumer::all()]);
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+
+        }
     }
 
     /**
@@ -45,7 +54,8 @@ class CostumerController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        try {
+            $data = $request->all();
         if(isset($data['cellphone'])){
             $cellphone = true;
         }else{
@@ -73,25 +83,42 @@ class CostumerController extends Controller
             'cellphone' => $cellphone,
             'referred' => $referred
         ]);
+        toast('New costumer added with success!','success');
 
         $costumer->save();
+
         return redirect()->route('costumers.index'); 
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+
+        }
+        
     }
 
     public function projectsByCostumer($id) 
     {
-        $projects = DB::table('costumer_visit')
-        ->selectRaw('costumers.name as cost_name, costumer_visit.id as project_id, visits.id, visits.name, visits.date')
-        ->join('visits','visits.id','=','costumer_visit.visit_id')
-        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
-        ->where('costumers.id','=', $id)
-        ->get();
-        return view('costumers.projects', ['types' => Type::all(), 'projects' => $projects, 'id' => $id]);
+        try {
+            $projects = DB::table('costumer_visit')
+            ->selectRaw('costumers.name as cost_name, costumer_visit.id as project_id, visits.id, visits.name, visits.date')
+            ->join('visits','visits.id','=','costumer_visit.visit_id')
+            ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
+            ->where('costumers.id','=', $id)
+            ->get();
+            return view('costumers.projects', ['types' => Type::all(), 'projects' => $projects, 'id' => $id]);
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+
+        }
+       
     }
 
     public function Quote($id)
     {
-        return view('quotes.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
+        try {
+            return view('quotes.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
 
     }
     
@@ -106,6 +133,7 @@ class CostumerController extends Controller
 
     public function visitByCostumer($id)
     {
+        try{
         $data = DB::table('costumer_visit')
         ->selectRaw('costumers.referred, costumers.city, costumers.state,costumers.zipcode,costumers.cross_street1, costumers.cross_street2,costumers.name as costumer_name, costumers.email, costumers.phone, costumers.cellphone, costumers.address, costumers.gate_code, visits.name as visit_name, visits.date, visits.call_costumer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
         ->join('visits','visits.id','=','costumer_visit.visit_id')
@@ -140,6 +168,10 @@ class CostumerController extends Controller
          $check = true;
         return view('costumers.show', ['data' => $data[0], 'quote_info' => $check, 'quote_data' => $quoteStatus[0], 'notes' => $note]);
         }
+    }catch (Throwable $e) {
+        toast('Pleasy try again!','error');
+    }
+
         
 
     }

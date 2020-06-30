@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use TJGazel\Toastr\Facades\Toastr;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 use Illuminate\Http\Request;
 

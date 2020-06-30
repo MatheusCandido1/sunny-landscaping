@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Type;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class TypesController extends Controller
 {

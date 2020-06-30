@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class VisitController extends Controller
 {
     /**
@@ -28,7 +30,12 @@ class VisitController extends Controller
      */
     public function create()
     {
-        return view('visits.create', ['costumers' => \App\Costumer::all()]);
+        try{
+            return view('visits.create', ['costumers' => \App\Costumer::all()]);
+        }
+        catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
@@ -58,20 +65,13 @@ class VisitController extends Controller
         for($i = 0; $i < count($request->type); $i++){
             $visit->types()->attach($request->type[$i]);
         }
-        $notification = array(
-            'message' => 'Visit created successfully!',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id])->with($notification);
+        toast('Project created with success!','success');
+        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id]);
 
         }catch(\Exception $e) {
+            toast('Pleasy try again!','error');
 
-            $notification = array(
-                'message' => 'There was an error!',
-                'alert-type' => 'warning'
-            ); 
-            
-        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id])->with($notification);
+        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id]);
         }
       
     }
@@ -95,9 +95,12 @@ class VisitController extends Controller
      */
     public function edit($id)
     {
+        try{
         $visit = DB::table('visits')->select('id','name','date','call_costumer_in','hoa','water_smart_rebate')->where('visits.id','=',$id)->first();
         return view('visits.edit', ['visit' => $visit]);
-
+    }catch (Throwable $e) {
+        toast('Pleasy try again!','error');
+    }
     }
 
     /**
@@ -109,12 +112,17 @@ class VisitController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try{
         $visit = Visit::where('id','=', $id)->first();
         $visit->fill($request->only('name','date','call_costumer_in','hoa','status','water_smart_rebate'));
         $visit->save();
 
-        
+        toast('Project updated with success!','success');
+
         return redirect()->route('costumers.visitByCostumer',$id);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**

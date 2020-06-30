@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Service;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class QuoteController extends Controller
 {
@@ -38,6 +39,7 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
+        try{
         $service = Service::create([
             'discount' => $request->discount,
             'total' => $request->subtotal,
@@ -60,8 +62,12 @@ class QuoteController extends Controller
             $item[$i]->save();
          $service->items()->attach($item[$i]);
         } 
+        toast('Quote created with success!','success');
 
         return redirect()->route('costumers.visitByCostumer',$request->visit_id);
+    }catch (Throwable $e) {
+        toast('Pleasy try again!','error');
+    }
         
     }
 
@@ -84,6 +90,7 @@ class QuoteController extends Controller
      */
     public function edit($id, $service_id)
     {
+        try{
         $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$id)->first();
 
         $itemData = DB::table('items')
@@ -94,6 +101,9 @@ class QuoteController extends Controller
         ->get();
 
         return view('quotes.edit', ['suppliers' => \App\Supplier::all(), 'service' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
@@ -105,6 +115,7 @@ class QuoteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try{
         $service = Service::where('id','=', $id)->first();
         $service->fill($request->only('discount','total','accepting_proposal','down_payment','status','visit','final_balance'));
         $service->save();
@@ -153,8 +164,12 @@ class QuoteController extends Controller
             }
         }
 
-        
+        toast('Quote updated with success!','success');
+
         return redirect()->route('costumers.visitByCostumer',$request->visit_id);
+    }catch (Throwable $e) {
+        toast('Pleasy try again!','error');
+    }
     }
 
     /**

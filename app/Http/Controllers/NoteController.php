@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Note;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NoteController extends Controller
 {
@@ -35,9 +36,15 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
+        try{
         $note = new Note($request->only('note','visit_id'));
             $note->save();
+        toast('Note created with success!','success');
             return back();
+        }
+        catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
@@ -82,7 +89,12 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
+        try{
         Note::destroy($note->id);
+        toast('Note deleted with success!','success');
         return back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 }

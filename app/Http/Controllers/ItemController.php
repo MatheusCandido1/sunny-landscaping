@@ -9,6 +9,7 @@ use App\Service;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ItemController extends Controller
 {
@@ -87,8 +88,14 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
+        try {
+            
         $item = Item::where('id','=', $item->id)->first();
         $item->delete();
+        toast('Item deleted with success!','success');
         return redirect()->back();
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 }
