@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Visit extends Model
 {
     protected $fillable = [
-        'name', 'seller', 'date', 'call_costumer_in', 'hoa', 'water_smart_rebate'
+        'name', 'seller', 'date', 'call_customer_in', 'hoa', 'water_smart_rebate'
     ];
 
-    public function costumers()
+    public function customers()
     {
-        return $this->belongsToMany('App\Costumer');
+        return $this->belongsToMany('App\Custumer');
     }
 
     public function services()

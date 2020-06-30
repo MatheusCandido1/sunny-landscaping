@@ -19,9 +19,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group( function () {
 
-Route::get('/projects/{costumer}', 'CostumerController@projectsByCostumer')->name('costumers.projectsByCostumer');
-Route::get('/project/{visit}', 'CostumerController@visitByCostumer')->name('costumers.visitByCostumer');
-Route::get('/quote/{visit}', 'CostumerController@quote')->name('costumers.quote');
+Route::get('/projects/{customer}', 'CustomerController@projectsByCustomer')->name('customers.projectsByCustomer');
+Route::get('/project/{visit}', 'CustomerController@visitByCustomer')->name('customers.visitByCustomer');
+Route::get('/quote/{visit}', 'CustomerController@quote')->name('customers.quote');
 Route::get('/pdf/proposal/{visit}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('/pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
 Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
@@ -29,11 +29,11 @@ Route::get('/visit/{visit}/service/{service}', 'QuoteController@edit')->name('qu
 Route::put('/update/{service}', 'QuoteController@update')->name('quotes.update');
 Route::put('/update/{visit}', 'VisitController@update')->name('visits.update');
 Route::put('/edit/{visit}', 'VisitController@edit')->name('visits.edit');
-Route::put('/edit/{costumer}', 'CostumerController@edit')->name('costumers.edit');
+Route::put('/edit/{customer}', 'CustomerController@edit')->name('customers.edit');
 
 
 Route::resources([
-    'costumers' => 'CostumerController',
+    'customers' => 'CustomerController',
     'visits' => 'VisitController',
     'services' => 'ServiceController',
     'notes' => 'NoteController',

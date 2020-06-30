@@ -1,14 +1,14 @@
 @extends('layouts.partials')
-@section('title', 'Costumers')
+@section('title', 'Customers')
 @section('content')
         <div class="container-fluid">
-            <h1 class="mt-4">New costumer</h1>
+            <h1 class="mt-4">New Customer</h1>
 <div class="row">
     <div class="col-lg-12">
     <div class="card mb-4">
-        <div class="card-header"><i class="fas fa-user-check"></i> Costumers</div>
+        <div class="card-header"><i class="fas fa-user-check"></i> Customers</div>
         <div class="card-body">
-          <form  method="POST" class="form-horizontal style-form" action="{{ route('costumers.store') }}" > 
+          <form  method="POST" class="form-horizontal style-form" action="{{ route('customers.store') }}" > 
             @csrf
           <div class="form-row">
               <div class="col-md-4">
@@ -93,7 +93,7 @@
                         <option value="Home Advertisement">Home Advertisement</option>
                         <option value="Neighbor">Neighbor</option>
                         <option value="Yelp">Yelp</option>
-                        <option value="Past Costumer">Past Costumer</option>
+                        <option value="Past Customers">Past Customer</option>
                         <option value="Others">Others</option>
                       </select>
                 </div>

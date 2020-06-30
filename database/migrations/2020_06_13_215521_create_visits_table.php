@@ -21,6 +21,8 @@ class CreateVisitsTable extends Migration
             $table->integer('call_costumer_in')->nullable();
             $table->boolean('hoa')->nullable();
             $table->boolean('water_smart_rebate')->nullable();
+            $table->integer('costumer_id')->unsigned();
+            $table->foreign('costumer_id')->references('id')->on('costumers')->onDelete('cascade');
             $table->timestamps();
         });
     }

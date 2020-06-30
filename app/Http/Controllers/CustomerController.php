@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App;
-use App\Costumer;
+use App\Customer;
 use App\Item;
 use App\Suppllier;
 use App\Type;
@@ -17,9 +18,7 @@ use PDF;
 use TJGazel\Toastr\Facades\Toastr;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
-
-class CostumerController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,7 +28,7 @@ class CostumerController extends Controller
     public function index()
     {
         try {
-            return view('costumers.index', ['costumers' => Costumer::all()]);
+            return view('customers.index', ['customers' => Costumer::all()]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
 
@@ -43,7 +42,7 @@ class CostumerController extends Controller
      */
     public function create()
     {
-        return view('costumers.create');
+        return view('customers.create');
 
     }
 
@@ -82,7 +81,7 @@ class CostumerController extends Controller
 
         $costumer->save();
 
-        return redirect()->route('costumers.index'); 
+        return redirect()->route('customers.index'); 
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
 

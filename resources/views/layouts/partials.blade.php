@@ -60,15 +60,23 @@
                             <a class="nav-link" href="{{ route ('home')}}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Dashboard</a>
-                                <a class="nav-link" href="{{ route('costumers.index') }}"
+                                <a class="nav-link" href="{{ route('customers.index') }}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-user-check"></i></div>
-                                Costumers</a>
-                                <a class="nav-link" href="#"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-tree"></i></div>
-                                Services</a>
-                                <a class="nav-link" href="{{ route('suppliers.index') }}"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
-                                Suppliers</a>
+                                Customers</a>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Information
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a style="color: black" class="nav-link" href=""></i>Services</a>
+                                    <a style="color: black" class="nav-link" href=""></i>Cities</a>
+                                    <a style="color: black" class="nav-link" href=""></i>Suppliers</a>
+                                    <a style="color: black" class="nav-link" href=""></i>Sellers</a>
+                                    <a style="color: black" class="nav-link" href=""></i>Referral</a>
+                                </nav>
+                            </div>
                                 <a class="nav-link" href="#"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Users</a>

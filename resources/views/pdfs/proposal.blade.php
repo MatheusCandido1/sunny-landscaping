@@ -139,7 +139,7 @@ your home’s landscaping improvement.</p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>The <b>anticipated value</b> of investment to install pavers and
-improve your landscaping is estimated in <b>US$ <span>{{number_format($data[0]->final_balance,2)}}</span></b>
+improve your landscaping is estimated in <b>US$ <span>{{number_format($data[0]->total,2)}}</span></b>
 <b>(materials and labor, tax included).</b></p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:

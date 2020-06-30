@@ -1,12 +1,12 @@
 @extends('layouts.partials')
-@section('title', 'Costumers')
+@section('title', 'Customers')
 @section('content')
 <div class="container-fluid">
-<h1 class="mt-4">Costumers</h1>
+<h1 class="mt-4">Customers</h1>
 <div class="card mb-4">
-    <div class="card-header">All your costumers are here!
-      <a href="{{ route('costumers.create') }}" class="btn btn-primary float-right btn-sm">
-        New Costumer
+    <div class="card-header">All your Customers are here!
+      <a href="{{ route('customers.create') }}" class="btn btn-primary float-right btn-sm">
+        New Customer
     </a>
   </div>
     <div class="card-body">
@@ -23,18 +23,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                  @foreach($costumers as $costumer)
+                  @foreach($customers as $customer)
                     <tr>
-                        <td >{{ $costumer->name}}</td>
-                        <td >{{ $costumer->phone}}</td>
-                        <td >{{ $costumer->email}}</td>
+                        <td >{{ $customer->name}}</td>
+                        <td >{{ $customer->phone}}</td>
+                        <td >{{ $customer->email}}</td>
                         <td style="text-align: center;" scope="col">
-                          <a type="button" href="{{ route('costumers.projectsByCostumer',$costumer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
+                          <a type="button" href="{{ route('customers.projectsByCustomer',$customer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
                         </td>
                         <td style="text-align: center;" scope="col">
-                          <a href="{{route('costumers.edit', $costumer->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                          <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this quote?')) { document.getElementById('destroy-form-{{$costumer->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                          <form id="destroy-form-{{$costumer->id}}" action="{{ route('costumers.destroy',$costumer->id) }}" method="POST" style="display: none;">
+                          <a href="{{route('customers.edit', $customer->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                          <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this quote?')) { document.getElementById('destroy-form-{{$customer->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                          <form id="destroy-form-{{$customer->id}}" action="{{ route('customers.destroy',$customer->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>
