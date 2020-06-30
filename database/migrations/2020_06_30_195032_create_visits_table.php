@@ -17,9 +17,11 @@ class CreateVisitsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->dateTime('date');
-            $table->integer('call_costumer_in')->nullable();
+            $table->integer('call_customer_in')->nullable();
             $table->boolean('hoa')->nullable();
             $table->boolean('water_smart_rebate')->nullable();
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
         });
     }

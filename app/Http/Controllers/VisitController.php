@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Visit;
 use App\Type;
+use App\Customer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,17 @@ class VisitController extends Controller
      */
     public function index()
     {
-        //
+       
+    }
+
+    public function visitsByCostumer($id){
+        try {
+            $visits = Visit::with('customers')->where('customer_id','=',$id)->get();
+            return view('visits.index', ['costumer' => $id, 'visits' => $visits,'types' => Type::all()]);
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+
+        }
     }
 
     /**
@@ -41,29 +52,26 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-
-        try {
+        try{
         $visit = Visit::create([
             'name' => $request->name,
             'date' => $request->date,
-            'seller' => $request->seller,
-            'call_costumer_in' => $request->call_costumer_in,
+            'call_customer_in' => $request->call_customer_in,
             'hoa' => $request->hoa,
-            'water_smart_rebate' => $request->water_smart_rebate
+            'water_smart_rebate' => $request->water_smart_rebate,
+            'customer_id' => $request->customer_id
         ]);
-        $visit->costumers()->sync($request->costumer_id);
 
         for($i = 0; $i < count($request->type); $i++){
             $visit->types()->attach($request->type[$i]);
         }
         toast('Project created with success!','success');
-        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id]);
-
-        }catch(\Exception $e) {
-            toast('Pleasy try again!','error');
-
-        return redirect()->route('costumers.projectsByCostumer', [$request->costumer_id]);
-        }
+        return redirect()->back();
+    }
+     catch (Throwable $e) {
+        return redirect()->back();
+        toast('Pleasy try again!','error');
+    }
       
     }
 
@@ -111,7 +119,7 @@ class VisitController extends Controller
     {
         try{
         $visit = Visit::where('id','=', $id)->first();
-        $visit->fill($request->only('name','seller','date','call_costumer_in','hoa','status','water_smart_rebate'));
+        $visit->fill($request->only('name','date','call_customer_in','hoa','status','water_smart_rebate'));
         $visit->save();
 
         for($i = 0; $i < count($request->type); $i++){
@@ -121,9 +129,8 @@ class VisitController extends Controller
         for($i = 0; $i < count($request->type); $i++){
             $visit->types()->attach($request->type[$i]);
         }
-        toast('Project updated with success!','success');
-
-        return redirect()->route('costumers.visitByCostumer',$id);
+        toast('Visit updated with success!','success');
+        return redirect()->route('visits.visitByCostumer',$id);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -135,8 +142,14 @@ class VisitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Visit $visit)
     {
-        //
+        try{
+        Visit::destroy($visit->id);
+        toast('Visit deleted with success!','success');
+        return back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 }

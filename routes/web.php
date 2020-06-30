@@ -19,8 +19,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group( function () {
 
-Route::get('/projects/{customer}', 'CustomerController@projectsByCustomer')->name('customers.projectsByCustomer');
-Route::get('/project/{visit}', 'CustomerController@visitByCustomer')->name('customers.visitByCustomer');
+Route::get('/visits/{customer}', 'VisitController@visitsByCostumer')->name('visits.visitsByCostumer');
+
 Route::get('/quote/{visit}', 'CustomerController@quote')->name('customers.quote');
 Route::get('/pdf/proposal/{visit}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('/pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');

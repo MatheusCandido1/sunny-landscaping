@@ -93,8 +93,8 @@ class CustomerController extends Controller
         }
         
     }
-/*
-    public function projectsByCustumer($id) 
+
+    /*public function projectsByCustumer($id) 
     {
         try {
             $projects = DB::table('cstumer_visit')

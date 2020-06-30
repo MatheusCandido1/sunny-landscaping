@@ -16,7 +16,7 @@ class CreateNotesTable extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
             $table->text('note');
-            $table->integer('visit_id')->unsigned();;
+            $table->integer('visit_id')->unsigned();
             $table->foreign('visit_id')->references('id')->on('visits')->onDelete('cascade');
             $table->timestamps();
         });
@@ -29,8 +29,6 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        Schema::table('notes', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('notes');
     }
 }

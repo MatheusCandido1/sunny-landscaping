@@ -10,7 +10,7 @@ class Customer extends Model
         'name', 'address', 'cross_street1', 'cross_street2', 'gate_code',  'state', 'zipcode', 'phone', 'cellphone', 'email','parcel_number','referral_id','city_id','seller_id'
     ];
 
-    public function referral()
+    public function Referral()
     {
         return $this->belongsTo('App\Referral');
     }

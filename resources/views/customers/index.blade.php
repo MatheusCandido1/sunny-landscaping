@@ -1,12 +1,12 @@
 @extends('layouts.partials')
-@section('title', 'Customers')
+@section('title', 'Costumers')
 @section('content')
 <div class="container-fluid">
-<h1 class="mt-4">Customers</h1>
+<h1 class="mt-4">Costumers</h1>
 <div class="card mb-4">
-    <div class="card-header">All your Customers are here!
+    <div class="card-header">All your costumers are here!
       <a href="{{ route('customers.create') }}" class="btn btn-primary float-right btn-sm">
-        New Customer
+        New Costumer
     </a>
   </div>
     <div class="card-body">
@@ -29,7 +29,7 @@
                         <td >{{ $customer->phone}}</td>
                         <td >{{ $customer->email}}</td>
                         <td style="text-align: center;" scope="col">
-                          <a type="button" href="{{ route('customers.projectsByCustomer',$customer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
+                          <a type="button" href="{{ route('visits.visitsByCostumer',$customer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
                         </td>
                         <td style="text-align: center;" scope="col">
                           <a href="{{route('customers.edit', $customer->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>

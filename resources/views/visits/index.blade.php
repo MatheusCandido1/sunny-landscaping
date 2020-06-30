@@ -11,18 +11,18 @@ flex: 1
 }
 </style>
 <div class="container-fluid">
-<h1 class="mt-4">Projects</h1>
+<h1 class="mt-4">Visits</h1>
 <div class="card mb-4">
-  @if(empty($projects[0]->id))
-<div class="card-header">Here you can see all projects!
+  @if(empty($visits))
+<div class="card-header">Here you can see all visits!
       <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">
-        New Project
+        New Visit
     </button>
   </div>
   @else
-  <div class="card-header">Here you can see all {{$projects[0]->cost_name}}'s projects!
+<div class="card-header">Here you can see all customer's visits!
     <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">
-      New Project
+      New Visit
   </button>
 </div>
 @endif
@@ -33,21 +33,31 @@ flex: 1
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="text-align: center" scope="col" >Project's name</th>
+                        <th style="text-align: center" scope="col" >Visit's name</th>
                         <th style="text-align: center" scope="col">Date</th>
-                        <th style="text-align: center" scope="col">Seller</th>
+                        <th style="text-align: center" scope="col">Type</th>
+                        <th style="text-align: center" scope="col">Information</th>
                         <th style="text-align: center" scope="col">Actions</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                  @foreach($projects as $project)
+                  @foreach($visits as $visit)
                     <tr>
-                        <td >{{ $project->name}}</td>
-                        <td >{{ \Carbon\Carbon::parse($project->date)->format("m/d/Y")}}</td>
-                        <td >{{ $project->seller}}</td>
+                        <td >{{ $visit->name}}</td>
+                        <td >{{ \Carbon\Carbon::parse($visit->date)->format("m/d/Y")}}</td>
+                        <td></td>
+                        <td>                        
+                          <a type="button" href="" class="btn btn-primary btn-block">Details</a>
+                        </td>
                         <td style="text-align: center;" scope="col">
-                          <a type="button" href="{{ route('costumers.visitByCostumer',$project->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
+                        <a  href="" type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this visit?')) { document.getElementById('destroy-form-{{$visit->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        <form id="destroy-form-{{$visit->id}}" action="{{ route('visits.destroy',$visit->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form> 
+
                         </td>
                     </tr>
                     @endforeach
@@ -91,7 +101,7 @@ flex: 1
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputLastName">Call costumer in (minutes)</label>
-                      <input name="call_costumer_in" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
+                      <input name="call_customer_in" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
                   </div>
               </div>
           </div>
@@ -128,17 +138,6 @@ flex: 1
                       </div>
                     </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="" for="">Seller</label>
-                <select id="" class="form-control" name="seller">
-                  <option value="">Select...</option>
-                  <option value="Ray">Ray</option>
-                  <option value="Helio">Helio</option>
-                  <option value="Glaucia">Glaucia</option>
-                </select>
-          </div>
-          </div>
         </div>
         <div class="form-row">
           <div class="col-md-6">
@@ -150,7 +149,7 @@ flex: 1
                     @endforeach
                   </select>
             </div>
-            <input  name="costumer_id" value="{{$id[0]}}" class="form-control" type="hidden"  placeholder="" />
+          <input  name="customer_id" value="{{$costumer[0]}}" class="form-control" type="hidden"  placeholder="" />
         </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
