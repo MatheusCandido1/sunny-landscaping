@@ -29,7 +29,7 @@
                         <td >{{ $customer->phone}}</td>
                         <td >{{ $customer->email}}</td>
                         <td style="text-align: center;" scope="col">
-                          <a type="button" href="{{ route('visits.visitsByCostumer',$customer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
+                          <a type="button" href="{{ route('visits.visitsByCustomer',$customer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
                         </td>
                         <td style="text-align: center;" scope="col">
                           <a href="{{route('customers.edit', $customer->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>

@@ -86,6 +86,40 @@ class VisitController extends Controller
         //
     }
 
+    public function details($id){
+        try{
+            $data = DB::table('visits')
+            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.name as visit_name, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('cities', 'customers.city_id','=','cities.id')
+            ->join('referrals', 'customers.referral_id','=','referrals.id')
+            ->where('visits.id','=', $id)
+            ->get();
+    
+          /*  $quoteStatus = DB::table('services')
+            ->selectRaw('services.id, services.status, services.final_balance, sum(items.investment), services.discount, services.accepting_proposal, services.down_payment')
+            ->join('item_service','item_service.service_id','=','services.id')
+            ->join('visits','visits.id','=','services.visit_id')
+            ->join('items', 'item_service.item_id','=', 'items.id')
+            ->join('costumer_visit','costumer_visit.visit_id','=','visits.id')
+            ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
+            ->where('costumer_visit.visit_id', '=', $id)
+            ->get();*/
+    
+            $note = DB::table('notes')
+            ->selectRaw('notes.id, notes.note, notes.created_at')
+            ->join('visits', 'visits.id','=','notes.visit_id')
+            ->where('notes.visit_id','=',$id)
+            ->orderBy('created_at','ASC')
+            ->get();
+    
+                $check = false;
+                return view('visits.details', ['data' => $data[0], 'quote_info' => $check, 'notes' => $note]);
+            }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

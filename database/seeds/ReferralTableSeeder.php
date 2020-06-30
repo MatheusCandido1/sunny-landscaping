@@ -18,7 +18,7 @@ class ReferralTableSeeder extends Seeder
             ['name' => 'From Advertisement'],
             ['name' => 'Google'],
             ['name' => 'Home Advertisement'],
-            ['name' => 'Neightbor'],
+            ['name' => 'Neighbor'],
             ['name' => 'Yelp'],
             ['name' => 'Past Costumer'],
         ]);

@@ -48,7 +48,7 @@ flex: 1
                         <td >{{ \Carbon\Carbon::parse($visit->date)->format("m/d/Y")}}</td>
                         <td></td>
                         <td>                        
-                          <a type="button" href="" class="btn btn-primary btn-block">Details</a>
+                          <a type="button" href="{{ route('visits.details',$visit->id) }}" class="btn btn-primary btn-block">Details</a>
                         </td>
                         <td style="text-align: center;" scope="col">
                         <a  href="{{route('visits.edit', $visit->id)}}" type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>

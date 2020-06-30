@@ -130,7 +130,7 @@ class CustomerController extends Controller
     
     */
 
-    public function visitByCostumer($id)
+    /*public function visitByCostumer($id)
     {
         try{
         $data = DB::table('costumer_visit')
@@ -173,7 +173,7 @@ class CustomerController extends Controller
 
         
 
-    }
+    }*/
 
     public function show(){
 
