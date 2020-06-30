@@ -63,12 +63,6 @@ class CostumerController extends Controller
 
         }
 
-        if($data['referred'] == "Others"){
-            $referred = $data['referred2'];
-        }else{
-            $referred = $data['referred'];
-        }
-
         $costumer = costumer::create([
             'name' => $data['name'],
             'address' => $data['address'],
@@ -188,7 +182,12 @@ class CostumerController extends Controller
      */
     public function edit($id)
     {
-        //
+        try{
+            $costumer = DB::table('costumers')->select('id','name','address','cross_street1','cross_street2','gate_code','city','state','zipcode','phone','cellphone','email','referred')->where('costumers.id','=',$id)->first();
+            return view('costumers.edit', ['costumer' => $costumer]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
@@ -200,7 +199,16 @@ class CostumerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $costumer = costumer::where('id','=', $id)->first();
+            $costumer->fill($request->only('name','address','cross_street1','cross_street2','gate_code','city','state','zipcode','phone','cellphone','email','referred'));
+            $costumer->save();
+            toast('Costumer updated with success!','success');
+    
+            return redirect()->route('costumers.index');
+            }catch (Throwable $e) {
+                toast('Pleasy try again!','error');
+            }
     }
 
     /**

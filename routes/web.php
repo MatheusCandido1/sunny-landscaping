@@ -29,6 +29,8 @@ Route::get('/visit/{visit}/service/{service}', 'QuoteController@edit')->name('qu
 Route::put('/update/{service}', 'QuoteController@update')->name('quotes.update');
 Route::put('/update/{visit}', 'VisitController@update')->name('visits.update');
 Route::put('/edit/{visit}', 'VisitController@edit')->name('visits.edit');
+Route::put('/edit/{costumer}', 'CostumerController@edit')->name('costumers.edit');
+
 
 Route::resources([
     'costumers' => 'CostumerController',
