@@ -84,22 +84,17 @@
         <div class="form-row">
           <div class="col-md-6">
             <div class="form-group">
-                  <label class="" for="">Type</label>
-                  <select required class="form-control" name="type" id="type" onchange='checkvalue(this.value)'>
-                    <option value="">Select...</option>
-                    <option {{ $visit->type == "Pavers" ? 'selected' : '' }} value="Pavers">Pavers</option>
-                    <option {{ $visit->type == "Artificial Grass" ? 'selected' : '' }} value="Artificial Grass">Artificial Grass</option>
-                    <option {{ $visit->type == "Landscaping" ? 'selected' : '' }} value="Landscaping">Landscaping</option>
-                    <option {{ $visit->type == "Others" ? 'selected' : '' }} value="Others">Others</option>
-                  </select>
-            </div>
+              <label class="" for="">Type</label>
+              <select style="width: 100%"  id="selectType" class="form-control" multiple="multiple" name="type[]" id="type[]">
+                @foreach($types as $type)
+              <option  {{in_array($type->id, $selecteds) ? 'selected':''}} value="{{$type->id}}" >{{$type->name}}</option>
+                @endforeach
+              </select>
+        </div>
         </div>
             <div class="col-md-6">
             <input  name="costumer_id" value="{{$visit->id}}" class="form-control" type="hidden"  placeholder="" />
-            <div id="color"  style='display:none'>
-              <label class="" for="">Other type</label>
-            <input name="type2" class="form-control py-4" type="text"/>
-            </div>
+           
             </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
@@ -109,13 +104,16 @@
     </div>
     </div>
 </div>
-    <script>
-        function checkvalue(val)
-{
-    if(val==="Others")
-       document.getElementById('color').style.display='block';
-    else
-       document.getElementById('color').style.display='none'; 
-}
-    </script>
+@section('script')
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#selectType').select2({
+      theme: "classic",
+      placeholder: "Select a type of service",
+      tags: true
+    });
+    
+});
+</script>
+@endsection
 @endsection

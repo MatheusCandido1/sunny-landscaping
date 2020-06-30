@@ -16,6 +16,7 @@ class CreateVisitsTable extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('seller');
             $table->dateTime('date');
             $table->integer('call_costumer_in')->nullable();
             $table->boolean('hoa')->nullable();

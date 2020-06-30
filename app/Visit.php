@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Visit extends Model
 {
     protected $fillable = [
-        'name', 'date', 'call_costumer_in', 'hoa', 'water_smart_rebate'
+        'name', 'seller', 'date', 'call_costumer_in', 'hoa', 'water_smart_rebate'
     ];
 
     public function costumers()

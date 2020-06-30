@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Visit;
+use App\Type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
@@ -30,12 +31,6 @@ class VisitController extends Controller
      */
     public function create()
     {
-        try{
-            return view('visits.create', ['costumers' => \App\Costumer::all()]);
-        }
-        catch (Throwable $e) {
-            toast('Pleasy try again!','error');
-        }
     }
 
     /**
@@ -48,14 +43,10 @@ class VisitController extends Controller
     {
 
         try {
-            if($request->type == "Others"){
-                $type = $request->type2;
-            }else{
-                $type = $request->type;
-            }
         $visit = Visit::create([
             'name' => $request->name,
             'date' => $request->date,
+            'seller' => $request->seller,
             'call_costumer_in' => $request->call_costumer_in,
             'hoa' => $request->hoa,
             'water_smart_rebate' => $request->water_smart_rebate
@@ -96,8 +87,14 @@ class VisitController extends Controller
     public function edit($id)
     {
         try{
-        $visit = DB::table('visits')->select('id','name','date','call_costumer_in','hoa','water_smart_rebate')->where('visits.id','=',$id)->first();
-        return view('visits.edit', ['visit' => $visit]);
+        $visit = Visit::where('visits.id','=',$id)->first();
+        $typesSelected = $visit->types()->select('type_id')->get();
+        
+        for($i = 0; $i < count($typesSelected); $i++){
+            $selecteds[$i] = $typesSelected[$i]->type_id;
+        }
+       // dd($selecteds);
+        return view('visits.edit', ['types' => Type::all(),'visit' => $visit, 'selecteds' => $selecteds]);
     }catch (Throwable $e) {
         toast('Pleasy try again!','error');
     }
@@ -114,9 +111,16 @@ class VisitController extends Controller
     {
         try{
         $visit = Visit::where('id','=', $id)->first();
-        $visit->fill($request->only('name','date','call_costumer_in','hoa','status','water_smart_rebate'));
+        $visit->fill($request->only('name','seller','date','call_costumer_in','hoa','status','water_smart_rebate'));
         $visit->save();
 
+        for($i = 0; $i < count($request->type); $i++){
+            $visit->types()->detach();
+        }
+
+        for($i = 0; $i < count($request->type); $i++){
+            $visit->types()->attach($request->type[$i]);
+        }
         toast('Project updated with success!','success');
 
         return redirect()->route('costumers.visitByCostumer',$id);

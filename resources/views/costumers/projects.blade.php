@@ -35,6 +35,7 @@ flex: 1
                     <tr>
                         <th style="text-align: center" scope="col" >Project's name</th>
                         <th style="text-align: center" scope="col">Date</th>
+                        <th style="text-align: center" scope="col">Seller</th>
                         <th style="text-align: center" scope="col">Actions</th>
 
                     </tr>
@@ -44,6 +45,7 @@ flex: 1
                     <tr>
                         <td >{{ $project->name}}</td>
                         <td >{{ \Carbon\Carbon::parse($project->date)->format("m/d/Y")}}</td>
+                        <td >{{ $project->seller}}</td>
                         <td style="text-align: center;" scope="col">
                           <a type="button" href="{{ route('costumers.visitByCostumer',$project->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
                         </td>
@@ -94,7 +96,7 @@ flex: 1
               </div>
           </div>
           <div class="form-row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label class="" for="inputFirstName">HOA</label>
                     <br>
@@ -110,7 +112,7 @@ flex: 1
                       </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label class="" for="inputFirstName">Water Smart Rebate</label>
                     <br>
@@ -126,6 +128,17 @@ flex: 1
                       </div>
                     </div>
             </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="" for="">Seller</label>
+                <select id="" class="form-control" name="seller">
+                  <option value="">Select...</option>
+                  <option value="Ray">Ray</option>
+                  <option value="Helio">Helio</option>
+                  <option value="Glaucia">Glaucia</option>
+                </select>
+          </div>
+          </div>
         </div>
         <div class="form-row">
           <div class="col-md-6">
