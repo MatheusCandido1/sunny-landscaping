@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-lg-12">
     <div class="card mb-4">
-        <div class="card-header"><i class="fas fa-user-check"></i> Cities</div>
+        <div class="card-header"><i class="fas fa-city"></i> Cities</div>
         <div class="card-body">
             <form  method="POST" class="form-horizontal style-form" action="{{ route('cities.update', $city->id) }}" > 
                 @csrf

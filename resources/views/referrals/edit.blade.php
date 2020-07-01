@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-lg-12">
     <div class="card mb-4">
-        <div class="card-header"><i class="fas fa-user-check"></i> Referrals</div>
+        <div class="card-header"><i class="fas fa-comments"></i> Referrals</div>
         <div class="card-body">
             <form  method="POST" class="form-horizontal style-form" action="{{ route('referrals.update', $referral->id) }}" > 
                 @csrf
