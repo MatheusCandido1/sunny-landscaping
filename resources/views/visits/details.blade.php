@@ -102,13 +102,6 @@ ul.timeline > li:before {
                       <p class="lead">
                           <div class="row">
                         <div class="col-lg-6 text-center">
-                            @if(!($quote_info))
-                             <button disabled type="button" class="btn btn-danger  btn-block"><i class="fas fa-print"></i> Proposal Disabled</button>
-                            @else
-                            <a target="_blank" href="{{ route('pdf.proposal', $data->visit_id)}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
-                            @endif
-                        </div>
-                        <div class="col-lg-6 text-center">
                             <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</button>
                         </div>
                     </div>

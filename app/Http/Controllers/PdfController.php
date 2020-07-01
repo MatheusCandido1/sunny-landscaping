@@ -16,17 +16,15 @@ use PDF;
 
 class PdfController extends Controller
 {
-    public function generateProposal($id) 
+    public function generateProposal($service_id) 
     {
-        $data = DB::table('costumer_visit')
-        ->selectRaw('costumers.name, costumers.address, costumers.state, costumers.phone, costumers.zipcode, costumers.city, costumers.cellphone, services.total')
-        ->join('visits','visits.id','=','costumer_visit.visit_id')
-        ->join('costumers','costumers.id','=','costumer_visit.costumer_id')
-        ->join('services','services.visit_id','=','visits.id')
-        ->where('visits.id','=', $id)
+        $data = DB::table('services')
+        ->selectRaw('customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, services.total')
+        ->join('visits','visits.id','=','services.visit_id')
+        ->join('customers','customers.id','=','visits.customer_id')
+        ->join('cities', 'cities.id','=','customers.city_id')
+        ->where('services.id','=', $service_id)
         ->get();
-        
-
         $pdf = PDF::loadView('pdfs.proposal', compact('data'));
        // $pdf->setWatermarkImage(public_path('img/watermark.jpg'));
         return $pdf->setPaper('a4')->stream('items.pdf');
