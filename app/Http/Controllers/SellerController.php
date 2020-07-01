@@ -14,7 +14,12 @@ class SellerController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            return view('sellers.index', ['sellers' =>Seller::all()]);
+        }
+        catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**

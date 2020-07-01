@@ -70,11 +70,12 @@
                             ></a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a style="color: black" class="nav-link" href=""></i>Services</a>
-                                    <a style="color: black" class="nav-link" href=""></i>Cities</a>
-                                    <a style="color: black" class="nav-link" href=""></i>Suppliers</a>
-                                    <a style="color: black" class="nav-link" href=""></i>Sellers</a>
-                                    <a style="color: black" class="nav-link" href=""></i>Referral</a>
+                                    <a style="color: black" class="nav-link" href="{{route('types.index')}}"></i>Service Types</a>
+                                    <a style="color: black" class="nav-link" href="{{route('cities.index')}}"></i>Cities</a>
+                                    <a style="color: black" class="nav-link" href="{{route('suppliers.index')}}"></i>Suppliers</a>
+                                    <a style="color: black" class="nav-link" href="{{route('sellers.index')}}"></i>Sellers</a>
+                                    <a style="color: black" class="nav-link" href="{{route('referrals.index')}}"></i>Referrals</a>
+
                                 </nav>
                             </div>
                                 <a class="nav-link" href="#"

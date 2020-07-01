@@ -14,7 +14,12 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            return view('cities.index', ['cities' => City::all()]);
+        }
+        catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**

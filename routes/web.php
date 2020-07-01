@@ -42,6 +42,11 @@ Route::resources([
     'services' => 'ServiceController',
     'notes' => 'NoteController',
     'items' => 'ItemController',
-    'suppliers' => 'SupplierController'
+    'suppliers' => 'SupplierController',
+    'cities' => 'CityController',
+    'sellers' => 'SellerController',
+    'referrals' => 'ReferralController',
+    'types' => 'TypeController'
+
 ]);
 });

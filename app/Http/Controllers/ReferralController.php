@@ -14,7 +14,12 @@ class ReferralController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            return view('referrals.index', ['referrals' =>Referral::all()]);
+        }
+        catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
