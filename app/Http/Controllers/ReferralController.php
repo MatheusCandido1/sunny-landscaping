@@ -40,7 +40,19 @@ class ReferralController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->all();
+            $referral = Referral::create([
+                'name' => $data['name'],
+            ]);
+            toast('New referral added with success!','success');
+            $referral->save();
+    
+            return redirect()->route('referrals.index'); 
+            } catch (Throwable $e) {
+                toast('Pleasy try again!','error');
+    
+            }
     }
 
     /**
@@ -83,8 +95,17 @@ class ReferralController extends Controller
      * @param  \App\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Referral $referral)
+    public function destroy($id)
     {
-        //
+        try{
+            $referral = Referral::where('id','=', $id)->first();
+            $referral->delete();
+
+            toast('Referral type deleted with success!','success');
+            return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+        
     }
 }

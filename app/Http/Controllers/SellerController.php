@@ -40,7 +40,19 @@ class SellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+        $data = $request->all();
+        $seller = Seller::create([
+            'name' => $data['name'],
+        ]);
+        toast('New seller added with success!','success');
+        $seller->save();
+
+        return redirect()->route('sellers.index'); 
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+
+        }
     }
 
     /**
@@ -83,8 +95,17 @@ class SellerController extends Controller
      * @param  \App\Seller  $seller
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seller $seller)
+    public function destroy($id)
     {
-        //
+        try{
+            $seller = Seller::where('id','=', $id)->first();
+            $seller->delete();
+
+            toast('Seller type deleted with success!','success');
+            return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+        
     }
 }

@@ -40,7 +40,19 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->all();
+            $city = city::create([
+                'name' => $data['name'],
+            ]);
+            toast('New city added with success!','success');
+            $city->save();
+    
+            return redirect()->route('cities.index'); 
+            } catch (Throwable $e) {
+                toast('Pleasy try again!','error');
+    
+            }
     }
 
     /**
@@ -83,8 +95,17 @@ class CityController extends Controller
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy($id)
     {
-        //
+        try{
+            $city = City::where('id','=', $id)->first();
+            $city->delete();
+
+            toast('City type deleted with success!','success');
+            return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+        
     }
 }
