@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Referral;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReferralController extends Controller
 {
@@ -45,9 +46,9 @@ class ReferralController extends Controller
             $referral = Referral::create([
                 'name' => $data['name'],
             ]);
-            toast('New referral added with success!','success');
             $referral->save();
     
+            toast('New referral added with success!','success');
             return redirect()->route('referrals.index'); 
             } catch (Throwable $e) {
                 toast('Pleasy try again!','error');
@@ -72,9 +73,14 @@ class ReferralController extends Controller
      * @param  \App\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function edit(Referral $referral)
+    public function edit($id)
     {
-        //
+        try{
+            $referral = DB::table('referrals')->select('id','name')->where('referrals.id','=',$id)->first();
+            return view('referrals.edit', ['referral' => $referral]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
@@ -84,9 +90,20 @@ class ReferralController extends Controller
      * @param  \App\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Referral $referral)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $referral = Referral::where('id','=', $id)->first();
+            $referral->fill($request->only('name'));
+            $referral->save();
+
+            toast('Referral updated with success!','success');
+
+            return redirect()->route('referrals.index'); 
+            } catch (Throwable $e) {
+                toast('Pleasy try again!','error');
+    
+            }
     }
 
     /**
@@ -101,7 +118,7 @@ class ReferralController extends Controller
             $referral = Referral::where('id','=', $id)->first();
             $referral->delete();
 
-            toast('Referral type deleted with success!','success');
+            toast('Referral deleted with success!','success');
             return redirect()->back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

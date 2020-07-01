@@ -23,7 +23,7 @@
                     <tr>
                         <td >{{ $city->name}}</td>
                         <td style="text-align: right;" scope="col">
-                          <a href="" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                          <a href="{{route('cities.edit', $city->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                           <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this city?')) { document.getElementById('destroy-form-{{$city->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 <form id="destroy-form-{{$city->id}}" action="{{ route('cities.destroy',$city->id) }}" method="POST" style="display: none;">
                     @csrf

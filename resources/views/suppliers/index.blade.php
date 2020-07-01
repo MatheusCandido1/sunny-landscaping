@@ -25,7 +25,7 @@
                         <td >{{ $supplier->name}}</td>
                         <td style="text-align: center;" >${{ number_format($supplier->value,2)}}</td>
                         <td style="text-align: right;" scope="col">
-                          <a href="" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                          <a href="{{route('suppliers.edit', $supplier->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                           <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this supplier?')) { document.getElementById('destroy-form-{{$supplier->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 <form id="destroy-form-{{$supplier->id}}" action="{{ route('suppliers.destroy',$supplier->id) }}" method="POST" style="display: none;">
                     @csrf

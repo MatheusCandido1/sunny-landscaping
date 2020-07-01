@@ -23,7 +23,7 @@
                     <tr>
                         <td style="text-align: center" >{{ $referral->name}}</td>
                         <td style="text-align: right;" scope="col">
-                          <a href="" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                          <a href="{{route('referrals.edit', $referral->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                           <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this referral?')) { document.getElementById('destroy-form-{{$referral->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 <form id="destroy-form-{{$referral->id}}" action="{{ route('referrals.destroy',$referral->id) }}" method="POST" style="display: none;">
                     @csrf
@@ -69,4 +69,6 @@
     </div>
   </div>
 </div>
+
+
 @endsection

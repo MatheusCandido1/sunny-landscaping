@@ -23,7 +23,7 @@
                     <tr>
                         <td style="text-align: center">{{ $seller->name}}</td>
                         <td style="text-align: right;" scope="col">
-                          <a href="" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                          <a href="{{route('sellers.edit', $seller->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                           <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this seller?')) { document.getElementById('destroy-form-{{$seller->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                 <form id="destroy-form-{{$seller->id}}" action="{{ route('sellers.destroy',$seller->id) }}" method="POST" style="display: none;">
                     @csrf

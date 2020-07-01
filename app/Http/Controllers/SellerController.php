@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Seller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class SellerController extends Controller
 {
@@ -45,9 +47,9 @@ class SellerController extends Controller
         $seller = Seller::create([
             'name' => $data['name'],
         ]);
-        toast('New seller added with success!','success');
         $seller->save();
 
+        toast('New seller added with success!','success');
         return redirect()->route('sellers.index'); 
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -66,28 +68,39 @@ class SellerController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Seller  $seller
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Seller $seller)
+    public function edit($id)
     {
-        //
+        try{
+            $seller = DB::table('sellers')->select('id','name')->where('sellers.id','=',$id)->first();
+            return view('sellers.edit', ['seller' => $seller]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Seller  $seller
+     * @param  \App\Referral  $referral
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seller $seller)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $seller = Seller::where('id','=', $id)->first();
+            $seller->fill($request->only('name'));
+            $seller->save();
+
+            toast('Seller updated with success!','success');
+
+            return redirect()->route('sellers.index'); 
+            } catch (Throwable $e) {
+                toast('Pleasy try again!','error');
+    
+            }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -101,7 +114,7 @@ class SellerController extends Controller
             $seller = Seller::where('id','=', $id)->first();
             $seller->delete();
 
-            toast('Seller type deleted with success!','success');
+            toast('Seller deleted with success!','success');
             return redirect()->back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
