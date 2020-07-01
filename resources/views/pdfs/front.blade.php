@@ -38,37 +38,37 @@
         <th class="tg-k27y">S2020 - </th>
         <th class="tg-k27y"></th>
         <th class="tg-k27y">Job Name:</th>
-        <th class="tg-k27y"></th>
+      <th class="tg-k27y"> {{$data[0]->visit_name}}</th>
         <th class="tg-k27y">Seller:</th>
-        <th class="tg-k27y" colspan="5"></th>
+        <th class="tg-u5dg" colspan="5">{{$data[0]->sel_name}}</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td class="tg-k27y">Name:</td>
-        <td class="tg-k27y" colspan="3"></td>
+      <td class="tg-k27y" colspan="3">{{$data[0]->customer_name}}</td>
         <td class="tg-k27y">HOA</td>
-        <td class="tg-k27y">( ) Yes / ( ) No</td>
+      <td class="tg-k27y"> {{ $data[0]->hoa == 0 ? '( ) Yes / (x) No' : '(x) Yes / ( ) No'}} </td>
         <td class="tg-k27y" colspan="5"></td>
       </tr>
       <tr>
         <td class="tg-k27y">Address:</td>
-        <td class="tg-k27y" colspan="3"></td>
+      <td class="tg-k27y" colspan="3">{{$data[0]->address}}</td>
         <td class="tg-k27y">E-mailed on:</td>
         <td class="tg-k27y">__/__/____</td>
         <td class="tg-k27y" colspan="5"></td>
       </tr>
-      <tr>
+       <tr>
         <td class="tg-k27y">City:</td>
-        <td class="tg-rykj"></td>
+        <td class="tg-k27y">{{$data[0]->city_name}}</td>
         <td class="tg-u5dg">Zip Code:</td>
-        <td class="tg-rykj"></td>
+        <td class="tg-k27y">{{$data[0]->zipcode}}</td>
         <td class="tg-k27y" colspan="7">Notes:</td>
       </tr>
       <tr>
         <td class="tg-k27y">Gate Code:</td>
-        <td class="tg-k27y" colspan="3"></td>
-        <td class="tg-k27y" colspan="7" rowspan="6"></td>
+        <td class="tg-k27y" colspan="3">{{$data[0]->gate_code}}</td>
+        <td class="tg-k27y" colspan="7" rowspan="7"></td>
       </tr>
       <tr>
         <td class="tg-k27y">Home #:</td>
@@ -76,11 +76,11 @@
       </tr>
       <tr>
         <td class="tg-k27y">E-mail:</td>
-        <td class="tg-k27y" colspan="3"></td>
+        <td class="tg-k27y" colspan="3">{{$data[0]->email}}</td>
       </tr>
       <tr>
         <td class="tg-k27y">Cross Streets:</td>
-        <td class="tg-k27y" colspan="3">__________________/_____________________</td>
+        <td class="tg-k27y" colspan="3">{{$data[0]->cross_street1}} / {{$data[0]->cross_street2}}</td>
       </tr>
       <tr>
         <td class="tg-k27y">Start Date:</td>
@@ -88,11 +88,11 @@
       </tr>
       <tr>
         <td class="tg-k27y">Parcel #</td>
-        <td class="tg-k27y" colspan="3"></td>
+        <td class="tg-k27y" colspan="3">{{$data[0]->parcel_number}}</td>
       </tr>
       <tr>
         <td class="tg-k27y">Referral:</td>
-        <td class="tg-k27y" colspan="10">[  ] Craigslist   [  ] Friend   [  ] From Advertisement    [  ] Google   [  ] Home Advertisement   [  ] Neighbor    [  ] Yelp    [  ] Past Costumer</td>
+        <td class="tg-k27y" colspan="3">{{$data[0]->ref_name}}</td>
       </tr>
       <tr>
         <td class="tg-k27y">Project Drawing:</td>

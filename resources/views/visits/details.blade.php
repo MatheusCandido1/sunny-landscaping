@@ -101,6 +101,9 @@ ul.timeline > li:before {
                       <p class="lead">Click in any button and a PDF will be displayed.</p>
                       <p class="lead">
                           <div class="row">
+                            <div class="col-lg-6 text-center">
+                            <a target="_blank" type="button" href="{{route('pdf.front', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Project Front Page</a>  
+                            </div>
                         <div class="col-lg-6 text-center">
                             <button type="button" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</button>
                         </div>
