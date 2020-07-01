@@ -66,6 +66,7 @@ flex: 1
             
         </div><br>
         <div class="btn-group special" role="group" aria-label="Basic example">
+        <a target="_blank" type="button" href="{{route('pdf.front')}}" class="btn btn-info"><i class="fas fa-file"></i> Project Front Page</a>  
           <button type="button" class="btn btn-primary"><i class="fas fa-print"></i> Print all proposals</button>  
           <button type="button" class="btn btn-success"><i class="fas fa-envelope"></i> Send all proposals to customer</button>                         
         </div>

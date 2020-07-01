@@ -16,6 +16,11 @@ use PDF;
 
 class PdfController extends Controller
 {
+    public function generateFrontpage()
+    {
+        $pdf = PDF::loadView('pdfs.front');
+        return $pdf->setPaper('a4','landscape')->stream('frontpage.pdf'); 
+    }
     public function generateProposal($service_id) 
     {
         $data = DB::table('services')
