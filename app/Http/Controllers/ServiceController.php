@@ -7,21 +7,47 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Service;
+use App\Supplier;
+use App\Visit;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
 class ServiceController extends Controller
 {
+    public function createQuote($id)
+    {
+       return view('services.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
+    }
+
+    public function editQuote($id, $service_id)
+    {
+        try{
+        $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$id)->first();
+
+        $itemData = DB::table('items')
+        ->selectRaw('items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment, items.group_type')
+        ->join('item_service','item_service.item_id','=','items.id')
+        ->join('services','services.id','=','item_service.service_id')
+        ->where('services.id', '=', $service_id)
+        ->get();
+
+        return view('services.edit', ['suppliers' => \App\Supplier::all(), 'service' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
 
     public function servicesByVisit($id){
         try {
             $services = Service::where('visit_id','=',$id)->get();
-            return view('services.index', ['services' => $services]);
+            return view('services.index', ['services' => $services,'visit_id' => $id]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
 
         }
     }
+
+    
 
     public function destroy(Service $service)
     {

@@ -9,7 +9,6 @@
 <form  method="POST" class="form-horizontal style-form" action="{{ route('quotes.update',$service->id) }}" >
   @csrf
   @method('PUT')
-
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
   <div class="container-fluid">
     <h1 class="mt-4">Edit Quote</h1>
@@ -65,7 +64,7 @@
                            </td> 
                            <td> 
                              <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                              <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+                             <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                             </td>
                              <td> 
                                <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -134,7 +133,6 @@
                              </td> 
                              <td> 
                                <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                               </td>
                                <td> 
                                  <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -195,11 +193,11 @@
                              <div class="input-group-prepend"> 
                               <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                               <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                </td> 
                                <td> 
                                  <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                  <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                 </td>
                                  <td> 
                                    <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -260,11 +258,11 @@
                                <div class="input-group-prepend"> 
                                 <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                  <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                 <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                  <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                  </td> 
                                  <td> 
                                    <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                    <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                   </td>
                                    <td> 
                                      <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -324,12 +322,12 @@
                                <div class="input-group mb-3"> 
                                  <div class="input-group-prepend"> 
                                   <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
-                                   <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                   <input type="hidden" name="id[]" value="{{$item->id}}">
+                                                                  <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div> 
                                    <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                    </td> 
                                    <td> 
                                      <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                      <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                     </td>
                                      <td> 
                                        <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -390,11 +388,11 @@
                                    <div class="input-group-prepend"> 
                                     <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                      <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                     <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                      <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                      </td> 
                                      <td> 
                                        <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                        <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                       </td>
                                        <td> 
                                          <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -455,11 +453,11 @@
                                      <div class="input-group-prepend"> 
                                       <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                        <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                       <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                        <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                        </td> 
                                        <td> 
                                          <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                          <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                         </td>
                                          <td> 
                                            <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -520,11 +518,11 @@
                                        <div class="input-group-prepend"> 
                                         <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                          <input type="hidden" name="id[]" value="{{$item->id}}"> 
+                                         <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                          <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                          </td> 
                                          <td> 
                                            <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                            <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                           </td>
                                            <td> 
                                              <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -583,13 +581,13 @@
                                       <input type="hidden" value="9 - TRANSFORMER AND LED LIGHTS" name="group_type[]"> 
                                        <div class="input-group mb-3"> 
                                          <div class="input-group-prepend"> 
+                                          <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                           <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                            <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                            <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                            </td> 
                                            <td> 
                                              <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                              <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                             </td>
                                              <td> 
                                                <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -648,13 +646,13 @@
                                         <input type="hidden" value="10 - DUMPSTER" name="group_type[]"> 
                                          <div class="input-group mb-3"> 
                                            <div class="input-group-prepend"> 
+                                            <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                             <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                              <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                              <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                              </td> 
                                              <td> 
                                                <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                                <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                               </td>
                                                <td> 
                                                  <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -713,13 +711,13 @@
                                           <input type="hidden" value="11 - LABOR" name="group_type[]"> 
                                            <div class="input-group mb-3"> 
                                              <div class="input-group-prepend"> 
+                                              <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                               <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                                <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                                <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                                </td> 
                                                <td> 
                                                  <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                                  <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                                 </td>
                                                  <td> 
                                                    <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -778,13 +776,13 @@
                                             <input type="hidden" value="12 - EXTRA" name="group_type[]"> 
                                              <div class="input-group mb-3"> 
                                                <div class="input-group-prepend"> 
+                                                <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                                 <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                                  <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                                  <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                                  </td> 
                                                  <td> 
                                                    <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                                    <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                                   </td>
                                                    <td> 
                                                      <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -846,14 +844,13 @@
                                             </td>
                                              <td> 
                                                <div class="input-group mb-3"> 
-                                                 <div class="input-group-prepend"> 
+                                                 <div class="input-group-prepend">
                                                   <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                                    <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                                    <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                                    </td> 
                                                    <td> 
                                                      <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
-                                                      <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                                     </td>
                                                      <td> 
                                                        <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -1170,7 +1167,7 @@
       for(i = 1; i <= item; i++){
         if((document.getElementById(i+"value") != null)|| (document.getElementById(i+"qnt") != null )){
           var x = document.getElementById(i+"qntval");
-          if(document.getElementById(i+"qnt").value <= 300){
+          if(document.getElementById(i+"qnt").value < 300){
           x.style.display = "block";
         }else{
           x.style.display = "none";

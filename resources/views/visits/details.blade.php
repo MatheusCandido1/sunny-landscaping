@@ -86,7 +86,7 @@ ul.timeline > li:before {
                 <!--/col-->
             </div>
             <div class="btn-group special" role="group" aria-label="Basic example">
-                <a href="{{ route('services.servicesByVisit', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i>Manage Quotes</a>                
+                <a href="{{ route('services.servicesByVisit', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Manage Quotes</a>                
               </div> 
             </div>
         </div>

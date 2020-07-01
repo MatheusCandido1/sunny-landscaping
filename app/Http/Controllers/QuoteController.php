@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Service;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Supplier;
 
 class QuoteController extends Controller
 {
@@ -21,6 +22,7 @@ class QuoteController extends Controller
         //
     }
 
+   
 
     /**
      * Show the form for creating a new resource.
@@ -29,11 +31,7 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        try{
-            return view('quotes.create');
-        }catch (Throwable $e) {
-        toast('Pleasy try again!','error');
-     }
+        
     }
 
     /**
@@ -69,7 +67,7 @@ class QuoteController extends Controller
         } 
         toast('Quote created with success!','success');
 
-        return redirect()->route('costumers.visitByCostumer',$request->visit_id);
+        return redirect()->route('services.servicesByVisit',$request->visit_id);
     }catch (Throwable $e) {
         toast('Pleasy try again!','error');
     }
@@ -93,23 +91,7 @@ class QuoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $service_id)
-    {
-        try{
-        $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$id)->first();
-
-        $itemData = DB::table('items')
-        ->selectRaw('items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment, items.group_type')
-        ->join('item_service','item_service.item_id','=','items.id')
-        ->join('services','services.id','=','item_service.service_id')
-        ->where('services.id', '=', $service_id)
-        ->get();
-
-        return view('quotes.edit', ['suppliers' => \App\Supplier::all(), 'service' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
-        }catch (Throwable $e) {
-            toast('Pleasy try again!','error');
-        }
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -124,54 +106,33 @@ class QuoteController extends Controller
         $service = Service::where('id','=', $id)->first();
         $service->fill($request->only('discount','total','accepting_proposal','down_payment','status','visit','final_balance'));
         $service->save();
-
-        for ($i = 0; $i < count($request->input('id')); $i++) {
-            if($request->input('id')[$i] != null){
-            $arrayInput[$i] = $request->input('id')[$i];
-            }
-        }
         $items = $service->items()->select('id')->get();
-        for($i = 0; $i < $items->count(); $i++){
-            $arrayExist[$i] = $items[$i]->id;
-        }
-        $arr1 = array_diff($arrayExist, $arrayInput);
-        $arr2 = array_diff($arrayInput, $arrayExist);
-        $itemsToBeDeleted = array_merge($arr1, $arr2);
-
-        for($i = 0; $i < count($itemsToBeDeleted); $i++){
-            Item::where('id','=', $itemsToBeDeleted[$i])->delete();
-        } 
-
-
-        for ($i = 0; $i < count($request->input('id')); $i++) {
-            if($request->input('id')[$i] == null){
-                $item[$i] = new Item();
-                $item[$i]->supplier = $request->input('supplier')[$i];
-                $item[$i]->description = $request->input('description')[$i];
-                $item[$i]->quantity = $request->input('qnt')[$i];
-                $item[$i]->type = $request->input('type')[$i];
-                $item[$i]->unit_price = $request->input('unit_price')[$i];
-                $item[$i]->investment = $request->input('investment')[$i];
-                $item[$i]->group_type = $request->input('group_type')[$i];
-                $item[$i]->save();
-                $service->items()->attach($item[$i]);
-                
-            }else{
-                $item[$i] = Item::where('id','=', $request->input('id')[$i])->first();
-                $item[$i]->supplier = $request->input('supplier')[$i];
-                $item[$i]->description = $request->input('description')[$i];
-                $item[$i]->quantity = $request->input('qnt')[$i];
-                $item[$i]->type = $request->input('type')[$i];
-                $item[$i]->unit_price = $request->input('unit_price')[$i];
-                $item[$i]->investment = $request->input('investment')[$i];
-                $item[$i]->group_type = $request->input('group_type')[$i];
-                $item[$i]->save();
+        for($i = 0; $i < count($request->input('id')); $i++){
+            if($request->input('id')[$i] != null){
+            $service->items()->detach();
             }
         }
+
+        for($i = 0; $i < $items->count(); $i++){
+            Item::where('id','=', $items[$i]->id)->delete();
+         }
+
+         for ($i = 0; $i < count($request->input('id')); $i++) {
+            $item[$i] = new Item();
+            $item[$i]->supplier = $request->input('supplier')[$i];
+            $item[$i]->description = $request->input('description')[$i];
+            $item[$i]->quantity = $request->input('qnt')[$i];
+            $item[$i]->type = $request->input('type')[$i];
+            $item[$i]->unit_price = $request->input('unit_price')[$i];
+            $item[$i]->investment = $request->input('investment')[$i];
+            $item[$i]->group_type = $request->input('group_type')[$i];
+            $item[$i]->save();
+         $service->items()->attach($item[$i]);
+        } 
 
         toast('Quote updated with success!','success');
 
-        return redirect()->route('costumers.visitByCostumer',$request->visit_id);
+        return redirect()->route('services.servicesByVisit',$request->visit_id);
     }catch (Throwable $e) {
         toast('Pleasy try again!','error');
     }

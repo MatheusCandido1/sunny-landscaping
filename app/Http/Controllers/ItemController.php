@@ -89,7 +89,6 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         try {
-            
         $item = Item::where('id','=', $item->id)->first();
         $item->delete();
         toast('Item deleted with success!','success');

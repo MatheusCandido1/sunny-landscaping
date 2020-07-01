@@ -25,11 +25,13 @@ Route::get('/service/visit/{visit}', 'ServiceController@servicesByVisit')->name(
 Route::get('/pdf/proposal/{visit}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('/pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
 Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
-Route::get('/visit/{visit}/service/{service}', 'QuoteController@edit')->name('quotes.edit');
 Route::put('/update/{service}', 'QuoteController@update')->name('quotes.update');
 Route::put('/update/{visit}', 'VisitController@update')->name('visits.update');
 Route::put('/edit/{visit}', 'VisitController@edit')->name('visits.edit');
 Route::put('/edit/{customer}', 'CustomerController@edit')->name('customers.edit');
+Route::get('/create/quote/{visit}', 'ServiceController@createQuote')->name('services.createQuote');
+Route::get('/edit/quote/{visit}/{service}', 'ServiceController@editQuote')->name('services.editQuote');
+
 
 
 Route::resources([
@@ -38,7 +40,6 @@ Route::resources([
     'services' => 'ServiceController',
     'notes' => 'NoteController',
     'items' => 'ItemController',
-    'suppliers' => 'SupplierController',
-    'quotes' => 'QuoteController'
+    'suppliers' => 'SupplierController'
 ]);
 });
