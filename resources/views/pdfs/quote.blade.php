@@ -1,7 +1,7 @@
 <html>
     <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  <title>Quote - {{$costumerData->costumer_name}}'s - {{$costumerData->visit_name}}</title>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  <title>Quote - {{$customer->customer_name}}'s - {{$customer->visit_name}}</title>
         <style>
             /** 
                 Set the margins of the page to 0, so the footer and the header
@@ -102,11 +102,11 @@
         <main>
           <div class="row contacts">
             <div style="text-align: left" class="col invoice-to">
-                <h2 class="to">{{$costumerData->costumer_name}}</h2>
-                <div class="address">Project: {{$costumerData->visit_name}} </div>
-                <div class="address">{{$costumerData->address}}</div>
-                <div class="address">{{$costumerData->city}}, {{$costumerData->state}} - {{$costumerData->zipcode}}</div>
-                <div class="email">{{$costumerData->email}}</div>
+                <h2 class="to">{{$customer->customer_name}}</h2>
+                <div class="address">Project: {{$customer->visit_name}} </div>
+                <div class="address">{{$customer->address}}</div>
+                <div class="address">{{$customer->city_name}}, {{$customer->state}} - {{$customer->zipcode}}</div>
+                <div class="email">{{$customer->email}}</div>
             </div>
             <div style="text-align: right" class="col invoice-details">
                 <div class="date">Date: {{ date('m/d/Y') }}</div>
@@ -198,9 +198,9 @@
         <div class="row">
           
           <div class="col-xs-12">
-                      <h3>Homeowner:</h3>______________________________________________________ <br><br>
-                      <h3>Job Location:</h3>______________________________________________________ <br><br>
-                      <h3>Date:</h3>______________________________________________________ <br><br>
+                      <h4>Homeowner:</h4>______________________________________________________ <br><br>
+                      <h4>Job Location:</h4>______________________________________________________ <br><br>
+                      <h4>Date:</h4>______________________________________________________ <br><br>
 
       </div>
         <div class="notices">
