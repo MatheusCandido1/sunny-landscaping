@@ -82,10 +82,9 @@ class CustomerController extends Controller
             'seller_id' => $data['seller_id'],
             'cellphone' => $cellphone
         ]);
-        toast('New customer added with success!','success');
 
         $customer->save();
-
+        toast('New customer added with success!','success');
         return redirect()->route('customers.index'); 
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');

@@ -46,7 +46,8 @@ Route::resources([
     'cities' => 'CityController',
     'sellers' => 'SellerController',
     'referrals' => 'ReferralController',
-    'types' => 'TypeController'
+    'types' => 'TypeController',
+    'users' => 'UserController'
 
 ]);
 });
