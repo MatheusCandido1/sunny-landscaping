@@ -68,7 +68,6 @@ class UserController extends Controller
             return redirect()->route('users.index'); 
             } catch (Throwable $e) {
                 toast('Pleasy try again!','error');
-    
             }
     }
 

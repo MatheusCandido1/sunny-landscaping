@@ -5,6 +5,9 @@
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <meta name=Generator content="Microsoft Word 15 (filtered)">
 <style>
+  @page {
+              margin: 2.5cm 2.5cm 0cm 2.5cm;
+              }
 <!--
  /* Font Definitions */
  @font-face
@@ -40,33 +43,18 @@
 div.WordSection1
 	{page:WordSection1;}
 
-  .watermark {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            background-repeat: no-repeat;
-            z-index: 9999;
-            opacity: 0.2;
-            background-image: url("https://i.ibb.co/n0p0469/Logo-Sun.jpg");
-            -webkit-user-select: none;
-            margin: auto;
-            cursor: zoom-in;
-            }
+  
 </style>
 
 </head>
 
 <body lang=EN-US>
-  <div class="watermark"></div>
-
 <div class=WordSection1>
 
 <p class=MsoNormal align=right style='margin-bottom:12.0pt;text-align:right;
 border:none'>
 
-<table class=2 border=0 cellspacing=0 cellpadding=0 width=595 style='border-collapse:
+<table class=2 border=0 cellspacing=0 cellpadding=0 width=400 style='border-collapse:
  collapse'>
  <tr style='height:112.5pt'>
   <td width=24 style='width:17.8pt;background:#EBEBEB;padding:0in 0in 0in 0in;
@@ -112,45 +100,39 @@ border:none'>
   </td>
  </tr>
 </table>
-<p class=MsoNormal align=right style='margin-bottom:12.0pt;text-align:right;
+<br><br>
+<p class=MsoNormal align=right style='font-size:12;margin-bottom:12.0pt;text-align:right;
 border:none'><span >{{ \Carbon\Carbon::now()->format('F d, Y')}} </span></p>
+<br><br>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
-style='font-size:14.0pt;line-height:120%;'>{{$data[0]->name}}</span></b></p>
+<p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
+style='font-size:12.0pt;line-height:120%;'>{{$data[0]->name}}</span></b></p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
-style='font-size:10.0pt;line-height:120%;'>{{$data[0]->address}}</span></p>
+<p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
+style='font-size:12.0pt;line-height:120%;'>{{$data[0]->address}}</span></p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
-style='font-size:10.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}} - {{$data[0]->zipcode}}</span></p>
+<p class=MsoNormal style='ffont-size:12;ont-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
+style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}} - {{$data[0]->zipcode}}</span></p>
 
 <p class=MsoNormal style='margin-bottom:24.0pt;border:none'>
 @if($data[0]->cellphone == 1)
-<span style='font-size:10.0pt;line-height:120%;'>Cellphone: {{$data[0]->phone}}</span></p>
+<span style='font-size:12.0pt;line-height:120%;'>Cellphone: {{$data[0]->phone}}</span></p>
 @else
-<span style='font-size:10.0pt;line-height:120%;'>Phone: {{$data[0]->phone}}</span></p>
+<span style='font-size:12.0pt;line-height:120%;'>Phone: {{$data[0]->phone}}</span></p>
 @endif
 
-<p class=MsoNormal>Dear <span >Customer,</span></p>
+<p class=MsoNormal style="font-size:12;">Dear <span >Customer,</span></p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
+<p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>Thank you for choosing Sunny Landscaping &amp; Pavers Design LLC for
-your home’s landscaping improvement.</p>
-
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
-justify'>The <b>anticipated value</b> of investment to install pavers and
+your home’s landscaping improvement. The <b>anticipated value</b> of investment to install pavers and
 improve your landscaping is estimated in <b>US$ <span>{{number_format($data[0]->total,2)}}</span></b>
-<b>(materials and labor, tax included).</b></p>
-
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
-justify'>Please sign below with your acceptance of this quotation and we will
+<b>(materials and labor, tax included).</b> Please sign below with your acceptance of this quotation and we will
 begin working on your property as soon as possible. Any changes will have a
 Change Order for approval and will add/deduct from the amount described above.
 A US$500.00 non-refundable fee will be due upon signature. The same amount
-(US$500.00) will be deducted from the total cost by the end of the project.</p>
-
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
-justify'>If you have any questions, please do not hesitate to contact us.
+(US$500.00) will be deducted from the total cost by the end of the project.
+If you have any questions, please do not hesitate to contact us.
 Again, thank you for choosing Sunny Landscaping &amp; Pavers Design LLC.</p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
@@ -159,7 +141,7 @@ justify'>&nbsp;</p>
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>&nbsp;</p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
+<p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>Best regards,</p>
 
 
@@ -172,14 +154,10 @@ justify'>&nbsp;</p>
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
 normal;border:none'><span style='font-size:16.0pt'>Helio da Silva</span> </p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+<p class=MsoNormal style='font-size:12.0pt;margin-bottom:0in;margin-bottom:.0001pt;line-height:
 normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'>&nbsp;</p>
-
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'>&nbsp;</p>
-
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;border:none'>&nbsp;</p>
+<br>
 
 <table class=1 border=1 cellspacing=0 cellpadding=0 width=384 style='margin-left:
  148.25pt;border-collapse:collapse;border:none'>
@@ -216,19 +194,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+<p class=MsoNormal align=center style='margin-top: 75px;
 text-align:center;line-height:normal'><span lang=EN-US style='font-size:8.0pt'>We
 accept cash, check and credit card. For payments with credit card, will be
 added a 3% processing fee. Prices are valid for 60 days after the date of

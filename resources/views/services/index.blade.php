@@ -22,9 +22,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                  @foreach($services as $service)
+                  @foreach($services->sortBy('id') as $service)
                     <tr>
-                    <td style="text-align: center"> #{{$service->id}}</td>
+                    <td style="text-align: center"> #{{$loop->iteration}}</td>
                     <td  style="text-align: center">$ {{number_format($service->total,2)}}</td>
                     <td style="text-align: center" >{{ \Carbon\Carbon::parse($service->created_at)->format('m/d/yy h:i A')}}</td>
                     <td style="text-align: center;" scope="col"> <a target="_blank" href="{{ route('pdf.proposal', $service->id)}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
