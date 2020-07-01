@@ -43,27 +43,21 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add new supplier</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add new Referral</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form  method="POST" class="form-horizontal style-form" action="{{ route('visits.store') }}" > 
+        <form  method="POST" class="form-horizontal style-form" action="{{ route('referrals.store') }}" > 
           @csrf
         <div class="form-row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
                 <label class="" for="inputFirstName">Name</label>
-                <input name="name" class="form-control py-4" type="text" placeholder="" />
+                <input name="name" class="form-control" type="text" placeholder="" />
             </div>
         </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="" for="inputFirstName">Value</label>
-                    <input name="value" class="form-control py-4" type="number" placeholder="" />
-                  </div>
-            </div>
         </div>
       
       <button type="submit" class="btn btn-primary btn-block">Save</button>   
