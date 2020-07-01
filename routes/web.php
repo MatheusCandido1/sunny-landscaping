@@ -31,6 +31,7 @@ Route::put('/edit/{visit}', 'VisitController@edit')->name('visits.edit');
 Route::put('/edit/{customer}', 'CustomerController@edit')->name('customers.edit');
 Route::get('/create/quote/{visit}', 'ServiceController@createQuote')->name('services.createQuote');
 Route::get('/edit/quote/{visit}/{service}', 'ServiceController@editQuote')->name('services.editQuote');
+Route::get('/duplicate/service/{service}', 'ServiceController@duplicateQuote')->name('services.duplicateQuote');
 
 
 

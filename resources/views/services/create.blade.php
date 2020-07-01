@@ -719,7 +719,7 @@
       }
       var total = 0
       for(i = 1; i <= item;i++){
-        if(document.getElementById(i+"total") != null){
+        if((document.getElementById(i+"value") != null)|| (document.getElementById(i+"qnt") != null )){
         total += Number(document.getElementById(i+"total").value);
         }
       }

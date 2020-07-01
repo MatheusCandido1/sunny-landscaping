@@ -19,6 +19,18 @@ class ServiceController extends Controller
        return view('services.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
     }
 
+
+    public function duplicateQuote($service_id)
+    {
+        $service = Service::find($service_id);
+
+
+        $newService = $service->replicate();
+        $newService->push();
+        return redirect()->back();
+        
+    }
+
     public function editQuote($id, $service_id)
     {
         try{
