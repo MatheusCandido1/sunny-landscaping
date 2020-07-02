@@ -75,8 +75,8 @@ class PdfController extends Controller
         ->get();
 
         $customer = $customerData[0];
-
-        $pdf = PDF::loadView('pdfs.quote', compact('data','customer','itemData','serviceData'));
+        $id = $visit_id;
+        $pdf = PDF::loadView('pdfs.quote', compact('data','customer','itemData','serviceData','id'));
         if($type == "1")
         return $pdf->setPaper('a4')->stream('quote.pdf'); 
         

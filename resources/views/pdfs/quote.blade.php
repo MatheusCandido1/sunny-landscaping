@@ -121,9 +121,18 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
           <div class="row contacts">
+            <div style="text-align: right">
+             </div>
             <div style="text-align: left" class="col invoice-to">
-                <h2 class="to">{{$customer->customer_name}}</h2>
-                <div class="address">Project: {{$customer->visit_name}} </div>
+              <div class="row">
+                <div class="col-xs-6">
+                    <h3 class="to">{{$customer->customer_name}}</h3>
+                </div>
+                <div class="col-xs-6">
+                  <h3 class="to">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quote number: #{{$id}}</h3>
+
+                </div>
+              </div>
                 <div class="address">{{$customer->address}}</div>
                 <div class="address">{{$customer->city_name}}, {{$customer->state}} - {{$customer->zipcode}}</div>
                 <div class="email">{{$customer->email}}</div>
