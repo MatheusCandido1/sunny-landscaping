@@ -45,7 +45,6 @@ class SupplierController extends Controller
             $supplier->save();
 
             toast('Supplier updated with success!','success');
-
             return redirect()->route('suppliers.index'); 
             } catch (Throwable $e) {
                 toast('Pleasy try again!','error');

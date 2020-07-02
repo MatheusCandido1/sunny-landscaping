@@ -18,6 +18,7 @@ class PdfController extends Controller
 {
     public function generateFrontpage($visit_id)
     {
+        try{
         $data = DB::table('visits')
             ->selectRaw('sellers.name as sel_name, referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.parcel_number, customers.cellphone, customers.address, customers.gate_code, visits.name as visit_name, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
@@ -30,9 +31,14 @@ class PdfController extends Controller
 
         $pdf = PDF::loadView('pdfs.front', compact('data'));
         return $pdf->setPaper('a4','landscape')->stream('frontpage.pdf'); 
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
+
     public function generateProposal($service_id) 
     {
+        try{
         $data = DB::table('services')
         ->selectRaw('customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, services.total')
         ->join('visits','visits.id','=','services.visit_id')
@@ -41,12 +47,15 @@ class PdfController extends Controller
         ->where('services.id','=', $service_id)
         ->get();
         $pdf = PDF::loadView('pdfs.proposal', compact('data'));
-       // $pdf->setWatermarkImage(public_path('img/watermark.jpg'));
         return $pdf->setPaper('a4')->stream('items.pdf');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     public function generateQuote($service_id,$visit_id, $type) 
     {
+        try{
         $data = DB::table('services')
         ->selectRaw('customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, services.total')
         ->join('visits','visits.id','=','services.visit_id')
@@ -81,7 +90,8 @@ class PdfController extends Controller
         return $pdf->setPaper('a4')->stream('quote.pdf'); 
         
         return $pdf->setPaper('a4','landscape')->stream('quote.pdf'); 
-
-
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 }

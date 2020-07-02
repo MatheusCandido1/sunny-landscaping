@@ -60,9 +60,7 @@ class TypeController extends Controller
             $type = type::where('id','=', $id)->first();
             $type->fill($request->only('name'));
             $type->save();
-
             toast('Service type updated with success!','success');
-
             return redirect()->route('types.index'); 
             } catch (Throwable $e) {
                 toast('Pleasy try again!','error');
@@ -75,7 +73,6 @@ class TypeController extends Controller
         try{
             $type = Type::where('id','=', $id)->first();
             $type->delete();
-
             toast('Service type deleted with success!','success');
             return redirect()->back();
         }catch (Throwable $e) {

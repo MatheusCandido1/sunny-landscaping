@@ -16,12 +16,17 @@ class ServiceController extends Controller
 {
     public function createQuote($id)
     {
+        try{
        return view('services.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
 
     public function duplicateQuote($service_id)
     {
+        try{
         $service = Service::find($service_id);
         $newService = $service->replicate();
         $newService->push();
@@ -36,6 +41,9 @@ class ServiceController extends Controller
         }
 
         return redirect()->back();
+    }catch (Throwable $e) {
+        toast('Pleasy try again!','error');
+    }
         
     }
 

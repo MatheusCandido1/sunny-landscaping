@@ -47,12 +47,10 @@ class ReferralController extends Controller
                 'name' => $data['name'],
             ]);
             $referral->save();
-    
             toast('New referral added with success!','success');
             return redirect()->route('referrals.index'); 
             } catch (Throwable $e) {
                 toast('Pleasy try again!','error');
-    
             }
     }
 

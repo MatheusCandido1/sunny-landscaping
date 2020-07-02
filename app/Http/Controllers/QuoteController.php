@@ -63,7 +63,7 @@ class QuoteController extends Controller
             $item[$i]->investment = $request->input('investment')[$i];
             $item[$i]->group_type = $request->input('group_type')[$i];
             $item[$i]->save();
-         $service->items()->attach($item[$i]);
+            $service->items()->attach($item[$i]);
         } 
         toast('Quote created with success!','success');
 

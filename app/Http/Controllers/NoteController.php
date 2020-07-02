@@ -39,7 +39,7 @@ class NoteController extends Controller
         try{
         $note = new Note($request->only('note','visit_id'));
             $note->save();
-        toast('Note created with success!','success');
+             toast('Note created with success!','success');
             return back();
         }
         catch (Throwable $e) {
