@@ -6,12 +6,12 @@
   findTotal();
 };
 </script>
-<form  method="POST" class="form-horizontal style-form" action="{{ route('quotes.update',$service->id) }}" >
+<form  method="POST" class="form-horizontal style-form" action="{{ route('quotes.update',$service_id) }}" >
   @csrf
   @method('PUT')
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
   <div class="container-fluid">
-    <h1 class="mt-4">Edit Quote</h1>
+  <h1 class="mt-4">Edit Quote {{$service_id}}</h1>
 
   <div class="row">
     <div class="col-lg-12">
@@ -133,6 +133,8 @@
                              </td> 
                              <td> 
                                <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                               <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+
                               </td>
                                <td> 
                                  <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -198,6 +200,8 @@
                                </td> 
                                <td> 
                                  <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                 <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
+
                                 </td>
                                  <td> 
                                    <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -263,6 +267,7 @@
                                  </td> 
                                  <td> 
                                    <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                   <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                   </td>
                                    <td> 
                                      <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -328,6 +333,7 @@
                                    </td> 
                                    <td> 
                                      <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                     <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                     </td>
                                      <td> 
                                        <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -393,6 +399,7 @@
                                      </td> 
                                      <td> 
                                        <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                       <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                       </td>
                                        <td> 
                                          <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -458,6 +465,7 @@
                                        </td> 
                                        <td> 
                                          <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                         <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                         </td>
                                          <td> 
                                            <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -523,6 +531,7 @@
                                          </td> 
                                          <td> 
                                            <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                           <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                           </td>
                                            <td> 
                                              <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -588,6 +597,7 @@
                                            </td> 
                                            <td> 
                                              <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                             <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                             </td>
                                              <td> 
                                                <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -653,6 +663,7 @@
                                              </td> 
                                              <td> 
                                                <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                               <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                               </td>
                                                <td> 
                                                  <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -718,6 +729,7 @@
                                                </td> 
                                                <td> 
                                                  <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                                 <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                                 </td>
                                                  <td> 
                                                    <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -783,6 +795,7 @@
                                                  </td> 
                                                  <td> 
                                                    <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                                   <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                                   </td>
                                                    <td> 
                                                      <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -851,6 +864,7 @@
                                                    </td> 
                                                    <td> 
                                                      <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
+                                                     <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
                                                     </td>
                                                      <td> 
                                                        <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
@@ -901,7 +915,7 @@
           <td >Accepting Proposal</td>
           <td style="text-align: right"  scope="col" >
             <div class="input-group mb-3">
-            <input type="text" value="{{number_format($service->accepting_proposal,2)}}" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Accepting Proposal">
+            <input type="text" value="500.00" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Accepting Proposal">
               <div class="input-group-append">
                 <button onclick="PayDown()" class="btn btn-success" type="button">Get Payment Down</button>
               </div>

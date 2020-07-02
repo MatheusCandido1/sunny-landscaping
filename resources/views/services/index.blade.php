@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                  @foreach($services->orderBy('created_at') as $service)
+                  @foreach($services as $service)
                     <tr>
                     <td style="text-align: center"> #{{$service->id}}</td>
                     <td  style="text-align: center">$ {{number_format($service->total,2)}}</td>

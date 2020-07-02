@@ -39,7 +39,7 @@ class ServiceController extends Controller
         $newItem->push();
         $newService->items()->attach($newItem);
         }
-
+        toast('Quote duplicated with success!','success');
         return redirect()->back();
     }catch (Throwable $e) {
         toast('Pleasy try again!','error');
@@ -50,7 +50,7 @@ class ServiceController extends Controller
     public function editQuote($id, $service_id)
     {
         try{
-        $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$id)->first();
+        $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.visit_id','=',$id)->get();
 
         $itemData = DB::table('items')
         ->selectRaw('items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment, items.group_type')
@@ -59,7 +59,7 @@ class ServiceController extends Controller
         ->where('services.id', '=', $service_id)
         ->get();
 
-        return view('services.edit', ['suppliers' => \App\Supplier::all(), 'service' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
+        return view('services.edit', ['suppliers' => \App\Supplier::all(), 'service_id'=> $service_id,'service' => $serviceData, 'items' => $itemData,'visit_id' => $id]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -67,7 +67,7 @@ class ServiceController extends Controller
 
     public function servicesByVisit($id){
         try {
-            $services = Service::where('visit_id','=',$id)->get();
+            $services = Service::where('visit_id','=',$id)->orderBy('created_at','asc')->get();
             return view('services.index', ['services' => $services,'visit_id' => $id]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
