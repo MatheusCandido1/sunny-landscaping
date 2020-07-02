@@ -26,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        toast('Welcome to Sunny Pavers management system!','success');
         return view('home');
     }
 }
