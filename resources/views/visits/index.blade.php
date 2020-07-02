@@ -46,8 +46,10 @@ flex: 1
                     <tr>
                         <td >{{ $visit->name}}</td>
                         <td >{{ \Carbon\Carbon::parse($visit->date)->format("m/d/Y")}}</td>
-                        <td></td>
-                        <td>                        
+                        
+                    <td>@foreach($visit->types as $type) <span class="badge badge-pill badge-info">{{$type->name}}</span>@endforeach     </td>
+                        <td> 
+                                            
                           <a type="button" href="{{ route('visits.details',$visit->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
                         </td>
                         <td style="text-align: center;" scope="col">

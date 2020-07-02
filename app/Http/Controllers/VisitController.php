@@ -29,7 +29,7 @@ class VisitController extends Controller
         try {
             $visits = Visit::with('customers','types')->where('customer_id','=',$id)->get();
 
-          //  dd($visits[0]->types()->select('name')->get());
+
             return view('visits.index', ['customer' => $id, 'visits' => $visits,'types' => Type::all()]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
