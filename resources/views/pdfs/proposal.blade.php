@@ -42,6 +42,22 @@
 	margin:49.5pt 1.0in 40.5pt 1.25in;}
 div.WordSection1
 	{page:WordSection1;}
+  #image {
+/* the image you want to 'watermark' */
+height: 495px; /* or whatever, equal to the image you want 'watermarked' */
+width: 600px; /* as above */
+background-position: 0 0;
+background-repeat: no-repeat;
+position: absolute;
+}
+
+#image img {
+/* the actual 'watermark' */
+position: absolute;
+top: 200; /* or whatever */
+left: 0; /* or whatever, position according to taste */
+opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+}
 
   
 </style>
@@ -50,6 +66,9 @@ div.WordSection1
 
 <body lang=EN-US>
 <div class=WordSection1>
+  <div id="image">
+    <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
+  </div>
 
 <p class=MsoNormal align=right style='margin-bottom:12.0pt;text-align:right;
 border:none'>

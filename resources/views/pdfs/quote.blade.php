@@ -72,9 +72,29 @@
 }
 .page_break { page-break-before: always; }
 
+#image {
+/* the image you want to 'watermark' */
+height: 495px; /* or whatever, equal to the image you want 'watermarked' */
+width: 600px; /* as above */
+background-position: 0 0;
+background-repeat: no-repeat;
+position: fixed;
+}
+
+#image img {
+/* the actual 'watermark' */
+position: fixed;
+top: 200; /* or whatever */
+left: 0; /* or whatever, position according to taste */
+opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+}
+
         </style>
     </head>
     <body>
+      <div id="image">
+        <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
+      </div>
         <!-- Define header and footer blocks before your content -->
         <header>
           <div class="row">
