@@ -62,6 +62,15 @@ class PdfController extends Controller
         }
     }
 
+    public function generateEstimate($visit_id){
+        try{
+            $pdf = PDF::loadView('pdfs.estimate');
+            return $pdf->setPaper('a4')->stream('estimate.pdf');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     public function generateQuote($service_id,$visit_id, $type) 
     {
         try{

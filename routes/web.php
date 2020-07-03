@@ -26,6 +26,7 @@ Route::get('/pdf/proposal/{service}', 'PdfController@generateProposal')->name('p
 Route::get('/pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
 Route::get('pdf/project_page/{service}','PdfController@generateFrontpage')->name('pdf.front');
 Route::get('pdf/waiver/{visit}','PdfController@generateWaiver')->name('pdf.waiver');
+Route::get('pdf/estimate/{visit}','PdfController@generateEstimate')->name('pdf.estimate');
 Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
 Route::put('/update/{service}', 'QuoteController@update')->name('quotes.update');
 Route::put('/update/{visit}', 'VisitController@update')->name('visits.update');
