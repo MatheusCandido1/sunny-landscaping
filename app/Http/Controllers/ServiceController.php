@@ -71,7 +71,14 @@ class ServiceController extends Controller
             return view('services.index', ['services' => $services,'visit_id' => $id]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
+        }
+    }
 
+    public function changeOrder(){
+        try {
+            return view('services.change');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
         }
     }
 
