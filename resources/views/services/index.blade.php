@@ -19,6 +19,7 @@
                         <th style="text-align: center" scope="col">Created at</th>
                         <th style="text-align: center" scope="col">Proposal</th>
                         <th style="text-align: center" scope="col">Actions</th>
+                        <th style="text-align: center" scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                     <td style="text-align: center"> #{{$service->id}}</td>
                     <td  style="text-align: center">$ {{number_format($service->total,2)}}</td>
                     <td style="text-align: center" >{{ \Carbon\Carbon::parse($service->created_at)->format('m/d/yy h:i A')}}</td>
+                    
                     <td style="text-align: center;" scope="col"> <a target="_blank" href="{{ route('pdf.proposal', $service->id)}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
                     </td>
                     <td style="text-align: center;" scope="col">
@@ -50,6 +52,18 @@
                 </form>
 
                     </td>
+                    <td style="text-align: center">
+                        @if($service->status == 1)
+                        <button type="button" class="btn btn-primary">Selected</button>
+                        @else
+                        <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to select this quote?')) { document.getElementById('update-form-{{$service->id}}').submit(); }"  class="btn btn-outline-primary">Not Selected</a>
+                        <form id="update-form-{{$service->id}}" action="{{ route('services.updateStatus',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('PUT')
+                        </form>
+                        @endif
+                    </td>
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -58,4 +72,7 @@
     </div>
 </div>
 </div>
+<script>
+</script>
+
 @endsection

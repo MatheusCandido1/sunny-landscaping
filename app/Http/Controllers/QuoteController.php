@@ -49,7 +49,7 @@ class QuoteController extends Controller
             'accepting_proposal' => $request->accepting_proposal,
             'down_payment' => $request->down_payment,
             'final_balance' => $request->final_balance,
-            'status' => 1,
+            'status' => 0,
             'visit_id' => $request->visit_id
         ]); 
 

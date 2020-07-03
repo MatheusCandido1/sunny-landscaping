@@ -30,7 +30,7 @@ Route::get('pdf/waiver/{visit}','PdfController@generateWaiver')->name('pdf.waive
 Route::get('pdf/estimate/{visit}','PdfController@generateEstimate')->name('pdf.estimate');
 Route::get('pdf/contract/{visit}','PdfController@generateContract')->name('pdf.contract');
 
-
+Route::put('update/status/{service}/{visit}','ServiceController@updateStatus')->name('services.updateStatus');
 Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
 Route::put('/update/{service}', 'QuoteController@update')->name('quotes.update');
 Route::put('/update/{visit}', 'VisitController@update')->name('visits.update');
@@ -54,6 +54,5 @@ Route::resources([
     'referrals' => 'ReferralController',
     'types' => 'TypeController',
     'users' => 'UserController'
-
 ]);
 });
