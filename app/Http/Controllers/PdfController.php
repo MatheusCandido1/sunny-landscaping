@@ -53,6 +53,15 @@ class PdfController extends Controller
         }
     }
 
+    public function generateWaiver($visit_id){
+        try{
+            $pdf = PDF::loadView('pdfs.waiver');
+            return $pdf->setPaper('a4')->stream('waiver.pdf');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     public function generateQuote($service_id,$visit_id, $type) 
     {
         try{
