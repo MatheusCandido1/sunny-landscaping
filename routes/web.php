@@ -22,11 +22,15 @@ Route::middleware('auth')->group( function () {
 Route::get('/customer/{customer}/visits', 'VisitController@visitsByCustomer')->name('visits.visitsByCustomer');
 Route::get('/visit/{visit}', 'VisitController@details')->name('visits.details');
 Route::get('/service/visit/{visit}', 'ServiceController@servicesByVisit')->name('services.servicesByVisit');
-Route::get('/pdf/proposal/{service}', 'PdfController@generateProposal')->name('pdf.proposal');
-Route::get('/pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
+// PDFs Routes
+Route::get('pdf/proposal/{service}', 'PdfController@generateProposal')->name('pdf.proposal');
+Route::get('pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
 Route::get('pdf/project_page/{service}','PdfController@generateFrontpage')->name('pdf.front');
 Route::get('pdf/waiver/{visit}','PdfController@generateWaiver')->name('pdf.waiver');
 Route::get('pdf/estimate/{visit}','PdfController@generateEstimate')->name('pdf.estimate');
+Route::get('pdf/contract/{visit}','PdfController@generateContract')->name('pdf.contract');
+
+
 Route::post('/create/quotes', 'QuoteController@store')->name('quotes.store');
 Route::put('/update/{service}', 'QuoteController@update')->name('quotes.update');
 Route::put('/update/{visit}', 'VisitController@update')->name('visits.update');

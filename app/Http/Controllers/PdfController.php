@@ -71,6 +71,15 @@ class PdfController extends Controller
         }
     }
 
+    public function generateContract($visit_id){
+        try{
+            $pdf = PDF::loadView('pdfs.contract');
+            return $pdf->setPaper('a4')->stream('contract.pdf');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     public function generateQuote($service_id,$visit_id, $type) 
     {
         try{
