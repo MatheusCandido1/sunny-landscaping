@@ -68,6 +68,7 @@ class CustomerController extends Controller
 
         $customer = Customer::create([
             'name' => $data['name'],
+            'gender' => $data['gender'],
             'address' => $data['address'],
             'cross_street1' => $data['cross_street1'],
             'cross_street2' => $data['cross_street2'],
@@ -144,7 +145,7 @@ class CustomerController extends Controller
     {
         try{
             $customer = customer::where('id','=', $id)->first();
-            $customer->fill($request->only('name','address','cross_street1','cross_street2','gate_code','city_id','state','zipcode','phone','cellphone','email','referral_id','seller_id','parcel_number'));
+            $customer->fill($request->only('name','gender','address','cross_street1','cross_street2','gate_code','city_id','state','zipcode','phone','cellphone','email','referral_id','seller_id','parcel_number'));
             $customer->save();
             toast('Customer updated with success!','success');
             return redirect()->route('customers.index');

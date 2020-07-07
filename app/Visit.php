@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Visit extends Model
 {
     protected $fillable = [
-        'name', 'date', 'call_customer_in', 'hoa', 'water_smart_rebate','customer_id'
+        'date', 'call_customer_in', 'hoa', 'water_smart_rebate', 'invoice_number', 'payment_amout', 'contract_date','customer_id'
     ];
 
     public function customers()
@@ -18,6 +18,11 @@ class Visit extends Model
     public function services()
     {
         return $this->hasMany('App\Service');
+    }
+
+    public function changeorders()
+    {
+        return $this->hasMany('App\ChangeOrder');
     }
 
     public function notes(){

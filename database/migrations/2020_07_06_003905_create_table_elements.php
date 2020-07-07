@@ -16,6 +16,7 @@ class CreateTableElements extends Migration
         Schema::create('elements', function (Blueprint $table) {
             $table->increments('id');
             $table->string('target');
+            $table->string('supplier');
             $table->float('investment');
             $table->float('quantity');
             $table->string('description');

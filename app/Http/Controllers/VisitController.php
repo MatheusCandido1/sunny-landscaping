@@ -54,7 +54,6 @@ class VisitController extends Controller
     {
         try{
         $visit = Visit::create([
-            'name' => $request->name,
             'date' => $request->date,
             'call_customer_in' => $request->call_customer_in,
             'hoa' => $request->hoa,
@@ -89,7 +88,7 @@ class VisitController extends Controller
     public function details($id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.name as visit_name, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
+            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
             ->join('referrals', 'customers.referral_id','=','referrals.id')
@@ -142,7 +141,7 @@ class VisitController extends Controller
     {
         try{
         $visit = Visit::where('id','=', $id)->first();
-        $visit->fill($request->only('name','date','call_customer_in','hoa','status','water_smart_rebate'));
+        $visit->fill($request->only('date','call_customer_in','hoa','status','water_smart_rebate'));
         $visit->save();
 
         for($i = 0; $i < count($request->type); $i++){

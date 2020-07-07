@@ -11,16 +11,36 @@
           <form  method="POST" class="form-horizontal style-form" action="{{ route('customers.store') }}" > 
             @csrf
           <div class="form-row">
-              <div class="col-md-4">
-                  <div class="form-group">
-                      <label class="" for="inputFirstName">Name</label>
-                      <input name="name" class="form-control" id="inputFirstName" type="text" placeholder="" />
-                  </div>
-              </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="" for="inputLastName">Name</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                      <input type="radio" required value="Mrs" class="form-check-input" name="gender">Mrs
+                                    </label>
+                                  </div>
+                                  <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                      <input type="radio" required value="Mr" class="form-check-input" name="gender">Mr
+                                    </label>
+                                  </div>
+                                
+                            </span>
+                          </div>
+                        <input type="text" name="name" class="form-control" placeholder="">
+                        
+                      </div>
+                </div>
+            </div>
+              
+              
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputLastName">Address</label>
-                      <input name="address" class="form-control id="inputLastName" type="text" placeholder="" />
+                      <input name="address" class="form-control" type="text" placeholder="" />
                   </div>
               </div>
               <div class="col-md-4">

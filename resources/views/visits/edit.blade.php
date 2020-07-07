@@ -12,19 +12,13 @@
             @csrf     
             @method('PUT')
           <div class="form-row">
-            <div class="col-md-4">
-              <div class="form-group">
-                  <label class="" for="inputFirstName">Name</label>
-              <input name="name" class="form-control py-4" value="{{$visit->name}}" type="text" placeholder="" />
-              </div>
-          </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                   <div class="form-group">
                       <label class="" for="inputFirstName">Date</label>
                   <input name="date" value="{{ date('Y-m-d\TH:i', strtotime($visit->date))}}" class="form-control py-4" id="inputFirstName" type="datetime-local" placeholder="" />
                   </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                   <div class="form-group">
                       <label class="" for="inputLastName">Call Customer in (minutes)</label>
                   <input name="call_customer_in" value="{{$visit->call_customer_in}}" class="form-control py-4" id="inputLastName" type="number" placeholder="" />

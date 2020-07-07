@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Project Frontpage</title>
 </head>
 <body>
   <style type="text/css">
@@ -38,7 +38,7 @@
         <th class="tg-k27y">S2020 - </th>
         <th class="tg-k27y"></th>
         <th class="tg-k27y">Job Name:</th>
-      <th class="tg-k27y"> {{$data[0]->visit_name}}</th>
+      <th class="tg-k27y"> </th>
         <th class="tg-k27y">Seller:</th>
         <th class="tg-u5dg" colspan="5">{{$data[0]->sel_name}}</th>
       </tr>

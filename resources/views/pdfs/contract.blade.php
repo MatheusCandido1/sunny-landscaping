@@ -120,7 +120,7 @@
 <p>&nbsp;</p>
 
 <p style="font-size: 16;text-align:center;text-decoration: underline;"><strong>NOTICE OF RIGHT TO LIEN</strong></p>
-<p style="font-size: 16;text-align:center;"><span >(NRS &sect;180.245)</span></p>
+<p style="font-size: 16;text-align:center;"><span >(NRS &sect;108.245)</span></p>
 <p>&nbsp;</p>
 <p><span style="font-size: 12;">To:</span>&nbsp;&nbsp; <span style="font-size: 12;">9078 Camp Light Ave Las Vegas, NV 89149</span><span style="font-size: 12;">&nbsp;</span></p>
 <p><span style="font-size: 12;">The undersigned notifies you that they have supplied materials or performed work or services, as follows:</span></p>
@@ -139,6 +139,6 @@
 <p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, certified this the </span><span style="font-size: 12;">5 th day of June, 2019</span></p>
 <p style="text-align: right;margin: 0"><span style="font-size: 12;">__________________________________</span></p>
 <p style="text-align: right;margin: 0"><span style="font-size: 12;">&nbsp;</span> <span style="font-size: 12;">Glaucia Alves, Manager</span></p>
-<p style="text-align: right;font-size: 12;margin: 0"><span >NRS &sect;180.245</span></p>
+<p style="text-align: right;font-size: 12;margin: 0"><span >NRS &sect;108.245</span></p>
 </body>
 </html>

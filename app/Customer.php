@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     protected $fillable = [
-        'name', 'address', 'cross_street1', 'cross_street2', 'gate_code',  'state', 'zipcode', 'phone', 'cellphone', 'email','parcel_number','referral_id','city_id','seller_id'
+        'name', 'gender','address', 'cross_street1', 'cross_street2', 'gate_code',  'state', 'zipcode', 'phone', 'cellphone', 'email','parcel_number','referral_id','city_id','seller_id'
     ];
 
     public function Referral()

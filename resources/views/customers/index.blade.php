@@ -25,9 +25,9 @@
                 <tbody>
                   @foreach($customers as $customer)
                     <tr>
-                        <td >{{ $customer->name}}</td>
-                        <td >{{ $customer->phone}}</td>
-                        <td >{{ $customer->email}}</td>
+                        <td >{{$customer->gender}}. {{ $customer->name}}</td>
+                        <td >{{$customer->phone}}</td>
+                        <td >{{$customer->email}}</td>
                         <td style="text-align: center;" scope="col">
                           <a type="button" href="{{ route('visits.visitsByCustomer',$customer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
                         </td>

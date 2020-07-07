@@ -33,7 +33,6 @@ flex: 1
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="text-align: center" scope="col" >Visit's name</th>
                         <th style="text-align: center" scope="col">Date</th>
                         <th style="text-align: center" scope="col">Type</th>
                         <th style="text-align: center" scope="col">Information</th>
@@ -44,7 +43,6 @@ flex: 1
                 <tbody>
                   @foreach($visits as $visit)
                     <tr>
-                        <td >{{ $visit->name}}</td>
                         <td >{{ \Carbon\Carbon::parse($visit->date)->format("m/d/Y")}}</td>
                         
                     <td>@foreach($visit->types as $type) <span class="badge badge-pill badge-info">{{$type->name}}</span>@endforeach     </td>
@@ -88,19 +86,13 @@ flex: 1
           <form  method="POST" class="form-horizontal style-form" action="{{ route('visits.store') }}" > 
             @csrf
           <div class="form-row">
-            <div class="col-md-4">
-              <div class="form-group">
-                  <label class="" for="inputFirstName">Name</label>
-                  <input name="name" class="form-control py-4" type="text" placeholder="" />
-              </div>
-          </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                   <div class="form-group">
                       <label class="" for="inputFirstName">Date</label>
-                      <input name="date" class="form-control py-4" id="inputFirstName" type="datetime-local" placeholder="" />
+                      <input name="date" class="form-control py-4"  type="datetime-local" placeholder="" />
                   </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                   <div class="form-group">
                       <label class="" for="inputLastName">Call customer in (minutes)</label>
                       <input name="call_customer_in" class="form-control py-4" id="inputLastName" type="number" placeholder="" />
@@ -108,7 +100,7 @@ flex: 1
               </div>
           </div>
           <div class="form-row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label class="" for="inputFirstName">HOA</label>
                     <br>
@@ -124,7 +116,7 @@ flex: 1
                       </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label class="" for="inputFirstName">Water Smart Rebate</label>
                     <br>

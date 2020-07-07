@@ -54,9 +54,9 @@
                     </td>
                     <td style="text-align: center">
                         @if($service->status == 1)
-                        <button type="button" class="btn btn-primary">Selected</button>
+                        <button type="button" class="btn btn-success">Approved</button>
                         @else
-                        <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to select this quote?')) { document.getElementById('update-form-{{$service->id}}').submit(); }"  class="btn btn-outline-primary">Not Selected</a>
+                        <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to select this quote?')) { document.getElementById('update-form-{{$service->id}}').submit(); }"  class="btn btn-outline-danger">Not Approved</a>
                         <form id="update-form-{{$service->id}}" action="{{ route('services.updateStatus',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
                             @csrf
                             @method('PUT')

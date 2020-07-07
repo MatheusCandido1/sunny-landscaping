@@ -15,11 +15,13 @@ class CreateVisitsTable extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->dateTime('date');
             $table->integer('call_customer_in')->nullable();
             $table->boolean('hoa')->nullable();
             $table->boolean('water_smart_rebate')->nullable();
+            $table->string('invoice_number')->nullalbe();
+            $table->string('payment_amout')->nullalbe();
+            $table->date('contract_date')->nullalbe();
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();

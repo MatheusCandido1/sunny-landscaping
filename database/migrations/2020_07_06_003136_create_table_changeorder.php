@@ -13,7 +13,7 @@ class CreateTableChangeorder extends Migration
      */
     public function up()
     {
-        Schema::create('change_orders', function (Blueprint $table) {
+        Schema::create('changeorders', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('date');
             $table->float('original_contract_amount');

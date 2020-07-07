@@ -17,8 +17,8 @@
           <img  style="height: 35%; width: 35%; position: relative"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />       
 </div>
   <h3 style="text-align: center;"><span style="text-decoration: underline;"><strong>Unconditional Waiver and Release Upon Final Payment </strong></span></h3>
-<p><strong>Property name: </strong></p>
-<p><strong>Property location: </strong>451 xxx, Las Vegas, NV 89xxx</p>
+<p><strong>Property name: Nome da pessoa </strong></p>
+<p><strong>Property location: </strong>Address</p>
 <p><strong>Invoice/Payment Application Number: </strong></p>
 <p><strong>Payment amount: </strong>US$</p>
 <p><strong>Amount of Disputed Claims: </strong>ZERO</p>

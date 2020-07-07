@@ -76,7 +76,6 @@ ul.timeline > li:before {
             <div class="card-body">
                 <div class="row">
                 <div class="col-12 col-lg-12 col-md-12">
-                    <p class="lead"><i class="far fa-image"></i> Project: {{ $data->visit_name}}</p>
                     <p class="lead"><i class="fas fa-calendar"></i> Date: {{ \Carbon\Carbon::parse($data->date)->format('l, jS \\of F Y h:i:s A')}}</p>
                     <p class="lead"> <i class="fas fa-phone-square"></i> Call customer in : {{$data->call_customer_in}} minutes</p>
                     <p class="lead"> <i class="fas fa-mobile-alt"></i> HOA: {{ $data->hoa == 0 ? 'No' : 'Yes'}}</p>
@@ -115,10 +114,13 @@ ul.timeline > li:before {
                     </div>
                     <hr class="my-4">
                     <div class="row">
-                        <div class="col-lg-6 text-center">
-                            <a target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Contract</a>  
+                        <div class="col-lg-4 text-center">
+                            <a target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Nevada State Contract</a>  
                         </div>
-                        <div class="col-lg-6 text-center">
+                        <div class="col-lg-4 text-center">
+                            <a target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Sunny Contract</a>  
+                        </div>
+                        <div class="col-lg-4 text-center">
                             <a type="button" href="{{route('services.change')}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</a>
                         </div>
                     </div>
