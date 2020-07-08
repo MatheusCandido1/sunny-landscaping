@@ -73,7 +73,10 @@ class PdfController extends Controller
             ->where('visits.id','=', $visit_id)
             ->get();
 
-            $pdf = PDF::loadView('pdfs.estimate', compact('data'));
+            
+        $visits = Visit::with('types')->where('id','=',$visit_id)->get();
+        
+            $pdf = PDF::loadView('pdfs.estimate', compact('data','visits'));
             return $pdf->setPaper('a4')->stream('estimate.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

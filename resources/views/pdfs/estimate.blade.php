@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Estimate Request</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 </head>
 <body>
   <div style="text-align: center">
@@ -24,7 +26,8 @@
   <p><span style="font-weight: 400;"><strong>Phone #  </strong></span><span style="font-weight: 400;">{{ $data[0]->phone}}</span><span style="font-weight: 400;"><strong> Cell Phone: </strong> {{ $data[0]->cellphone == 0 ? '(No)' : '(Yes)'}}&nbsp;</span></p>
   <p><span style="font-weight: 400;"><strong>Email:  </strong>{{ $data[0]->email}} &nbsp;</span></p>
   <p><span style="font-weight: 400;"><strong>Referred: </strong> {{ $data[0]->ref_name }}&nbsp;</span></p>
-  <p><span style="font-weight: 400;"><strong>Type: </strong> &nbsp;</span></p>
+  <p><span style="font-weight: 400;"><strong>Type(s): </strong> @foreach($visits as $visit) @foreach($visit->types as $type) <span class="badge badge-pill badge-info">{{$type->name}}</span>@endforeach  @endforeach&nbsp;</span></p>
+  
   </div>
 </body>
 </html>
