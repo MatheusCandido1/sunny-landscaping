@@ -63,8 +63,16 @@ class PdfController extends Controller
             ->join('sellers','customers.seller_id','=','sellers.id')
             ->where('visits.id','=', $visit_id)
             ->get();
+
+            $amount = DB::table('services')
+            ->selectRaw('sum(services.total) as total')
+            ->join('visits', 'visits.id','=','services.visit_id')
+            ->where('services.status','=','1')
+            ->where('visits.id','=',$visit_id)
+            ->get();
+
             
-            $pdf = PDF::loadView('pdfs.waiver',compact('data'));
+            $pdf = PDF::loadView('pdfs.waiver',compact('data','amount'));
             return $pdf->setPaper('a4')->stream('waiver.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

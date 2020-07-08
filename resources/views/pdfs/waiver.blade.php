@@ -10,9 +10,28 @@
 @page {
               margin: 3cm 3cm 0cm 3cm;
               }
+              #image {
+/* the image you want to 'watermark' */
+height: 495px; /* or whatever, equal to the image you want 'watermarked' */
+width: 600px; /* as above */
+background-position: 0 0;
+background-repeat: no-repeat;
+position: fixed;
+}
+
+#image img {
+/* the actual 'watermark' */
+position: fixed;
+top: 200; /* or whatever */
+left: 0; /* or whatever, position according to taste */
+opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+}
 
   </style>
 <body>
+  <div id="image">
+    <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
+  </div>
   <div style="text-align: center">
           <img  style="height: 35%; width: 35%; position: relative"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />       
 </div>
@@ -20,7 +39,7 @@
 <p><strong>Property name: </strong>{{ $data[0]->customer_name}}  </p>
 <p><strong>Property location: </strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}} </p>
 <p><strong>Invoice/Payment Application Number: </strong> {{ $data[0]->invoice_number}}</p>
-<p><strong>Payment amount: </strong>US$</p>
+<p><strong>Payment amount: </strong>US$ {{number_format($amount[0]->total,2)}}</p>
 <p><strong>Amount of Disputed Claims: </strong>ZERO</p>
 <p style="text-align:
 justify">The undersigned has been paid in full for all work, materials and equipment furnished to his
