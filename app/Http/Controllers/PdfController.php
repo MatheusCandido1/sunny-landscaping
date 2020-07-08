@@ -55,7 +55,16 @@ class PdfController extends Controller
 
     public function generateWaiver($visit_id){
         try{
-            $pdf = PDF::loadView('pdfs.waiver');
+            $data = DB::table('visits')
+            ->selectRaw('sellers.name as sel_name, referrals.name as ref_name, cities.name as city_name, customers.gender, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.parcel_number, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.invoice_number, visits.contract_date, visits.id as visit_id')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('cities', 'customers.city_id','=','cities.id')
+            ->join('referrals', 'customers.referral_id','=','referrals.id')
+            ->join('sellers','customers.seller_id','=','sellers.id')
+            ->where('visits.id','=', $visit_id)
+            ->get();
+            
+            $pdf = PDF::loadView('pdfs.waiver',compact('data'));
             return $pdf->setPaper('a4')->stream('waiver.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -75,7 +84,7 @@ class PdfController extends Controller
 
             
         $visits = Visit::with('types')->where('id','=',$visit_id)->get();
-        
+
             $pdf = PDF::loadView('pdfs.estimate', compact('data','visits'));
             return $pdf->setPaper('a4')->stream('estimate.pdf');
         }catch (Throwable $e) {

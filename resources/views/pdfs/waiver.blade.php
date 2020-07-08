@@ -17,9 +17,9 @@
           <img  style="height: 35%; width: 35%; position: relative"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />       
 </div>
   <h3 style="text-align: center;"><span style="text-decoration: underline;"><strong>Unconditional Waiver and Release Upon Final Payment </strong></span></h3>
-<p><strong>Property name: Nome da pessoa </strong></p>
-<p><strong>Property location: </strong>Address</p>
-<p><strong>Invoice/Payment Application Number: </strong></p>
+<p><strong>Property name: </strong>{{ $data[0]->customer_name}}  </p>
+<p><strong>Property location: </strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}} </p>
+<p><strong>Invoice/Payment Application Number: </strong> {{ $data[0]->invoice_number}}</p>
 <p><strong>Payment amount: </strong>US$</p>
 <p><strong>Amount of Disputed Claims: </strong>ZERO</p>
 <p style="text-align:
@@ -31,7 +31,7 @@ for the payment of Disputed Claims, if any, noted above. The undersigned warrant
 has already paid or will use the money he receives from this final payment promptly to pay in full
 all his laborers, subcontractors, material, men and suppliers for all work, materials and equipment
 that are subject of this waiver and release.</p>
-<p><strong>Dated: </strong>01/05/2020</p>
+<p><strong>Dated: </strong> {{\Carbon\Carbon::parse($data[0]->contract_date)->format('m/d/yy') }}</p>
 <p style="text-align: right">__________________________________</p>
 <p style="text-align: right">Glaucia Alves, Manager</p>
 <div style="margin-top: 240px">
