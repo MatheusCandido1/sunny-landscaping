@@ -18,7 +18,7 @@
   <p><strong>HOA: </strong><span style="font-weight: 400;"> {{ $data[0]->hoa == 0 ? 'No' : 'Yes'}} &nbsp;</span></p>
   <p><span style="font-weight: 400;"><strong>Water Smart Rebate:</strong> {{ $data[0]->water_smart_rebate == 0 ? 'No' : 'Yes'}} &nbsp;</span></p>
   <p><span style="font-weight: 400;"><strong>Cross Streets:</strong> {{ $data[0]->cross_street1}}/{{ $data[0]->cross_street2}}</span></p>
-  <p><span style="font-weight: 400;"><strong>Mrs: </strong></span><span style="font-weight: 400;">{{ $data[0]->customer_name}}&nbsp;</span></p>
+  <p><span style="font-weight: 400;"><strong>{{ $data[0]->gender == "Mrs" ? 'Mrs' : 'Mr'}}. </strong></span><span style="font-weight: 400;">{{ $data[0]->customer_name}}&nbsp;</span></p>
   <p><span style="font-weight: 400;"><strong>Address: </strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}} </span></p>
   <p><span style="font-weight: 400;"><strong>Gate Code: </strong> {{ $data[0]->gate_code == "" ? 'No' : $data[0]->gate_code}}</span></p>
   <p><span style="font-weight: 400;"><strong>Phone #  </strong></span><span style="font-weight: 400;">{{ $data[0]->phone}}</span><span style="font-weight: 400;"><strong> Cell Phone: </strong> {{ $data[0]->cellphone == 0 ? '(No)' : '(Yes)'}}&nbsp;</span></p>

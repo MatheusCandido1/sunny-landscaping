@@ -65,7 +65,7 @@ class PdfController extends Controller
     public function generateEstimate($visit_id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('sellers.name as sel_name, referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.parcel_number, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
+            ->selectRaw('sellers.name as sel_name, referrals.name as ref_name, cities.name as city_name, customers.gender, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.parcel_number, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
             ->join('referrals', 'customers.referral_id','=','referrals.id')
