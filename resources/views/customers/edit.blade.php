@@ -12,12 +12,37 @@
                 @csrf
                 @method('PUT')
           <div class="form-row">
-              <div class="col-md-4">
-                  <div class="form-group">
-                      <label class="" for="inputFirstName">Name</label>
-                  <input name="name" class="form-control" id="inputFirstName" type="text" value="{{$customer->name}}" />
-                  </div>
-              </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="" for="inputLastName">Name</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        @if($customer->gender == "Mrs")
+                                        <input type="radio" checked required value="Mrs" class="form-check-input" name="gender">Mrs
+                                        @else
+                                        <input type="radio" required value="Mrs" class="form-check-input" name="gender">Mrs
+                                        @endif                                    </label>
+                                  </div>
+                                  <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        @if($customer->gender == "Mr")
+                                        <input type="radio" checked required value="Mr" class="form-check-input" name="gender">Mr
+                                        @else
+                                        <input type="radio" required value="Mr" class="form-check-input" name="gender">Mr
+                                        @endif
+                                    </label>
+                                  </div>
+                                
+                            </span>
+                          </div>
+                        <input type="text" name="name" class="form-control" value="{{$customer->name}}" placeholder="">
+                        
+                      </div>
+                </div>
+            </div>
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputLastName">Address</label>
