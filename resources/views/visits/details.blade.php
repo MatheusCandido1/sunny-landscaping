@@ -121,7 +121,7 @@ ul.timeline > li:before {
                             <a target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Sunny Contract</a>  
                         </div>
                         <div class="col-lg-4 text-center">
-                            <a type="button" href="{{route('services.change')}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</a>
+                            <a type="button" href="{{route('changeorders.changes', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</a>
                         </div>
                     </div>
                     <hr class="my-4">

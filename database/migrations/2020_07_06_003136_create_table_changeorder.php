@@ -13,12 +13,13 @@ class CreateTableChangeorder extends Migration
      */
     public function up()
     {
-        Schema::create('changeorders', function (Blueprint $table) {
+        Schema::create('change_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('date');
+            $table->float('discount');
             $table->float('original_contract_amount');
             $table->float('change_order_amount');
-            $table->float('revise_contract_amout');
+            $table->float('revised_contract_amount');
             $table->boolean('status');
             $table->integer('visit_id')->unsigned();
             $table->foreign('visit_id')->references('id')->on('visits')->onDelete('cascade');

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\ChangeOrder;
+use App;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Visit;
+use App\ChangeOrder;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ChangeOrderController extends Controller
 {
@@ -17,14 +21,54 @@ class ChangeOrderController extends Controller
         //
     }
 
+    public function changeOrderByVisit($id){
+        try {
+            $changeorders = ChangeOrder::where('visit_id','=',$id)->orderBy('created_at','asc')->get();
+            return view('changeorders.index', ['changeorders' => $changeorders ,'visit_id' => $id]);
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        try{
+            return view('services.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
+             }catch (Throwable $e) {
+                 toast('Pleasy try again!','error');
+             }
+    }
+
+    public function createChangeOrder($id){
+        try{
+
+            $itemData = DB::table('items')
+            ->selectRaw('services.id as service_id, items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
+            ->join('item_service','item_service.item_id','=','items.id')
+            ->join('services','services.id','=','item_service.service_id')
+            ->join('visits','visits.id','=','services.visit_id')
+            ->where('visits.id', '=', $id) 
+            ->where('services.status', '=', 1)
+            ->get()
+            ->groupBy('group_type');
+            
+
+            $amount = DB::table('services')
+            ->selectRaw('sum(services.total) as total')
+            ->join('visits', 'visits.id','=','services.visit_id')
+            ->where('services.status','=','1')
+            ->where('visits.id','=',$id)
+            ->get();
+
+            return view('changeorders.create', ['visit_id' => $id,'itemData' => $itemData,'amount' => $amount]);
+         }catch (Throwable $e) {
+          toast('Pleasy try again!','error');
+      }
     }
 
     /**
@@ -35,7 +79,23 @@ class ChangeOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $changeOrder = ChangeOrder::create([
+                'date' => $request->date,
+                'discount' => $request->discount,
+                'original_contract_amount' => $request->original_contract_amount,
+                'change_order_amount' => $request->change_order_amount,
+                'revised_contract_amount' => $request->revised_contract_amount,
+                'status' => 1,
+                'visit_id' => $request->visit_id
+            ]); 
+
+            toast('Change Order created with success!','success');
+    
+            return redirect()->route('changeorders.changes', $request->visit_id);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
