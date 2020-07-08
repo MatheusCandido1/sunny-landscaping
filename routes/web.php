@@ -32,7 +32,9 @@ Route::get('pdf/contract/{visit}','PdfController@generateContract')->name('pdf.c
 
 Route::get('changeorder', 'ServiceController@changeOrder')->name('services.change');
 
-Route::put('update/status/{service}/{visit}','ServiceController@updateStatus')->name('services.updateStatus');
+Route::put('approve/status/{service}/{visit}','ServiceController@approve')->name('services.approve');
+Route::put('disaapprove/status/{service}/{visit}','ServiceController@disapprove')->name('services.disapprove');
+
 Route::post('create/quotes', 'QuoteController@store')->name('quotes.store');
 Route::put('update/{service}', 'QuoteController@update')->name('quotes.update');
 Route::put('update/{visit}', 'VisitController@update')->name('visits.update');

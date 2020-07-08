@@ -82,20 +82,26 @@ class ServiceController extends Controller
         }
     }
 
-    public function updateStatus($service_id, $visit_id){
+
+    public function approve($service_id, $visit_id){
         try{
             $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
             $service->status = 1;
             $service->save();
-
-            $service2 = Service::where('id','!=',$service_id)->where('visit_id','=',$visit_id)->get();
-            for($i = 0; $i < count($service2); $i++){
-                $service2[$i]->status = 0;
-                $service2[$i]->save();
-            }
-            alert()->success('Quote selected','Now, all the documents will be generated with this quote information!');
+            alert()->success('Quote approved','Now, all the documents will be generated with this quote information!');
             return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
 
+    public function disapprove($service_id, $visit_id){
+        try{
+            $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
+            $service->status = 0;
+            $service->save();
+            alert()->success('Quote disapproved','the documents will be generated only with approved quote information!');
+            return redirect()->back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
