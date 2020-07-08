@@ -19,8 +19,27 @@
                 height: 80px; 
                 text-align: center;
             }
+            #image {
+/* the image you want to 'watermark' */
+height: 495px; /* or whatever, equal to the image you want 'watermarked' */
+width: 600px; /* as above */
+background-position: 0 0;
+background-repeat: no-repeat;
+position: fixed;
+}
+
+#image img {
+/* the actual 'watermark' */
+position: fixed;
+top: 200; /* or whatever */
+left: 0; /* or whatever, position according to taste */
+opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+}
   </style>
 <body>
+  <div id="image">
+    <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
+  </div>
   <footer>
     <p style="font-size:11.0pt;text-align:center; margin: 0">License # C-18 0080493 Limit Amount $245,000.00 </p>
     <p style="font-size:11.0pt;text-align:center;margin: 0">License # C-18 0081661 Limit Amount $245,000.00 </p>
@@ -29,7 +48,7 @@
   <div style="text-align: left">
     <img  style="height: 35%; width: 35%; position: relative"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />       
 </div>
-<p><span style="font-size: 16;">Dear </span><span style="font-size: 16;">Customer</span><span style="font-size: 16;">,</span></p>
+<p><span style="font-size: 16;">Dear </span><span style="font-size: 16;">{{$data[0]->customer_name}}</span><span style="font-size: 16;">,</span></p>
 <p><span style="font-size: 16;">If you select us as our paver installer, the following pages are a </span><em><span style="font-size: 16;">sample</span></em><span style="font-size: 16;"> of the paperwork that we will send out to you.</span></p>
 <p>&nbsp;</p>
 <p><strong>By </strong><strong><em>law</em></strong><strong>, as a contractor under NRS 108.245, two copies of these pages need to be mailed to you from us &ndash; </strong><strong><em>one via certified mail</em></strong><strong>, and the other via regular mail.</strong></p>
@@ -62,6 +81,7 @@
 <p><span style="font-size: 12;text-align:justify">Upon making payment on any completed phase of the project, and before making any further payments, require your contractor to provide you with making any further payments, require your contractor to provide you with unconditional &lsquo;waiver and release&rsquo; forms signed by each material supplier, subcontractor, and laborer involved in that portion of the work for which payment was made. The statutory lien releases are set forth in exact language in Section 3262 of the Civil Code. Most stationery stores will sell the &ldquo;Waivers and Release&rdquo; Forms if your contractor does not have them. The material suppliers, subcontracts and laborers that you obtain releases from are those persons or entities who have filed preliminary notices with you. If you are not certain of the material, suppliers, subcontractors, and laborers working on your project, you may obtain a list from your contractor. On projects involving improvements to a single family residence or duplex owned by individuals, the persons signing these releases lose the right to file a mechanics&rsquo; lien claim against your property. In other types of construction, this protection may still be important, but may not be as complete.</span></p>
 <p><br /><br /><br /><br /></p>
 <p><strong>CLIENT&rsquo;S SIGNATURE _____________________________ &nbsp; DATE ______________</strong></p>
+<p style="margin-left: 220px">{{$data[0]->customer_name}}</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -122,10 +142,10 @@
 <p style="font-size: 16;text-align:center;text-decoration: underline;"><strong>NOTICE OF RIGHT TO LIEN</strong></p>
 <p style="font-size: 16;text-align:center;"><span >(NRS &sect;108.245)</span></p>
 <p>&nbsp;</p>
-<p><span style="font-size: 12;">To:</span>&nbsp;&nbsp; <span style="font-size: 12;">9078 Camp Light Ave Las Vegas, NV 89149</span><span style="font-size: 12;">&nbsp;</span></p>
+<p><span style="font-size: 12;">To:</span>&nbsp;&nbsp; <span style="font-size: 12;">{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}}</span><span style="font-size: 12;">&nbsp;</span></p>
 <p><span style="font-size: 12;">The undersigned notifies you that they have supplied materials or performed work or services, as follows:</span></p>
-<p><span style="font-size: 12;">Materials and labor for the installation of concrete paving stones</span><span style="font-size: 12;"> with the anticipated value of </span><strong>$ </strong><strong>1,650.00</strong><span style="font-size: 12;"> for improvement of real property identified as </span><strong>9078 Camp Light Ave Las Vegas, NV 89149</strong><span style="font-size: 12;"> under contract with </span><strong>Sunny Landscaping &amp; Pavers Design LLC</strong><span style="font-size: 12;">. This is not a notice that the undersigned has not been or does not expect to be paid, but a notice required by law that the undersigned may, at a future date, claim a lien as provided by law against the property if the undersigned is not paid.</span></p>
-<p><span style="font-size: 12;">This </span><span style="font-size: 12;">5 th day of June, 2019</span></p>
+<p><span style="font-size: 12;">Materials and labor for the installation of concrete paving stones</span><span style="font-size: 12;"> with the anticipated value of </span><strong>$ </strong><strong>{{number_format($amount[0]->total,2)}}</strong><span style="font-size: 12;"> for improvement of real property identified as </span><strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}}</strong><span style="font-size: 12;"> under contract with </span><strong>Sunny Landscaping &amp; Pavers Design LLC</strong><span style="font-size: 12;">. This is not a notice that the undersigned has not been or does not expect to be paid, but a notice required by law that the undersigned may, at a future date, claim a lien as provided by law against the property if the undersigned is not paid.</span></p>
+<p><span style="font-size: 12;">This </span><span style="font-size: 12;">{{\Carbon\Carbon::parse($data[0]->contract_date)->format('jS \o\f F, Y') }}</span></p>
 <p><br /><br /></p>
 <p>&nbsp;</p>
 <p style="text-align: right"><span style="font-size: 12;">__________________________________</span></p>
@@ -134,9 +154,9 @@
 <p>&nbsp;</p>
 <p style="font-size: 12;text-align:center;text-decoration: underline;"><strong>Certificate of Delivery</strong></p>
 <p>&nbsp;</p>
-<p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I, Glaucia Alves, hereby certify that I have delivered this day, a true and correct copy of the forgoing to </span><strong>9078 Camp Light Ave, Las Vegas, NV 89149</strong><span style="font-size: 12;"> by mailing a true and correct copy of the same, by certified U.S. mail, postage prepaid, return receipt requested to Sunny Landscaping &amp; Pavers Design LLC.</span></p>
+<p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I, Glaucia Alves, hereby certify that I have delivered this day, a true and correct copy of the forgoing to </span><strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}}</strong><span style="font-size: 12;"> by mailing a true and correct copy of the same, by certified U.S. mail, postage prepaid, return receipt requested to Sunny Landscaping &amp; Pavers Design LLC.</span></p>
 <p><br /><br /><span style="font-size: 12;"><br /></span></p>
-<p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, certified this the </span><span style="font-size: 12;">5 th day of June, 2019</span></p>
+<p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, certified this the </span><span style="font-size: 12;">{{\Carbon\Carbon::parse($data[0]->contract_date)->format('jS \o\f F, Y') }}</span></p>
 <p style="text-align: right;margin: 0"><span style="font-size: 12;">__________________________________</span></p>
 <p style="text-align: right;margin: 0"><span style="font-size: 12;">&nbsp;</span> <span style="font-size: 12;">Glaucia Alves, Manager</span></p>
 <p style="text-align: right;font-size: 12;margin: 0"><span >NRS &sect;108.245</span></p>
