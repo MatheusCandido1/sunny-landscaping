@@ -31,6 +31,7 @@ Route::get('pdf/project_page/{service}','PdfController@generateFrontpage')->name
 Route::get('pdf/waiver/{visit}','PdfController@generateWaiver')->name('pdf.waiver');
 Route::get('pdf/estimate/{visit}','PdfController@generateEstimate')->name('pdf.estimate');
 Route::get('pdf/contract/{visit}','PdfController@generateContract')->name('pdf.contract');
+Route::get('pdf/changeorder/{changeorder}/visit/{visit}','PdfController@generateChangeOrder')->name('pdf.change');
 
 
 Route::put('approve/status/{service}/{visit}','ServiceController@approve')->name('services.approve');

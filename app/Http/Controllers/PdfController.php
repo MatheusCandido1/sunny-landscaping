@@ -126,6 +126,28 @@ class PdfController extends Controller
         }
     }
 
+    public function generateChangeOrder($change_id, $visit_id)
+    {
+        try{
+            $data = DB::table('change_orders')
+            ->selectRaw('change_orders.date as order_date, id, discount, original_contract_amount, change_order_amount, revised_contract_amount')
+            ->where('change_orders.id','=', $change_id)
+            ->first();
+
+            $customerData = DB::table('visits')
+            ->selectRaw('cities.name as city_name, customers.state,customers.zipcode,customers.name as customer_name, customers.address')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('cities', 'customers.city_id','=','cities.id')
+            ->where('visits.id','=', $visit_id)
+            ->get();
+
+            $pdf = PDF::loadView('pdfs.change', compact('data','customerData'));
+            return $pdf->setPaper('a4')->stream('change.pdf');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     public function generateQuote($service_id,$visit_id, $type) 
     {
         try{
