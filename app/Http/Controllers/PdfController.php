@@ -141,7 +141,15 @@ class PdfController extends Controller
             ->where('visits.id','=', $visit_id)
             ->get();
 
-            $pdf = PDF::loadView('pdfs.change', compact('data','customerData'));
+            $elementData = DB::table('elements')
+            ->selectRaw('elements.target, elements.description, elements.quantity, elements.type, elements.unit_price, elements.investment')
+            ->join('element_changeorder','element_changeorder.element_id','=','elements.id')
+            ->join('change_orders','change_orders.id','=','element_changeorder.changeorder_id')
+            ->where('change_orders.id', '=', $change_id)
+            ->get();
+
+
+            $pdf = PDF::loadView('pdfs.change', compact('data','customerData','elementData'));
             return $pdf->setPaper('a4')->stream('change.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

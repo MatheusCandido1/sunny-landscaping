@@ -124,7 +124,7 @@ border:none'>
 <h3 style="text-align: center; font-size: 18;"><span style="color: #595959;"><strong>CHANGE ORDER #{{$data->id}}&nbsp;</strong></span></h3>
 <div class="row">
   <div class="col-xs-6">
-    <p><span style="font-size: 12;">{{\Carbon\Carbon::parse($data->order_date)->format('m/d/yy')}} &nbsp;</span></p>
+    <p><span style="font-size: 12;">DATE: {{\Carbon\Carbon::parse($data->order_date)->format('m/d/yy')}} &nbsp;</span></p>
   </div>
   <div class="col-xs-6">
     <p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PROJECT: S19-0508  &nbsp;</span></p>
@@ -133,7 +133,9 @@ border:none'>
 <p><span style="font-size: 12;">NAME: {{$customerData[0]->customer_name}}&nbsp;</span></p>
 <p><span style="font-size: 12;">PROJECT ADDRESS: {{ $customerData[0]->address}} {{ $customerData[0]->city_name}}, {{ $customerData[0]->state}} {{ $customerData[0]->zipcode}}&nbsp;</span></p>
 <p><strong>CONTRACTOR SHOULD MODIFY: </strong></p>
-<p><span style="font-size: 12;">Add: $ 950.00 - 5 ton Apache Brown Minus @ $ 190.00/ton </span></p>
+@foreach($elementData as $element)
+<p><span style="font-size: 12;  line-height: 10px;">{{$element->target}}: {{ $element->investment == 0 ? '' : '$'.number_format($element->investment,2).'' }} {{ $element->quantity == 0 ? '' : '- '.$element->quantity.'' }} {{$element->type}} {{ $element->description }}{{ $element->unit_price == 0 ? '' : ' @ $ '.number_format($element->unit_price,2).'' }} {{ $element->type == "" ? '':'/'.$element->type.'' }} </span></p>
+@endforeach
 @if ($data->discount != 0)
 <p><span style="font-size: 12;">Add: (${{number_format($data->discount,2)}}) - Discount </span></p>
 @endif

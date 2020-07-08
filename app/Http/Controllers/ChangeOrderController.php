@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Visit;
 use App\ChangeOrder;
+use App\Element;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ChangeOrderController extends Controller
@@ -89,6 +90,18 @@ class ChangeOrderController extends Controller
                 'status' => 1,
                 'visit_id' => $request->visit_id
             ]); 
+
+            for ($i = 0; $i < count($request->input('id')); $i++) {
+                $element[$i] = new Element();
+                $element[$i]->target = $request->input('target')[$i];
+                $element[$i]->description = $request->input('description')[$i];
+                $element[$i]->quantity = $request->input('quantity')[$i];
+                $element[$i]->type = $request->input('type')[$i];
+                $element[$i]->unit_price = $request->input('unit_price')[$i];
+                $element[$i]->investment = $request->input('investment')[$i];
+                $element[$i]->save();
+                $changeOrder->elements()->attach($element[$i]);
+            } 
 
             toast('Change Order created with success!','success');
     

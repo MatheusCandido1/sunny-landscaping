@@ -135,12 +135,11 @@
   </div>
 <script type="text/javascript">
   var item = 0;
-
   function add(){
-    item++;
+      item++;
       var objTo = document.getElementById('item_rows')
       var divtest = document.createElement("tr");
-      divtest.innerHTML ='<td style="width: 15%"> <select onchange="findTotal()" name="target" id="'+item+'target" class="form-control"> <option value="add">Add</option> <option value="rm">Remove</option> <option value="mv">Edit</option> </select> </td> <td> <div class="input-group"> <input type="text" id="" value="" name="description[]" placeholder="Description" class="form-control" > </td> <td> <input type="number" id="'+item+'quantity" value="0" onchange="findTotal()" name="quantity[]" placeholder="Quantity" class="form-control" > </td> <td> <input type="text" id="type" value="" name="type[]" placeholder="Type" class="form-control" > </td> <td> <input type="number" id="'+item+'unit_price" value="0" onchange="findTotal()" name="unit_price[]" placeholder="Unit Price" class="form-control" > </td> <td> <input type="text" id="'+item+'investment" readonly value="" name="investment[]" placeholder="Investment" class="form-control" > </td> <td style="text-align: center;" scope="col"> <button onclick="deleteItem(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button> </td>';
+      divtest.innerHTML ='<td style="width: 15%"> <select onchange="findTotal()" name="target[]" id="'+item+'target" class="form-control"> <option value="Add">Add</option> <option value="Remove">Remove</option> <option value="Edit">Edit</option> </select> </td> <td> <div class="input-group"><input type="hidden" name="id[]" value="'+item+'"> <input type="text" id="" value="" name="description[]" placeholder="Description" class="form-control" > </td> <td> <input type="number" id="'+item+'quantity" value="0" onchange="findTotal()" name="quantity[]" placeholder="Quantity" class="form-control" > </td> <td> <input type="text" id="type" value="" name="type[]" placeholder="Type" class="form-control" > </td> <td> <input type="number" id="'+item+'unit_price" value="0" onchange="findTotal()" name="unit_price[]" placeholder="Unit Price" class="form-control" > </td> <td> <input type="text" id="'+item+'investment" readonly value="" name="investment[]" placeholder="Investment" class="form-control" > </td> <td style="text-align: center;" scope="col"> <button onclick="deleteItem(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button> </td>';
       objTo.appendChild(divtest)  
   }
 
@@ -156,7 +155,7 @@
     var value = document.getElementById(i+"unit_price").value;
     var qnt = document.getElementById(i+"quantity").value;
     var investment = parseFloat(value) * parseFloat(qnt);
-    if(document.getElementById(i+"target").value == "rm")
+    if(document.getElementById(i+"target").value == "Remove")
     investment = (investment * (-1))
     document.getElementById(i+"investment").value = investment.toFixed(2);
       }

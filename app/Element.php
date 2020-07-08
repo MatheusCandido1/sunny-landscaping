@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Element extends Model
 {
     protected $fillable = [
-        'target', 'supplier', 'description', 'quantity', 'type', 'unit_price', 'investment'
+        'target', 'description', 'quantity', 'type', 'unit_price', 'investment'
    ];
 
    public function changeorder()
