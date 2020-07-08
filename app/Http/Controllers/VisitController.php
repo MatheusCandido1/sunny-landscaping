@@ -88,7 +88,7 @@ class VisitController extends Controller
     public function details($id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
+            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, visits.contract_date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
             ->join('referrals', 'customers.referral_id','=','referrals.id')
@@ -153,6 +153,20 @@ class VisitController extends Controller
         }
         toast('Visit updated with success!','success');
         return redirect()->route('visits.visitsByCustomer',$visit->customer_id);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
+    public function updateInformation(Request $request, $id)
+    {
+        try{
+        $visit = Visit::where('id','=', $id)->first();
+        $visit->fill($request->only('invoice_number','contract_date'));
+        $visit->save();
+
+        toast('Informations added with success!','success');
+        return back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

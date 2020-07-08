@@ -36,6 +36,8 @@ Route::put('update/status/{service}/{visit}','ServiceController@updateStatus')->
 Route::post('create/quotes', 'QuoteController@store')->name('quotes.store');
 Route::put('update/{service}', 'QuoteController@update')->name('quotes.update');
 Route::put('update/{visit}', 'VisitController@update')->name('visits.update');
+Route::put('update/information/{visit}', 'VisitController@updateInformation')->name('visits.updateInformation');
+
 Route::put('edit/{visit}', 'VisitController@edit')->name('visits.edit');
 Route::put('edit/{customer}', 'CustomerController@edit')->name('customers.edit');
 Route::get('create/quote/{visit}', 'ServiceController@createQuote')->name('services.createQuote');

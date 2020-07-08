@@ -124,6 +124,12 @@ ul.timeline > li:before {
                             <a type="button" href="{{route('services.change')}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</a>
                         </div>
                     </div>
+                    <hr class="my-4">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a type="button" href=""  data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-block"><i class="fas fa-info-circle"></i> Informations </a>  
+                        </div>
+                    </div>
                       </p>
                     </div>
             </div>
@@ -169,4 +175,40 @@ ul.timeline > li:before {
     </div>
 </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Information for documents</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  method="POST" class="form-horizontal style-form" action="{{ route('visits.updateInformation', $data->visit_id) }}" > 
+                @csrf     
+                @method('PUT')
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="" for="inputFirstName">Invoice Number</label>
+                        <input name="invoice_number" class="form-control py-4" value="{{$data->invoice_number}}"  type="text" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="" for="inputLastName">Contract's Date</label>
+                            <input name="contract_date" class="form-control py-4" type="date" value="{{$data->contract_date}}" placeholder="" />
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

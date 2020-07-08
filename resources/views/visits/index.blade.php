@@ -33,7 +33,7 @@ flex: 1
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="text-align: center" scope="col">Date</th>
+                        <th style="text-align: center" scope="col">Visit's Date</th>
                         <th style="text-align: center" scope="col">Type</th>
                         <th style="text-align: center" scope="col">Information</th>
                         <th style="text-align: center" scope="col">Actions</th>
@@ -43,9 +43,9 @@ flex: 1
                 <tbody>
                   @foreach($visits as $visit)
                     <tr>
-                        <td >{{ \Carbon\Carbon::parse($visit->date)->format("m/d/Y")}}</td>
+                        <td style="text-align: center" >{{ \Carbon\Carbon::parse($visit->date)->format("m/d/Y")}}</td>
                         
-                    <td>@foreach($visit->types as $type) <span class="badge badge-pill badge-info">{{$type->name}}</span>@endforeach     </td>
+                    <td style="text-align: center">@foreach($visit->types as $type) <span class="badge badge-pill badge-info">{{$type->name}}</span>@endforeach     </td>
                         <td> 
                                             
                           <a type="button" href="{{ route('visits.details',$visit->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
@@ -65,10 +65,6 @@ flex: 1
             </table>
             
         </div><br>
-        <div class="btn-group special" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary"><i class="fas fa-print"></i> Print all proposals</button>  
-          <button type="button" class="btn btn-success"><i class="fas fa-envelope"></i> Send all proposals to customer</button>                         
-        </div>
     </div>
 </div>
 </div>

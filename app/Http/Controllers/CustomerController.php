@@ -153,6 +153,7 @@ class CustomerController extends Controller
                 toast('Pleasy try again!','error');
             }
     }
+    
 
     /**
      * Remove the specified resource from storage.
