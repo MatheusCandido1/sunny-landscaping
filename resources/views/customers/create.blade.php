@@ -135,6 +135,52 @@
                 </div>
             </div>
         </div>
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="form-group">
+                <label class="" for="inputFirstName">Company</label>
+                <br>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" value="1" onchange='checkvalue(this.value)' class="form-check-input" name="company">Yes
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" checked value="0" onchange='checkvalue(this.value)' class="form-check-input" name="company">No
+                    </label>
+                  </div>
+            </div>
+        </div>
+      </div>
+      <div id="company" style="display:none">
+        <div class="form-row">
+        <div class="col-md-4">
+          <div class="form-group">
+              <label class="" for="inputLastName">Address</label>
+              <input name="address" class="form-control" type="text" placeholder="" />
+          </div>
+      </div>
+    <div class="col-md-4">
+        <label class="" for="inputFirstName">City / State</label>
+        <div class="input-group mb-3">
+            <select required class="form-control" name="city_id" id="">
+                <option value="">Select...</option>
+                @foreach ($cities as $city)
+              <option value="{{$city->id}}">{{$city->name}}</option>
+                @endforeach
+              </select>      
+              <input type="text" name="state" class="form-control" readonly value="Nevada">
+          </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="" for="inputLastName">Zip Code</label>
+            <input name="zipcode" class="form-control " id="inputLastName" type="text" placeholder="" />
+        </div>
+    </div>
+    </div>
+      </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
       </form>
         </div>
@@ -142,4 +188,15 @@
     </div>
     </div>
 </div>
+@section('script')
+<script type="text/javascript">
+   function checkvalue(val)
+{
+    if(val==="1")
+       document.getElementById('company').style.display='block';
+    else
+       document.getElementById('company').style.display='none'; 
+}
+</script>
+@endsection
 @endsection

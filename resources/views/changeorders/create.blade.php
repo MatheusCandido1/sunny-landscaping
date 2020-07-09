@@ -74,7 +74,7 @@
           <td >Change Order Amount</td>
           <td style="text-align: right"  scope="col" >
               <input type="text"  required name="change_order_amount"   id="total"  readonly   class="form-control" placeholder="Total">
-              <input type="hidden"  required name="revised_contract_amount"   id="revised">
+              <input type="text"  required name="revised_contract_amount"   id="revised">
 
             </td>
         </tr>
@@ -172,8 +172,8 @@
   }
 
   function getRevised(){
-    var revised =  ((document.getElementById('original').value) - (document.getElementById('total').value));
-    document.getElementById('revised').value = revised.toFixed(2)
+    var new_value =  ((document.getElementById('original').value) + (document.getElementById('total').value));
+    document.getElementById('revised').value = new_value.toFixed(2);
   }
 
 
