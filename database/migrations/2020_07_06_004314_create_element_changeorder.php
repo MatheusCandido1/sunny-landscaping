@@ -16,7 +16,7 @@ class CreateElementChangeorder extends Migration
         Schema::create('element_changeorder', function (Blueprint $table) {
             $table->integer('changeorder_id')->unsigned();
             $table->integer('element_id')->unsigned();
-            $table->foreign('changeorder_id')->references('id')->on('changeorders')->onDelete('cascade');
+            $table->foreign('changeorder_id')->references('id')->on('change_orders')->onDelete('cascade');
             $table->foreign('element_id')->references('id')->on('elements')->onDelete('cascade');
             $table->timestamps();
         });

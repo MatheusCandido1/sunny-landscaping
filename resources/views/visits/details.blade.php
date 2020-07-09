@@ -101,27 +101,46 @@ ul.timeline > li:before {
                       <p class="lead">
                           <div class="row">
                             <div class="col-lg-4 text-center">
-                            <a target="_blank" type="button" href="{{route('pdf.front', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Project Front Page</a>  
+                           
+                            <a target="_blank" type="button" href="{{route('pdf.front', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Project Front Page</a> 
                             </div>
                         <div class="col-lg-4 text-center">
-                            <a target="_blank" type="button" href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</a>  
-
+                           @if($allow == null)
+                           <button type="button"  href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Unconditional Waiver and Release</button>    
+                           @else
+                           <a target="_blank" type="button"  href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</a>    
+                           @endif
                         </div>
                         <div class="col-lg-4 text-center">
+                            @if($allow == null)
+                            <button  type="button" href="{{route('pdf.estimate', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Estimate Request</button>  
+                            @else
                             <a target="_blank" type="button" href="{{route('pdf.estimate', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Estimate Request</a>  
-
+                            @endif
                         </div>
                     </div>
                     <hr class="my-4">
                     <div class="row">
                         <div class="col-lg-4 text-center">
-                            <a target="_blank" type="button" href="{{route('pdf.nevadacontract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Nevada State Contract</a>  
-                        </div>
+                            @if($allow == null)
+                            <button type="button"  href="{{route('pdf.nevadacontract', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Nevada State Contract</button>  
+                            @else
+                            <a target="_blank" type="button"  href="{{route('pdf.nevadacontract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Nevada State Contract</a>  
+                            @endif
+                            </div>
                         <div class="col-lg-4 text-center">
+                            @if($allow == null)
+                            <button target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Sunny Contract</button>  
+                            @else 
                             <a target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Sunny Contract</a>  
+                            @endif
                         </div>
                         <div class="col-lg-4 text-center">
+                            @if($allow == null)
+                            <button type="button" href="{{route('changeorders.changes', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Change Order</button>
+                            @else 
                             <a type="button" href="{{route('changeorders.changes', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</a>
+                            @endif
                         </div>
                     </div>
                     <hr class="my-4">

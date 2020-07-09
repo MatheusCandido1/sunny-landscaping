@@ -28,6 +28,9 @@ class VisitController extends Controller
     public function visitsByCustomer($id){
         try {
             $visits = Visit::with('customers','types')->where('customer_id','=',$id)->get();
+
+
+
             return view('visits.index', ['customer' => $id, 'visits' => $visits,'types' => Type::all()]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -101,9 +104,18 @@ class VisitController extends Controller
             ->where('notes.visit_id','=',$id)
             ->orderBy('created_at','ASC')
             ->get();
+
+
+            $quoteStatus = DB::table('services')
+            ->selectRaw('services.status')
+            ->join('visits','visits.id','=','services.visit_id')
+            ->where('services.status','=',1)
+            ->where('visits.id', '=', $id)
+            ->first();
+            
+            //dd($quoteStatus);
     
-                $check = false;
-                return view('visits.details', ['data' => $data[0], 'quote_info' => $check, 'notes' => $note]);
+            return view('visits.details', ['allow'=>$quoteStatus,'data' => $data[0],  'notes' => $note]);
             }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
