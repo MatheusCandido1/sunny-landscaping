@@ -73,7 +73,7 @@
                       <option value="{{$city->id}}">{{$city->name}}</option>
                         @endforeach
                       </select>      
-                      <input type="text" name="state" class="form-control" readonly value="Nevada">
+                      <input type="text" name="state" class="form-control"  value="Nevada">
                   </div>
             </div>
             <div class="col-md-4">
@@ -155,30 +155,36 @@
       </div>
       <div id="company" style="display:none">
         <div class="form-row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="form-group">
-              <label class="" for="inputLastName">Address</label>
-              <input name="address" class="form-control" type="text" placeholder="" />
+              <label class="" for="inputLastName">Company's Address</label>
+              <input name="company_address" class="form-control" type="text" placeholder="" />
           </div>
       </div>
-    <div class="col-md-4">
-        <label class="" for="inputFirstName">City / State</label>
+    <div class="col-md-6">
+        <label class="" for="inputFirstName">Company's City / Company's State</label>
         <div class="input-group mb-3">
-            <select required class="form-control" name="city_id" id="">
+            <select class="form-control" name="company_city" id="">
                 <option value="">Select...</option>
                 @foreach ($cities as $city)
-              <option value="{{$city->id}}">{{$city->name}}</option>
+              <option value="{{$city->name}}">{{$city->name}}</option>
                 @endforeach
               </select>      
-              <input type="text" name="state" class="form-control" readonly value="Nevada">
+              <input type="text" name="company_state" class="form-control"  value="Nevada">
           </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group">
-            <label class="" for="inputLastName">Zip Code</label>
-            <input name="zipcode" class="form-control " id="inputLastName" type="text" placeholder="" />
+            <label class="" for="inputLastName">Company's Zip Code</label>
+            <input name="company_zipcode" class="form-control " id="inputLastName" type="text" placeholder="" />
         </div>
     </div>
+    <div class="col-md-6">
+      <div class="form-group">
+          <label class="" for="inputLastName">Company's name</label>
+          <input name="company_name" class="form-control " id="inputLastName" type="text" placeholder="" />
+      </div>
+  </div>
     </div>
       </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   

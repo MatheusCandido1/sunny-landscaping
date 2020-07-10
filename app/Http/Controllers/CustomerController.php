@@ -81,7 +81,13 @@ class CustomerController extends Controller
             'referral_id' => $data['referral_id'],
             'city_id' => $data['city_id'],
             'seller_id' => $data['seller_id'],
-            'cellphone' => $cellphone
+            'cellphone' => $cellphone,
+            'company' => $data['company'],
+            'company_name' => $data['company_name'],
+            'company_address' => $data['company_address'],
+            'company_state' => $data['company_state'],
+            'company_city' => $data['company_city'],
+            'company_zipcode' => $data['company_zipcode']
         ]);
 
         $customer->save();
@@ -127,7 +133,7 @@ class CustomerController extends Controller
     public function edit($id)
     {
         try{
-            $customer = DB::table('customers')->select('id','gender','name','address','cross_street1','cross_street2','parcel_number','gate_code','city_id', 'seller_id','state','zipcode','phone','cellphone','email','referral_id','seller_id')->where('customers.id','=',$id)->first();
+            $customer = DB::table('customers')->select('id','gender','name','address','cross_street1','cross_street2','parcel_number','gate_code','city_id','state','zipcode','phone','cellphone','email','company','company_name','company_address','company_state','company_zipcode','company_city','referral_id','seller_id')->where('customers.id','=',$id)->first();
             return view('customers.edit', ['customer' => $customer,'referrals' => Referral::all(),'cities' => City::all(),'sellers' => Seller::all()]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
