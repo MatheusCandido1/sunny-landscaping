@@ -141,6 +141,58 @@
                       </select>
                 </div>
             </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                      <label class="" for="inputFirstName">Company</label>
+                      <br>
+                      <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="radio" {{ $customer->company == 1 ? 'checked' : ''}} value="1" onchange='checkvalue(this.value)' class="form-check-input" name="company">Yes
+                          </label>
+                        </div>
+                        <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="radio" {{ $customer->company == 0 ? 'checked' : ''}}  value="0" onchange='checkvalue(this.value)' class="form-check-input" name="company">No
+                          </label>
+                        </div>
+                  </div>
+              </div>
+            </div>
+            <div id="company" style="display: {{ $customer->company == 1 ? 'block' : 'none'}}">
+                <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label class="" for="inputLastName">Company's Address</label>
+                      <input name="company_address" class="form-control" type="text" value="{{$customer->company_address}}" placeholder="" />
+                  </div>
+              </div>
+            <div class="col-md-6">
+                <label class="" for="inputFirstName">Company's City / Company's State</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" name="company_city" id="">
+                        <option value="">Select...</option>
+                        @foreach ($cities as $city)
+                      <option {{ $customer->company_city == $city->name ? 'selected' : ''}}  value="{{$city->name}}">{{$city->name}}</option>
+                        @endforeach
+                      </select>      
+                      <input type="text" name="company_state" class="form-control"  value="{{$customer->company_state}}">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="" for="inputLastName">Company's Zip Code</label>
+                    <input name="company_zipcode" value="{{$customer->company_zipcode}}" class="form-control " id="inputLastName" type="text" placeholder="" />
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label class="" for="inputLastName">Company's name</label>
+                  <input name="company_name" class="form-control" value="{{$customer->company_name}}" id="inputLastName" type="text" placeholder="" />
+              </div>
+          </div>
+            </div>
+              </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
       </form>
@@ -158,6 +210,14 @@ function check(){
     else{
     document.getElementById("cellphone").value = '0'
     }
+}
+
+function checkvalue(val)
+{
+    if(val==="1")
+       document.getElementById('company').style.display='block';
+    else
+       document.getElementById('company').style.display='none'; 
 }
 </script>
 @endsection
