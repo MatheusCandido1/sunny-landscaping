@@ -123,16 +123,23 @@ border:none'>
 <p class=MsoNormal align=right style='font-size:12;margin-bottom:12.0pt;text-align:right;
 border:none'><span >{{ \Carbon\Carbon::now()->format('F d, Y')}} </span></p>
 <br><br>
-
+@if ($data[0]->company == 1)
+<p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
+  style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_name}}</span></b></p>
+  <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
+    style='font-size:12.0pt;line-height:120%;'>{{$data[0]->name}}</span></b></p>
+  <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
+    style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_address}}</span></p>
+<p class=MsoNormal style='ffont-size:12;ont-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
+  style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_city}},{{$data[0]->company_state}} - {{$data[0]->company_zipcode}}</span></p>
+  @else
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
 style='font-size:12.0pt;line-height:120%;'>{{$data[0]->name}}</span></b></p>
-
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
 style='font-size:12.0pt;line-height:120%;'>{{$data[0]->address}}</span></p>
-
 <p class=MsoNormal style='ffont-size:12;ont-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
 style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}} - {{$data[0]->zipcode}}</span></p>
-
+@endif
 <p class=MsoNormal style='margin-bottom:24.0pt;border:none'>
 @if($data[0]->cellphone == 1)
 <span style='font-size:12.0pt;line-height:120%;'>Cellphone: {{$data[0]->phone}}</span></p>
