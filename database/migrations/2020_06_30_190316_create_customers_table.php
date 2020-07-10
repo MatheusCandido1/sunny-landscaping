@@ -33,12 +33,12 @@ class CreateCustomersTable extends Migration
             $table->string('company_state')->nullable();
             $table->string('company_city')->nullable();
             $table->string('company_zipcode')->nullable();
-            $table->integer('referral_id')->unsigned();
-            $table->foreign('referral_id')->references('id')->on('referrals')->onDelete('cascade');
-            $table->integer('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
-            $table->integer('seller_id')->unsigned();
-            $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('cascade');
+            $table->integer('referral_id')->unsigned()->nullable();
+            $table->foreign('referral_id')->references('id')->on('referrals')->onDelete('set null');
+            $table->integer('city_id')->unsigned()->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');
+            $table->integer('seller_id')->unsigned()->nullable();
+            $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('set null');
             $table->timestamps();
         });
     }

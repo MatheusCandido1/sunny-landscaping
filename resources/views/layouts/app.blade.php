@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Sunny Pavers - Management System') }}</title>
+    <title>Sunny Pavers - Management System</title>
 
     
     <!-- Scripts  <script src="{{ asset('js/app.js') }}" ></script>-->
