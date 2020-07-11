@@ -10,6 +10,8 @@
   @csrf
   @method('PUT')
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
+  <input type="hidden" name="customer_id" value="{{$customer_id}}"/>
+
   <div class="container-fluid">
   <h1 class="mt-4">Edit Quote {{$service_id}}</h1>
 

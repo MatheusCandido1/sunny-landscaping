@@ -67,7 +67,7 @@ class QuoteController extends Controller
         } 
         toast('Quote created with success!','success');
 
-        return redirect()->route('services.servicesByVisit',$request->visit_id);
+        return redirect()->route('services.servicesByVisit',['visit' => $request->visit_id, 'customer' => $request->customer_id]);
     }catch (Throwable $e) {
         toast('Pleasy try again!','error');
     }
@@ -132,7 +132,7 @@ class QuoteController extends Controller
 
         toast('Quote updated with success!','success');
 
-        return redirect()->route('services.servicesByVisit',$request->visit_id);
+        return redirect()->route('services.servicesByVisit',['visit' => $request->visit_id, 'customer' => $request->customer_id]);
     }catch (Throwable $e) {
         toast('Pleasy try again!','error');
     }

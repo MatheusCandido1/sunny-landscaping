@@ -22,10 +22,10 @@ class ChangeOrderController extends Controller
         //
     }
 
-    public function changeOrderByVisit($id){
+    public function changeOrderByVisit($visit_id, $customer_id){
         try {
-            $changeorders = ChangeOrder::where('visit_id','=',$id)->orderBy('created_at','asc')->get();
-            return view('changeorders.index', ['changeorders' => $changeorders ,'visit_id' => $id]);
+            $changeorders = ChangeOrder::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
+            return view('changeorders.index', ['changeorders' => $changeorders ,'visit' => $visit_id, 'customer' => $customer_id]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

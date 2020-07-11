@@ -4,9 +4,10 @@
 <form  method="POST" class="form-horizontal style-form" action="{{ route('quotes.store') }}" >
   @csrf
   <input type="hidden" name="visit_id" value="{{$visit_id}}"/>
+  
+  <input type="hidden" name="customer_id" value="{{$customer_id}}"/>
   <div class="container-fluid">
   <h1 class="mt-4">New Quote</h1>
-
   <div class="row">
   <div class="col-lg-12">
   <div class="card mb-4">

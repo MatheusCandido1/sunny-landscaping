@@ -11,7 +11,10 @@ flex: 1
 }
 </style>
 <div class="container-fluid">
+
 <h1 class="mt-4">Visits</h1>
+
+{{ Breadcrumbs::render('visits', $customer) }}
 <div class="card mb-4">
 <div class="card-header">Here you can see all visits!
     <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">

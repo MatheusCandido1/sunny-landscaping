@@ -45,7 +45,10 @@ ul.timeline > li:before {
 }
 </style>
         <div class="container-fluid">
-            <h1 class="mt-4">Information</h1>
+            <h1 class="mt-4">Details</h1>
+
+            <br>{{ Breadcrumbs::render('details', $data->customer_id, $data->visit_id ) }}
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-4">
@@ -114,7 +117,7 @@ ul.timeline > li:before {
                 <!--/col-->
             </div>
             <div class="btn-group special" role="group" aria-label="Basic example">
-                <a href="{{ route('services.servicesByVisit', $data->visit_id) }}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Manage Quotes</a>                
+                <a href="{{ route('services.servicesByVisit',['visit' => $data->visit_id, 'customer' => $data->customer_id])}}" type="button" class="btn btn-success"><i class="fas fa-list-ul"></i> Manage Quotes</a>                
               </div> 
             </div>
         </div>
@@ -135,14 +138,14 @@ ul.timeline > li:before {
                             </div>
                         <div class="col-lg-4 text-center">
                            @if($allow == null)
-                           <button type="button"  href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Unconditional Waiver and Release</button>    
+                           <button type="button"  href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Unconditional Waiver and Release</button>    
                            @else
                            <a target="_blank" type="button"  href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</a>    
                            @endif
                         </div>
                         <div class="col-lg-4 text-center">
                             @if($allow == null)
-                            <button  type="button" href="{{route('pdf.estimate', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Estimate Request</button>  
+                            <button  type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Estimate Request</button>  
                             @else
                             <a target="_blank" type="button" href="{{route('pdf.estimate', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Estimate Request</a>  
                             @endif
@@ -152,23 +155,23 @@ ul.timeline > li:before {
                     <div class="row">
                         <div class="col-lg-4 text-center">
                             @if($allow == null)
-                            <button type="button"  href="{{route('pdf.nevadacontract', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Nevada State Contract</button>  
+                            <button type="button"  href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Nevada State Contract</button>  
                             @else
                             <a target="_blank" type="button"  href="{{route('pdf.nevadacontract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Nevada State Contract</a>  
                             @endif
                             </div>
                         <div class="col-lg-4 text-center">
                             @if($allow == null)
-                            <button target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Sunny Contract</button>  
+                            <button target="_blank" type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Sunny Contract</button>  
                             @else 
                             <a target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Sunny Contract</a>  
                             @endif
                         </div>
                         <div class="col-lg-4 text-center">
                             @if($allow == null)
-                            <button type="button" href="{{route('changeorders.changes', $data->visit_id)}}" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Change Order</button>
+                            <button type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Change Order</button>
                             @else 
-                            <a type="button" href="{{route('changeorders.changes', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</a>
+                            <a type="button" href="{{route('changeorders.changes', ['visit' => $data->visit_id, 'customer' => $data->customer_id])}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</a>
                             @endif
                         </div>
                     </div>

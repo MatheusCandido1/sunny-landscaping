@@ -3,6 +3,8 @@
 @section('content')
 <div class="container-fluid">
 <h1 class="mt-4">Customers</h1>
+<br>{{ Breadcrumbs::render('customers') }}
+
 <div class="card mb-4">
     <div class="card-header">All your customers are here!
       <a href="{{ route('customers.create') }}" class="btn btn-primary float-right btn-sm">

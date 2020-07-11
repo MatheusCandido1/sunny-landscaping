@@ -29,9 +29,7 @@ class VisitController extends Controller
     public function visitsByCustomer($id){
         try {
             $visits = Visit::with('customers','types')->where('customer_id','=',$id)->get();
-
-
-
+            
             return view('visits.index', ['customer' => $id, 'visits' => $visits,'types' => Type::all()]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -93,7 +91,7 @@ class VisitController extends Controller
     public function details($id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, statuses.id as visits_status, statuses.name as status_name, visits.contract_date, visits.call_customer_in, visits.hoa, visits.project_name, visits.water_smart_rebate, visits.id as visit_id')
+            ->selectRaw('customers.id as customer_id, referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, statuses.id as visits_status, statuses.name as status_name, visits.contract_date, visits.call_customer_in, visits.hoa, visits.project_name, visits.water_smart_rebate, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
             ->join('statuses', 'visits.status_id','=','statuses.id')
@@ -192,7 +190,7 @@ class VisitController extends Controller
             $visit = Visit::where('id','=', $visit_id)->first();
             $visit->status_id = $status_id;
             $visit->save();
-            alert()->success('Visit','Status updated with success');
+            alert()->success('Visit updated!','Status updated with success');
             return redirect()->back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

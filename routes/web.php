@@ -16,12 +16,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group( function () {
 
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('customer/{customer}/visits', 'VisitController@visitsByCustomer')->name('visits.visitsByCustomer');
 Route::get('visit/{visit}', 'VisitController@details')->name('visits.details');
-Route::get('service/visit/{visit}', 'ServiceController@servicesByVisit')->name('services.servicesByVisit');
+Route::get('service/visit/{visit}/customer/{customer}', 'ServiceController@servicesByVisit')->name('services.servicesByVisit');
 
 
 // PDFs Routes
@@ -48,11 +48,11 @@ Route::put('visit/{visit}/status/{status}', 'VisitController@updateStatus')->nam
 
 
 Route::put('edit/{customer}', 'CustomerController@edit')->name('customers.edit');
-Route::get('create/quote/{visit}', 'ServiceController@createQuote')->name('services.createQuote');
-Route::get('edit/quote/{visit}/{service}', 'ServiceController@editQuote')->name('services.editQuote');
+Route::get('create/quote/{visit}/customer/{customer}', 'ServiceController@createQuote')->name('services.createQuote');
+Route::get('edit/quote/visit/{visit}/service/{service}/customer/{customer}', 'ServiceController@editQuote')->name('services.editQuote');
 Route::get('duplicate/service/{service}', 'ServiceController@duplicateQuote')->name('services.duplicateQuote');
 
-Route::get('changeorder/visit/{visit}', 'ChangeOrderController@changeOrderByVisit')->name('changeorders.changes');
+Route::get('changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderController@changeOrderByVisit')->name('changeorders.changes');
 Route::get('create/changeorder/{visit}', 'ChangeOrderController@createChangeOrder')->name('changeorders.createChange');
 
 
