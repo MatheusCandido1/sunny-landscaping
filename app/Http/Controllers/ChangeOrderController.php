@@ -150,8 +150,22 @@ class ChangeOrderController extends Controller
      * @param  \App\ChangeOrder  $changeOrder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ChangeOrder $changeOrder)
+    public function destroy(ChangeOrder $changeorder)
     {
-        //
+        try{
+
+            $changeorder = ChangeOrder::where('id','=', $changeorder->id)->first();
+            $elements = $changeorder->elements()->select('id')->get();
+            
+            for($i = 0; $i < $elements->count(); $i++){
+               Element::where('id','=', $elements[$i]->id)->delete();
+            }
+            $changeorder->delete();
+            
+            toast('Change order deleted with success!','success');
+            return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 }

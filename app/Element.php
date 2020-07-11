@@ -12,6 +12,6 @@ class Element extends Model
 
    public function changeorder()
    {
-       return $this->belongsToMany('App\ChangeOrder','element_changeorder',  'changeorder_id', 'element_id')->withTimestamps();
+       return $this->belongsToMany('App\ChangeOrder','element_changeorder', 'changeorder_id', 'element_id')->withTimestamps();
    }
 }
