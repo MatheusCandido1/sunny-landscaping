@@ -13,19 +13,11 @@ flex: 1
 <div class="container-fluid">
 <h1 class="mt-4">Visits</h1>
 <div class="card mb-4">
-  @if(empty($visits))
 <div class="card-header">Here you can see all visits!
-      <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">
-        New Visit
-    </button>
-  </div>
-  @else
-<div class="card-header">Here you can see all customer's visits!
     <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">
       New Visit
   </button>
 </div>
-@endif
     <div class="card-body">
 
         <div class="table-responsive">

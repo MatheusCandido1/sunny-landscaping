@@ -46,6 +46,35 @@ ul.timeline > li:before {
 </style>
         <div class="container-fluid">
             <h1 class="mt-4">Information</h1>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-header"><i class="fas fa-compass"></i> Project Status: {{$data->status_name}} </div>
+                        <div class="card-body">
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group mr-5" role="group">
+                        @foreach($statuses->slice(0,6) as $status)
+                    <a href="" type="button" class="btn btn-{{$data->visits_status == $status->id ? 'success':'secondary'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-{{$status->id}}').submit(); }">{{$status->name}}</a>
+                    <form id="update-form-{{$status->id}}" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>$status->id]) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('PUT')
+                    </form>
+                    @endforeach
+                    </div>
+                        
+                    <div class="btn-group " role="group">
+                        <a href="" type="button" class="btn btn-{{$data->visits_status == 7 ? 'danger':'link'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-7').submit(); }">Project Declined</a>
+                        <form id="update-form-7" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>7]) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('PUT')
+                        </form>
+                    </div>
+                </div>
+                </div>
+                    </div>
+                </div>
+             </div>
+             <br>
   <div class="row">
     <div class="col-lg-6">
         <div class="card mb-4">
@@ -208,16 +237,22 @@ ul.timeline > li:before {
                 @csrf     
                 @method('PUT')
                 <div class="form-row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="" for="inputFirstName">Invoice Number</label>
                         <input name="invoice_number" class="form-control py-4" value="{{$data->invoice_number}}"  type="text" placeholder="" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="" for="inputLastName">Contract's Date</label>
                             <input name="contract_date" class="form-control py-4" type="date" value="{{$data->contract_date}}" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="" for="inputLastName">Project's Name</label>
+                            <input name="project_name" class="form-control py-4" type="text" value="{{$data->project_name}}" placeholder="" />
                         </div>
                     </div>
                 </div>
@@ -230,4 +265,9 @@ ul.timeline > li:before {
       </div>
     </div>
   </div>
+  @section('script')
+<script type="text/javascript">
+
+</script>
+@endsection
 @endsection

@@ -40,10 +40,13 @@ Route::put('disapprove/status/{service}/{visit}','ServiceController@disapprove')
 
 Route::post('create/quotes', 'QuoteController@store')->name('quotes.store');
 Route::put('update/{service}', 'QuoteController@update')->name('quotes.update');
+
 Route::put('update/{visit}', 'VisitController@update')->name('visits.update');
 Route::put('update/information/{visit}', 'VisitController@updateInformation')->name('visits.updateInformation');
-
 Route::put('edit/{visit}', 'VisitController@edit')->name('visits.edit');
+Route::put('visit/{visit}/status/{status}', 'VisitController@updateStatus')->name('visits.updateStatus');
+
+
 Route::put('edit/{customer}', 'CustomerController@edit')->name('customers.edit');
 Route::get('create/quote/{visit}', 'ServiceController@createQuote')->name('services.createQuote');
 Route::get('edit/quote/{visit}/{service}', 'ServiceController@editQuote')->name('services.editQuote');

@@ -6,6 +6,7 @@ use App;
 use App\Visit;
 use App\Type;
 use App\Customer;
+use App\Status;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
@@ -61,7 +62,8 @@ class VisitController extends Controller
             'call_customer_in' => $request->call_customer_in,
             'hoa' => $request->hoa,
             'water_smart_rebate' => $request->water_smart_rebate,
-            'customer_id' => $request->customer_id
+            'customer_id' => $request->customer_id,
+            'status_id' => 1
         ]);
 
         for($i = 0; $i < count($request->type); $i++){
@@ -91,9 +93,10 @@ class VisitController extends Controller
     public function details($id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, visits.contract_date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
+            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, statuses.id as visits_status, statuses.name as status_name, visits.contract_date, visits.call_customer_in, visits.hoa, visits.project_name, visits.water_smart_rebate, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
+            ->join('statuses', 'visits.status_id','=','statuses.id')
             ->join('referrals', 'customers.referral_id','=','referrals.id')
             ->where('visits.id','=', $id)
             ->get();
@@ -113,9 +116,8 @@ class VisitController extends Controller
             ->where('visits.id', '=', $id)
             ->first();
             
-            //dd($quoteStatus);
     
-            return view('visits.details', ['allow'=>$quoteStatus,'data' => $data[0],  'notes' => $note]);
+            return view('visits.details', ['allow'=>$quoteStatus,'data' => $data[0],  'notes' => $note, 'statuses' => Status::all()]);
             }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -174,11 +176,24 @@ class VisitController extends Controller
     {
         try{
         $visit = Visit::where('id','=', $id)->first();
-        $visit->fill($request->only('invoice_number','contract_date'));
+        $visit->fill($request->only('invoice_number','contract_date','project_name'));
         $visit->save();
 
         toast('Informations added with success!','success');
         return back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
+    public function updateStatus(Request $request, $visit_id, $status_id)
+    {
+        try{
+            $visit = Visit::where('id','=', $visit_id)->first();
+            $visit->status_id = $status_id;
+            $visit->save();
+            alert()->success('Visit','Status updated with success');
+            return redirect()->back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
