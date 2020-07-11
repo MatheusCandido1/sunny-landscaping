@@ -29,8 +29,8 @@ class VisitController extends Controller
     public function visitsByCustomer($id){
         try {
             $visits = Visit::with('customers','types')->where('customer_id','=',$id)->get();
-            
-            return view('visits.index', ['customer' => $id, 'visits' => $visits,'types' => Type::all()]);
+            $customer = Customer::where('customers.id','=',$id)->first();
+            return view('visits.index', ['customer' => $customer, 'visits' => $visits,'types' => Type::all()]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
 

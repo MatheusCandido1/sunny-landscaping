@@ -16,7 +16,7 @@ flex: 1
 
 {{ Breadcrumbs::render('visits', $customer) }}
 <div class="card mb-4">
-<div class="card-header">Here you can see all visits!
+<div class="card-header">Here you can see all {{$customer->name}}'s visits!
     <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right btn-sm">
       New Visit
   </button>
@@ -134,7 +134,7 @@ flex: 1
                     @endforeach
                   </select>
             </div>
-          <input  name="customer_id" value="{{$customer[0]}}" class="form-control" type="hidden"  placeholder="" />
+          <input  name="customer_id" value="{{$customer->id}}" class="form-control" type="hidden"  placeholder="" />
         </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save changes</button>   

@@ -3,8 +3,8 @@
 @section('content')
 <form  method="POST" class="form-horizontal style-form" action="{{route('changeorders.store')}}" >
   @csrf
-  <input type="hidden" readonly name="visit_id" value="{{$visit_id}}"/>
-  <input type="hidden" readonly id="original" name="original_contract_amount" value="{{$amount[0]->total}}"/>
+  <input type="hidden" readonly name="visit_id" value="{{$visit}}"/>
+  <input type="hidden" readonly name="customer_id" value="{{$customer}}"/>
   <div class="container-fluid">
   <h1 class="mt-4">Change Order<a type="button" href=""  data-toggle="modal" data-target="#exampleModal" class="btn btn-success float-right btn-sm">
     See Quote(s) Details
@@ -74,7 +74,8 @@
           <td >Change Order Amount</td>
           <td style="text-align: right"  scope="col" >
               <input type="text"  required name="change_order_amount"   id="total"  readonly   class="form-control" placeholder="Total">
-              <input type="text"  required name="revised_contract_amount"   id="revised">
+              <input type="hidden"  required name="revised_contract_amount"   id="revised">
+              <input type="hidden" readonly id="original" name="original_contract_amount" value="{{$amount[0]->total}}"/>
 
             </td>
         </tr>
@@ -165,15 +166,14 @@
   }
 
   function getDiscount(){
-    var new_total = (document.getElementById('totalWithout').value) - (document.getElementById('discount').value);
-    document.getElementById('total').value = new_total.toFixed(2);
+    var new_total = parseFloat(document.getElementById('totalWithout').value) - parseFloat(document.getElementById('discount').value);
+    document.getElementById('total').value = parseFloat(new_total.toFixed(2));
     getRevised();
-    
   }
 
   function getRevised(){
-    var new_value =  ((document.getElementById('original').value) + (document.getElementById('total').value));
-    document.getElementById('revised').value = new_value.toFixed(2);
+    var revised =  parseFloat(document.getElementById('original').value) + parseFloat(document.getElementById('total').value);
+    document.getElementById('revised').value = parseFloat(revised).toFixed(2);
   }
 
 
@@ -184,7 +184,7 @@
         total += Number(document.getElementById(i+"investment").value);
         }
       }
-      document.getElementById('totalWithout').value = total.toFixed(2);
+      document.getElementById('totalWithout').value = parseFloat(total.toFixed(2));
   }
 </script>
 @endsection

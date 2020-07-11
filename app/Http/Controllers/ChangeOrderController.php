@@ -45,7 +45,7 @@ class ChangeOrderController extends Controller
              }
     }
 
-    public function createChangeOrder($id){
+    public function createChangeOrder($visit_id, $customer_id){
         try{
 
             $itemData = DB::table('items')
@@ -53,7 +53,7 @@ class ChangeOrderController extends Controller
             ->join('item_service','item_service.item_id','=','items.id')
             ->join('services','services.id','=','item_service.service_id')
             ->join('visits','visits.id','=','services.visit_id')
-            ->where('visits.id', '=', $id) 
+            ->where('visits.id', '=', $visit_id) 
             ->where('services.status', '=', 1)
             ->get()
             ->groupBy('group_type');
@@ -63,10 +63,10 @@ class ChangeOrderController extends Controller
             ->selectRaw('sum(services.total) as total')
             ->join('visits', 'visits.id','=','services.visit_id')
             ->where('services.status','=','1')
-            ->where('visits.id','=',$id)
+            ->where('visits.id','=',$visit_id)
             ->get();
 
-            return view('changeorders.create', ['visit_id' => $id,'itemData' => $itemData,'amount' => $amount]);
+            return view('changeorders.create', ['customer'=> $customer_id, 'visit' => $visit_id,'itemData' => $itemData,'amount' => $amount]);
          }catch (Throwable $e) {
           toast('Pleasy try again!','error');
       }
@@ -104,8 +104,7 @@ class ChangeOrderController extends Controller
             } 
 
             toast('Change Order created with success!','success');
-    
-            return redirect()->route('changeorders.changes', $request->visit_id);
+            return redirect()->route('changeorders.changes', ['visit'=>$request->visit_id,'customer'=>$request->customer_id]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

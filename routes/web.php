@@ -53,7 +53,7 @@ Route::get('edit/quote/visit/{visit}/service/{service}/customer/{customer}', 'Se
 Route::get('duplicate/service/{service}', 'ServiceController@duplicateQuote')->name('services.duplicateQuote');
 
 Route::get('changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderController@changeOrderByVisit')->name('changeorders.changes');
-Route::get('create/changeorder/{visit}', 'ChangeOrderController@createChangeOrder')->name('changeorders.createChange');
+Route::get('create/changeorder/visit/{visit}/customer{customer}', 'ChangeOrderController@createChangeOrder')->name('changeorders.createChange');
 
 
 Route::resources([

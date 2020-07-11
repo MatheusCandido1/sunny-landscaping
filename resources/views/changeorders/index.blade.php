@@ -7,7 +7,7 @@
 
 <div class="card mb-4">
     <div class="card-header">All your change orders are here!
-    <a type="button" href="{{ route('changeorders.createChange', $visit)}}" class="btn btn-primary float-right btn-sm">
+    <a type="button" href="{{ route('changeorders.createChange', ['visit' => $visit, 'customer' => $customer])}}" class="btn btn-primary float-right btn-sm">
         New Change Order
     </a>
   </div>
@@ -35,7 +35,7 @@
                     
                     <td style="text-align: center">$ {{number_format($orders->revised_contract_amount,2)}}</td>
                     <td style="text-align: center;" scope="col">
-                        <a target="_blank" href="{{ route ('pdf.change', ['changeorder'=> $orders->id,'visit_id' => $visit])}}" class="btn btn-success btn-block"><i class="fas fa-print"></i></a>
+                        <a target="_blank" href="{{ route ('pdf.change', ['changeorder'=> $orders->id,'visit' => $visit])}}" class="btn btn-success btn-block"><i class="fas fa-print"></i></a>
  
                     </td>
                     <td style="text-align: center;" scope="col">

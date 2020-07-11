@@ -53,6 +53,7 @@ class QuoteController extends Controller
             'visit_id' => $request->visit_id
         ]); 
 
+
         for ($i = 0; $i < count($request->input('id')); $i++) {
             $item[$i] = new Item();
             $item[$i]->supplier = $request->input('supplier')[$i];
