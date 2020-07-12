@@ -9,7 +9,7 @@
       See all
     </a></div>
     <div class="card-body">
-      <h5 class="card-title">Total amount: R$ {{number_format($approved->total,2)}} </h5> 
+      <h5 class="card-title">Total amount: US$ {{number_format($approved->total,2)}} </h5> 
       <h5>Quantity: {{$approved->quantity}}</h5>
       </div>
   </div>
@@ -20,7 +20,7 @@
         See all
       </a></div>
       <div class="card-body">
-        <h5 class="card-title">Total amount: {{number_format($disapproved->total,2)}} </h5>
+        <h5 class="card-title">Total amount: US$ {{number_format($disapproved->total,2)}} </h5>
         <h5> Quantity: {{$disapproved->quantity}} </h5>
       </div>
     </div>
@@ -30,11 +30,21 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card border-dark" style="">
-      <div class="card-header">Projects by Status</div>
+      <div class="card-header">
+        <div class="row">
+          <div class="col-lg-6">
+        Approved and Disapproved by Month
+          </div>
+          <div class="col-lg-6">
+            Projects by Status
+              </div>
+        </div>
+      </div>
       <div class="card-body text-dark">
        <div class="row">
          <div class="col-lg-6">
-        
+          {!! $chart2->container() !!}
+
            </div>
            <div class="col-lg-6">
             {!! $chart->container() !!}
@@ -45,6 +55,8 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 {!! $chart->script() !!}
+{!! $chart2->script() !!}
+
 
 
 @endsection

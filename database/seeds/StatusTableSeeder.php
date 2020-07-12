@@ -14,8 +14,6 @@ class StatusTableSeeder extends Seeder
     {
         Status::insert([
             ['name' => 'Scheduled Visit'],
-            ['name' => 'Prepare Quote'],
-            ['name' => 'Quote Sent'],
             ['name' => 'Project Approved'],
             ['name' => 'Working!'],
             ['name' => 'Project Concluded'],
