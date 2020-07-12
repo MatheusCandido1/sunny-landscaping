@@ -35,7 +35,7 @@
     <thead>
       <tr>
         <th class="tg-k27y">PO:</th>
-        <th class="tg-k27y">S2020 - </th>
+        <th class="tg-k27y">{{$data[0]->project_name}} </th>
         <th class="tg-k27y"></th>
         <th class="tg-k27y">Job Name:</th>
       <th class="tg-k27y"> </th>

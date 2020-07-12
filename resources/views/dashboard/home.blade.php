@@ -33,10 +33,10 @@
       <div class="card-header">
         <div class="row">
           <div class="col-lg-6">
-        Approved and Disapproved by Month
+            <i class="fas fa-chart-bar"></i> Approved and Disapproved by Month
           </div>
           <div class="col-lg-6">
-            Projects by Status
+            <i class="fas fa-chart-pie"></i> Projects by Status
               </div>
         </div>
       </div>

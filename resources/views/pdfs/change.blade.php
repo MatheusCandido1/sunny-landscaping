@@ -126,7 +126,7 @@ border:none'>
     <p><span style="font-size: 12;">DATE: {{\Carbon\Carbon::parse($data->order_date)->format('m/d/yy')}} &nbsp;</span></p>
   </div>
   <div class="col-xs-6">
-    <p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PROJECT: S19-0508  &nbsp;</span></p>
+  <p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PROJECT: {{$customerData[0]->project_name}}  &nbsp;</span></p>
   </div>
 </div>
 <p><span style="font-size: 12;">NAME: {{$customerData[0]->customer_name}}&nbsp;</span></p>
