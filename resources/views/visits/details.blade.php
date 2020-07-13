@@ -66,8 +66,8 @@ ul.timeline > li:before {
                     </div>
                         
                     <div class="btn-group " role="group">
-                        <a href="" type="button" class="btn btn-{{$data->visits_status == 5 ? 'danger':'link'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-7').submit(); }">Project Declined</a>
-                        <form id="update-form-7" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>7]) }}" method="POST" style="display: none;">
+                        <a href="" type="button" class="btn btn-{{$data->visits_status == 5 ? 'danger':'link'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-x').submit(); }">Project Declined</a>
+                        <form id="update-form-x" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>5]) }}" method="POST" style="display: none;">
                             @csrf
                             @method('PUT')
                         </form>
