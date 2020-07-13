@@ -17,13 +17,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group( function () {
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('customer/{customer}/visits', 'VisitController@visitsByCustomer')->name('visits.visitsByCustomer');
-Route::get('visit/{visit}', 'VisitController@details')->name('visits.details');
-Route::get('service/visit/{visit}/customer/{customer}', 'ServiceController@servicesByVisit')->name('services.servicesByVisit');
-
-
+    
 // PDFs Routes
 Route::get('pdf/proposal/{service}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
@@ -34,28 +28,38 @@ Route::get('pdf/contract/{visit}','PdfController@generateContract')->name('pdf.c
 Route::get('pdf/nevadacontract/{visit}','PdfController@generateNevadaContract')->name('pdf.nevadacontract');
 Route::get('pdf/changeorder/{changeorder}/visit/{visit}','PdfController@generateChangeOrder')->name('pdf.change');
 
+// Dashboard Routes
+Route::get('dashboard/projects/status','HomeController@projectsByStatus')->name('dashboard.status');
+Route::get('/home', 'HomeController@index')->name('home');
 
+// Service Routes
 Route::put('approve/status/{service}/{visit}','ServiceController@approve')->name('services.approve');
 Route::put('disapprove/status/{service}/{visit}','ServiceController@disapprove')->name('services.disapprove');
+Route::get('create/quote/{visit}/customer/{customer}', 'ServiceController@createQuote')->name('services.createQuote');
+Route::get('edit/quote/visit/{visit}/service/{service}/customer/{customer}', 'ServiceController@editQuote')->name('services.editQuote');
+Route::get('duplicate/service/{service}', 'ServiceController@duplicateQuote')->name('services.duplicateQuote');
+Route::get('service/visit/{visit}/customer/{customer}', 'ServiceController@servicesByVisit')->name('services.servicesByVisit');
 
-Route::post('create/quotes', 'QuoteController@store')->name('quotes.store');
-Route::put('update/{service}', 'QuoteController@update')->name('quotes.update');
+// Quotes Routes
+Route::post('create/quote', 'QuoteController@store')->name('quotes.store');
+Route::put('update/quote/{service}', 'QuoteController@update')->name('quotes.update');
 
+// Visits Routes
 Route::put('update/{visit}', 'VisitController@update')->name('visits.update');
 Route::put('update/information/{visit}', 'VisitController@updateInformation')->name('visits.updateInformation');
 Route::put('edit/{visit}', 'VisitController@edit')->name('visits.edit');
 Route::put('visit/{visit}/status/{status}', 'VisitController@updateStatus')->name('visits.updateStatus');
+Route::get('customer/{customer}/visits', 'VisitController@visitsByCustomer')->name('visits.visitsByCustomer');
+Route::get('visit/{visit}', 'VisitController@details')->name('visits.details');
 
-
+// Customers Routes
 Route::put('edit/{customer}', 'CustomerController@edit')->name('customers.edit');
-Route::get('create/quote/{visit}/customer/{customer}', 'ServiceController@createQuote')->name('services.createQuote');
-Route::get('edit/quote/visit/{visit}/service/{service}/customer/{customer}', 'ServiceController@editQuote')->name('services.editQuote');
-Route::get('duplicate/service/{service}', 'ServiceController@duplicateQuote')->name('services.duplicateQuote');
 
+// Change Orders Routes
 Route::get('changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderController@changeOrderByVisit')->name('changeorders.changes');
 Route::get('create/changeorder/visit/{visit}/customer{customer}', 'ChangeOrderController@createChangeOrder')->name('changeorders.createChange');
 
-
+// Resources Routes
 Route::resources([
     'customers' => 'CustomerController',
     'visits' => 'VisitController',
