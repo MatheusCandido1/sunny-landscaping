@@ -84,20 +84,26 @@ class HomeController extends Controller
         ->pluck('month');
 
 
-        $monthsStatus = DB::table('services')
-        ->selectRaw('MONTHNAME(created_at) as month, count(IF(services.status = 0,1,null)) as approved, count(IF(services.status = 1,1,null)) as disapproved')
+
+        $monthsDis = DB::table('services')
+        ->selectRaw('count(IF(services.status = 0,1,null)) as disapproved')
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->orderBy('services.created_at','ASC')
-        ->pluck('approved','disapproved');
+        ->pluck('disapproved');
 
+        $monthsAp = DB::table('services')
+        ->selectRaw('count(IF(services.status = 1,1,null)) as approved')
+        ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
+        ->orderBy('services.created_at','ASC')
+        ->pluck('approved');
 
         $chart2 = new StatusChart;
         $chart2->labels($months->values());
-        $chart2->dataset('Quotes Approved', 'bar',$monthsStatus->keys())->options([
+        $chart2->dataset('Quotes Approved', 'bar',$monthsAp->values())->options([
             'backgroundColor' => '#5cb85c',
             'fill' => true
             ]);
-        $chart2->dataset('Quotes Disapproved', 'bar',$monthsStatus->values())->options([
+        $chart2->dataset('Quotes Disapproved', 'bar',$monthsDis->values())->options([
             'backgroundColor' => '#d9534f',
             'fill' => true
             ]);
