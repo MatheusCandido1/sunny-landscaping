@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-lg-6">
   <div class="card text-white bg-success" style="">
-    <div class="card-header">Approved  <a type="button" href="" style="color: white" class="btn btn-link float-right btn-sm">
+    <div class="card-header">Approved  <a type="button" href="{{ route('dashboard.status')}}" style="color: white" class="btn btn-link float-right btn-sm">
       See all
     </a></div>
     <div class="card-body">
@@ -16,7 +16,7 @@
   </div>
   <div class="col-lg-6">
     <div class="card text-white bg-danger" style="">
-      <div class="card-header">Disapproved  <a type="button" href="" style="color: white" class="btn btn-link float-right btn-sm">
+    <div class="card-header">Disapproved  <a type="button" href="{{ route('dashboard.status')}}" style="color: white" class="btn btn-link float-right btn-sm">
         See all
       </a></div>
       <div class="card-body">

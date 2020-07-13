@@ -26,8 +26,28 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
+
+    public function projectsByStatus(){
+        try{
+            $infos = DB::table('services')
+            ->selectRaw('services.id as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, visits.date as visit_date, MONTHNAME(visits.date) as month, services.total, services.status as status')
+            ->join('visits','visits.id','=','services.visit_id')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->get();
+
+
+            return view('dashboard.status',['infos' => $infos]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+    
+
     public function index()
     {
+        try{ 
         $borderColors = [
             "rgba(91, 192, 222, 1.0)",
             "rgba(92, 184, 92, 1.0)",
@@ -98,5 +118,8 @@ class HomeController extends Controller
         $customers = DB::table('customers')->count();
 
         return view('dashboard.home', compact('approved','disapproved','customers', 'chart','chart2'));
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 }

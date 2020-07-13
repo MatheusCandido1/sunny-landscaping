@@ -17,7 +17,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group( function () {
-    
+
 // PDFs Routes
 Route::get('pdf/proposal/{service}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
@@ -32,7 +32,7 @@ Route::get('pdf/changeorder/{changeorder}/visit/{visit}','PdfController@generate
 Route::get('dashboard/projects/status','HomeController@projectsByStatus')->name('dashboard.status');
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Service Routes
+// Services Routes
 Route::put('approve/status/{service}/{visit}','ServiceController@approve')->name('services.approve');
 Route::put('disapprove/status/{service}/{visit}','ServiceController@disapprove')->name('services.disapprove');
 Route::get('create/quote/{visit}/customer/{customer}', 'ServiceController@createQuote')->name('services.createQuote');
