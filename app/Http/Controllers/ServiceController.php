@@ -82,6 +82,20 @@ class ServiceController extends Controller
         }
     }
 
+    
+
+    public function waiting($service_id, $visit_id){
+        try{
+            $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
+            $service->status = 0;
+            $service->save();
+            alert()->success('Quote waiting','Please let me know when it gets approved or not!');
+            return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
 
     public function approve($service_id, $visit_id){
         try{
@@ -98,7 +112,7 @@ class ServiceController extends Controller
     public function disapprove($service_id, $visit_id){
         try{
             $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
-            $service->status = 0;
+            $service->status = 2;
             $service->save();
             alert()->success('Quote disapproved','the documents will be generated only with approved quote information!');
             return redirect()->back();

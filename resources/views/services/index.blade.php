@@ -55,17 +55,60 @@
 
                     </td>
                     <td style="text-align: center">
-                        @if($service->status == 1)
-                        <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to disapprove this quote?')) { document.getElementById('update-form-{{$service->id}}').submit(); }"  class="btn btn-success">Approved</a>
-                        <form id="update-form-{{$service->id}}" action="{{ route('services.disapprove',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('PUT')
-                        </form>                        @else
-                        <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to approve this quote?')) { document.getElementById('update-form-{{$service->id}}').submit(); }"  class="btn btn-outline-danger">Not Approved</a>
-                        <form id="update-form-{{$service->id}}" action="{{ route('services.approve',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('PUT')
-                        </form>
+                        @if($service->status == 0)
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Waiting
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to approve this quote?')) { document.getElementById('update-form-{{$service->id}}').submit(); }" >Approve</a>
+                              <form id="update-form-{{$service->id}}" action="{{ route('services.approve',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('PUT')
+                            </form>
+                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to disapprove this quote?')) { document.getElementById('update-form-{{$service->id+100}}').submit(); }" >Disapprove</a>
+                            <form id="update-form-{{$service->id+100}}" action="{{ route('services.disapprove',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
+                              @csrf
+                              @method('PUT')
+                          </form>
+                          </div>  
+                        </div>                     
+                        @elseif ($service->status == 1)
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Approved
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to put this quote on waiting?')) { document.getElementById('update-form-{{$service->id}}').submit(); }" >Waiting</a>
+                              <form id="update-form-{{$service->id}}" action="{{ route('services.waiting',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('PUT')
+                            </form>
+                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to disapprove this quote?')) { document.getElementById('update-form-{{$service->id+200}}').submit(); }" >Disapprove</a>
+                            <form id="update-form-{{$service->id+200}}" action="{{ route('services.disapprove',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
+                              @csrf
+                              @method('PUT')
+                          </form>
+                          </div> 
+                        </div>
+                        @elseif($service->status == 2)
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Not Approved
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to put this quote on waiting?')) { document.getElementById('update-form-{{$service->id}}').submit(); }" >Waiting</a>
+                              <form id="update-form-{{$service->id}}" action="{{ route('services.waiting',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('PUT')
+                            </form>
+                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to approve this quote?')) { document.getElementById('update-form-{{$service->id+300}}').submit(); }" >Approve</a>
+                            <form id="update-form-{{$service->id+300}}" action="{{ route('services.approve',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
+                              @csrf
+                              @method('PUT')
+                          </form>
+                          </div> 
+                        </div>
                         @endif
                     </td>
 
