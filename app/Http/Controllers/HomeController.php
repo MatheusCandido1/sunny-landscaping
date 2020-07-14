@@ -31,14 +31,15 @@ class HomeController extends Controller
 
     public function projectsByStatus(){
         try{
-            $infos = DB::table('services')
-            ->selectRaw('services.id as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, visits.date as visit_date, MONTHNAME(visits.date) as month, services.total, services.status as status')
+            $data = DB::table('services')
+            ->selectRaw('services.status, CONCAT("#",services.id) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
             ->join('visits','visits.id','=','services.visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
+            ->where('services.status','=', 2)
             ->get();
 
 
-            return view('dashboard.status',['infos' => $infos]);
+            return view('dashboard.status');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -97,6 +98,7 @@ class HomeController extends Controller
         ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->first();
+
 
         return view('dashboard.home', compact('approved','disapproved','chart2'));
         }catch (Throwable $e) {

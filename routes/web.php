@@ -43,6 +43,9 @@ Route::get('duplicate/service/{service}', 'ServiceController@duplicateQuote')->n
 Route::get('service/visit/{visit}/customer/{customer}', 'ServiceController@servicesByVisit')->name('services.servicesByVisit');
 
 
+// Custom Search
+Route::get('customsearch', 'CustomSearchController@index')->name('customsearch.index');
+
 // Quotes Routes
 Route::post('create/quote', 'QuoteController@store')->name('quotes.store');
 Route::put('update/quote/{service}', 'QuoteController@update')->name('quotes.update');

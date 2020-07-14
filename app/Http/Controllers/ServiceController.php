@@ -86,9 +86,26 @@ class ServiceController extends Controller
 
     public function waiting($service_id, $visit_id){
         try{
+            $has_service = 0;
             $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
-            $service->status = 0;
+            $service->status = 3;
             $service->save();
+
+            $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
+            for($i = 0; $i < $services->count(); $i++){
+                if($services[$i]->status == '2' || $services[$i]->status == '3')
+                {
+                    $has_service++;
+                }
+            }
+
+
+            if($has_service == $services->count())
+            {
+                $visit = Visit::where('id','=', $visit_id)->first();
+                $visit->has_services = 0;
+                $visit->save();
+            }
             alert()->success('Quote waiting','Please let me know when it gets approved or not!');
             return redirect()->back();
         }catch (Throwable $e) {
@@ -100,8 +117,13 @@ class ServiceController extends Controller
     public function approve($service_id, $visit_id){
         try{
             $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
+            
+            $visit = Visit::where('id','=', $visit_id)->first();
+            
             $service->status = 1;
             $service->save();
+            $visit->has_services = 1;
+            $visit->save();
             alert()->success('Quote approved','Now, all the documents will be generated with this quote information!');
             return redirect()->back();
         }catch (Throwable $e) {
@@ -111,10 +133,28 @@ class ServiceController extends Controller
 
     public function disapprove($service_id, $visit_id){
         try{
+            $has_service = 0;
             $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
             $service->status = 2;
             $service->save();
-            alert()->success('Quote disapproved','the documents will be generated only with approved quote information!');
+
+            $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
+            for($i = 0; $i < $services->count(); $i++){
+                if($services[$i]->status == '2' || $services[$i]->status == '3')
+                {
+                    $has_service++;
+                }
+            }
+
+
+            if($has_service == $services->count())
+            {
+                $visit = Visit::where('id','=', $visit_id)->first();
+                $visit->has_services = 0;
+                $visit->save();
+            }
+
+            alert()->success('Quote Not Approved','the documents will be generated only with approved quote information!');
             return redirect()->back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

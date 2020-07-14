@@ -149,6 +149,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         TJGazel\Toastr\ToastrServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
 
         /*
@@ -215,7 +216,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Toastr' => TJGazel\Toastr\Facades\Toastr::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 

@@ -55,7 +55,7 @@
 
                     </td>
                     <td style="text-align: center">
-                        @if($service->status == 0)
+                        @if($service->status == 3)
                         <div class="btn-group">
                             <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Waiting

@@ -61,7 +61,8 @@ class VisitController extends Controller
             'hoa' => $request->hoa,
             'water_smart_rebate' => $request->water_smart_rebate,
             'customer_id' => $request->customer_id,
-            'status_id' => 1
+            'status_id' => 1,
+            'has_services' => 0
         ]);
 
         for($i = 0; $i < count($request->type); $i++){
