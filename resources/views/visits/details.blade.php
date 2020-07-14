@@ -291,10 +291,11 @@ ul.timeline > li:before {
                 </div>
                 </div>
                 <div class="form-row">
-                    <div class="col-md-6">
+                <div class="col-md-6" id="parties">
                         <div class="form-group">
                             <label class="" for="inputLastName">Parties</label>
-                                <input name="parties" class="form-control" type="text" value="{{$data->parties}}" placeholder="" />
+                        <input name="parties" class="form-control" type="text" value="{{$data->parties}}" placeholder="" />
+
                         </div>
                     </div>
                     </div>
