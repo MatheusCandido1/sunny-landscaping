@@ -68,12 +68,14 @@ class HomeController extends Controller
         ->selectRaw('statuses.name as status, count(*) as quantity')
         ->join('statuses','statuses.id','=','visits.status_id')
         ->groupBy(DB::raw('statuses.name'))
-        ->orderBy('statuses.name', 'ASC')
+        ->orderBy('statuses.id', 'ASC')
         ->pluck('quantity','status');
+
+       // dd($status->keys());
 
         $chart = new StatusChart;
         $chart->labels($status->keys());
-        $chart->dataset('Quotes Approved', 'pie',$status->values())
+        $chart->dataset('Quotes Approved', 'bar',$status->values())
         ->color($borderColors)
         ->backgroundcolor($fillColors);
         

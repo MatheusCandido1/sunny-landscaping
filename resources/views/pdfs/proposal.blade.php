@@ -147,7 +147,7 @@ style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}
 <span style='font-size:12.0pt;line-height:120%;'>Phone: {{$data[0]->phone}}</span></p>
 @endif
 
-<p class=MsoNormal style="font-size:12;">Dear <span >Customer,</span></p>
+<p class=MsoNormal style="font-size:12;">Dear <span >{{$data[0]->name}},</span></p>
 
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>Thank you for choosing Sunny Landscaping &amp; Pavers Design LLC for
@@ -176,9 +176,17 @@ justify'>&nbsp;</p>
 
 <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>&nbsp;</p>
+<br>
+<br>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal;border:none'><span style='font-size:16.0pt'>Helio da Silva</span> </p>
+<br>
+
+<br>
+<div style="text-align: center">
+  <img  style="height: 35%; width: 35%; position: absolute; margin-top: -60px; margin-left: -60px" src="https://i.ibb.co/4jY1dHg/signature.png" data-holder-rendered="true" />       
+</div>
+<p class=MsoNormal style='margin-bottom:0;margin-bottom:.0001pt;line-height:
+normal;border:none'><span style='font-size:16.0pt'>Glaucia Alves</span> </p>
 
 <p class=MsoNormal style='font-size:12.0pt;margin-bottom:0in;margin-bottom:.0001pt;line-height:
 normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
@@ -220,7 +228,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 <br>
 <br>
 <br>
-<p class=MsoNormal align=center style='margin-top: 75px;
+<p class=MsoNormal align=center style='margin-top: 0px;
 text-align:center;line-height:normal'><span lang=EN-US style='font-size:8.0pt'>We
 accept cash, check and credit card. For payments with credit card, will be
 added a 3% processing fee. Prices are valid for 60 days after the date of

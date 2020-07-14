@@ -51,9 +51,15 @@ has already paid or will use the money he receives from this final payment promp
 all his laborers, subcontractors, material, men and suppliers for all work, materials and equipment
 that are subject of this waiver and release.</p>
 <p><strong>Dated: </strong> {{\Carbon\Carbon::parse($data[0]->contract_date)->format('m/d/yy') }}</p>
-<p style="text-align: right">__________________________________</p>
-<p style="text-align: right">Glaucia Alves, Manager</p>
-<div style="margin-top: 240px">
+<br>
+<br>
+<br>
+<div style="text-align: center">
+  <img  style="height: 35%; width: 35%; position: absolute; margin-top: -40px; margin-left: 350px" src="https://i.ibb.co/4jY1dHg/signature.png" data-holder-rendered="true" />       
+</div>
+<p style="text-align: right; margin: 0">__________________________________</p>
+<p style="text-align: right; margin: 0">Glaucia Alves, Managing Member</p>
+<div style="margin-top: 210px">
 <p style="font-size:8.0pt;text-align:center; margin: 0">License # C-18 0080493 Limit Amount $245,000.00 </p>
 <p style="font-size:8.0pt;text-align:center;margin: 0">License # C-18 0081661 Limit Amount $245,000.00 </p>
 <p style="font-size:8.0pt;text-align:center;margin: 0"> 3183 Ramrod St., Las Vegas, NV 89108 Office &ndash; (702) 202-2882 Fax &ndash; (702) 202-2882</p>

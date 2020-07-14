@@ -148,17 +148,23 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 <p><span style="font-size: 12;">This </span><span style="font-size: 12;">{{\Carbon\Carbon::parse($data[0]->contract_date)->format('jS \o\f F, Y') }}</span></p>
 <p><br /><br /></p>
 <p>&nbsp;</p>
-<p style="text-align: right"><span style="font-size: 12;">__________________________________</span></p>
-<p style="text-align: right"><span style="font-size: 12;">&nbsp;</span> <span style="font-size: 12;">Glaucia Alves, Manager</span></p>
-<p  style="text-align: left"><span style="font-size: 12;">Sunny Landscaping &amp; Pavers Design LLC</span></p>
+<div style="text-align: center">
+  <img  style="height: 35%; width: 35%; position: absolute; margin-top: -45px; margin-left: 410px" src="https://i.ibb.co/4jY1dHg/signature.png" data-holder-rendered="true" />       
+</div>
+<p style="text-align: right;margin: 0"><span style="font-size: 12;">__________________________________</span></p>
+<p style="text-align: right;margin: 0"><span style="font-size: 12;">&nbsp;</span> <span style="font-size: 12;">Glaucia Alves, Managing Member</span></p>
+<p  style="text-align: right"><span style="font-size: 12;">Sunny Landscaping &amp; Pavers Design LLC</span></p>
 <p>&nbsp;</p>
 <p style="font-size: 12;text-align:center;text-decoration: underline;"><strong>Certificate of Delivery</strong></p>
 <p>&nbsp;</p>
 <p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I, Glaucia Alves, hereby certify that I have delivered this day, a true and correct copy of the forgoing to </span><strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}}</strong><span style="font-size: 12;"> by mailing a true and correct copy of the same, by certified U.S. mail, postage prepaid, return receipt requested to Sunny Landscaping &amp; Pavers Design LLC.</span></p>
 <p><br /><br /><span style="font-size: 12;"><br /></span></p>
 <p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, certified this the </span><span style="font-size: 12;">{{\Carbon\Carbon::parse($data[0]->contract_date)->format('jS \o\f F, Y') }}</span></p>
+<div style="text-align: center">
+  <img  style="height: 35%; width: 35%; position: absolute; margin-top: -45px; margin-left: 410px" src="https://i.ibb.co/4jY1dHg/signature.png" data-holder-rendered="true" />       
+</div>
 <p style="text-align: right;margin: 0"><span style="font-size: 12;">__________________________________</span></p>
-<p style="text-align: right;margin: 0"><span style="font-size: 12;">&nbsp;</span> <span style="font-size: 12;">Glaucia Alves, Manager</span></p>
+<p style="text-align: right;margin: 0"><span style="font-size: 12;">&nbsp;</span> <span style="font-size: 12;">Glaucia Alves, Managing Member</span></p>
 <p style="text-align: right;font-size: 12;margin: 0"><span >NRS &sect;108.245</span></p>
 </body>
 </html>

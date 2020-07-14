@@ -56,7 +56,7 @@ ul.timeline > li:before {
                         <div class="card-body">
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group mr-5" role="group">
-                        @foreach($statuses->slice(0,4) as $status)
+                        @foreach($statuses->slice(0,5) as $status)
                     <a href="" type="button" class="btn btn-{{$data->visits_status == $status->id ? 'success':'secondary'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-{{$status->id}}').submit(); }">{{$status->name}}</a>
                     <form id="update-form-{{$status->id}}" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>$status->id]) }}" method="POST" style="display: none;">
                         @csrf
@@ -66,8 +66,8 @@ ul.timeline > li:before {
                     </div>
                         
                     <div class="btn-group " role="group">
-                        <a href="" type="button" class="btn btn-{{$data->visits_status == 5 ? 'danger':'link'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-x').submit(); }">Project Declined</a>
-                        <form id="update-form-x" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>5]) }}" method="POST" style="display: none;">
+                        <a href="" type="button" class="btn btn-{{$data->visits_status == 6 ? 'danger':'link'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-x').submit(); }">Project Declined</a>
+                        <form id="update-form-x" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>6]) }}" method="POST" style="display: none;">
                             @csrf
                             @method('PUT')
                         </form>
@@ -133,47 +133,58 @@ ul.timeline > li:before {
                       <p class="lead">
                           <div class="row">
                             <div class="col-lg-4 text-center">
+                                @if($allow == null)
+                                <button  type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Estimate Request</button>  
+                                @else
+                                <a target="_blank" type="button" href="{{route('pdf.estimate', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Estimate Request</a>  
+                                @endif
+                            </div>
+                            <div class="col-lg-4 text-center">
                            
                             <a target="_blank" type="button" href="{{route('pdf.front', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Project Front Page</a> 
                             </div>
-                        <div class="col-lg-4 text-center">
-                           @if($allow == null)
-                           <button type="button"  href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Unconditional Waiver and Release</button>    
-                           @else
-                           <a target="_blank" type="button"  href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Unconditional Waiver and Release</a>    
-                           @endif
-                        </div>
-                        <div class="col-lg-4 text-center">
-                            @if($allow == null)
-                            <button  type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Estimate Request</button>  
-                            @else
-                            <a target="_blank" type="button" href="{{route('pdf.estimate', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Estimate Request</a>  
-                            @endif
-                        </div>
+
+                            <div class="col-lg-4 text-center">
+                                @if($allow == null)
+                                <button type="button"  href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Proposal</button>    
+                                @else
+                                <a target="_blank" type="button"  href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Proposal</a>    
+                                @endif
+                             </div>
+
+                        
+                       
                     </div>
                     <hr class="my-4">
                     <div class="row">
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
                             @if($allow == null)
-                            <button type="button"  href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Nevada State Contract</button>  
+                            <button type="button"  href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Sunny Contract</button>  
                             @else
-                            <a target="_blank" type="button"  href="{{route('pdf.nevadacontract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Nevada State Contract</a>  
+                            <a target="_blank" type="button"  href="{{route('pdf.nevadacontract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Sunny Contract</a>  
                             @endif
                             </div>
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
                             @if($allow == null)
-                            <button target="_blank" type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Sunny Contract</button>  
+                            <button target="_blank" type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Contractor's Board</button>  
                             @else 
-                            <a target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Sunny Contract</a>  
+                            <a target="_blank" type="button" href="{{route('pdf.contract', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Contractor's Board</a>  
                             @endif
                         </div>
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
                             @if($allow == null)
                             <button type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Change Order</button>
                             @else 
                             <a type="button" href="{{route('changeorders.changes', ['visit' => $data->visit_id, 'customer' => $data->customer_id])}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Change Order</a>
                             @endif
                         </div>
+                        <div class="col-lg-3 text-center">
+                            @if($allow == null)
+                            <button type="button"  href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i>Waiver Release</button>    
+                            @else
+                            <a target="_blank" type="button"  href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Waiver Release</a>    
+                            @endif
+                         </div>
                     </div>
                     <hr class="my-4">
                     <div class="row">

@@ -102,7 +102,23 @@ class PdfController extends Controller
 
     public function generateNevadaContract($visit_id){
         try{
-            $pdf = PDF::loadView('pdfs.nevadacontract');
+            $data = DB::table('visits')
+            ->selectRaw('cities.name as city_name, customers.state,customers.zipcode,customers.name as customer_name, customers.address,  visits.invoice_number, visits.contract_date, visits.id as visit_id')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('cities', 'customers.city_id','=','cities.id')
+            ->join('referrals', 'customers.referral_id','=','referrals.id')
+            ->join('sellers','customers.seller_id','=','sellers.id')
+            ->where('visits.id','=', $visit_id)
+            ->get();
+
+            $amount = DB::table('services')
+            ->selectRaw('sum(services.total) as total')
+            ->join('visits', 'visits.id','=','services.visit_id')
+            ->where('services.status','=','1')
+            ->where('visits.id','=',$visit_id)
+            ->get();
+
+            $pdf = PDF::loadView('pdfs.nevadacontract',compact('data','amount'));
             return $pdf->setPaper('a4')->stream('nevada.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
