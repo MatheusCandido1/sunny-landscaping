@@ -79,6 +79,7 @@ class HomeController extends Controller
         ->selectRaw('MONTHNAME(services.created_at) as month,sum(services.total) as total, count(services.id) as quantity')
         ->join('visits', 'visits.id','=','services.visit_id')
         ->where('services.status','=','1')
+        ->where('visits.has_services','=',1)
         ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->first();
@@ -87,6 +88,7 @@ class HomeController extends Controller
         ->selectRaw('MONTHNAME(services.created_at) as month, sum(services.total) as total, count(services.id) as quantity')
         ->join('visits', 'visits.id','=','services.visit_id')
         ->where('services.status','=','2')
+        ->where('visits.has_services','=',0)
         ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->first();
