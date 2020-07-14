@@ -53,6 +53,24 @@ class PdfController extends Controller
         }
     }
 
+    public function generateFullProposal($visit_id) 
+    {
+        try{
+        $data = DB::table('services')
+        ->selectRaw('sum(services.total) as total,customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
+        ->join('visits','visits.id','=','services.visit_id')
+        ->join('customers','customers.id','=','visits.customer_id')
+        ->join('cities', 'cities.id','=','customers.city_id')
+        ->where('services.status','=',1)
+        ->where('visits.id','=',$visit_id)
+        ->get();
+        $pdf = PDF::loadView('pdfs.fullproposal', compact('data'));
+        return $pdf->setPaper('a4')->stream('items.pdf');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     public function generateWaiver($visit_id){
         try{
             $data = DB::table('visits')

@@ -27,6 +27,7 @@ Route::get('pdf/estimate/{visit}','PdfController@generateEstimate')->name('pdf.e
 Route::get('pdf/contract/{visit}','PdfController@generateContract')->name('pdf.contract');
 Route::get('pdf/nevadacontract/{visit}','PdfController@generateNevadaContract')->name('pdf.nevadacontract');
 Route::get('pdf/changeorder/{changeorder}/visit/{visit}','PdfController@generateChangeOrder')->name('pdf.change');
+Route::Get('pdf/full_proposal/{service}','PdfController@generateFullProposal')->name('pdf.full');
 
 // Dashboard Routes
 Route::get('dashboard/projects/status','HomeController@projectsByStatus')->name('dashboard.status');
@@ -40,6 +41,7 @@ Route::get('create/quote/{visit}/customer/{customer}', 'ServiceController@create
 Route::get('edit/quote/visit/{visit}/service/{service}/customer/{customer}', 'ServiceController@editQuote')->name('services.editQuote');
 Route::get('duplicate/service/{service}', 'ServiceController@duplicateQuote')->name('services.duplicateQuote');
 Route::get('service/visit/{visit}/customer/{customer}', 'ServiceController@servicesByVisit')->name('services.servicesByVisit');
+
 
 // Quotes Routes
 Route::post('create/quote', 'QuoteController@store')->name('quotes.store');

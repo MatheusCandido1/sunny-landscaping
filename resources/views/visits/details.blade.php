@@ -148,7 +148,7 @@ ul.timeline > li:before {
                                 @if($allow == null)
                                 <button type="button"  href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Proposal</button>    
                                 @else
-                                <a target="_blank" type="button"  href="{{route('pdf.waiver', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Proposal</a>    
+                                <a target="_blank" type="button"  href="{{route('pdf.full', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Proposal</a>    
                                 @endif
                              </div>
 
