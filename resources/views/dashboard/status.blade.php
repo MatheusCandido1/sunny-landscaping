@@ -58,7 +58,7 @@
                 </thead>
                 <tbody>
                   @foreach($infos as $info)
-                    @if($info->status == 0)
+                    @if($info->status == 2)
                     <tr>
                       <td style="text-align: center">#{{$info->service_id}}</td>
                     <td style="text-align: center">{{$info->customer_name}}</td>

@@ -48,36 +48,6 @@ class HomeController extends Controller
     public function index()
     {
         try{ 
-        $borderColors = [
-            "rgba(91, 192, 222, 1.0)",
-            "rgba(92, 184, 92, 1.0)",
-            "rgba(217, 83, 79, 1.0)",
-            "rgba(2, 117, 216, 1.0)",
-            "rgba(240, 173, 78, 1.0)",
-        ];
-        $fillColors = [
-            "rgba(91, 192, 222, 0.5)",
-            "rgba(92, 184, 92, 0.5)",
-            "rgba(217, 83, 79,0.5)",
-            "rgba(2, 117, 216, 0.5)",
-            "rgba(240, 173, 78, 0.5)",
-
-        ];
-
-        $status = DB::table('visits')
-        ->selectRaw('statuses.name as status, count(*) as quantity')
-        ->join('statuses','statuses.id','=','visits.status_id')
-        ->groupBy(DB::raw('statuses.name'))
-        ->orderBy('statuses.id', 'ASC')
-        ->pluck('quantity','status');
-
-       // dd($status->keys());
-
-        $chart = new StatusChart;
-        $chart->labels($status->keys());
-        $chart->dataset('Quotes Approved', 'bar',$status->values())
-        ->color($borderColors)
-        ->backgroundcolor($fillColors);
         
         $months = DB::table('services')
         ->selectRaw('MONTHNAME(created_at) as month')
@@ -88,10 +58,11 @@ class HomeController extends Controller
 
 
         $monthsDis = DB::table('services')
-        ->selectRaw('count(IF(services.status = 0,1,null)) as disapproved')
+        ->selectRaw('count(IF(services.status = 2,1,null)) as disapproved')
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->orderBy('services.created_at','ASC')
         ->pluck('disapproved');
+        
 
         $monthsAp = DB::table('services')
         ->selectRaw('count(IF(services.status = 1,1,null)) as approved')
@@ -112,20 +83,22 @@ class HomeController extends Controller
 
 
         $approved = DB::table('services')
-        ->selectRaw('sum(services.total) as total, count(services.id) as quantity')
+        ->selectRaw('MONTHNAME(services.created_at) as month,sum(services.total) as total, count(services.id) as quantity')
         ->join('visits', 'visits.id','=','services.visit_id')
         ->where('services.status','=','1')
+        ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->first();
 
         $disapproved = DB::table('services')
-        ->selectRaw('sum(services.total) as total, count(services.id) as quantity')
+        ->selectRaw('MONTHNAME(services.created_at) as month, sum(services.total) as total, count(services.id) as quantity')
         ->join('visits', 'visits.id','=','services.visit_id')
-        ->where('services.status','=','0')
+        ->where('services.status','=','2')
+        ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->first();
 
-        $customers = DB::table('customers')->count();
-
-        return view('dashboard.home', compact('approved','disapproved','customers', 'chart','chart2'));
+        return view('dashboard.home', compact('approved','disapproved','chart2'));
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

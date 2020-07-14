@@ -61,12 +61,12 @@
                                 Waiting
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to approve this quote?')) { document.getElementById('update-form-{{$service->id}}').submit(); }" >Approve</a>
+                              <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to approve this quote?')) { document.getElementById('update-form-{{$service->id}}').submit(); }" >Approved</a>
                               <form id="update-form-{{$service->id}}" action="{{ route('services.approve',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('PUT')
                             </form>
-                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to disapprove this quote?')) { document.getElementById('update-form-{{$service->id+100}}').submit(); }" >Disapprove</a>
+                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to disapprove this quote?')) { document.getElementById('update-form-{{$service->id+100}}').submit(); }" >Not Approved</a>
                             <form id="update-form-{{$service->id+100}}" action="{{ route('services.disapprove',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
                               @csrf
                               @method('PUT')
@@ -84,7 +84,7 @@
                                 @csrf
                                 @method('PUT')
                             </form>
-                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to disapprove this quote?')) { document.getElementById('update-form-{{$service->id+200}}').submit(); }" >Disapprove</a>
+                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to disapprove this quote?')) { document.getElementById('update-form-{{$service->id+200}}').submit(); }" >Not Approved</a>
                             <form id="update-form-{{$service->id+200}}" action="{{ route('services.disapprove',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
                               @csrf
                               @method('PUT')
@@ -102,7 +102,7 @@
                                 @csrf
                                 @method('PUT')
                             </form>
-                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to approve this quote?')) { document.getElementById('update-form-{{$service->id+300}}').submit(); }" >Approve</a>
+                            <a class="dropdown-item" href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to approve this quote?')) { document.getElementById('update-form-{{$service->id+300}}').submit(); }" >Approved</a>
                             <form id="update-form-{{$service->id+300}}" action="{{ route('services.approve',['service'=>$service->id, 'visit'=>$visit_id]) }}" method="POST" style="display: none;">
                               @csrf
                               @method('PUT')
