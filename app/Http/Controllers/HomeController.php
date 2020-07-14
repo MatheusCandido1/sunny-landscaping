@@ -31,14 +31,6 @@ class HomeController extends Controller
 
     public function projectsByStatus(){
         try{
-            $data = DB::table('services')
-            ->selectRaw('services.status, CONCAT("#",services.id) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
-            ->join('visits','visits.id','=','services.visit_id')
-            ->join('customers','customers.id','=','visits.customer_id')
-            ->where('services.status','=', 2)
-            ->get();
-
-
             return view('dashboard.status');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
