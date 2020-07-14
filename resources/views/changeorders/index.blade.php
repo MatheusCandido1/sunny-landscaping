@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
 <h1 class="mt-4">Change Orders</h1>
-<br>{{ Breadcrumbs::render('change', $visit, $customer) }}
+{{ Breadcrumbs::render('services', $customer, $visit) }}
 
 <div class="card mb-4">
     <div class="card-header">All your change orders are here!

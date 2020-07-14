@@ -4,7 +4,7 @@
 <div class="container-fluid">
 <h1 class="mt-4">Quotes</h1>
 <br>
-{{ Breadcrumbs::render('services', $visit_id, $customer) }}
+{{ Breadcrumbs::render('services', $customer, $visit_id) }}
 <div class="card mb-4">
     <div class="card-header">All your quotes are here!
       <a type="button" href="{{ route('services.createQuote', ['visit' => $visit_id, 'customer' => $customer]) }}" class="btn btn-primary float-right btn-sm">
