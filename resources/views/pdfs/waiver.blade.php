@@ -50,7 +50,7 @@ for the payment of Disputed Claims, if any, noted above. The undersigned warrant
 has already paid or will use the money he receives from this final payment promptly to pay in full
 all his laborers, subcontractors, material, men and suppliers for all work, materials and equipment
 that are subject of this waiver and release.</p>
-<p><strong>Dated: </strong> {{\Carbon\Carbon::parse($data[0]->contract_date)->format('m/d/yy') }}</p>
+<p><strong>Dated: </strong> {{\Carbon\Carbon::parse($data[0]->waiver_date)->format('m/d/yy') }}</p>
 <br>
 <br>
 <br>

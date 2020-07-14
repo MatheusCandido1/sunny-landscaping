@@ -91,7 +91,7 @@ class VisitController extends Controller
     public function details($id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('customers.id as customer_id, referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, statuses.id as visits_status, statuses.name as status_name, visits.contract_date, visits.call_customer_in, visits.hoa, visits.project_name, visits.water_smart_rebate, visits.id as visit_id')
+            ->selectRaw('customers.id as customer_id, referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, statuses.id as visits_status, statuses.name as status_name, visits.contract_date, visits.board_date, visits.proposal_date, visits.waiver_date, visits.call_customer_in, visits.hoa, visits.project_name, visits.water_smart_rebate, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
             ->join('statuses', 'visits.status_id','=','statuses.id')
@@ -174,7 +174,7 @@ class VisitController extends Controller
     {
         try{
         $visit = Visit::where('id','=', $id)->first();
-        $visit->fill($request->only('invoice_number','contract_date','project_name'));
+        $visit->fill($request->only('invoice_number','contract_date','proposal_date','project_name','board_date','waiver_date'));
         $visit->save();
 
         toast('Informations added with success!','success');

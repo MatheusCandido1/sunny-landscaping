@@ -121,7 +121,7 @@ border:none'>
 </table>
 <br><br>
 <p class=MsoNormal align=right style='font-size:12;margin-bottom:12.0pt;text-align:right;
-border:none'><span >{{ \Carbon\Carbon::now()->format('F d, Y')}} </span></p>
+border:none'><span >{{ \Carbon\Carbon::parse($data[0]->proposal_date)->format('F d, Y')}} </span></p>
 <br><br>
 @if ($data[0]->company == 1)
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span

@@ -251,24 +251,44 @@ ul.timeline > li:before {
                 @csrf     
                 @method('PUT')
                 <div class="form-row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="" for="inputFirstName">Invoice Number</label>
                         <input name="invoice_number" class="form-control py-4" value="{{$data->invoice_number}}"  type="text" placeholder="" />
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="" for="inputLastName">Contract's Date</label>
-                            <input name="contract_date" class="form-control py-4" type="date" value="{{$data->contract_date}}" placeholder="" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="" for="inputLastName">Project's Name</label>
                             <input name="project_name" class="form-control py-4" type="text" value="{{$data->project_name}}" placeholder="" />
                         </div>
                     </div>
+                </div>
+                <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="" for="inputLastName">Sunny Contract's Date</label>
+                        <input name="contract_date" class="form-control py-4" type="date" value="{{$data->contract_date}}" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="" for="inputLastName">Contractor's Board Date</label>
+                        <input name="board_date" class="form-control py-4" type="date" value="{{$data->board_date}}" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="" for="inputLastName">Waiver's Release Date</label>
+                        <input name="waiver_date" class="form-control py-4" type="date" value="{{$data->waiver_date}}" placeholder="" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="" for="inputLastName">Proposal's Date</label>
+                        <input name="proposal_date" class="form-control py-4" type="date" value="{{$data->proposal_date}}" placeholder="" />
+                    </div>
+                </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
             </form>

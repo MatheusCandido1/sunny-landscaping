@@ -145,7 +145,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 <p><span style="font-size: 12;">To:</span>&nbsp;&nbsp; <span style="font-size: 12;">{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}}</span><span style="font-size: 12;">&nbsp;</span></p>
 <p><span style="font-size: 12;">The undersigned notifies you that they have supplied materials or performed work or services, as follows:</span></p>
 <p><span style="font-size: 12;">Materials and labor for the installation of concrete paving stones</span><span style="font-size: 12;"> with the anticipated value of </span><strong>$ </strong><strong>{{number_format($amount[0]->total,2)}}</strong><span style="font-size: 12;"> for improvement of real property identified as </span><strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}}</strong><span style="font-size: 12;"> under contract with </span><strong>Sunny Landscaping &amp; Pavers Design LLC</strong><span style="font-size: 12;">. This is not a notice that the undersigned has not been or does not expect to be paid, but a notice required by law that the undersigned may, at a future date, claim a lien as provided by law against the property if the undersigned is not paid.</span></p>
-<p><span style="font-size: 12;">This </span><span style="font-size: 12;">{{\Carbon\Carbon::parse($data[0]->contract_date)->format('jS \o\f F, Y') }}</span></p>
+<p><span style="font-size: 12;">This </span><span style="font-size: 12;">{{\Carbon\Carbon::parse($data[0]->board_date)->format('jS \o\f F, Y') }}</span></p>
 <p><br /><br /></p>
 <p>&nbsp;</p>
 <div style="text-align: center">
@@ -159,7 +159,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 <p>&nbsp;</p>
 <p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I, Glaucia Alves, hereby certify that I have delivered this day, a true and correct copy of the forgoing to </span><strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}}</strong><span style="font-size: 12;"> by mailing a true and correct copy of the same, by certified U.S. mail, postage prepaid, return receipt requested to Sunny Landscaping &amp; Pavers Design LLC.</span></p>
 <p><br /><br /><span style="font-size: 12;"><br /></span></p>
-<p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, certified this the </span><span style="font-size: 12;">{{\Carbon\Carbon::parse($data[0]->contract_date)->format('jS \o\f F, Y') }}</span></p>
+<p><span style="font-size: 12;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, certified this the </span><span style="font-size: 12;">{{\Carbon\Carbon::parse($data[0]->board_date)->format('jS \o\f F, Y') }}</span></p>
 <div style="text-align: center">
   <img  style="height: 35%; width: 35%; position: absolute; margin-top: -45px; margin-left: 410px" src="https://i.ibb.co/4jY1dHg/signature.png" data-holder-rendered="true" />       
 </div>

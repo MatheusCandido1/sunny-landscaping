@@ -57,7 +57,7 @@ class PdfController extends Controller
     {
         try{
         $data = DB::table('services')
-        ->selectRaw('sum(services.total) as total,customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
+        ->selectRaw('sum(services.total) as total,customers.name, visits.proposal_date, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
         ->join('visits','visits.id','=','services.visit_id')
         ->join('customers','customers.id','=','visits.customer_id')
         ->join('cities', 'cities.id','=','customers.city_id')
@@ -74,7 +74,7 @@ class PdfController extends Controller
     public function generateWaiver($visit_id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('cities.name as city_name, customers.state,customers.zipcode,customers.name as customer_name, customers.address,  visits.invoice_number, visits.contract_date, visits.id as visit_id')
+            ->selectRaw('cities.name as city_name, customers.state,customers.zipcode,customers.name as customer_name, customers.address,  visits.invoice_number, visits.waiver_date, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
             ->join('referrals', 'customers.referral_id','=','referrals.id')
@@ -146,7 +146,7 @@ class PdfController extends Controller
     public function generateContract($visit_id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('cities.name as city_name, customers.state,customers.zipcode,customers.name as customer_name, customers.address,  visits.invoice_number, visits.contract_date, visits.id as visit_id')
+            ->selectRaw('cities.name as city_name, customers.state,customers.zipcode,customers.name as customer_name, customers.address,  visits.invoice_number, visits.board_date, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
             ->join('referrals', 'customers.referral_id','=','referrals.id')

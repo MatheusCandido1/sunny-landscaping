@@ -22,6 +22,9 @@ class CreateVisitsTable extends Migration
             $table->string('invoice_number')->nullalbe();
             $table->string('payment_amout')->nullalbe();
             $table->date('contract_date')->nullalbe();
+            $table->date('board_date')->nullalbe();
+            $table->date('waiver_date')->nullalbe();
+            $table->date('proposal_date')->nullalbe();
             $table->string('project_name');
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
