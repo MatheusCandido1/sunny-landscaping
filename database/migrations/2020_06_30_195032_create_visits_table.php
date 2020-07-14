@@ -25,7 +25,8 @@ class CreateVisitsTable extends Migration
             $table->date('board_date')->nullalbe();
             $table->date('waiver_date')->nullalbe();
             $table->date('proposal_date')->nullalbe();
-            $table->string('project_name');
+            $table->string('project_name')->nullalbe();
+            $table->string('parties')->nullalbe();
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();

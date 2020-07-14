@@ -290,6 +290,14 @@ ul.timeline > li:before {
                     </div>
                 </div>
                 </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="" for="inputLastName">Parties</label>
+                                <input name="parties" class="form-control" type="text" value="{{$data->parties}}" placeholder="" />
+                        </div>
+                    </div>
+                    </div>
                 <button type="submit" class="btn btn-primary btn-block">Save changes</button>   
             </form>
         </div>
@@ -299,9 +307,4 @@ ul.timeline > li:before {
       </div>
     </div>
   </div>
-  @section('script')
-<script type="text/javascript">
-
-</script>
-@endsection
 @endsection
