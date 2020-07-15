@@ -225,13 +225,6 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         </tbody>
       </table>
         <div class="row">
-          
-          <div class="col-xs-12">
-                      <h4>Homeowner:</h4>______________________________________________________ <br><br>
-                      <h4>Job Location:</h4>______________________________________________________ <br><br>
-                      <h4>Date:</h4>______________________________________________________ <br><br>
-
-      </div>
         <div class="notices">
             <div>NOTES:</div>
             <div class="notice">Accepting Proposal is Due upon Signing Proposal. Down Payment is Due on the First Day of the Job. Final Balance is Due upon Job Completion.(Initial) __________</div>

@@ -35,12 +35,9 @@
                             <option>{{$c->name}}</option>
                             @endforeach
                           </select>
-                        
                       </div>
                 </div>
             </div>
-              
-              
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="" for="inputLastName">Address</label>
@@ -86,11 +83,9 @@
                     <input name="zipcode" class="form-control " id="inputLastName" type="text" placeholder="" />
                 </div>
             </div>
-            
         </div>
         <div class="form-row">
             <div class="col-md-4">
-                
                     <label class="" for="inputLastName">Phone</label>
                 <div class="input-group mb-3">
                     
