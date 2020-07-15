@@ -136,6 +136,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
                 <div class="address">{{$customer->address}}</div>
                 <div class="address">{{$customer->city_name}}, {{$customer->state}} - {{$customer->zipcode}}</div>
                 <div class="email">{{$customer->email}}</div>
+                <div class="email">{{$customer->phone}}</div>
             </div>
             <div style="text-align: right" class="col invoice-details">
                 <div class="date">Date: {{ date('m/d/Y') }}</div>
