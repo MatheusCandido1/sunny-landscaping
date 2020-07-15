@@ -928,7 +928,7 @@
         <tr>
           <td >Down Payment</td>
           <td >
-            <input type="text" id="down_payment" required name="down_payment" value="" readonly class="form-control"  placeholder="Payment Down">
+            <input type="text" id="down_payment" required name="down_payment" value="" class="form-control"  placeholder="Payment Down">
           </td>
         </tr>
         <tr>
