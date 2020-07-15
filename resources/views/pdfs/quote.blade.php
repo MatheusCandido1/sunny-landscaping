@@ -207,6 +207,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line text-center" style="width:140px" ><strong>Accepting Proposal</strong></td>
             <td class="no-line text-right">$ {{number_format($serviceData->accepting_proposal,2)}}</td>
           </tr>
+          @if($serviceData->down_payment > 0)
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
@@ -215,6 +216,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line text-center" ><strong>Down Payment</strong></td>
             <td class="no-line text-right">$ {{number_format($serviceData->down_payment,2)}}</td>
           </tr>
+          @endif
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
@@ -226,14 +228,6 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         </tbody>
       </table>
         <div class="row">
-        <div class="notices">
-            <div>NOTES:</div>
-            <div class="notice">Accepting Proposal is Due upon Signing Proposal. Down Payment is Due on the First Day of the Job. Final Balance is Due upon Job Completion.(Initial) __________</div>
-            <div class="notice">Cost for Concrete Removal was calculated considering a 4"-thick slab.  Whenever the thickness of your patio concrete pad is above 4" thick, the following applies:                      $3.50 sq.ft: Concrete pad above 4" without steel mesh or rebar. $35.00 per man-hour: Concrete with steel mesh or rebar. (Initial) __________</div>
-            <div class="notice">Cost for manual Excavation takes in consideration the absence of big rocks and is limited to 3" depth.  If removing bigger rocks or excavation over 3" of depth is required, the cost will increase to $3.00/sq.ft. (Initial) __________</div>
-            <div class="notice">Motor Vehicles on Artificial Grass or any other condition which will expose the Artificial Grass to temperatures exceding 140 degrees Farenheit including damage from sun magnification or reflection from the sun will void warranty. (Initial) __________</div>
-            <div class="notice">Natural Stone Acceptance (Travertine): Using Natural Stone is a philosophical decision. It entails embracing the organic beauty and variations that nature has given us. Not two pieces of natural Stone will look the same nor should they. This is the enduring appeal of natural stone and reflects the journey each stone has taken over millions of years before it is quarried from the earth and prepared for your project. Variation is the defining characteristic of natural stone that differentiates it from man made products.(Initial) __________</div>
-        </div>
         </main>
     </body>
 </html>
