@@ -117,7 +117,7 @@
                       <label class="" for="">Referral</label>
                       <select required class="form-control" name="referral_id" id="">
                         <option value="">Select...</option>
-                        @foreach ($referrals as $referral)
+                        @foreach ($referrals->sortBy('name') as $referral)
                       <option value="{{$referral->id}}">{{$referral->name}}</option>
                         @endforeach
                       </select>
@@ -128,7 +128,7 @@
                       <label class="" for="">Seller</label>
                       <select required class="form-control" name="seller_id" id="">
                         <option value="">Select...</option>
-                        @foreach ($sellers as $seller)
+                        @foreach ($sellers->sortBy('name') as $seller)
                         <option value="{{$seller->id}}">{{$seller->name}}</option>
                           @endforeach
                       </select>
@@ -166,7 +166,7 @@
         <div class="input-group mb-3">
             <select class="form-control" name="company_city" id="">
                 <option value="">Select...</option>
-                @foreach ($cities as $city)
+                @foreach ($cities->sortBy('name') as $city)
               <option value="{{$city->name}}">{{$city->name}}</option>
                 @endforeach
               </select>      

@@ -75,7 +75,7 @@
                 <div class="input-group mb-3">
                     <select required class="form-control" name="city_id" id="">
                         <option value="">Select...</option>
-                        @foreach ($cities as $city)
+                        @foreach ($cities->sortBy('name') as $city)
                       <option {{ $customer->city_id == $city->id ? 'selected' : ''}} value="{{$city->id}}">{{$city->name}}</option>
                         @endforeach
                       </select>      
@@ -124,7 +124,7 @@
                       <label class="" for="">Referral</label>
                       <select required class="form-control" name="referral_id" id="">
                         <option value="">Select...</option>
-                        @foreach ($referrals as $referral)
+                        @foreach ($referrals->sortBy('name') as $referral)
                       <option {{ $customer->referral_id == $referral->id ? 'selected' : ''}} value="{{$referral->id}}">{{$referral->name}}</option>
                         @endforeach
                       </select>
@@ -135,7 +135,7 @@
                       <label class="" for="">Seller</label>
                       <select required class="form-control" name="seller_id" id="">
                         <option value="">Select...</option>
-                        @foreach ($sellers as $seller)
+                        @foreach ($sellers->sortBy('name') as $seller)
                         <option  {{ $customer->seller_id == $seller->id ? 'selected' : ''}} value="{{$seller->id}}">{{$seller->name}}</option>
                           @endforeach
                       </select>
@@ -172,7 +172,7 @@
                 <div class="input-group mb-3">
                     <select class="form-control" name="company_city" id="">
                         <option value="">Select...</option>
-                        @foreach ($cities as $city)
+                        @foreach ($cities->sortBy('name') as $city)
                       <option {{ $customer->company_city == $city->name ? 'selected' : ''}}  value="{{$city->name}}">{{$city->name}}</option>
                         @endforeach
                       </select>      

@@ -129,7 +129,7 @@ flex: 1
             <div class="form-group">
                   <label class="" for="">Type</label>
                   <select style="width: 100%"  id="selectType" class="form-control" multiple="multiple" name="type[]" id="type[]">
-                    @foreach($types as $type)
+                    @foreach($types->sortBy('name') as $type)
                     <option value="{{$type->id}}">{{$type->name}}</option>
                     @endforeach
                   </select>
