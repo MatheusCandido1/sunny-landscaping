@@ -27,7 +27,7 @@
                 <tbody>
                   @foreach($customers as $customer)
                     <tr>
-                        <td >{{$customer->gender}}. {{ $customer->name}}</td>
+                        <td >{{$customer->name}}</td>
                         <td >{{$customer->phone}}</td>
                         <td >{{$customer->email}}</td>
                         <td style="text-align: center;" scope="col">

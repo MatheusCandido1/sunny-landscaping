@@ -133,11 +133,7 @@ ul.timeline > li:before {
                       <p class="lead">
                           <div class="row">
                             <div class="col-lg-4 text-center">
-                                @if($allow == null)
-                                <button  type="button" href="" class="btn btn-danger btn-block" disabled><i class="fas fa-print"></i> Estimate Request</button>  
-                                @else
                                 <a target="_blank" type="button" href="{{route('pdf.estimate', $data->visit_id)}}" class="btn btn-success btn-block"><i class="fas fa-print"></i> Estimate Request</a>  
-                                @endif
                             </div>
                             <div class="col-lg-4 text-center">
                            

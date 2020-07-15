@@ -92,7 +92,7 @@ class CustomerController extends Controller
 
         $customer->save();
         toast('New customer added with success!','success');
-        return redirect()->route('customers.index'); 
+        return redirect()->route('visits.visitsByCustomer', $customer->id); 
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
 
