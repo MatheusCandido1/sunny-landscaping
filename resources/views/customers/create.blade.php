@@ -24,13 +24,17 @@
                                   </div>
                                   <div class="form-check-inline">
                                     <label class="form-check-label">
-                                      <input type="radio" required value="Mr" class="form-check-input" name="gender">Mr
+                                      <input type="radio" required value="Mr" class="form-check-input " name="gender">Mr
                                     </label>
                                   </div>
-                                
                             </span>
                           </div>
-                        <input type="text" name="name" class="form-control" placeholder="">
+                          <select required multiple="multiple"  name="name" id="cust"  class="form-control">
+                            <option value="">Type customer's name</option>
+                            @foreach($cust->sortBy('name') as $c)
+                            <option>{{$c->name}}</option>
+                            @endforeach
+                          </select>
                         
                       </div>
                 </div>
@@ -203,6 +207,14 @@
     else
        document.getElementById('company').style.display='none'; 
 }
+
+$(document).ready(function() {
+  $('#cust').select2({
+      tags: true,
+      height: 'resolve'
+    });
+    
+});
 </script>
 @endsection
 @endsection

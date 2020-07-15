@@ -45,7 +45,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customers.create',['referrals' => Referral::all(),'cities' => City::all(),'sellers' => Seller::all()]);
+        return view('customers.create',['cust' => Customer::all(), 'referrals' => Referral::all(),'cities' => City::all(),'sellers' => Seller::all()]);
 
     }
 
