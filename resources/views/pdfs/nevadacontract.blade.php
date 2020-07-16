@@ -11,7 +11,6 @@
               margin: 2cm 2cm 1cm 2cm;
               }
               .page_break { page-break-before: always; }
-
 </style>
 <body>
 <p style="text-align:center;"><span style="font-size: 20; "><strong>Sunny Landscaping and Pavers Design,  LLC <br> SERVICES AGREEMENT</strong>&nbsp;</span></p>
@@ -97,7 +96,7 @@
 </div>
 <p><span style="font-weight: 400;">________________________________________  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;                   <span style="text-decoration: underline">{{\Carbon\Carbon::parse($data[0]->contract_date)->format('jS \o\f F, Y') }} </span> &nbsp;</span></p>
 <p style="line-height: 2px;"><span style="font-weight: 400;">Glaucia Alves  <span style="margin-left: 410px"> Date</span></p></span></p>
-<p style="line-height: 5px;"><span style="font-weight: 400;">Managing Member </span></p>
-<p style="line-height: 5px;"><span style="font-weight: 400;">Sunny Landscaping and Pavers Design,  LLC </span></p> 
+<p style="line-height: 10px;"><span style="font-weight: 400;">Managing Member </span></p>
+<p style="line-height: 10px;"><span style="font-weight: 400;">Sunny Landscaping and Pavers Design,  LLC </span></p> 
 </body>
 </html>

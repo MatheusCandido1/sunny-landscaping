@@ -57,14 +57,41 @@ class PdfController extends Controller
     {
         try{
         $data = DB::table('services')
-        ->selectRaw('sum(services.total) as total,customers.name, visits.proposal_date, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
+        ->selectRaw('services.updated_at, sum(services.total) as total,customers.name, visits.proposal_date, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
         ->join('visits','visits.id','=','services.visit_id')
         ->join('customers','customers.id','=','visits.customer_id')
         ->join('cities', 'cities.id','=','customers.city_id')
         ->where('services.status','=',1)
         ->where('visits.id','=',$visit_id)
         ->get();
-        $pdf = PDF::loadView('pdfs.fullproposal', compact('data'));
+
+        $itemData = DB::table('items')
+            ->selectRaw('services.id as service_id, items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
+            ->join('item_service','item_service.item_id','=','items.id')
+            ->join('services','services.id','=','item_service.service_id')
+            ->join('visits','visits.id','=','services.visit_id')
+            ->where('visits.id', '=', $visit_id) 
+            ->where('services.status', '=', 1)
+            ->get()
+            ->groupBy('group_type');
+
+        $serviceData = DB::table('services')->selectRaw('sum(services.total) as total, services.id, services.discount, services.accepting_proposal, services.down_payment, final_balance')
+        ->join('visits','visits.id','=','services.visit_id')
+        ->where('services.status','=',1)
+        ->where('services.visit_id','=',$visit_id)->first();
+
+        $customerData = DB::table('visits')
+            ->selectRaw('referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.call_customer_in, visits.hoa, visits.water_smart_rebate, visits.id as visit_id')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('cities', 'customers.city_id','=','cities.id')
+            ->join('referrals', 'customers.referral_id','=','referrals.id')
+            ->where('visits.id','=', $visit_id)
+            ->get();
+
+            $customer = $customerData[0];
+
+
+        $pdf = PDF::loadView('pdfs.fullproposal', compact('data','customer', 'serviceData', 'itemData'));
         return $pdf->setPaper('a4')->stream('items.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -231,7 +258,6 @@ class PdfController extends Controller
 
             $customer = $customerData[0];
             $id = $service_id;
-
             $pdf = PDF::loadView('pdfs.fulldoc', compact('data','customer','itemData','serviceData','id'));
             return $pdf->setPaper('a4')->stream('doc.pdf');
             }catch (Throwable $e) {
