@@ -227,7 +227,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
           </tr>
         </tbody>
       </table>
-        <div class="row">
+      
         </main>
     </body>
 </html>

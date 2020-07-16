@@ -31,7 +31,7 @@
                     <td  style="text-align: center">$ {{number_format($service->total,2)}}</td>
                     <td style="text-align: center" >{{ \Carbon\Carbon::parse($service->created_at)->format('m/d/yy h:i A')}}</td>
                     
-                    <td style="text-align: center;" scope="col"> <a target="_blank" href="{{ route('pdf.proposal', $service->id)}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
+                    <td style="text-align: center;" scope="col"> <a target="_blank" href="{{ route('pdf.doc', ['service'=>$service->id,'visit'=>$visit_id])}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
                     </td>
                     <td style="text-align: center;" scope="col">
                         <div class="btn-group" role="group">
