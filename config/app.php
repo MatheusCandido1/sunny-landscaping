@@ -150,6 +150,7 @@ return [
         TJGazel\Toastr\ToastrServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        LynX39\LaraPdfMerger\PdfMergerServiceProvider::class,
 
 
         /*
@@ -217,7 +218,7 @@ return [
         'Toastr' => TJGazel\Toastr\Facades\Toastr::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-
+        'PdfMerger' => LynX39\LaraPdfMerger\Facades\PdfMerger::class,
     ],
 
 ];
