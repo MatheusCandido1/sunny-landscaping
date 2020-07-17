@@ -237,7 +237,7 @@ class PdfController extends Controller
             ->where('services.id','=', $service_id)
             ->get();
 
-            $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.id','=', $service_id)->where('services.visit_id','=',$visit_id)->first();
+            $serviceData = DB::table('services')->select('services.notes', 'id','discount','total','accepting_proposal','down_payment','final_balance')->where('services.id','=', $service_id)->where('services.visit_id','=',$visit_id)->first();
 
             $itemData = DB::table('items')
             ->selectRaw('items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')

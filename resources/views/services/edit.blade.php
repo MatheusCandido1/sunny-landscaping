@@ -907,7 +907,7 @@
           <td >Accepting Proposal</td>
           <td style="text-align: right"  scope="col" >
             <div class="input-group mb-3">
-            <input type="text" value="500.00" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Accepting Proposal">
+            <input type="text" value="" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Accepting Proposal">
               <div class="input-group-append">
                 <button onclick="PayDown()" class="btn btn-success" type="button">Get Payment Down</button>
               </div>
@@ -940,8 +940,8 @@
         <tr>
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
-            <textarea  style="height: 100px"  name="notes" id="notes"     
-            class="summernote"> {{$service->notes}} </textarea>
+          <textarea class="form-control" id="" style="resize: none" name="notes" rows="3">{{$service->notes}}</textarea>
+
           </td>
         </tr>
       </tbody>
@@ -1206,14 +1206,5 @@
       }
       document.getElementById('total').value =total.toFixed(2);
     }
-</script>
-@endsection
-@section('script')
-<script>
-$(document).ready(function() {
-           $('.summernote').summernote({
-            height: 200
-         });
-      });
 </script>
 @endsection

@@ -390,33 +390,6 @@ labor costs.<o:p></o:p></span></p>
 </table>
 @endforeach
 
-<div class="page_break"></div>
-<div id="header">
-  <div class="row">
-    <div class="col">
-        <a target="_blank" href="https://sunnypavers.com">
-          <img  style="height: 110px; width: 106px; position: relative"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
-        </a>
-    </div>
-    <div class="col">
-      <div class="company-details" style="margin-top: -130px">
-      <div>   
-        &nbsp;
-      </div>
-        <div><span style="font-size:14px">NV State Business License # NV20151085480</span></div>
-        <div><span style="font-size:14px">NV State Contractor's Board Licenses:    </span></div>
-        <div><span style="font-size:14px">C-18 # 0080493 - Limit: $245,000 / C-10 # 0081661 - Limit: $245,000</span></div>
-    </div>
-    </div>
-</div>
-</div>
-<div id="footer">
-Invoice was created on a computer and is valid without the signature and seal.
-</div>
-
-<div id="image">
-  <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
-</div>
 <table class="table" width="">
   <tr>
     <td class="no-line"></td>
@@ -472,6 +445,9 @@ Invoice was created on a computer and is valid without the signature and seal.
 </tbody>
 </table>
 
+<div class="col-xs-6">
+  {{$serviceData->notes}}
+</div>
 </div>
 
 </body>

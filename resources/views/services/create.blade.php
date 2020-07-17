@@ -498,8 +498,8 @@
         <tr>
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
-            <textarea  style="height: 100px"  name="notes" id="notes"     
-            class="summernote"> </textarea>
+            <textarea class="form-control" id="" name="notes" rows="3"></textarea>
+
           </td>
         </tr>
       </tbody>
@@ -739,15 +739,5 @@
       document.getElementById('total').value =total.toFixed(2);
     }
         
-</script>
-@endsection
-
-@section('script')
-<script>
-$(document).ready(function() {
-           $('.summernote').summernote({
-            height: 200
-         });
-      });
 </script>
 @endsection
