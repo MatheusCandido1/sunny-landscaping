@@ -13,7 +13,7 @@
   <input type="hidden" name="customer_id" value="{{$customer_id}}"/>
 
   <div class="container-fluid">
-  <h1 class="mt-4">Edit Quote {{$service_id}}</h1>
+  <h1 class="mt-4">Edit Quote #{{$service_id}}</h1>
 
   <div class="row">
     <div class="col-lg-12">
@@ -937,6 +937,13 @@
           <input type="text" value="" id="total"  class="form-control" placeholder="">
           </td>
         </tr>
+        <tr>
+          <td>Notes</td>
+          <td style="text-align: center" scope="col" >
+            <textarea  style="height: 100px"  name="notes" id="notes"     
+            class="summernote"> {{$service->notes}} </textarea>
+          </td>
+        </tr>
       </tbody>
     </table>
     <button type="submit" class="btn btn-success btn-block"><i class="fas fa-check"></i> Save Quote</button>
@@ -1199,5 +1206,14 @@
       }
       document.getElementById('total').value =total.toFixed(2);
     }
+</script>
+@endsection
+@section('script')
+<script>
+$(document).ready(function() {
+           $('.summernote').summernote({
+            height: 200
+         });
+      });
 </script>
 @endsection

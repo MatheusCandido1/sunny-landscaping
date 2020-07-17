@@ -21,6 +21,7 @@ class CreateTableServices extends Migration
             $table->float('down_payment');
             $table->boolean('status');
             $table->float('final_balance');
+            $table->text('notes');
             $table->integer('visit_id')->unsigned();
             $table->foreign('visit_id')->references('id')->on('visits')->onDelete('cascade');
             $table->timestamps();

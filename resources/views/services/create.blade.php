@@ -495,6 +495,13 @@
             <input type="text" id="total"  class="form-control" placeholder="">
           </td>
         </tr>
+        <tr>
+          <td>Notes</td>
+          <td style="text-align: center" scope="col" >
+            <textarea  style="height: 100px"  name="notes" id="notes"     
+            class="summernote"> </textarea>
+          </td>
+        </tr>
       </tbody>
     </table>
     <button type="submit" class="btn btn-success btn-block"><i class="fas fa-check"></i> Save Quote</button>
@@ -732,5 +739,15 @@
       document.getElementById('total').value =total.toFixed(2);
     }
         
+</script>
+@endsection
+
+@section('script')
+<script>
+$(document).ready(function() {
+           $('.summernote').summernote({
+            height: 200
+         });
+      });
 </script>
 @endsection

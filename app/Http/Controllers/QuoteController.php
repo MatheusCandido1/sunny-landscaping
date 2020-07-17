@@ -49,6 +49,7 @@ class QuoteController extends Controller
             'accepting_proposal' => $request->accepting_proposal,
             'down_payment' => $request->down_payment,
             'final_balance' => $request->final_balance,
+            'notes' => $request->notes,
             'status' => 3,
             'visit_id' => $request->visit_id
         ]); 
@@ -105,7 +106,7 @@ class QuoteController extends Controller
     {
         try{
         $service = Service::where('id','=', $id)->first();
-        $service->fill($request->only('discount','total','accepting_proposal','down_payment','status','visit','final_balance'));
+        $service->fill($request->only('discount','total','accepting_proposal','down_payment','status','notes','visit','final_balance'));
         $service->save();
         $items = $service->items()->select('id')->get();
         for($i = 0; $i < count($request->input('id')); $i++){
