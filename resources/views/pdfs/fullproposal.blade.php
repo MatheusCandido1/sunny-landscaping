@@ -360,9 +360,99 @@ labor costs.<o:p></o:p></span></p>
         <div class="date">Date: {{ date('m/d/Y') }}</div>
     </div>
 </div>
+@foreach($itemData as $group_type => $items)
+<h4>{{$group_type}} </h4>
+<table class="table" width="" class="table">
+  <thead>
+    <tr>
+      @if($group_type == "1 - PAVERS" || $group_type == "2 - RETAINING WALL")
+      <th style="text-align: left" scope="col" >Supplier</th>
+      @endif
+      <th style="text-align: left" scope="col" >Description</th>
+      <th style="" scope="col" >Quantity</th>
+      <th style="" scope="col" >Unit Price</th>
+      <th style="text-align: right" scope="col" >Investment</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($items->sortBy('services.id') as $item)
+@if($item->service == $service->id)
+    <tr>
+      @if($item->group_type == "1 - PAVERS" || $item->group_type == "2 - RETAINING WALL")
+      <td>{{$item->supplier}}</td>
+      @endif
+      <td>{{$item->description}} </td>
+      <td>{{$item->quantity}} {{$item->type}} </td>
+      <td>$ {{number_format($item->unit_price,2)}} </td>
+      <td style="text-align: right">$ {{number_format($item->investment,2)}}</td>
+    </tr>
+    @endif
+    @endforeach
+  </tbody>
+</table>
+@endforeach
+
+@foreach($serviceData->sortBy('id') as $services)
+@if($services->service_id == $service->id)
+<table class="table" width="">
+  <tr>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line " ></td>
+    <td class="no-line"></td>
+  </tr>
+  <tr>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line text-center"><strong>Total</strong></td>
+    <td class="no-line text-right">$ {{number_format($services->total,2)}}</td>
+  </tr>
+  @if($services->discount > 0)
+  <tr>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line text-center"><strong>Discount</strong></td>
+    <td class="no-line text-right">$ {{number_format($services->discount,2)}}</td>
+  </tr>
+  @endif
+  <tr>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line text-center" style="width:140px" ><strong>Accepting Proposal</strong></td>
+    <td class="no-line text-right">$ {{number_format($services->accepting_proposal,2)}}</td>
+  </tr>
+  @if($services->down_payment > 0)
+  <tr>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line text-center" ><strong>Down Payment</strong></td>
+    <td class="no-line text-right">$ {{number_format($services->down_payment,2)}}</td>
+  </tr>
+  @endif
+  <tr>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="no-line"></td>
+    <td class="thick-line text-center"><strong>Final Balance</strong></td>
+    <td class="thick-line text-right">$ {{number_format($services->final_balance,2)}}</td>
+  </tr>
+</tbody>
+</table>
 
 <div class="col-xs-6">
 </div>
+@endif
+@endforeach
 @if(!($loop->last))
 <div class="page_break"></div>
 @endif

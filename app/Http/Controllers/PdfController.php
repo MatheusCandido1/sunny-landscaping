@@ -88,9 +88,13 @@ class PdfController extends Controller
             ->where('services.status',1)
             ->get()
             ->groupBy('group_type');
+            $serviceData = DB::table('services')
+            ->select('services.notes', 'services.id as service_id','discount','total','accepting_proposal','down_payment','final_balance')
+            ->where('services.visit_id','=',$visit_id)
+            ->where('services.status','=',1)
+            ->get();
 
-
-        $pdf = PDF::loadView('pdfs.fullproposal', compact('serviceGroup','data','customer', 'itemData'));
+        $pdf = PDF::loadView('pdfs.fullproposal', compact('serviceData','serviceGroup','data','customer', 'itemData'));
         return $pdf->setPaper('a4')->stream('fullproposal.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
