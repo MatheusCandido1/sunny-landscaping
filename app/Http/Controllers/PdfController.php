@@ -78,7 +78,7 @@ class PdfController extends Controller
         ->where('visits.id', '=', $visit_id)
         ->where('services.status', '=',1)
         ->get();
-        
+
         $itemData = DB::table('items')
             ->selectRaw('services.id as service, items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
             ->join('item_service','item_service.item_id','=','items.id')
@@ -87,14 +87,25 @@ class PdfController extends Controller
             ->where('visits.id', '=', $visit_id)
             ->where('services.status',1)
             ->get()
-            ->groupBy('group_type');
-            $serviceData = DB::table('services')
+            ->groupBy(['service','group_type']);
+          //  dd($itemData);
+        
+
+        $serviceData = DB::table('services')
             ->select('services.notes', 'services.id as service_id','discount','total','accepting_proposal','down_payment','final_balance')
             ->where('services.visit_id','=',$visit_id)
             ->where('services.status','=',1)
             ->get();
 
-        $pdf = PDF::loadView('pdfs.fullproposal', compact('serviceData','serviceGroup','data','customer', 'itemData'));
+        $amount = DB::table('services')
+            ->selectRaw('sum(services.total) as total')
+            ->join('visits', 'visits.id','=','services.visit_id')
+            ->where('services.status','=','1')
+            ->where('visits.id','=',$visit_id)
+            ->get();
+
+
+        $pdf = PDF::loadView('pdfs.fullproposal', compact('amount','serviceData','serviceGroup','data','customer', 'itemData'));
         return $pdf->setPaper('a4')->stream('fullproposal.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
