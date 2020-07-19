@@ -19,7 +19,6 @@
                         <th style="text-align: center" scope="col" >Quote #</th>
                         <th style="text-align: center" scope="col">Total</th>
                         <th style="text-align: center" scope="col">Created at</th>
-                        <th style="text-align: center" scope="col">Proposal</th>
                         <th style="text-align: center" scope="col">Actions</th>
                         <th style="text-align: center" scope="col">Status</th>
                     </tr>
@@ -31,8 +30,6 @@
                     <td  style="text-align: center">$ {{number_format($service->total,2)}}</td>
                     <td style="text-align: center" >{{ \Carbon\Carbon::parse($service->created_at)->format('m/d/yy h:i A')}}</td>
                     
-                    <td style="text-align: center;" scope="col"> <a target="_blank" href="{{ route('pdf.doc', ['service'=>$service->id,'visit'=>$visit_id])}}" type="button" class="btn btn-success  btn-block"><i class="fas fa-print"></i> Proposal</a>
-                    </td>
                     <td style="text-align: center;" scope="col">
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

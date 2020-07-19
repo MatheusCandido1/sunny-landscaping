@@ -10,7 +10,7 @@
 
 <style>
   @page {
-              margin: 2.5cm 2.5cm 0cm 2.5cm;
+              margin: 120px 2.5cm 0cm 2.5cm;
               }
 <!--
  /* Font Definitions */
@@ -63,57 +63,22 @@ left: 0; /* or whatever, position according to taste */
 opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 }
 
-#image2 {
-/* the image you want to 'watermark' */
-height: 495px; /* or whatever, equal to the image you want 'watermarked' */
-width: 600px; /* as above */
-background-position: 0 0;
-background-repeat: no-repeat;
-position: absolute;
-}
-
-#image2 img {
-/* the actual 'watermark' */
-position: absolute;
-top: 200; /* or whatever */
-left: 0; /* or whatever, position according to taste */
-opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
-}
 .page_break { page-break-before: always; }
 
-#header {
-                position: relative;
-                top: 0cm;
-                left: 0cm;
-                right: 0cm;
-                height: 3cm;
-    border-bottom: 1px solid #f5a15c
-            }
 .company-details {
               margin-left: 200px;
             }
 
-            #footer {
-                position: fixed; 
-                bottom: 0px; 
-                left: 0px; 
+            header {
+                position: fixed;
+                top: -100px;
+                left: 0px;
                 right: 0px;
-                height: 50px; 
-                text-align: center;
-                color: #777;
-                border-top: 1px solid #f5a15c;
-            }
-
-            #header2 {
-                position: relative;
-                top: 0cm;
-                left: 0cm;
-                right: 0cm;
-                height: 3cm;
+                height: 100px;
     border-bottom: 1px solid #f5a15c
             }
-
-            #footer2 {
+            /** Define the footer rules **/
+            footer {
                 position: fixed; 
                 bottom: 0px; 
                 left: 0px; 
@@ -123,6 +88,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
                 color: #777;
                 border-top: 1px solid #f5a15c;
             }
+
 
             .table > tbody > tr > .no-line {
     border-top: none;
@@ -133,67 +99,42 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 .table > tbody > tr > .thick-line {
     border-top: 2px solid;
 }
+
+tbody:before, tbody:after { display: none; }
+table {
+    border-collapse: collapse;
+}
 </style>
 
 </head>
 
 <body lang=EN-US>
+  <header>
+    <div class="row">
+      <div class="col">
+          <a target="_blank" href="https://sunnypavers.com">
+            <img  style="top: -100px; height: 110px; width: 106px; position: fixed"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
+          </a>
+      </div>
+      <div class="col company-details">
+        <div>   &nbsp;
+        </div>
+
+          <div>NV State Business License # NV20151085480</div>
+          <div>NV State Contractor's Board Licenses:    </div>
+          <div>C-18 # 0080493 - Limit: $245,000 / C-10 # 0081661 - Limit: $245,000</div>
+      </div>
+  </div>
+  </header>
+
+  <footer>
+    Invoice was created on a computer and is valid without the signature and seal.
+  </footer>
 <div class=WordSection1>
   <div id="image">
     <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
   </div>
-
-<p class=MsoNormal align=right style='margin-bottom:12.0pt;text-align:right;
-border:none'>
-
-<table class=2 border=0 cellspacing=0 cellpadding=0 width=400 style='border-collapse:
- collapse'>
- <tr style='height:112.5pt'>
-  <td width=24 style='width:17.8pt;background:#EBEBEB;padding:0in 0in 0in 0in;
-  height:112.5pt'>
-  <p class=MsoNormal>&nbsp;</p>
-  </td>
-  <td width=604 style='width:452.7pt;background:#EBEBEB;padding:0in 0in 0in 0in;
-  height:112.5pt'>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  90%;border:none'><span style='font-size:20.0pt;line-height:90%;color:#11826D'>Sunny
-  Landscaping &amp; Pavers Design LLC</span></p>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  110%;border:none'><span style='font-size:10.0pt;line-height:110%'>3183 Ramrod
-  St.,</span></p>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  110%;border:none'><span style='font-size:10.0pt;line-height:110%'>Las Vegas,
-  NV 89108</span></p>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  110%;border:none'><span style='font-size:10.0pt;line-height:110%'>Cell: (702)
-  445-8948</span></p>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  110%;border:none'><span style='font-size:10.0pt;line-height:110%'>Phone/Fax:
-  (702) 202-2882</span></p>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  110%;border:none'><span style='font-size:10.0pt;line-height:110%'>License #
-  NV20151085480         C-18 # 0080493 – Limit: $245,000  /  C-10 # 0081661 –
-  Limit: $245,000</span></p>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  110%;border:none'><span style='font-size:10.0pt;line-height:110%'>LICENSED                      
-  -                               BONDED                                
-  -                          INSURED</span></p>
-  </td>
-  <td width=1 style='width:1.0pt;padding:0in 0in 0in 0in;height:112.5pt'>
-  <p class=MsoNormal>&nbsp;</p>
-  </td>
-  <td width=13 style='width:10.05pt;padding:0in 0in 0in 0in;height:112.5pt'>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  90%;border:none'><span style='font-size:14.0pt;line-height:90%;color:#11826D'>&nbsp;</span></p>
-  </td>
-  <td width=67 style='width:50.25pt;padding:0in 0in 0in 0in;height:112.5pt'>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  90%;border:none'><span style='font-size:14.0pt;line-height:90%;color:#11826D'>&nbsp;</span></p>
-  </td>
- </tr>
-</table>
-<br><br>
-<p class=MsoNormal align=right style='font-size:12;margin-bottom:12.0pt;text-align:right;
+<p class=MsoNormal align=right style='font-size:12;margin-bottom:16.0pt;text-align:right;
 border:none'><span >{{ \Carbon\Carbon::parse($data[0]->updated_at)->format('F d, Y')}} </span></p>
 <br><br>
 @if ($data[0]->company == 1)
@@ -207,7 +148,7 @@ border:none'><span >{{ \Carbon\Carbon::parse($data[0]->updated_at)->format('F d,
   style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_city}},{{$data[0]->company_state}} - {{$data[0]->company_zipcode}}</span></p>
   @else
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
-style='font-size:12.0pt;line-height:120%;'>{{$data[0]->name}}</span></b></p>
+style='font-size:12.0pt;line-height:120%;'>{{$data[0]->name }}</span></b></p>
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
 style='font-size:12.0pt;line-height:120%;'>{{$data[0]->address}}</span></p>
 <p class=MsoNormal style='ffont-size:12;ont-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
@@ -225,7 +166,7 @@ style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;text-align:
 justify'>Thank you for choosing Sunny Landscaping &amp; Pavers Design LLC for
 your home’s landscaping improvement. The <b>anticipated value</b> of investment to install pavers and
-improve your landscaping is estimated in <b>US$ <span>{{number_format($data[0]->total,2)}}</span></b>
+improve your landscaping is estimated in <b>US$ <span>{{number_format($amount[0]->total,2)}}</span></b>
 <b>(materials and labor, tax included).</b> Please sign below with your acceptance of this quotation and we will
 begin working on your property as soon as possible. Any changes will have a
 Change Order for approval and will add/deduct from the amount described above.
@@ -301,42 +242,11 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 <br>
 <br>
 <br>
-<p class=MsoNormal align=center style='margin-top: -20px;
-text-align:center;line-height:normal'><span lang=EN-US style='font-size:8.0pt'>We
-accept cash, check and credit card. For payments with credit card, will be
-added a 3% processing fee. Prices are valid for 60 days after the date of
-proposal, and are subject to change after that period due to raw materials or
-labor costs.<o:p></o:p></span></p>
 </div>
-
+<div class="page_break"></div>
+<main>
 @foreach($itemData as $service=>$quote)
-<div id="page[]">
-  <div id="header">
-    <div class="row">
-      <div class="col">
-          <a target="_blank" href="https://sunnypavers.com">
-            <img  style="height: 110px; width: 106px; position: relative"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
-          </a>
-      </div>
-      <div class="col">
-        <div class="company-details" style="margin-top: -130px">
-        <div>   
-          &nbsp;
-        </div>
-          <div><span style="font-size:14px">NV State Business License # NV20151085480</span></div>
-          <div><span style="font-size:14px">NV State Contractor's Board Licenses:    </span></div>
-          <div><span style="font-size:14px">C-18 # 0080493 - Limit: $245,000 / C-10 # 0081661 - Limit: $245,000</span></div>
-      </div>
-      </div>
-  </div>
-</div>
-<div id="footer">
-  Invoice was created on a computer and is valid without the signature and seal.
-</div>
 
-<div id="image">
-  <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
-</div>
   <div class="row contacts">
     <div style="text-align: right">
      </div>
@@ -360,6 +270,8 @@ labor costs.<o:p></o:p></span></p>
     </div>
 </div>
 @foreach($quote as $group_type => $items)
+
+<div style="page-break-inside: avoid;"> 
         <h4>{{$group_type}} </h4>
         <table class="table" width="" class="table">
           <thead>
@@ -387,11 +299,13 @@ labor costs.<o:p></o:p></span></p>
             @endforeach
           </tbody>
         </table>
+</div>
         @endforeach
 
         @foreach ($serviceData as $value)
         @if($value->service_id == $service)
-        <table class="table" width="">
+        
+        <table style="position:relative" class="table" width="">
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
@@ -418,7 +332,8 @@ labor costs.<o:p></o:p></span></p>
           </tr>
           @endif
           <tr>
-            <td class="no-line"></td>
+            <td style="font-size: 12px" class="no-line">{{$value->notes}}
+            </td>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
@@ -447,14 +362,15 @@ labor costs.<o:p></o:p></span></p>
       </table>
       @endif
         @endforeach
-<div class="col-xs-6">
+        
+<div id="image">
+  <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
 </div>
 @if(!($loop->last))
 <div class="page_break"></div>
 @endif
-</div>
 @endforeach
-
+</main>
 </body>
 
 </html>

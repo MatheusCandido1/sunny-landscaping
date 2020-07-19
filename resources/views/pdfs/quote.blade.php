@@ -143,8 +143,9 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             </div>
         </div>
         @foreach($itemData as $group_type => $items)
+        <div style="page-break-inside: avoid;"> 
         <h4>{{$group_type}} </h4>
-        <table class="table" width="" class="table">
+        <table  class="table" width="" class="table">
           <thead>
             <tr>
               @if($group_type == "1 - PAVERS" || $group_type == "2 - RETAINING WALL")
@@ -170,10 +171,10 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             @endforeach
           </tbody>
         </table>
+      </div>
         @endforeach
         
-        <div class="page_break"></div>
-        <table class="table" width="">
+        <table  style="page-break-inside: avoid;" class="table" width="">
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
