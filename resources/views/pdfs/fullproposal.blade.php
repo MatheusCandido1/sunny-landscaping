@@ -3,7 +3,11 @@
 <head>
   <title>Proposal - {{$data[0]->name}}</title>
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+
+
 <meta name=Generator content="Microsoft Word 15 (filtered)">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <style>
   @page {
               margin: 2.5cm 2.5cm 0cm 2.5cm;
@@ -59,7 +63,76 @@ left: 0; /* or whatever, position according to taste */
 opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 }
 
-  
+#image2 {
+/* the image you want to 'watermark' */
+height: 495px; /* or whatever, equal to the image you want 'watermarked' */
+width: 600px; /* as above */
+background-position: 0 0;
+background-repeat: no-repeat;
+position: absolute;
+}
+
+#image2 img {
+/* the actual 'watermark' */
+position: absolute;
+top: 200; /* or whatever */
+left: 0; /* or whatever, position according to taste */
+opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+}
+.page_break { page-break-before: always; }
+
+#header {
+                position: relative;
+                top: 0cm;
+                left: 0cm;
+                right: 0cm;
+                height: 3cm;
+    border-bottom: 1px solid #f5a15c
+            }
+.company-details {
+              margin-left: 200px;
+            }
+
+            #footer {
+                position: fixed; 
+                bottom: 0px; 
+                left: 0px; 
+                right: 0px;
+                height: 50px; 
+                text-align: center;
+                color: #777;
+                border-top: 1px solid #f5a15c;
+            }
+
+            #header2 {
+                position: relative;
+                top: 0cm;
+                left: 0cm;
+                right: 0cm;
+                height: 3cm;
+    border-bottom: 1px solid #f5a15c
+            }
+
+            #footer2 {
+                position: fixed; 
+                bottom: 0px; 
+                left: 0px; 
+                right: 0px;
+                height: 50px; 
+                text-align: center;
+                color: #777;
+                border-top: 1px solid #f5a15c;
+            }
+
+            .table > tbody > tr > .no-line {
+    border-top: none;
+}
+.table > thead > tr > .no-line {
+    border-bottom: none;
+}
+.table > tbody > tr > .thick-line {
+    border-top: 2px solid;
+}
 </style>
 
 </head>
@@ -121,7 +194,7 @@ border:none'>
 </table>
 <br><br>
 <p class=MsoNormal align=right style='font-size:12;margin-bottom:12.0pt;text-align:right;
-border:none'><span >{{ \Carbon\Carbon::parse($data[0]->proposal_date)->format('F d, Y')}} </span></p>
+border:none'><span >{{ \Carbon\Carbon::parse($data[0]->updated_at)->format('F d, Y')}} </span></p>
 <br><br>
 @if ($data[0]->company == 1)
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
@@ -153,7 +226,7 @@ style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}
 justify'>Thank you for choosing Sunny Landscaping &amp; Pavers Design LLC for
 your home’s landscaping improvement. The <b>anticipated value</b> of investment to install pavers and
 improve your landscaping is estimated in <b>US$ <span>{{number_format($data[0]->total,2)}}</span></b>
-<b> (materials and labor, tax included).</b> Please sign below with your acceptance of this quotation and we will
+<b>(materials and labor, tax included).</b> Please sign below with your acceptance of this quotation and we will
 begin working on your property as soon as possible. Any changes will have a
 Change Order for approval and will add/deduct from the amount described above.
 A US$500.00 non-refundable fee will be due upon signature. The same amount
@@ -228,13 +301,73 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 <br>
 <br>
 <br>
-<p class=MsoNormal align=center style='margin-top: 0px;
+<p class=MsoNormal align=center style='margin-top: -20px;
 text-align:center;line-height:normal'><span lang=EN-US style='font-size:8.0pt'>We
 accept cash, check and credit card. For payments with credit card, will be
 added a 3% processing fee. Prices are valid for 60 days after the date of
 proposal, and are subject to change after that period due to raw materials or
 labor costs.<o:p></o:p></span></p>
 </div>
+
+@foreach($serviceGroup->sortBy('id') as $service)
+<div id="page[]">
+
+  <div id="header">
+    <div class="row">
+      <div class="col">
+          <a target="_blank" href="https://sunnypavers.com">
+            <img  style="height: 110px; width: 106px; position: relative"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
+          </a>
+      </div>
+      <div class="col">
+        <div class="company-details" style="margin-top: -130px">
+        <div>   
+          &nbsp;
+        </div>
+          <div><span style="font-size:14px">NV State Business License # NV20151085480</span></div>
+          <div><span style="font-size:14px">NV State Contractor's Board Licenses:    </span></div>
+          <div><span style="font-size:14px">C-18 # 0080493 - Limit: $245,000 / C-10 # 0081661 - Limit: $245,000</span></div>
+      </div>
+      </div>
+  </div>
+</div>
+<div id="footer">
+  Invoice was created on a computer and is valid without the signature and seal.
+</div>
+
+<div id="image">
+  <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
+</div>
+  <div class="row contacts">
+    <div style="text-align: right">
+     </div>
+    <div style="text-align: left" class="col invoice-to">
+      <div class="row">
+        <div class="col-xs-6">
+            <h3 class="to">{{$customer->customer_name}}</h3>
+        </div>
+        <div class="col-xs-6">
+          <h3 class="to">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quote number: #{{$service->id}}</h3>
+
+        </div>
+      </div>
+        <div class="address">{{$customer->address}}</div>
+        <div class="address">{{$customer->city_name}}, {{$customer->state}} - {{$customer->zipcode}}</div>
+        <div class="email">{{$customer->email}}</div>
+        <div class="email">{{$customer->phone}}</div>
+    </div>
+    <div style="text-align: right" class="col invoice-details">
+        <div class="date">Date: {{ date('m/d/Y') }}</div>
+    </div>
+</div>
+
+<div class="col-xs-6">
+</div>
+@if(!($loop->last))
+<div class="page_break"></div>
+@endif
+</div>
+@endforeach
 
 </body>
 

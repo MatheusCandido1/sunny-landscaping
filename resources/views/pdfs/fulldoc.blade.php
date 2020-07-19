@@ -375,7 +375,7 @@ labor costs.<o:p></o:p></span></p>
     </tr>
   </thead>
   <tbody>
-    @foreach($items as $item)
+    @foreach($items->sortBy('services.id') as $item)
     <tr>
       @if($item->group_type == "1 - PAVERS" || $item->group_type == "2 - RETAINING WALL")
       <td>{{$item->supplier}}</td>

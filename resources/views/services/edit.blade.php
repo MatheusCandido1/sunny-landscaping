@@ -941,7 +941,6 @@
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
           <textarea class="form-control" id="" style="resize: none" name="notes" rows="3">{{$service->notes}}</textarea>
-
           </td>
         </tr>
       </tbody>
