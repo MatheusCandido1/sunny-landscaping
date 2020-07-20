@@ -94,7 +94,41 @@ class HomeController extends Controller
         ->first();
 
 
-        return view('dashboard.home', compact('approved','disapproved','chart2'));
+        $borderColors = [
+            "rgba(2, 117, 216, 1.0)",
+            "rgba(91, 192, 222, 1.0)",
+            "rgba(92, 184, 92, 1.0)",
+            "rgba(41, 43, 44, 1.0)",
+            "rgba(240, 173, 78, 1.0)",
+            "rgba(78, 51, 87, 1.0)",
+            "rgba(217, 83, 79, 1.0)"
+        ];
+        $fillColors = [
+            "rgba(2, 117, 216, 0.5)",
+            "rgba(91, 192, 222, 0.5)",
+            "rgba(92, 184, 92,0.5)",
+            "rgba(41, 43, 44, 0.5)",
+            "rgba(240, 173, 78, 0.5)",
+            "rgba(78, 51, 87, 0.5)",
+            "rgba(217, 83, 79, 0.5)"
+        ];
+
+        $status = DB::table('visits')
+        ->selectRaw('statuses.name as status, count(*) as quantity')
+        ->join('statuses','statuses.id','=','visits.status_id')
+        ->groupBy(DB::raw('statuses.name'))
+        ->orderBy('statuses.id', 'ASC')
+        ->pluck('quantity','status');
+
+        dd($status);
+
+        $chart = new StatusChart;
+        $chart->labels($status->keys());
+        $chart->dataset('Quotes Approved', 'pie',$status->values())
+        ->color($borderColors)
+        ->backgroundcolor($fillColors);
+       
+        return view('dashboard.home', compact('approved','disapproved','chart','chart2'));
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
