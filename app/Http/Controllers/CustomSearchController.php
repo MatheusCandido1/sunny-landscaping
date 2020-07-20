@@ -11,14 +11,18 @@ class CustomSearchController extends Controller
 {
    function visitsByStatus(Request $request){
       $status = DB::table('visits')
-        ->selectRaw('customers.name as customer_name, visits.date as visit_date')
+        ->selectRaw('customers.id as customer_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date')
         ->join('customers', 'customers.id','=','visits.customer_id')
         ->join('statuses','statuses.id','=','visits.status_id')
         ->where('visits.status_id','=',$request->filter_status)
         ->get();
         return datatables()->of($status)
-        ->rawColumns(['action'])
-        ->make(true);
+        ->addColumn('action', function($data){
+         $button = '<a href="'. route('visits.visitsByCustomer', [ 'customer' => "$data->customer_id"]).'" type="button"  class="btn btn-info btn-block">See Visit</a>';
+         return $button;
+     })
+     ->rawColumns(['action'])
+     ->make(true);
         return view('dashboard.visits');
      }
    
@@ -34,9 +38,6 @@ class CustomSearchController extends Controller
             ->where('services.status','=',$request->filter_status)
             ->where('visits.has_services','=', 1)
             ->get();
-
-
-            
       return datatables()->of($data)
       ->addColumn('action', function($data){
          $button = '<a href="'. route('services.servicesByVisit', ['visit' => "$data->visit_id", 'customer' => "$data->customer_id"]).'" type="button"  class="btn btn-info">See Details</a>';

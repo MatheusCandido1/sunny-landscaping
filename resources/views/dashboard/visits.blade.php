@@ -61,6 +61,11 @@ function fill_datatable(filter_status = '')
             },
             {
                 data:'visit_date'
+            },
+            {
+                data: 'action',
+                name: 'action',
+                orderable: false
             }
         ]
     });
