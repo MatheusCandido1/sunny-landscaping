@@ -44,7 +44,9 @@
             <i class="fas fa-chart-bar"></i> Approved and Disapproved by Month
           </div>
           <div class="col-lg-6">
-            <i class="fas fa-chart-pie"></i> Projects by Status
+            <i class="fas fa-chart-pie"></i> Projects by Status <a type="button" href="{{ route('dashboard.visits')}}">
+              (Click here to see details)
+            </a>
               </div>
         </div>
       </div>

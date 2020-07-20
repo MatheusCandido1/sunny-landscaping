@@ -9,6 +9,20 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomSearchController extends Controller
 {
+   function visitsByStatus(Request $request){
+      $status = DB::table('visits')
+        ->selectRaw('customers.name as customer_name, visits.date as visit_date')
+        ->join('customers', 'customers.id','=','visits.customer_id')
+        ->join('statuses','statuses.id','=','visits.status_id')
+        ->where('visits.status_id','=',$request->filter_status)
+        ->get();
+        return datatables()->of($status)
+        ->rawColumns(['action'])
+        ->make(true);
+        return view('dashboard.visits');
+     }
+   
+
     function index(Request $request)
     {
       if($request->filter_status == 1)

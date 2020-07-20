@@ -5,6 +5,7 @@ use TJGazel\Toastr\Facades\Toastr;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Charts\StatusChart;
+use App\Status;
 
 
 use Illuminate\Http\Request;
@@ -32,6 +33,14 @@ class HomeController extends Controller
     public function projectsByStatus(){
         try{
             return view('dashboard.status');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
+    public function visitsByStatus(){
+        try{
+            return view('dashboard.visits', ['status' => Status::all()]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -120,11 +129,10 @@ class HomeController extends Controller
         ->orderBy('statuses.id', 'ASC')
         ->pluck('quantity','status');
 
-        dd($status);
 
         $chart = new StatusChart;
         $chart->labels($status->keys());
-        $chart->dataset('Quotes Approved', 'pie',$status->values())
+        $chart->dataset('Quotes Approved', 'doughnut',$status->values())
         ->color($borderColors)
         ->backgroundcolor($fillColors);
        
