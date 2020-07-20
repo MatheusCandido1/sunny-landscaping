@@ -113,6 +113,18 @@ class ServiceController extends Controller
         }
     }
 
+    public function select($service_id, $visit_id){
+        try{
+            $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
+            $service->status = 4;
+            $service->save();
+            alert()->success('Quote selected','Now, all the documents will be generated with this quote information!');
+            return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
 
     public function approve($service_id, $visit_id){
         try{
@@ -160,9 +172,6 @@ class ServiceController extends Controller
             toast('Pleasy try again!','error');
         }
     }
-
-
-    
 
     public function destroy(Service $service)
     {

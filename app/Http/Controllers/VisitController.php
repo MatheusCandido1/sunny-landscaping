@@ -111,7 +111,7 @@ class VisitController extends Controller
             $quoteStatus = DB::table('services')
             ->selectRaw('services.status')
             ->join('visits','visits.id','=','services.visit_id')
-            ->where('services.status','=',1)
+            ->where('services.status','=',4)
             ->where('visits.id', '=', $id)
             ->first();
             

@@ -76,7 +76,8 @@ class PdfController extends Controller
         ->selectRaw('services.id as id')
         ->join('visits','visits.id','=','services.visit_id')
         ->where('visits.id', '=', $visit_id)
-        ->where('services.status', '=',1)
+        ->where('services.status', '=',4)
+        ->orWhere('services.status','=',1)
         ->get();
 
         $itemData = DB::table('items')
@@ -85,22 +86,24 @@ class PdfController extends Controller
             ->join('services','services.id','=','item_service.service_id')
             ->join('visits','visits.id','=','services.visit_id')
             ->where('visits.id', '=', $visit_id)
-            ->where('services.status',1)
+            ->where('services.status',4)
+            ->orWhere('services.status','=',1)
             ->get()
             ->groupBy(['service','group_type']);
-          //  dd($itemData);
         
 
         $serviceData = DB::table('services')
             ->select('services.notes', 'services.id as service_id','discount','total','accepting_proposal','down_payment','final_balance')
             ->where('services.visit_id','=',$visit_id)
-            ->where('services.status','=',1)
+            ->where('services.status','=',4)
+            ->orWhere('services.status','=',1)
             ->get();
 
         $amount = DB::table('services')
             ->selectRaw('sum(services.total) as total')
             ->join('visits', 'visits.id','=','services.visit_id')
-            ->where('services.status','=','1')
+            ->where('services.status','=','4')
+            ->orWhere('services.status','=','1')
             ->where('visits.id','=',$visit_id)
             ->get();
 

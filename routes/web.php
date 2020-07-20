@@ -40,6 +40,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::put('approve/status/{service}/{visit}','ServiceController@approve')->name('services.approve');
 Route::put('disapprove/status/{service}/{visit}','ServiceController@disapprove')->name('services.disapprove');
 Route::put('waiting/status/{service}/{visit}','ServiceController@waiting')->name('services.waiting');
+Route::put('select/status/{service}/{visit}','ServiceController@select')->name('services.select');
 Route::get('create/quote/{visit}/customer/{customer}', 'ServiceController@createQuote')->name('services.createQuote');
 Route::get('edit/quote/visit/{visit}/service/{service}/customer/{customer}', 'ServiceController@editQuote')->name('services.editQuote');
 Route::get('duplicate/service/{service}', 'ServiceController@duplicateQuote')->name('services.duplicateQuote');
