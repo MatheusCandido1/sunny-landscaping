@@ -129,8 +129,8 @@ class PdfController extends Controller
             $amount = DB::table('services')
             ->selectRaw('sum(services.total) as total')
             ->join('visits', 'visits.id','=','services.visit_id')
-            ->where('services.status','=','1')
             ->where('visits.id','=',$visit_id)
+            ->where('services.status','=','1')
             ->get();
 
             
@@ -177,8 +177,8 @@ class PdfController extends Controller
             $amount = DB::table('services')
             ->selectRaw('sum(services.total) as total')
             ->join('visits', 'visits.id','=','services.visit_id')
-            ->where('services.status','=','1')
             ->where('visits.id','=',$visit_id)
+            ->where('services.status','=','1')
             ->get();
 
             $pdf = PDF::loadView('pdfs.nevadacontract',compact('data','amount'));

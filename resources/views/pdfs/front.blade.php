@@ -139,7 +139,7 @@
         <td class="tg-rykj"></td>
       </tr>
       <tr>
-        <td class="tg-k27y">Contractos Board PWW</td>
+        <td class="tg-k27y">Contractor's Board PWW</td>
         <td class="tg-k27y"></td>
         <td class="tg-k27y">Balance:</td>
         <td class="tg-k27y"></td>
