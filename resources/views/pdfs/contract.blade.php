@@ -55,17 +55,13 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 <p>&nbsp;</p>
 <p><span style="font-size: 16">Please do not be alarmed when you receive the certified packet of paperwork. It will be the same as the sample pages you see here, but with your information filled out. Again, by law, as a contractor, we have to mail this to you via certified mail. Please note &ndash; </span><strong style="font-size: 20;text-decoration: underline;">This is not an actual lien</strong><span style="font-size: 16;">. It is only the notice we are required to send to you stating that because we are ordering material for your project and performing work for you, that in the event that we do not receive payment, by law, we have the right to lien your property.</span></p>
 
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
   
   <p>&nbsp;</p>
   
   <p>&nbsp;</p>
   <p>&nbsp;</p>
 
-  <p><span style="font-size: 16;text-align:justify">If you have any questions regarding this paperwork or any paperwork enclosed in your information packet, please do not hesitate to contact our office at (702) 202-2882.</span></p>
+  <p><span style="font-size: 16;text-align:justify">If you have any questions regarding this paperwork or any paperwork enclosed in your information packet, please do not hesitate to contact our office at (702) 202-2882.</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 <p style="font-size: 16;text-align:center;" ><strong>NOTICE TO OWNER</strong></p>
 <p><span style="font-size: 12;text-align:justify">Under the Nevada Mechanic&rsquo;s Lien Law, any contractor, subcontractor, laborer, supplier, or other person or entity that helps to improve your property, but is not paid for his or her work or supplies, has a right to place lien on your home, land, or property where the work was performed and to sue you in court to obtain payment.</span></p>
 <p><span style="font-size: 12;text-align:justify">This means that after a court hearing, your home, land and property could be sold by a court officer and the proceeds if the sale used to satisfy what you owe. This can happen even if you have paid your contractor in full if the contractor&rsquo;s subcontractors, laborers, or suppliers remain unpaid.</span></p>
@@ -78,6 +74,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
   <p>&nbsp;</p>
 
   <p><span style="font-size: 12;text-align:justify">entities which send preliminary notices to you. The persons or entities have indicated that they may have lien rights on your property, therefore you need to protect yourself. This will help to insure that all person due payment are actually paid.</span></p>
+  
+  <p>&nbsp;</p> <p>&nbsp;</p><p>&nbsp;</p>
 <p><span style="font-size: 12;text-align:justify">Upon making payment on any completed phase of the project, and before making any further payments, require your contractor to provide you with making any further payments, require your contractor to provide you with unconditional &lsquo;waiver and release&rsquo; forms signed by each material supplier, subcontractor, and laborer involved in that portion of the work for which payment was made. The statutory lien releases are set forth in exact language in Section 3262 of the Civil Code. Most stationery stores will sell the &ldquo;Waivers and Release&rdquo; Forms if your contractor does not have them. The material suppliers, subcontracts and laborers that you obtain releases from are those persons or entities who have filed preliminary notices with you. If you are not certain of the material, suppliers, subcontractors, and laborers working on your project, you may obtain a list from your contractor. On projects involving improvements to a single family residence or duplex owned by individuals, the persons signing these releases lose the right to file a mechanics&rsquo; lien claim against your property. In other types of construction, this protection may still be important, but may not be as complete.</span></p>
 <p><br /><br /><br /><br /></p>
 <p><strong>CLIENT&rsquo;S SIGNATURE _____________________________ &nbsp; DATE ______________</strong></p>
@@ -138,7 +136,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-
+<p>&nbsp;</p>
 <p style="font-size: 16;text-align:center;text-decoration: underline;"><strong>NOTICE OF RIGHT TO LIEN</strong></p>
 <p style="font-size: 16;text-align:center;"><span >(NRS &sect;108.245)</span></p>
 <p>&nbsp;</p>

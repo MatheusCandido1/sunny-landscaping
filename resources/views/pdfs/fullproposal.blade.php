@@ -128,7 +128,7 @@ table {
   </header>
 
   <footer>
-    Invoice was created on a computer and is valid without the signature and seal.
+    <span style="font-size: 8px">We accept cash, check or credit card. For payments with credit card, will be added a 3% processing fee. Prices are valid for 60 days after the date of proposal, and are subject to change after that period due to raw material or labor costs</span>
   </footer>
 <div class=WordSection1>
   <div id="image">
@@ -145,14 +145,14 @@ border:none'><span >{{ \Carbon\Carbon::parse($data[0]->updated_at)->format('F d,
   <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
     style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_address}}</span></p>
 <p class=MsoNormal style='ffont-size:12;ont-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
-  style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_city}},{{$data[0]->company_state}} - {{$data[0]->company_zipcode}}</span></p>
+  style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_city}}, {{$data[0]->company_state}} {{$data[0]->company_zipcode}}</span></p>
   @else
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
 style='font-size:12.0pt;line-height:120%;'>{{$data[0]->name }}</span></b></p>
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
 style='font-size:12.0pt;line-height:120%;'>{{$data[0]->address}}</span></p>
 <p class=MsoNormal style='ffont-size:12;ont-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
-style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}} - {{$data[0]->zipcode}}</span></p>
+style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}}, {{$data[0]->state}} {{$data[0]->zipcode}}</span></p>
 @endif
 <p class=MsoNormal style='margin-bottom:24.0pt;border:none'>
 @if($data[0]->cellphone == 1)
@@ -167,7 +167,7 @@ style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}},{{$data[0]->state}
 justify'>Thank you for choosing Sunny Landscaping &amp; Pavers Design LLC for
 your home’s landscaping improvement. The <b>anticipated value</b> of investment to install pavers and
 improve your landscaping is estimated in <b>US$ <span>{{number_format($amount[0]->total,2)}}</span></b>
-<b>(materials and labor, tax included).</b> Please sign below with your acceptance of this quotation and we will
+<b> (materials and labor, tax included).</b> Please sign below with your acceptance of this quotation and we will
 begin working on your property as soon as possible. Any changes will have a
 Change Order for approval and will add/deduct from the amount described above.
 A US$500.00 non-refundable fee will be due upon signature. The same amount
@@ -256,14 +256,14 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
             <h3 class="to">{{$customer->customer_name}}</h3>
         </div>
         <div class="col-xs-6">
-          <h3 class="to">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quote number: #{{$service}}</h3>
+          <h3 class="to">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quote number: {{$service}}</h3>
 
         </div>
       </div>
         <div class="address">{{$customer->address}}</div>
-        <div class="address">{{$customer->city_name}}, {{$customer->state}} - {{$customer->zipcode}}</div>
+        <div class="address">{{$customer->city_name}}, {{$customer->state}} {{$customer->zipcode}}</div>
         <div class="email">{{$customer->email}}</div>
-        <div class="email">{{$customer->phone}}</div>
+        <div class="email">Phone: {{$customer->phone}}</div>
     </div>
     <div style="text-align: right" class="col invoice-details">
         <div class="date">Date: {{ date('m/d/Y') }}</div>
@@ -305,7 +305,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
         @foreach ($serviceData as $value)
         @if($value->service_id == $service)
         
-        <table style="position:relative" class="table" width="">
+        <table  style="page-break-inside: avoid;" class="table" width="">
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
@@ -332,7 +332,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
           </tr>
           @endif
           <tr>
-            <td style="font-size: 12px" class="no-line">{{$value->notes}}
+            <td class="no-line">
             </td>
             <td class="no-line"></td>
             <td class="no-line"></td>
@@ -360,6 +360,10 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
           </tr>
         </tbody>
       </table>
+      
+      @if($value->notes != "")
+      <div class="col-xs-6"><span style="font-size:7px">Notes: {{$value->notes}}</span></div>
+      @endif
       @endif
         @endforeach
         

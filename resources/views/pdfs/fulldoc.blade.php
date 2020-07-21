@@ -444,10 +444,9 @@ labor costs.<o:p></o:p></span></p>
   </tr>
 </tbody>
 </table>
-
-<div class="col-xs-6">
-  {{$serviceData->notes}}
-</div>
+@if($serviceData->notes != "")
+<div class="col-xs-6"><span style="font-size:7px">Notes: {{$serviceData->notes}}</span></div>
+@endif
 </div>
 
 </body>
