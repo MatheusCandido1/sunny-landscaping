@@ -50,7 +50,7 @@ class QuoteController extends Controller
             'down_payment' => $request->down_payment,
             'final_balance' => $request->final_balance,
             'notes' => $request->notes,
-            'status' => 3,
+            'status' => 4,
             'visit_id' => $request->visit_id
         ]); 
 
