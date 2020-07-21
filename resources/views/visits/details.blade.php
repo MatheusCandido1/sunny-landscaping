@@ -289,7 +289,7 @@ ul.timeline > li:before {
                 <div class="form-row">
                 <div class="col-md-6" id="parties">
                         <div class="form-group">
-                            <label class="" for="inputLastName">Parties</label>
+                            <label class="" for="inputLastName">Home Owner or Position in the Company</label>
                         <input name="parties" class="form-control" type="text" value="{{$data->parties}}" placeholder="" />
 
                         </div>
