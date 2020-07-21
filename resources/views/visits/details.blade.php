@@ -255,7 +255,7 @@ ul.timeline > li:before {
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="" for="inputLastName">Project's Name</label>
+                            <label class="" for="inputLastName">PO #</label>
                             <input name="project_name" class="form-control py-4" type="text" value="{{$data->project_name}}" placeholder="" />
                         </div>
                     </div>
