@@ -52,7 +52,7 @@
       </tr>
       <tr>
         <td class="tg-k27y"><span style="text-align: center; font-size: 13px; font-weight: bold">Address:</span></td>
-      <td class="tg-k27y" colspan="3"><span style="text-align: center; font-size: 16px; font-weight: bold">{{$data[0]->address}}</span></td>
+      <td class="tg-k27y" colspan="3"><span style="text-align: center; font-size: 13px; font-weight: bold">{{$data[0]->address}}</span></td>
         <td class="tg-k27y">E-mailed on:</td>
         <td class="tg-k27y">__/__/____</td>
         <td class="tg-k27y" colspan="5"></td>
