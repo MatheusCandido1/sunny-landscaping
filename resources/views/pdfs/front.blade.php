@@ -20,7 +20,7 @@
     .tg .tg-73a0{border-color:inherit;font-size:12px;text-align:left;vertical-align:top}
     .tg .tg-f4iu{border-color:inherit;font-size:12px;text-align:center;vertical-align:top}
     </style>
-    <table class="tg" style="undefined;table-layout: fixed; width: 1022px">
+    <table class="tg" style="undefined;table-layout: fixed; width: 970px">
     <colgroup>
     <col style="width: 182px">
     <col style="width: 110px">
@@ -33,28 +33,28 @@
     </colgroup>
     <thead>
       <tr>
-        <th class="tg-pwgt" style="width: 18%">PO:</th>
+        <th class="tg-pwgt" style="width: 10%"><span style="text-align: center; font-size: 16px; font-weight: bold">PO:</span></th>
         <th class="tg-pwgt" colspan="2"><span style="text-align: center; font-size: 16px; font-weight: bold">{{$data[0]->project_name}}</th>
-        <th class="tg-ai0l">Job Name:</th>
+        <th class="tg-ai0l"><span style="text-align: center; font-size: 16px; font-weight: bold">Job Name:</span></th>
         <th class="tg-pwgt" style="width: 25%"><span style="text-align: center; font-size: 16px; font-weight: bold">{{$data[0]->address}}</span></th>
-        <th class="tg-pwgt">Seller:</th>
+        <th class="tg-pwgt"><span style="text-align: center; font-size: 16px; font-weight: bold">Seller:</span></th>
         <th class="tg-0ttd" colspan="2"><span style="text-align: center; font-size: 16px; font-weight: bold">{{$data[0]->sel_name}}</span></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="tg-pwgt">Name:</td>
+        <td class="tg-pwgt"><span style="text-align: center; font-size: 16px; font-weight: bold">Name:</span></td>
         <td class="tg-pwgt" colspan="3"> <span style="text-align: center; font-size: 16px; font-weight: bold">{{$data[0]->customer_name}}</span></td>
-        <td class="tg-pwgt">HOA:</td>
-        <td class="tg-pwgt"> {{ $data[0]->hoa == 0 ? 'No' : 'Yes'}}</td>
-        <td class="tg-pwgt">E-mailed on:</td>
+        <td class="tg-pwgt"><span style="text-align: center; font-size: 16px; font-weight: bold">HOA:</span></td>
+        <td class="tg-pwgt"> <span style="text-align: center; font-size: 16px; font-weight: bold">{{ $data[0]->hoa == 0 ? 'No' : 'Yes'}}</span></td>
+        <td class="tg-pwgt"><span style="text-align: center; font-size: 14px; font-weight: bold">E-mailed on: </span></td>
         <td class="tg-73a0"></td>
       </tr>
       <tr>
         <td class="tg-pwgt">Address:</td>
         <td class="tg-pwgt" colspan="3"> <span style="text-align: center; font-size: 13px; font-weight: bold">{{$data[0]->address}}</span> </td>
-        <td class="tg-pwgt" colspan="2">Telephone:</td>
-        <td class="tg-pwgt" colspan="2" >{{$data[0]->phone}} {{ $data[0]->cellphone == 0 ? '' : '(Cellphone)'}}</td>
+        <td class="tg-pwgt" colspan="2"><span style="text-align: center; font-size: 16px; font-weight: bold">Telephone:</span></td>
+        <td class="tg-pwgt" colspan="2" ><span style="text-align: center; font-size: 16px; font-weight: bold">{{$data[0]->phone}} {{ $data[0]->cellphone == 0 ? '' : '(Cellphone)'}}</span></td>
       </tr>
       <tr>
         <td class="tg-pwgt">City:</td>
@@ -95,55 +95,55 @@
       <tr>
         <td class="tg-pwgt">Project Drawing:</td>
         <td class="tg-pwgt">2D / 3D</td>
-        <td class="tg-pwgt">Paid</td>
+        <td class="tg-pwgt">PAID</td>
         <td class="tg-ai0l">Date</td>
         <td class="tg-ai0l">Amount</td>
         <td class="tg-ai0l">Check</td>
         <td class="tg-ai0l">CC</td>
-        <td class="tg-ai0l">Value</td>
+        <td class="tg-ai0l">Cash</td>
       </tr>
       <tr>
-        <td class="tg-pwgt">Sold:</td>
+        <td class="tg-pwgt" style="font-size: 10px">Sold:</td>
         <td class="tg-pwgt"></td>
-        <td class="tg-pwgt">Security Deposit:</td>
+        <td class="tg-pwgt"style="font-size: 10px" >Security Deposit:</td>
         <td class="tg-pwgt"></td>
         <td class="tg-pwgt"></td>
-        <td class="tg-0ttd">#</td>
+        <td class="tg-0ttd" style="font-size: 10px">#</td>
         <td class="tg-mim8"></td>
         <td class="tg-pwgt"></td>
       </tr>
       <tr>
-        <td class="tg-pwgt">HOA Paperwork:</td>
+        <td class="tg-pwgt" style="font-size: 10px">HOA Paperwork:</td>
         <td class="tg-pwgt"></td>
-        <td class="tg-pwgt">Downpayment:</td>
+        <td class="tg-pwgt" style="font-size: 10px">Downpayment:</td>
         <td class="tg-pwgt"></td>
         <td class="tg-pwgt"></td>
-        <td class="tg-0ttd">#</td>
+        <td class="tg-0ttd" style="font-size: 10px">#</td>
         <td class="tg-mim8"></td>
         <td class="tg-pwgt"></td>
       </tr>
       <tr>
-        <td class="tg-pwgt">Material List:</td>
+        <td class="tg-pwgt" style="font-size: 10px">Material List:</td>
         <td class="tg-pwgt"></td>
-        <td class="tg-pwgt">Balance:</td>
+        <td class="tg-pwgt" style="font-size: 10px">Balance:</td>
         <td class="tg-pwgt"></td>
         <td class="tg-pwgt"></td>
-        <td class="tg-0ttd">#</td>
+        <td class="tg-0ttd" style="font-size: 10px" >#</td>
         <td class="tg-mim8"></td>
         <td class="tg-pwgt"></td>
       </tr>
       <tr>
-        <td class="tg-pwgt">Contractos Board PWW</td>
+        <td class="tg-pwgt" style="font-size: 10px">Contractos Board PWW</td>
         <td class="tg-pwgt"></td>
-        <td class="tg-pwgt">Final Balance</td>
+        <td class="tg-pwgt" style="font-size: 10px">Final Balance</td>
         <td class="tg-pwgt"></td>
         <td class="tg-pwgt"></td>
-        <td class="tg-0ttd">#</td>
+        <td class="tg-0ttd" style="font-size: 10px">#</td>
         <td class="tg-mim8"></td>
         <td class="tg-pwgt"></td>
       </tr>
       <tr>
-        <td class="tg-pwgt">Unconditional Waiver Release</td>
+        <td class="tg-pwgt" style="font-size: 10px">Unconditional Waiver Release</td>
         <td class="tg-pwgt"></td>
         <td class="tg-0ttd" style="text-align: center">Notes:</td>
         <td class="tg-ai0l" colspan="5"></td>
