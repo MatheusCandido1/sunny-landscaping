@@ -46,16 +46,18 @@
       <tr>
         <td class="tg-k27y"><span style="text-align: center; font-size: 13px; font-weight: bold">Name:</span></td>
       <td class="tg-k27y" colspan="3"> <span style="text-align: center; font-size: 16px; font-weight: bold">{{$data[0]->customer_name}}</span></td>
-        <td class="tg-k27y">HOA</td>
-      <td class="tg-k27y" style="width: 10%"> {{ $data[0]->hoa == 0 ? '( ) Yes / (x) No' : '(x) Yes / ( ) No'}} </td>
-        <td class="tg-k27y" colspan="5"></td>
+        <td class="tg-k27y">HOA:</td>
+      <td class="tg-k27y" style="width: 10%"> {{ $data[0]->hoa == 0 ? 'No' : 'Yes'}} </td>
+        
+    <td class="tg-k27y" colspan="3">Emailed on:</td>
+    <td class="tg-k27y" colspan="2">___/___/______</td>
       </tr>
+      
       <tr>
         <td class="tg-k27y"><span style="text-align: center; font-size: 13px; font-weight: bold">Address:</span></td>
       <td class="tg-k27y" colspan="3"><span style="text-align: center; font-size: 13px; font-weight: bold">{{$data[0]->address}}</span></td>
-        <td class="tg-k27y">E-mailed on:</td>
-        <td class="tg-k27y">__/__/____</td>
-        <td class="tg-k27y" colspan="5"></td>
+        <td class="tg-k27y" colspan="2">Telephone: </td>
+        <td class="tg-k27y" colspan="5"> {{$data[0]->phone}} (Cellphone: {{ $data[0]->cellphone == 0 ? 'No' : 'Yes'}}) </td>
       </tr>
        <tr>
         <td class="tg-k27y"><span style="text-align: center; font-size: 13px; font-weight: bold">City:</span></td>
@@ -82,6 +84,10 @@
         <td class="tg-k27y" colspan="3"></td>
       </tr>
       <tr>
+        <td class="tg-k27y"><span style="text-align: center; font-size: 13px; font-weight: bold">Phone:</span></td>
+        <td class="tg-k27y" colspan="3">{{$data[0]->phone}} (Cellphone: {{ $data[0]->cellphone == 0 ? 'No' : 'Yes'}})</td>
+      </tr>
+      <tr>
         <td class="tg-k27y"><span style="text-align: center; font-size: 13px; font-weight: bold">Parcel #:</span></td>
         <td class="tg-k27y" colspan="3">{{$data[0]->parcel_number}}</td>
       </tr>
@@ -101,12 +107,7 @@
         <td class="tg-k27y"></td>
         <td class="tg-k27y">Date</td>
         <td class="tg-k27y">Amount</td>
-        <td class="tg-k27y"></td>
-        <td class="tg-w2dt"></td>
-        <td class="tg-k27y"></td>
-        <td class="tg-k27y"></td>
-        <td class="tg-k27y"></td>
-        <td class="tg-rykj"></td>
+        <td class="tg-k27y" colspan="6"></td>
       </tr>
       <tr>
         <td class="tg-k27y" style="width: 20%"><span style="text-align: center; font-size: 13px; font-weight: bold">HOA Paperwork:</span></td>
