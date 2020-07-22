@@ -19,7 +19,8 @@
                     <tr>
                         <th style="text-align: center" scope="col" >Name</th>
                         <th style="text-align: center" scope="col">Phone</th>
-                        <th style="text-align: center" scope="col">Email</th>
+                        <th style="text-align: center" scope="col">Address</th>
+                        <th style="text-align: center" scope="col">Status</th>
                         <th style="text-align: center" scope="col">Projects</th>
                         <th style="text-align: center" scope="col">Actions</th>
                     </tr>
@@ -27,16 +28,17 @@
                 <tbody>
                   @foreach($customers as $customer)
                     <tr>
-                        <td >{{$customer->name}}</td>
+                        <td >{{$customer->customer_name}}</td>
                         <td >{{$customer->phone}}</td>
-                        <td >{{$customer->email}}</td>
+                        <td >{{$customer->address}}</td>
+                        <td >{{$customer->status_name}}</td>
                         <td style="text-align: center;" scope="col">
-                          <a type="button" href="{{ route('visits.visitsByCustomer',$customer->id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
+                          <a type="button" href="{{ route('visits.visitsByCustomer',$customer->customer_id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
                         </td>
                         <td style="text-align: center;" scope="col">
-                          <a href="{{route('customers.edit', $customer->id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                          <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this quote?')) { document.getElementById('destroy-form-{{$customer->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                          <form id="destroy-form-{{$customer->id}}" action="{{ route('customers.destroy',$customer->id) }}" method="POST" style="display: none;">
+                          <a href="{{route('customers.edit', $customer->customer_id)}}" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                          <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this quote?')) { document.getElementById('destroy-form-{{$customer->customer_id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                          <form id="destroy-form-{{$customer->customer_id}}" action="{{ route('customers.destroy',$customer->customer_id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>

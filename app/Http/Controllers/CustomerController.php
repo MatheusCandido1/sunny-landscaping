@@ -31,7 +31,16 @@ class CustomerController extends Controller
     public function index()
     {
         try {
-            return view('customers.index', ['customers' => Customer::all()]);
+            $data = DB::table('visits')
+            ->selectRaw('customers.id as customer_id, customers.name as customer_name, customers.phone, customers.address, statuses.name as status_name, visits.proposal_date')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('cities', 'customers.city_id','=','cities.id')
+            ->join('statuses', 'visits.status_id','=','statuses.id')
+            ->join('referrals', 'customers.referral_id','=','referrals.id')
+            ->get();
+
+
+            return view('customers.index', ['customers' => $data]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
 
