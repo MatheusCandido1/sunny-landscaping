@@ -30,6 +30,7 @@ flex: 1
                     <tr>
                         <th style="text-align: center" scope="col">Visit's Date</th>
                         <th style="text-align: center" scope="col">Type</th>
+                        <th style="text-align: center" scope="col">Status</th>
                         <th style="text-align: center" scope="col">Information</th>
                         <th style="text-align: center" scope="col">Actions</th>
 
@@ -45,6 +46,7 @@ flex: 1
                                             
                           <a type="button" href="{{ route('visits.details',$visit->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
                         </td>
+                        <td ><a href="" style="color: white" class="btn btn-{{$status[$visit->status->id]}} btn-sm btn-block rounded-pill" type="button">{{$visit->status->name}} </a></td>
                         <td style="text-align: center;" scope="col">
                         <a  href="{{route('visits.edit', $visit->id)}}" type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                         <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this visit?')) { document.getElementById('destroy-form-{{$visit->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
