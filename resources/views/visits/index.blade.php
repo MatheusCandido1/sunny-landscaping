@@ -42,11 +42,10 @@ flex: 1
                         <td style="text-align: center" >{{ \Carbon\Carbon::parse($visit->date)->format("m/d/Y")}}</td>
                         
                     <td style="text-align: center">@foreach($visit->types as $type) <span class="badge badge-pill badge-info">{{$type->name}}</span>@endforeach     </td>
-                        <td> 
-                                            
+                    <td ><a href="" class="btn btn-{{$status[$visit->status->id]}} btn-sm btn-block rounded-pill" type="button">{{$visit->status->name}} </a></td>
+                    <td>              
                           <a type="button" href="{{ route('visits.details',$visit->id) }}" class="btn btn-primary btn-sm btn-block">Details</a>
                         </td>
-                        <td ><a href="" class="btn btn-{{$status[$visit->status->id]}} btn-sm btn-block rounded-pill" type="button">{{$visit->status->name}} </a></td>
                         <td style="text-align: center;" scope="col">
                         <a  href="{{route('visits.edit', $visit->id)}}" type="button" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                         <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this visit?')) { document.getElementById('destroy-form-{{$visit->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
