@@ -199,6 +199,19 @@ class VisitController extends Controller
         }
     }
 
+    public function updateStatusOnIndex(Request $request, $visit_id)
+    {
+        try{
+            $visit = Visit::where('id','=', $visit_id)->first();
+            $visit->status_id = $request->status;
+            $visit->save();
+            alert()->success('Visit updated!','Status updated with success');
+            return redirect()->back();
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *

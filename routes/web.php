@@ -61,6 +61,7 @@ Route::put('update/{visit}', 'VisitController@update')->name('visits.update');
 Route::put('update/information/{visit}', 'VisitController@updateInformation')->name('visits.updateInformation');
 Route::put('edit/{visit}', 'VisitController@edit')->name('visits.edit');
 Route::put('visit/{visit}/status/{status}', 'VisitController@updateStatus')->name('visits.updateStatus');
+Route::put('visit/{visit}/status', 'VisitController@updateStatusOnIndex')->name('visits.updateStatusIndex');
 Route::get('customer/{customer}/visits', 'VisitController@visitsByCustomer')->name('visits.visitsByCustomer');
 Route::get('visit/{visit}', 'VisitController@details')->name('visits.details');
 
