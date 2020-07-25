@@ -31,7 +31,7 @@
                         <td >{{$customer->customer_name}}</td>
                         <td >{{$customer->phone}}</td>
                         <td >{{$customer->address}}</td>
-                    <td ><a href="" style="color: white" class="btn btn-{{$statusArray[$customer->status_id]}} btn-sm btn-block rounded-pill" type="button" data-toggle="modal" data-target="#modalStatus{{$customer->customer_id}}">{{$customer->status_name}} </a></td>
+                    <td ><a href=""  class="btn btn-{{$statusArray[$customer->status_id]}} btn-sm btn-block rounded-pill" type="button" data-toggle="modal" data-target="#modalStatus{{$customer->customer_id}}">{{$customer->status_name}} </a></td>
                         <td style="text-align: center;" scope="col">
                           <a type="button" href="{{ route('visits.visitsByCustomer',$customer->customer_id) }}" class="btn btn-primary btn-sm btn-block">Projects</a>
                         </td>

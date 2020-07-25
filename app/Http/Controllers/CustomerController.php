@@ -40,7 +40,7 @@ class CustomerController extends Controller
             ->join('referrals', 'customers.referral_id','=','referrals.id')
             ->get();
 
-            $statusArray = array(1 => 'secondary', 2 => 'primary', 3 => 'success', 4 => 'dark', 5 => 'info', 6 => 'success', 7 => 'danger');
+            $statusArray = array(1 => 'outline-secondary', 2 => 'outline-primary', 3 => 'outline-success', 4 => 'outline-dark', 5 => 'outline-info', 6 => 'outline-success', 7 => 'outline-danger');
 
             return view('customers.index', ['statusArray' => $statusArray, 'customers' => $data,'statuses' => Status::all()]);
         } catch (Throwable $e) {
