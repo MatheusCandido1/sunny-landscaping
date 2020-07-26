@@ -130,6 +130,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
                 </div>
                 <div class="col-xs-6">
                   <h3 class="to">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quote number: {{$id}}</h3>
+
                 </div>
               </div>
                 <div class="address">{{$customer->address}}</div>
@@ -145,7 +146,6 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         <div style="page-break-inside: avoid;"> 
         <h4>{{$group_type}} </h4>
         <table  class="table" width="" class="table">
-          @if ($loop->iteration == 1)
           <thead>
             <tr>
               @if($group_type == "1 - PAVERS" || $group_type == "2 - RETAINING WALL")
@@ -157,18 +157,6 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
               <th style="text-align: right" scope="col" >Investment</th>
             </tr>
           </thead>
-          @else
-          @if($loop->iteration == 2)
-          <thead>
-            <tr>
-              <th style="text-align: left" scope="col" >Description</th>
-              <th style="" scope="col" >Quantity</th>
-              <th style="" scope="col" >Unit Price</th>
-              <th style="text-align: right" scope="col" >Investment</th>
-            </tr>
-          </thead>
-          @endif
-          @endif
           <tbody>
             @foreach($items as $item)
             <tr>
