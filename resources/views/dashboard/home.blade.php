@@ -24,7 +24,7 @@
   </div>
   <div class="col-lg-6">
     <div class="card text-white bg-danger" style="">
-    <div class="card-header">Not Approved on {{$disapproved->month}} <a type="button" href="" style="color: white" class="btn btn-link float-right btn-sm">
+    <div class="card-header">Not Approved on {{$disapproved->month}} <a type="button" href="{{ route('dashboard.total')}}" style="color: white" class="btn btn-link float-right btn-sm">
         See all
       </a></div>
       <div class="card-body">

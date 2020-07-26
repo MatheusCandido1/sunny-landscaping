@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
 
 
 class CustomSearchController extends Controller
@@ -25,8 +26,19 @@ class CustomSearchController extends Controller
      ->make(true);
         return view('dashboard.visits');
      }
-   
 
+    function sumByStatusAndData(Request $request){
+
+      $data = DB::table('services')
+      ->selectRaw('CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity')
+      ->join('visits', 'visits.id','=','services.visit_id')
+      ->where('services.status','=',$request->filter_status)
+      ->get();
+
+      return datatables()->of($data)->make(true);
+      return view('dashboard.total');
+   }
+    
     function index(Request $request)
     {
       if($request->filter_status == 1)

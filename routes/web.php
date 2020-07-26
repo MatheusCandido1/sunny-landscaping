@@ -34,7 +34,12 @@ Route::Get('pdf/full_document/{service}/{visit}','PdfController@generateFullDoc'
 // Dashboard Routes
 Route::get('dashboard/projects/status','HomeController@projectsByStatus')->name('dashboard.status');
 Route::get('dashboard/visits/status', 'HomeController@visitsByStatus')->name('dashboard.visits');
+Route::get('dashboard/total/status', 'HomeController@totalByStatus')->name('dashboard.total');
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Dashboard Routes
+
+Route::get('sum/status/{status}/{start_date}/{end_date}', 'CustomerSearchController@sumByStatusAndData')->name('json.sumStatys');
 
 // Services Routes
 Route::put('approve/status/{service}/{visit}','ServiceController@approve')->name('services.approve');
@@ -50,6 +55,7 @@ Route::get('service/visit/{visit}/customer/{customer}', 'ServiceController@servi
 // Custom Search
 Route::get('customsearch/services', 'CustomSearchController@index')->name('customsearch.index');
 Route::get('customsearch/visits', 'CustomSearchController@visitsByStatus')->name('customsearch.visits');
+Route::get('customsearch/total', 'CustomSearchController@sumByStatusAndData')->name('customsearch.total');
 
 
 // Quotes Routes

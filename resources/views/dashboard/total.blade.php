@@ -12,9 +12,10 @@
         <label class="" for="inputLastName">Status</label>
         <select name="filter_status" id="filter_status" class="form-control" required>
             <option value="">Select Status</option>
-            <option value="1">Approved</option>
             <option value="0">Not Approved</option>
-            <option value="2">Waiting</option>
+            <option value="1">Approved</option>
+            <option value="3">Waiting</option>
+            <option value="4">Selected</option>
         </select>
     </div>
 
@@ -44,72 +45,54 @@
   </div>
       <div class="card-body">
         <div class="table-responsive">
-          <div class="col-lg-12">
-            <div class="card text-white bg-danger" style="">
-            <div class="card-header">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Total amount: US$  </h5>
-                <h5> Quantity: </h5>
-              </div>
-            </div>
-            </div>
+            <table class="table table-bordered" id="total_data" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                      <th style="text-align: center" scope="col">Quantity</th>
+                        <th style="text-align: center" scope="col">Total</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
 @section('script')
 <script type="text/javascript">
-$(document).ready(function(){
-
-fill_datatable();
-
-function fill_datatable(filter_status = '')
-{
-    var dataTable = $('#status_data').DataTable({
-        
-        processing: true,
-        serverSide: true,
-        ajax:{
-            url: "{{ route('customsearch.index') }}",
-            data:{filter_status:filter_status}
-        },
-        columns: [
-            {
-                data:'service_id'
-            },
-            {
-                data:'customer_name'
-            },
-            {
-                data:'visit_date'
-            },
-            {
-                data:'total'
-            },
-            {
-                data: 'action',
-                name: 'action',
-                orderable: false
-            }
-
-        ]
-    });
-}
-$('#filter').click(function(){
-    var filter_status = $('#filter_status').val();
-
-    if(filter_status != '')
-    {
-        $('#status_data').DataTable().destroy();
-        fill_datatable(filter_status);
-    }
-    else
-    {
-        alert('Select at least one filter option');
-    }
-});
-
-});
-</script>
+  $(document).ready(function(){
+  fill_datatable();
+  function fill_datatable(filter_status = '', start_date = '', end_date = '')
+  {
+      var dataTable = $('#total_data').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax:{
+              url: "{{ route('customsearch.total') }}",
+              data:{filter_status:filter_status, start_date:start_date, end_date:end_date}
+          },
+          columns: [
+              {
+                  data:'quantity'
+              },
+              {
+                  data:'total'
+              }
+          ]
+      });
+  }
+  $('#filter').click(function(){
+      var filter_status = $('#filter_status').val();
+      if(filter_status != '')
+      {
+          $('#total_data').DataTable().destroy();
+          fill_datatable(filter_status);
+      }
+      else
+      {
+          alert('Select at least one filter option');
+      }
+  });
+  
+  });
+  </script>
 @endsection
 @endsection

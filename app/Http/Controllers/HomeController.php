@@ -45,6 +45,14 @@ class HomeController extends Controller
             toast('Pleasy try again!','error');
         }
     }
+
+    public function totalByStatus(){
+        try{
+            return view('dashboard.total');
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
     
 
     public function index()
