@@ -11,7 +11,7 @@ class CustomSearchController extends Controller
 {
    function visitsByStatus(Request $request){
       $status = DB::table('visits')
-        ->selectRaw('customers.id as customer_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date')
+        ->selectRaw('customers.id as customer_id, customers.name as customer_name, customers.address as project_address')
         ->join('customers', 'customers.id','=','visits.customer_id')
         ->join('statuses','statuses.id','=','visits.status_id')
         ->where('visits.status_id','=',$request->filter_status)
