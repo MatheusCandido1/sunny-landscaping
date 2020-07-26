@@ -30,12 +30,14 @@ class CustomSearchController extends Controller
     function sumByStatusAndData(Request $request){
 
       $data = DB::table('services')
-      ->selectRaw('CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity')
+      ->selectRaw('(CASE WHEN services.status = 0 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" ELSE "Selected"   END) as status, CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity')
       ->join('visits', 'visits.id','=','services.visit_id')
-      ->where('services.status','=',$request->filter_status)
+      ->whereBetween('services.created_at', array($request->start_date, $request->end_date))
+      ->groupBy('services.status')
       ->get();
 
-      return datatables()->of($data)->make(true);
+      return datatables()->of($data)
+      ->make(true);
       return view('dashboard.total');
    }
     
