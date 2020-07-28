@@ -57,7 +57,7 @@ class PdfController extends Controller
     {
         try{
         $data = DB::table('services')
-        ->selectRaw('services.updated_at, customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, services.total, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
+        ->selectRaw('visits.proposal_date, services.updated_at, customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, services.total, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
         ->join('visits','visits.id','=','services.visit_id')
         ->join('customers','customers.id','=','visits.customer_id')
         ->join('cities', 'cities.id','=','customers.city_id')

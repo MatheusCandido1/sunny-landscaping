@@ -113,6 +113,7 @@ class VisitController extends Controller
             ->selectRaw('services.status')
             ->join('visits','visits.id','=','services.visit_id')
             ->where('services.status','=',4)
+            ->orWhere('services.status','=',1)
             ->where('visits.id', '=', $id)
             ->first();
             
