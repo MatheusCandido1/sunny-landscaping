@@ -27,14 +27,14 @@
       <div id="accordion">
         <div class="card">
           <div class="card-header">
-            <a class="card-link" data-toggle="collapse" href="#collapse1">
+            <a class="card-link" aria-expanded="true" data-toggle="collapse" href="#collapse1">
             1 - Pavers
             </a>
             <button type="button" onclick="add1()" class="btn btn-primary float-right btn-sm">
             <i class="fas fa-plus"></i> New Item
             </button>
           </div>
-          <div id="collapse1" class="collapse" data-parent="#accordion">
+        <div id="collapse1" class="collapse {{ (isset($pavers)) ? 'show':''}}" data-parent="#accordion">
             <div class="card-body">
               <table id="tb1" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -104,7 +104,7 @@
               <i class="fas fa-plus"></i> New Item
               </button>
             </div>
-            <div id="collapse2" class="collapse" data-parent="#accordion">
+            <div id="collapse2" class="collapse {{ (isset($walls)) ? 'show':''}}" data-parent="#accordion">
               <div class="card-body">
                 <table id="tb2" class="table table-bordered" width="100%" cellspacing="0">
                   <thead>
@@ -174,7 +174,7 @@
                 <i class="fas fa-plus"></i> New Item
                 </button>
               </div>
-              <div id="collapse3" class="collapse" data-parent="#accordion">
+              <div id="collapse3" class="collapse {{ (isset($grass)) ? 'show':''}}" data-parent="#accordion">
                 <div class="card-body">
                   <table id="tb3" class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
@@ -240,7 +240,7 @@
                   <i class="fas fa-plus"></i> New Item
                   </button>
                 </div>
-                <div id="collapse4" class="collapse" data-parent="#accordion">
+                <div id="collapse4" class="collapse {{ (isset($trees)) ? 'show':''}}" data-parent="#accordion">
                   <div class="card-body">
                     <table id="tb4" class="table table-bordered" width="100%" cellspacing="0">
                       <thead>
@@ -305,7 +305,7 @@
                     <i class="fas fa-plus"></i> New Item
                     </button>
                   </div>
-                  <div id="collapse5" class="collapse" data-parent="#accordion">
+                  <div id="collapse5" class="collapse {{ (isset($irrigation)) ? 'show':''}}" data-parent="#accordion">
                     <div class="card-body">
                       <table id="tb5" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
@@ -370,7 +370,7 @@
                       <i class="fas fa-plus"></i> New Item
                       </button>
                     </div>
-                    <div id="collapse6" class="collapse" data-parent="#accordion">
+                    <div id="collapse6" class="collapse {{ (isset($rocks)) ? 'show':''}}" data-parent="#accordion">
                       <div class="card-body">
                         <table id="tb6" class="table table-bordered" width="100%" cellspacing="0">
                           <thead>
@@ -435,7 +435,7 @@
                         <i class="fas fa-plus"></i> New Item
                         </button>
                       </div>
-                      <div id="collapse7" class="collapse" data-parent="#accordion">
+                      <div id="collapse7" class="collapse {{ (isset($fire)) ? 'show':''}}" data-parent="#accordion">
                         <div class="card-body">
                           <table id="tb7" class="table table-bordered" width="100%" cellspacing="0">
                             <thead>
@@ -500,7 +500,7 @@
                           <i class="fas fa-plus"></i> New Item
                           </button>
                         </div>
-                        <div id="collapse8" class="collapse" data-parent="#accordion">
+                        <div id="collapse8" class="collapse {{ (isset($drainage)) ? 'show':''}}" data-parent="#accordion">
                           <div class="card-body">
                             <table id="tb8" class="table table-bordered" width="100%" cellspacing="0">
                               <thead>
@@ -565,7 +565,7 @@
                             <i class="fas fa-plus"></i> New Item
                             </button>
                           </div>
-                          <div id="collapse9" class="collapse" data-parent="#accordion">
+                          <div id="collapse9" class="collapse {{ (isset($trans)) ? 'show':''}}" data-parent="#accordion">
                             <div class="card-body">
                               <table id="tb9" class="table table-bordered" width="100%" cellspacing="0">
                                 <thead>
@@ -630,7 +630,7 @@
                               <i class="fas fa-plus"></i> New Item
                               </button>
                             </div>
-                            <div id="collapse10" class="collapse" data-parent="#accordion">
+                            <div id="collapse10" class="collapse {{ (isset($dumpster)) ? 'show':''}}" data-parent="#accordion">
                               <div class="card-body">
                                 <table id="tb10" class="table table-bordered" width="100%" cellspacing="0">
                                   <thead>
@@ -695,7 +695,7 @@
                                 <i class="fas fa-plus"></i> New Item
                                 </button>
                               </div>
-                              <div id="collapse11" class="collapse" data-parent="#accordion">
+                              <div id="collapse11" class="collapse {{ (isset($labor)) ? 'show':''}}"  data-parent="#accordion">
                                 <div class="card-body">
                                   <table id="tb11" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
@@ -760,7 +760,7 @@
                                   <i class="fas fa-plus"></i> New Item
                                   </button>
                                 </div>
-                                <div id="collapse12" class="collapse" data-parent="#accordion">
+                                <div id="collapse12" class="collapse {{ (isset($extra)) ? 'show':''}}" data-parent="#accordion">
                                   <div class="card-body">
                                     <table id="tb12" class="table table-bordered" width="100%" cellspacing="0">
                                       <thead>
@@ -825,7 +825,7 @@
                                     <i class="fas fa-plus"></i> New Item
                                     </button>
                                   </div>
-                                  <div id="collapse13" class="collapse" data-parent="#accordion">
+                                  <div id="collapse13" class="collapse {{ (isset($others)) ? 'show':''}}" data-parent="#accordion">
                                     <div class="card-body">
                                       <table id="tb13" class="table table-bordered" width="100%" cellspacing="0">
                                         <thead>
