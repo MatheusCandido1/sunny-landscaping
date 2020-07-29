@@ -192,8 +192,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="no-line text-center"><strong>Discount ({{$serviceData->discount}}%)</strong></td>
-            <td class="no-line text-right">$ {{(number_format($serviceData->subtotal - $serviceData->total,2))}}</td>
+            <td class="no-line text-center"><strong>Discount</strong></td>
+            <td class="no-line text-right">$ {{(number_format($serviceData->discount,2))}}</td>
           </tr>
           <tr>
             <td class="no-line"></td>

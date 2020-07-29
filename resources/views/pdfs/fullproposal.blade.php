@@ -309,22 +309,22 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
             <td class="no-line " ></td>
             <td class="no-line"></td>
           </tr>
-          @if($value->discount > 0)
+          @if($serviceData->discount > 0)
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line text-center"><strong>Subtotal</strong></td>
-            <td class="no-line text-right">$ {{number_format($value->subtotal,2)}}</td>
+            <td class="no-line text-right">$ {{number_format($serviceData->subtotal,2)}}</td>
           </tr>
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="no-line text-center"><strong>Discount ({{$value->discount}}%)</strong></td>
-            <td class="no-line text-right">$ {{(number_format($value->subtotal - $value->total,2))}}</td>
+            <td class="no-line text-center"><strong>Discount</strong></td>
+            <td class="no-line text-right">$ {{(number_format($serviceData->discount,2))}}</td>
           </tr>
           <tr>
             <td class="no-line"></td>
@@ -332,7 +332,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="thick-line text-center"><strong>Total</strong></td>
-            <td class="thick-line text-right"><span style="font-weight: bold">$ {{number_format($value->total,2)}} </span></td>
+            <td class="thick-line text-right"><span style="font-weight: bold">$ {{number_format($serviceData->total,2)}} </span></td>
           </tr>
           @else
           <tr>
@@ -341,7 +341,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line text-center"><strong>Total</strong></td>
-            <td class="no-line text-right">$ {{number_format($value->total,2)}}</td>
+            <td class="no-line text-right">$ {{number_format($serviceData->total,2)}}</td>
           </tr>
           @endif
           <tr>

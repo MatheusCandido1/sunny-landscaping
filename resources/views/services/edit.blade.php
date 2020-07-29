@@ -920,7 +920,8 @@
         <tr>
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
-            <textarea class="form-control" id="summary-ckeditor" name="notes">{!! $service->notes!!}</textarea>
+            <textarea id="summernote"     
+            class="summernote"  name="notes">{!! $service->notes !!}</textarea>
           </td>
         </tr>
       </tbody>
@@ -930,9 +931,13 @@
   </div>
 </form>
 @section('script')
-<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-<script>
-CKEDITOR.replace( 'summary-ckeditor' );
+<script type="text/javascript">
+  $(document).ready(function() {
+       $('.summernote').summernote({
+        height: 200,
+        dialogsInBody: true
+     });
+  });
 </script>
 @endsection
 <script type="text/javascript">
@@ -952,11 +957,12 @@ CKEDITOR.replace( 'summary-ckeditor' );
     var pay = 0.30 * document.getElementById('totalwithoutdiscount').value;
     document.getElementById('down_payment').value = pay.toFixed(2);
   }
+
   function Discount(){
-    var new_total = (document.getElementById('total').value) * Number((document.getElementById('discount').value)) / 100;
-    var new_value = Number((document.getElementById('total').value)) - new_total.toFixed(2);
-    document.getElementById('totalwithoutdiscount').value = new_value.toFixed(2);
+    var new_total = (document.getElementById('total').value) - Number((document.getElementById('discount').value));
+    document.getElementById('totalwithoutdiscount').value = new_total.toFixed(2);
   }
+
   function deleteAndRefresh(button){
     deleteItem(button);
     findTotal();
