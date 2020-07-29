@@ -443,11 +443,17 @@
     <table class="table table-bordered"  width="100%" cellspacing="0">
       <tbody>
         <tr>
+          <td >Subtotal</td>
+          <td  scope="col" >
+            <input type="text" id="total"  class="form-control" readonly placeholder="">
+          </td>
+        </tr>
+        <tr>
           <td >Discount</td>
           <td >
             <div class="input-group mb-3">
-              <input name="discount" type="text" class="form-control" id="discount" value="0.00" placeholder="Discount" aria-describedby="basic-addon2">
-              <div class="input-group-append">
+              <input name="discount" type="text" class="form-control" id="discount" placeholder="Discount (%)" aria-describedby="basic-addon2">
+              <div class="input-group-append"> 
                 <button onclick="Discount()" class="btn btn-success" type="button">Get Discount</button>
               </div>
             </div>
@@ -487,12 +493,7 @@
             </div>
           </td>
         </tr>
-        <tr style="display: none">
-          <td >Total Without Discount</td>
-          <td style="text-align: right" scope="col" >
-            <input type="text" id="total"  class="form-control" placeholder="">
-          </td>
-        </tr>
+        
         <tr>
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
@@ -693,8 +694,9 @@
     document.getElementById('down_payment').value = pay.toFixed(2);
   }
   function Discount(){
-    var new_total = (document.getElementById('total').value) - (document.getElementById('discount').value);
-    document.getElementById('totalwithoutdiscount').value = new_total.toFixed(2);
+    var new_total = (document.getElementById('total').value) * Number((document.getElementById('discount').value)) / 100;
+    var new_value = Number((document.getElementById('total').value)) - new_total.toFixed(2);
+    document.getElementById('totalwithoutdiscount').value = new_value.toFixed(2);
   }
 
 
