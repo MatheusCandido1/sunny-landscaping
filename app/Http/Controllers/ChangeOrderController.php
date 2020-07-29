@@ -49,7 +49,7 @@ class ChangeOrderController extends Controller
         try{
 
             $itemData = DB::table('items')
-            ->selectRaw('services.id as service_id, items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
+            ->selectRaw('services.id as service_id, items.group_type,items.id,items.description, items.quantity, items.type, items.unit_price, items.investment')
             ->join('item_service','item_service.item_id','=','items.id')
             ->join('services','services.id','=','item_service.service_id')
             ->join('visits','visits.id','=','services.visit_id')
@@ -59,12 +59,13 @@ class ChangeOrderController extends Controller
             ->groupBy('group_type');
             
 
+
             $amount = DB::table('services')
             ->selectRaw('sum(services.total) as total')
             ->join('visits', 'visits.id','=','services.visit_id')
             ->where('services.status','=','1')
             ->where('visits.id','=',$visit_id)
-            ->get();
+            ->first();
 
             return view('changeorders.create', ['customer'=> $customer_id, 'visit' => $visit_id,'itemData' => $itemData,'amount' => $amount]);
          }catch (Throwable $e) {

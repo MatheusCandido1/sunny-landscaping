@@ -45,6 +45,13 @@
     <table class="table table-bordered"  width="100%" cellspacing="0">
       <tbody>
         <tr>
+          <td >Contract's Total</td>
+          <td style="text-align: right"  scope="col" >
+              <input type="text"  value="$ {{number_format($amount->total,2)}}"   id="totalWithout"  readonly   class="form-control" placeholder="Total Without Discount">
+            
+          </td>
+        </tr>
+        <tr>
           <td >Date</td>
           <td style="text-align: right"  scope="col" >
               <input type="date" name="date"  required   class="form-control">
@@ -75,8 +82,7 @@
           <td style="text-align: right"  scope="col" >
               <input type="text"  required name="change_order_amount"   id="total"  readonly   class="form-control" placeholder="Total">
               <input type="hidden"  required name="revised_contract_amount"   id="revised">
-              <input type="hidden" readonly id="original" name="original_contract_amount" value="{{$amount[0]->total}}"/>
-
+              <input type="hidden" readonly id="original" name="original_contract_amount" value="{{$amount->total}}"/>
             </td>
         </tr>
 
@@ -103,9 +109,6 @@
           <thead>
             <tr>
               <th style="text-align: left" scope="col" >Quote</th>
-              @if($group_type == "1 - PAVERS" || $group_type == "2 - RETAINING WALL")
-              <th style="text-align: left" scope="col" >Supplier</th>
-              @endif
               <th style="text-align: left" scope="col" >Description</th>
               <th style="" scope="col" >Quantity</th>
               <th style="" scope="col" >Unit Price</th>
@@ -116,9 +119,6 @@
             @foreach($items as $item)
             <tr>
               <td>#{{$item->service_id}}</td>
-              @if($item->group_type == "1 - PAVERS" || $item->group_type == "2 - RETAINING WALL")
-              <td>{{$item->supplier}}</td>
-              @endif
               <td>{{$item->description}} </td>
               <td>{{$item->quantity}} {{$item->type}} </td>
               <td>$ {{number_format($item->unit_price,2)}} </td>
@@ -128,6 +128,7 @@
           </tbody>
         </table>
         @endforeach
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
