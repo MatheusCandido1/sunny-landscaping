@@ -159,10 +159,10 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
           <tbody>
             @foreach($items as $item)
             <tr>
-              <td>{{$item->description}} </td>
-              <td>{{$item->quantity}} {{$item->type}} </td>
-              <td>$ {{number_format($item->unit_price,2)}} </td>
-              <td style="text-align: right">$ {{number_format($item->investment,2)}}</td>
+              <td style="width: 40%">{{$item->description}} </td>
+              <td style="width: 20%">{{$item->quantity}} {{$item->type}} </td>
+              <td style="width: 20%">$ {{number_format($item->unit_price,2)}} </td>
+              <td style="width: 20%; text-align: right">$ {{number_format($item->investment,2)}}</td>
             </tr>
             @endforeach
           </tbody>
@@ -178,6 +178,32 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line " ></td>
             <td class="no-line"></td>
           </tr>
+          @if($serviceData->discount > 0)
+          <tr>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="no-line text-center"><strong>Subtotal</strong></td>
+            <td class="no-line text-right">$ {{number_format($serviceData->subtotal,2)}}</td>
+          </tr>
+          <tr>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="no-line text-center"><strong>Discount ({{$serviceData->discount}}%)</strong></td>
+            <td class="no-line text-right">$ {{(number_format($serviceData->subtotal - $serviceData->total,2))}}</td>
+          </tr>
+          <tr>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="no-line"></td>
+            <td class="thick-line text-center"><strong>Total</strong></td>
+            <td class="thick-line text-right"><span style="font-weight: bold">$ {{number_format($serviceData->total,2)}} </span></td>
+          </tr>
+          @else
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
@@ -185,15 +211,6 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line text-center"><strong>Total</strong></td>
             <td class="no-line text-right">$ {{number_format($serviceData->total,2)}}</td>
-          </tr>
-          @if($serviceData->discount > 0)
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line text-center"><strong>Discount</strong></td>
-            <td class="no-line text-right">$ {{number_format($serviceData->discount,2)}}</td>
           </tr>
           @endif
           <tr>

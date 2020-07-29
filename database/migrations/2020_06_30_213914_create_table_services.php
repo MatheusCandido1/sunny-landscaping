@@ -17,6 +17,7 @@ class CreateTableServices extends Migration
             $table->increments('id');
             $table->float('discount');
             $table->float('total');
+            $table->float('subtotal');
             $table->float('accepting_proposal');
             $table->float('down_payment');
             $table->boolean('status');

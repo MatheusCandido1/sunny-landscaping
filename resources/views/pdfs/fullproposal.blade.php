@@ -274,6 +274,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 <div style="page-break-inside: avoid;"> 
         <h4>{{$group_type}} </h4>
         <table class="table" width="" class="table">
+          @if($loop->first)
           <thead>
             <tr>
               <th style="text-align: left" scope="col" >Description</th>
@@ -282,13 +283,14 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
               <th style="text-align: right" scope="col" >Investment</th>
             </tr>
           </thead>
+          @endif
           <tbody>
             @foreach($items as $item)
             <tr>
-              <td>{{$item->description}} </td>
-              <td>{{$item->quantity}} {{$item->type}} </td>
-              <td>$ {{number_format($item->unit_price,2)}} </td>
-              <td style="text-align: right">$ {{number_format($item->investment,2)}}</td>
+              <td style="width: 40%">{{$item->description}} </td>
+              <td style="width: 20%">{{$item->quantity}} {{$item->type}} </td>
+              <td style="width: 20%">$ {{number_format($item->unit_price,2)}} </td>
+              <td style="width: 20%; text-align: right">$ {{number_format($item->investment,2)}}</td>
             </tr>
             @endforeach
           </tbody>

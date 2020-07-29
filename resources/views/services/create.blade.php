@@ -445,7 +445,7 @@
         <tr>
           <td >Subtotal</td>
           <td  scope="col" >
-            <input type="text" id="total"  class="form-control" readonly placeholder="">
+            <input type="text" id="total" name="total" class="form-control" readonly placeholder="">
           </td>
         </tr>
         <tr>

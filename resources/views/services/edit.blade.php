@@ -868,7 +868,7 @@
         <tr>
           <td >Subtotal</td>
           <td style="text-align: right" scope="col" >
-          <input type="text" value="" readonly id="total"  class="form-control" placeholder="">
+          <input type="text" value="" readonly id="total" name="subtotal"  class="form-control" placeholder="">
           </td>
         </tr>
         <tr>

@@ -46,6 +46,7 @@ class QuoteController extends Controller
         $service = Service::create([
             'discount' => $request->discount,
             'total' => $request->subtotal,
+            'subtotal' => $request->total,
             'accepting_proposal' => $request->accepting_proposal,
             'down_payment' => $request->down_payment,
             'final_balance' => $request->final_balance,
@@ -105,7 +106,7 @@ class QuoteController extends Controller
     {
         try{
         $service = Service::where('id','=', $id)->first();
-        $service->fill($request->only('discount','total','accepting_proposal','down_payment','status','notes','visit','final_balance'));
+        $service->fill($request->only('discount','total','subtotal','accepting_proposal','down_payment','status','notes','visit','final_balance'));
         $service->save();
         $items = $service->items()->select('id')->get();
         for($i = 0; $i < count($request->input('id')); $i++){
