@@ -1,5 +1,5 @@
 @extends('layouts.partials')
-@section('title', 'Quote')
+@section('title', 'Change Order')
 @section('content')
 <form  method="POST" class="form-horizontal style-form" action="{{route('changeorders.store')}}" >
   @csrf
@@ -167,9 +167,8 @@
   }
 
   function getDiscount(){
-    var new_total = parseFloat(document.getElementById('totalWithout').value) * Number((document.getElementById('discount').value)) / 100;
-    var new_value = Number((document.getElementById('totalWithout').value)) - new_total.toFixed(2);
-    document.getElementById('total').value = new_value.toFixed(2);
+    var new_total = parseFloat(document.getElementById('totalWithout').value) - Number((document.getElementById('discount').value));
+    document.getElementById('total').value = new_total.toFixed(2);
 
     getRevised();
   }
