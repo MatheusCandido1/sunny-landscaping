@@ -497,8 +497,7 @@
         <tr>
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
-            <textarea class="" id="notes" name="notes" rows="3"></textarea>
-
+            <textarea class="form-control" id="summary-ckeditor" name="notes"></textarea>
           </td>
         </tr>
       </tbody>
@@ -508,13 +507,9 @@
   </ul>
 </form>
 @section('script')
-<script type="text/javascript">
-  $(document).ready(function() {
-       $('.summernote').summernote({
-        height: 200,
-        dialogsInBody: true
-     });
-  });
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'summary-ckeditor' );
 </script>
 @endsection
 <script type="text/javascript">

@@ -242,7 +242,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         </tbody>
       </table>
              @if($serviceData->notes != "")
-      <div class="col-xs-6"><span>Notes: {{$serviceData->notes}}</span></div>
+      <div class="col-xs-6"><span>Notes: {!! $serviceData->notes !!}</span></div>
       @endif
 
         </main>
