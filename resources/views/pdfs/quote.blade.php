@@ -146,6 +146,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         <div style="page-break-inside: avoid;"> 
         <h4>{{$group_type}} </h4>
         <table  class="table" width="" class="table">
+          @if($loop->first)
           <thead>
             <tr>
               <th style="text-align: left" scope="col" >Description</th>
@@ -154,6 +155,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
               <th style="text-align: right" scope="col" >Investment</th>
             </tr>
           </thead>
+          @endif
           <tbody>
             @foreach($items as $item)
             <tr>
