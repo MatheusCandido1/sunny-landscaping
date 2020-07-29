@@ -81,7 +81,7 @@ class PdfController extends Controller
         ->get();
 
         $itemData = DB::table('items')
-            ->selectRaw('services.id as service, items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
+            ->selectRaw('services.id as service, items.group_type,items.id, items.description, items.quantity, items.type, items.unit_price, items.investment')
             ->join('item_service','item_service.item_id','=','items.id')
             ->join('services','services.id','=','item_service.service_id')
             ->join('visits','visits.id','=','services.visit_id')
@@ -257,7 +257,7 @@ class PdfController extends Controller
             $serviceData = DB::table('services')->select('services.notes', 'id','notes','discount','total','accepting_proposal','down_payment','final_balance')->where('services.id','=', $service_id)->where('services.visit_id','=',$visit_id)->first();
 
             $itemData = DB::table('items')
-            ->selectRaw('items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
+            ->selectRaw('items.group_type,items.id,items.description, items.quantity, items.type, items.unit_price, items.investment')
             ->join('item_service','item_service.item_id','=','items.id')
             ->join('services','services.id','=','item_service.service_id')
             ->where('services.id', '=', $service_id)
@@ -296,7 +296,7 @@ class PdfController extends Controller
         $serviceData = DB::table('services')->select('id','discount','total','notes','accepting_proposal','down_payment','final_balance')->where('services.id','=', $service_id)->where('services.visit_id','=',$visit_id)->first();
 
       $itemData = DB::table('items')
-      ->selectRaw('items.group_type,items.id, items.supplier, items.description, items.quantity, items.type, items.unit_price, items.investment')
+      ->selectRaw('items.group_type,items.id, items.description, items.quantity, items.type, items.unit_price, items.investment')
       ->join('item_service','item_service.item_id','=','items.id')
       ->join('services','services.id','=','item_service.service_id')
       ->where('services.id', '=', $service_id)

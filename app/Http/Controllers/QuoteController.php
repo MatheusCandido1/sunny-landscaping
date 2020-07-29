@@ -57,7 +57,6 @@ class QuoteController extends Controller
 
         for ($i = 0; $i < count($request->input('id')); $i++) {
             $item[$i] = new Item();
-            $item[$i]->supplier = $request->input('supplier')[$i];
             $item[$i]->description = $request->input('description')[$i];
             $item[$i]->quantity = $request->input('qnt')[$i];
             $item[$i]->type = $request->input('type')[$i];
@@ -121,7 +120,6 @@ class QuoteController extends Controller
 
          for ($i = 0; $i < count($request->input('id')); $i++) {
             $item[$i] = new Item();
-            $item[$i]->supplier = $request->input('supplier')[$i];
             $item[$i]->description = $request->input('description')[$i];
             $item[$i]->quantity = $request->input('qnt')[$i];
             $item[$i]->type = $request->input('type')[$i];

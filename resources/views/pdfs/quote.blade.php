@@ -148,9 +148,6 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         <table  class="table" width="" class="table">
           <thead>
             <tr>
-              @if($group_type == "1 - PAVERS" || $group_type == "2 - RETAINING WALL")
-              <th style="text-align: left" scope="col" >Supplier</th>
-              @endif
               <th style="text-align: left" scope="col" >Description</th>
               <th style="" scope="col" >Quantity</th>
               <th style="" scope="col" >Unit Price</th>
@@ -160,9 +157,6 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
           <tbody>
             @foreach($items as $item)
             <tr>
-              @if($item->group_type == "1 - PAVERS" || $item->group_type == "2 - RETAINING WALL")
-              <td>{{$item->supplier}}</td>
-              @endif
               <td>{{$item->description}} </td>
               <td>{{$item->quantity}} {{$item->type}} </td>
               <td>$ {{number_format($item->unit_price,2)}} </td>

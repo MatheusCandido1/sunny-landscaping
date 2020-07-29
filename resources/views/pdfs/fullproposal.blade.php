@@ -276,9 +276,6 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
         <table class="table" width="" class="table">
           <thead>
             <tr>
-              @if($group_type == "1 - PAVERS" || $group_type == "2 - RETAINING WALL")
-              <th style="text-align: left" scope="col" >Supplier</th>
-              @endif
               <th style="text-align: left" scope="col" >Description</th>
               <th style="" scope="col" >Quantity</th>
               <th style="" scope="col" >Unit Price</th>
@@ -288,9 +285,6 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
           <tbody>
             @foreach($items as $item)
             <tr>
-              @if($item->group_type == "1 - PAVERS" || $item->group_type == "2 - RETAINING WALL")
-              <td>{{$item->supplier}}</td>
-              @endif
               <td>{{$item->description}} </td>
               <td>{{$item->quantity}} {{$item->type}} </td>
               <td>$ {{number_format($item->unit_price,2)}} </td>
