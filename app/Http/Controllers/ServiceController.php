@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Service;
-use App\Supplier;
 use App\Visit;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -17,7 +16,7 @@ class ServiceController extends Controller
     public function createQuote($visit_id, $customer_id)
     {
         try{
-       return view('services.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $visit_id, 'customer_id' => $customer_id]);
+       return view('services.create', [ 'visit_id' => $visit_id, 'customer_id' => $customer_id]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -74,7 +73,7 @@ class ServiceController extends Controller
         $others = DB::table('items')->selectRaw('items.group_type, count(*) as quantity')->join('item_service','item_service.item_id','=','items.id')->join('services','services.id','=','item_service.service_id')->where('services.id', '=', $service_id)->where('items.group_type','=','13 - OTHERS')->groupBy('items.group_type')->first();
 
 
-        return view('services.edit', ['extra',$extra, 'others',$others, 'grass' => $grass, 'trees' => $trees, 'irrigation' => $irrigation, 'rocks' => $rocks, 'fire' => $fire, 'trans' => $trans, 'dumpster' => $dumpster,'labor' => $labor,'drainage' => $drainage, 'pavers' => $pavers, 'walls' => $walls, 'suppliers' => \App\Supplier::all(), 'service_id'=> $service_id,'service' => $serviceData, 'items' => $itemData, 'customer_id' => $customer_id,'visit_id' => $visit_id]);
+        return view('services.edit', ['extra',$extra, 'others',$others, 'grass' => $grass, 'trees' => $trees, 'irrigation' => $irrigation, 'rocks' => $rocks, 'fire' => $fire, 'trans' => $trans, 'dumpster' => $dumpster,'labor' => $labor,'drainage' => $drainage, 'pavers' => $pavers, 'walls' => $walls,  'service_id'=> $service_id,'service' => $serviceData, 'items' => $itemData, 'customer_id' => $customer_id,'visit_id' => $visit_id]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

@@ -920,7 +920,7 @@
         <tr>
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
-            <textarea class="form-control" id="summary-ckeditor" name="notes">{{$service->notes}}</textarea>
+            <textarea class="form-control" id="summary-ckeditor" name="notes">{!! $service->notes!!}</textarea>
           </td>
         </tr>
       </tbody>

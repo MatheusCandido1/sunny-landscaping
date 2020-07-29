@@ -36,14 +36,6 @@ class ChangeOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    {
-        try{
-            return view('services.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
-             }catch (Throwable $e) {
-                 toast('Pleasy try again!','error');
-             }
-    }
 
     public function createChangeOrder($visit_id, $customer_id){
         try{

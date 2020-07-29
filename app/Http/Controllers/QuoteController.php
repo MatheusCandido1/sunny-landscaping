@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Service;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Supplier;
 
 class QuoteController extends Controller
 {

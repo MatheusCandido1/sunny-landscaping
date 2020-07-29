@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App;
 use App\Customer;
 use App\Item;
-use App\Suppllier;
 use App\Type;
 use App\Visit;
 use App\City;
@@ -111,16 +110,6 @@ class CustomerController extends Controller
         
     }
 
-    public function Quote($id)
-    {
-        try {
-            return view('quotes.create', ['suppliers' => \App\Supplier::all(), 'visit_id' => $id]);
-        } catch (Throwable $e) {
-            toast('Pleasy try again!','error');
-        }
-
-    }
-    
 
     /**
      * Display the specified resource.
