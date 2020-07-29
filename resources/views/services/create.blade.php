@@ -417,7 +417,6 @@
                 <table id="tb13" class="table table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th style="" scope="col" >Supplier</th>
                       <th style="" scope="col" >Description</th>
                       <th style="" scope="col" >Quantity</th>
                       <th style="" scope="col" >Type</th>

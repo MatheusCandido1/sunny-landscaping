@@ -136,7 +136,7 @@ border:none'>
 <p><span style="font-size: 12;  line-height: 10px;">{{$element->target}}: {{ $element->investment == 0 ? '' : '$'.number_format($element->investment,2).'' }} {{ $element->quantity == 0 ? '' : '- '.$element->quantity.'' }} {{$element->type}} {{ $element->description }}{{ $element->unit_price == 0 ? '' : ' @ $ '.number_format($element->unit_price,2).'' }} {{ $element->type == "" ? '':'/'.$element->type.'' }} </span></p>
 @endforeach
 @if ($data->discount != 0)
-<p><span style="font-size: 12;">Add: (${{number_format($data->discount,2)}}) - Discount </span></p>
+<p><span style="font-size: 12;">Add: (Discount - {{$data->discount}}%) - US$ {{number_format(($data->subtotal) - ($data->change_order_amount),2)}} </span></p>
 @endif
 <p><span style="font-size: 12;">ORIGINAL CONTRACT AMOUNT: US$ {{number_format($data->original_contract_amount,2)}} </span></p>
 <p><span style="font-size: 12;">CHANGE ORDER AMOUNT #{{$data->id}}: US$ {{number_format($data->change_order_amount,2)}} &nbsp; </span></p>

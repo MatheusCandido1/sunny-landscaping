@@ -47,7 +47,7 @@
         <tr>
           <td >Contract's Total</td>
           <td style="text-align: right"  scope="col" >
-              <input type="text"  value="$ {{number_format($amount->total,2)}}"   id="totalWithout"  readonly   class="form-control" placeholder="Total Without Discount">
+              <input type="text"  value="$ {{number_format($amount->total,2)}}"   id=""  readonly   class="form-control">
             
           </td>
         </tr>
@@ -59,9 +59,9 @@
           </td>
         </tr>
         <tr>
-          <td >Total Without Discount</td>
+          <td >Subtotal</td>
           <td style="text-align: right"  scope="col" >
-              <input type="text"  required   id="totalWithout"  readonly   class="form-control" placeholder="Total Without Discount">
+              <input type="text"  required name="subtotal"   id="totalWithout"  readonly   class="form-control" placeholder="Total">
             
           </td>
         </tr>
@@ -167,8 +167,10 @@
   }
 
   function getDiscount(){
-    var new_total = parseFloat(document.getElementById('totalWithout').value) - parseFloat(document.getElementById('discount').value);
-    document.getElementById('total').value = parseFloat(new_total.toFixed(2));
+    var new_total = parseFloat(document.getElementById('totalWithout').value) * Number((document.getElementById('discount').value)) / 100;
+    var new_value = Number((document.getElementById('totalWithout').value)) - new_total.toFixed(2);
+    document.getElementById('total').value = new_value.toFixed(2);
+
     getRevised();
   }
 

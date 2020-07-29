@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChangeOrder extends Model
 {
     protected $fillable = [
-        'date','discount', 'original_contract_amount', 'change_order_amount', 'revised_contract_amount', 'status', 'visit_id'
+        'date','discount', 'subtotal','original_contract_amount', 'change_order_amount', 'revised_contract_amount', 'status', 'visit_id'
     ];
 
     public function elements()

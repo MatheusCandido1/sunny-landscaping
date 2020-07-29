@@ -27,8 +27,7 @@ Route::get('pdf/estimate/{visit}','PdfController@generateEstimate')->name('pdf.e
 Route::get('pdf/contract/{visit}','PdfController@generateContract')->name('pdf.contract');
 Route::get('pdf/nevadacontract/{visit}','PdfController@generateNevadaContract')->name('pdf.nevadacontract');
 Route::get('pdf/changeorder/{changeorder}/visit/{visit}','PdfController@generateChangeOrder')->name('pdf.change');
-Route::Get('pdf/full_proposal/{service}','PdfController@generateFullProposal')->name('pdf.full');
-Route::Get('pdf/full_document/{service}/{visit}','PdfController@generateFullDoc')->name('pdf.doc');
+Route::get('pdf/full_proposal/{service}','PdfController@generateFullProposal')->name('pdf.full');
 
 
 // Dashboard Routes

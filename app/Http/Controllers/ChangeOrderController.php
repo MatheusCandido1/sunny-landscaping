@@ -85,6 +85,7 @@ class ChangeOrderController extends Controller
             $changeOrder = ChangeOrder::create([
                 'date' => $request->date,
                 'discount' => $request->discount,
+                'subtotal' => $request->subtotal,
                 'original_contract_amount' => $request->original_contract_amount,
                 'change_order_amount' => $request->change_order_amount,
                 'revised_contract_amount' => $request->revised_contract_amount,

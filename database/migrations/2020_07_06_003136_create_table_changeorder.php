@@ -17,6 +17,7 @@ class CreateTableChangeorder extends Migration
             $table->increments('id');
             $table->dateTime('date');
             $table->float('discount');
+            $table->float('subtotal');
             $table->float('original_contract_amount');
             $table->float('change_order_amount');
             $table->float('revised_contract_amount');
