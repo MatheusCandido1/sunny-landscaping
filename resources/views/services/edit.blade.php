@@ -39,24 +39,18 @@
               <table id="tb1" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th style="" scope="col" >Supplier</th>
                     <th style="" scope="col" >Description</th>
                     <th style="" scope="col" >Quantity</th>
                     <th style="" scope="col" >Type</th>
                     <th style="" scope="col" >Unit Price</th>
                     <th style="" scope="col" >Investment</th>
                     <th style="" scope="col" >Action</th>
-  
                   </tr>
                 </thead>
                 <tbody  id="item_fields">
                   @foreach($items as $item)
                   @if($item->group_type == "1 - PAVERS")
                   <tr>
-                    <td>
-                      <input type="hidden" value="1 - PAVERS" name="group_type[]">
-                    <input type="hidden" id="{{$loop->iteration}}sup" name="supplier[]" value="{{$item->supplier}}">
-<select required id="{{$loop->iteration}}supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
                      <td> 
                        <div class="input-group mb-3"> 
                          <div class="input-group-prepend"> 
@@ -72,6 +66,7 @@
                                <input type="text" value="{{$item->type}}" required name="type[]" placeholder="" class="form-control">
                                </td>
                                 <td> 
+                                  <input type="hidden" value="1 - PAVERS" name="group_type[]"/>
                                   <div class="input-group mb-3">
                                      <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
@@ -109,7 +104,6 @@
                 <table id="tb2" class="table table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th style="" scope="col" >Supplier</th>
                       <th style="" scope="col" >Description</th>
                       <th style="" scope="col" >Quantity</th>
                       <th style="" scope="col" >Type</th>
@@ -123,17 +117,14 @@
                     @foreach($items as $item)
                     @if($item->group_type == "2 - RETAINING WALL") 
                     <tr>
-                      <td>
-                        <input type="hidden" value="2 - RETAINING WALL" name="group_type[]">
-                      <input type="hidden" id="{{$loop->iteration}}sup" name="supplier[]" value="{{$item->supplier}}">
-  <select required id="{{$loop->iteration}}supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option {{ $item->supplier == $supplier->name ? 'selected' : '' }} value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select>                     </td>
                        <td> 
                          <div class="input-group mb-3"> 
                            <div class="input-group-prepend"> 
                             <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                              <input type="hidden" name="id[]" value="{{$item->id}}"> 
                              <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
-                             </td> 
+                             <input type="hidden" value="2 - RETAINING WALL" name="group_type[]"/>
+                            </td> 
                              <td> 
                                <input id="{{$loop->iteration}}qnt" value="{{$item->quantity}}" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">
                                <div id="{{$loop->iteration}}qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> 
@@ -198,7 +189,6 @@
                              <div class="input-group-prepend"> 
                               <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                <input type="hidden" name="id[]" value="{{$item->id}}"> 
-                               <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                </td> 
                                <td> 
@@ -264,7 +254,6 @@
                                <div class="input-group-prepend"> 
                                 <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                  <input type="hidden" name="id[]" value="{{$item->id}}"> 
-                                 <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                  <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                  </td> 
                                  <td> 
@@ -329,7 +318,6 @@
                                  <div class="input-group-prepend"> 
                                   <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                    <input type="hidden" name="id[]" value="{{$item->id}}">
-                                                                  <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div> 
                                    <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                    </td> 
                                    <td> 
@@ -394,7 +382,6 @@
                                    <div class="input-group-prepend"> 
                                     <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                      <input type="hidden" name="id[]" value="{{$item->id}}"> 
-                                     <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                      <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                      </td> 
                                      <td> 
@@ -459,7 +446,6 @@
                                      <div class="input-group-prepend"> 
                                       <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                        <input type="hidden" name="id[]" value="{{$item->id}}"> 
-                                       <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                        <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                        </td> 
                                        <td> 
@@ -524,7 +510,6 @@
                                        <div class="input-group-prepend"> 
                                         <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                          <input type="hidden" name="id[]" value="{{$item->id}}"> 
-                                         <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                          <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
                                          </td> 
                                          <td> 
@@ -587,7 +572,6 @@
                                       <input type="hidden" value="9 - TRANSFORMER AND LED LIGHTS" name="group_type[]"> 
                                        <div class="input-group mb-3"> 
                                          <div class="input-group-prepend"> 
-                                          <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                           <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                            <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                            <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
@@ -652,7 +636,6 @@
                                         <input type="hidden" value="10 - DUMPSTER" name="group_type[]"> 
                                          <div class="input-group mb-3"> 
                                            <div class="input-group-prepend"> 
-                                            <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                             <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                              <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                              <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
@@ -717,7 +700,6 @@
                                           <input type="hidden" value="11 - LABOR" name="group_type[]"> 
                                            <div class="input-group mb-3"> 
                                              <div class="input-group-prepend"> 
-                                              <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                               <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                                <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                                <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
@@ -782,7 +764,6 @@
                                             <input type="hidden" value="12 - EXTRA" name="group_type[]"> 
                                              <div class="input-group mb-3"> 
                                                <div class="input-group-prepend"> 
-                                                <input type="hidden" name="supplier[]" required class="form-control" value="{{$item->supplier}}" placeholder="Description"/> </div>
                                                 <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                                  <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                                  <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
@@ -830,7 +811,6 @@
                                       <table id="tb13" class="table table-bordered" width="100%" cellspacing="0">
                                         <thead>
                                           <tr>
-                                            <th style="" scope="col" >Supplier</th>
                                             <th style="" scope="col" >Description</th>
                                             <th style="" scope="col" >Quantity</th>
                                             <th style="" scope="col" >Type</th>
@@ -846,7 +826,6 @@
                                             <td>
                                               <input type="hidden" value="13 - OTHERS" name="group_type[]"> 
 
-                                            <input type="text" value="{{$item->supplier}}" placeholder="Supplier" class="form-control" name="supplier[]" >
                                             </td>
                                              <td> 
                                                <div class="input-group mb-3"> 
@@ -886,6 +865,12 @@
   <div class="table-responsive">
     <table class="table table-bordered"  width="100%" cellspacing="0">
       <tbody>
+        <tr>
+          <td >Subtotal</td>
+          <td style="text-align: right" scope="col" >
+          <input type="text" value="" readonly id="total"  class="form-control" placeholder="">
+          </td>
+        </tr>
         <tr>
           <td >Discount</td>
           <td >
@@ -931,12 +916,7 @@
             </div>
           </td>
         </tr>
-        <tr style="display: none">
-          <td >Total Without Discount</td>
-          <td style="text-align: right" scope="col" >
-          <input type="text" value="" id="total"  class="form-control" placeholder="">
-          </td>
-        </tr>
+        
         <tr>
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
@@ -951,20 +931,7 @@
 </form>
 <script type="text/javascript">
   var item = document.getElementById('loopsize').value;
-  function getUnitValue()
-  {
-  for(i = 1; i <= item; i++){
-    for(i = 1; i <= item; i++){
-    if(document.getElementById(i+"supplier") != null){
-      if(i == item){
-    document.getElementById(i+"sup").value = document.getElementById(i+"supplier").options[document.getElementById(i+"supplier").selectedIndex].text;
-    document.getElementById(i+"value").value = document.getElementById(i+"supplier").value
-      }
-    }
-   }
-   }
-   findTotal();
-  }
+ 
  function getFinalBalance(){
     var final = document.getElementById('totalwithoutdiscount').value - document.getElementById('down_payment').value - document.getElementById('accepting_proposal').value;
     if(final < 0){
@@ -980,8 +947,9 @@
     document.getElementById('down_payment').value = pay.toFixed(2);
   }
   function Discount(){
-    var new_total = (document.getElementById('total').value) - (document.getElementById('discount').value);
-    document.getElementById('totalwithoutdiscount').value = new_total.toFixed(2);
+    var new_total = (document.getElementById('total').value) * Number((document.getElementById('discount').value)) / 100;
+    var new_value = Number((document.getElementById('total').value)) - new_total.toFixed(2);
+    document.getElementById('totalwithoutdiscount').value = new_value.toFixed(2);
   }
   function deleteAndRefresh(button){
     deleteItem(button);
@@ -1091,91 +1059,91 @@
   item++;
       var objTo = document.getElementById('item_fields')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<td><input type="hidden" value="1 - PAVERS" name="group_type[]"><input type="hidden" id="'+item+'sup" name="supplier[]" value=""> <select required id="'+item+'supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control"  placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div>  </td> <td> <input required type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td> <td style="text-align: center;" scope="col"><button onclick="deleteItem1(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '  <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control"  placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div><input type="hidden" value="1 - PAVERS" name="group_type[]"/>  </td> <td> <input required type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td> <td style="text-align: center;" scope="col"><button onclick="deleteItem1(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add2() {
   item++;
       var objTo = document.getElementById('item_fields2')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<td><input type="hidden" value="2 - RETAINING WALL" name="group_type[]"><input type="hidden" id="'+item+'sup" name="supplier[]" value=""> <select required id="'+item+'supplier"  onchange="getUnitValue()" class="form-control"> <option value="">Select a supplier </option> @foreach($suppliers as $supplier) <option value="{{$supplier->value}}" > {{$supplier->name}} </option> @endforeach </select> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> </td> <td> <input required type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td> <td style="text-align: center;" scope="col"><button onclick="deleteItem2(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div>  </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity"> <div id="'+item+'qntval" class="invalid-feedback">Quantity above 300, check the unit price!</div> <input type="hidden" value="2 - RETAINING WALL" name="group_type[]">  </td> <td> <input required type="text" name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td> <td style="text-align: center;" scope="col"><button onclick="deleteItem2(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add3() {
     item++;
       var objTo = document.getElementById('item_fields3')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="3 - GRASS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem3(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="3 - GRASS" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem3(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add4() {
     item++;
       var objTo = document.getElementById('item_fields4')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="4 - TREES AND PLANTS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem4(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="4 - TREES AND PLANTS" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem4(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add5() {
     item++;
       var objTo = document.getElementById('item_fields5')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="5 - IRRIGATION" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem5(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="5 - IRRIGATION" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem5(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add6() {
     item++;
       var objTo = document.getElementById('item_fields6')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="6 - ROCKS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem6(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="6 - ROCKS" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem6(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add7() {
     item++;
       var objTo = document.getElementById('item_fields7')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="7 - FIRE PIT" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem7(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="7 - FIRE PIT" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem7(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add8() {
     item++;
       var objTo = document.getElementById('item_fields8')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="8 - DRAINAGE" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem8(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="8 - DRAINAGE" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem8(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add9() {
     item++;
       var objTo = document.getElementById('item_fields9')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="9 - TRANSFORMER AND LED LIGHTS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem9(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="9 - TRANSFORMER AND LED LIGHTS" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem9(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add10() {
     item++;
       var objTo = document.getElementById('item_fields10')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="10 - DUMPSTER" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem10(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="10 - DUMPSTER" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem10(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add11() {
     item++;
       var objTo = document.getElementById('item_fields11')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="11 - LABOR" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem11(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="11 - LABOR" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem11(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add12() {
     item++;
       var objTo = document.getElementById('item_fields12')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="12 - EXTRA" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem12(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="12 - EXTRA" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem12(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
   }
   function add13() {
   item++;
       var objTo = document.getElementById('item_fields13')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="13 - OTHERS" name="group_type[]"><input type="hidden" value="-" placeholder="Supplier" class="form-control" name="supplier[]" > <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem13(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="13 - OTHERS" name="group_type[]"> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem13(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest);
   }
   function findTotal(){
