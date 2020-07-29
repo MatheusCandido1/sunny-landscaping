@@ -497,17 +497,26 @@
         <tr>
           <td>Notes</td>
           <td style="text-align: center" scope="col" >
-            <textarea class="form-control" id="" name="notes" rows="3"></textarea>
+            <textarea class="" id="notes" name="notes" rows="3"></textarea>
 
           </td>
         </tr>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-check"></i> Save Quote</button>
+    <button type="submit" class="btn btn-success btn-block" id="save"><i class="fas fa-check"></i> Save Quote</button>
   </div>
   </ul>
 </form>
-
+@section('script')
+<script type="text/javascript">
+  $(document).ready(function() {
+       $('.summernote').summernote({
+        height: 200,
+        dialogsInBody: true
+     });
+  });
+</script>
+@endsection
 <script type="text/javascript">
   var item = 0;
   function add1() {
