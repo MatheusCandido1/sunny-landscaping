@@ -348,8 +348,8 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="no-line text-center" style="width:140px" ><strong>Accepting Proposal</strong></td>
-            <td class="no-line text-right">$ {{number_format($value->accepting_proposal,2)}}</td>
+            <td class="thick-line text-center" style="width:140px" ><strong>Accepting Proposal</strong></td>
+            <td class="thick-line text-right">$ {{number_format($value->accepting_proposal,2)}}</td>
           </tr>
           @if($value->down_payment > 0)
           <tr>
@@ -366,8 +366,8 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="thick-line text-center"><strong>Final Balance</strong></td>
-            <td class="thick-line text-right">$ {{number_format($value->final_balance,2)}}</td>
+            <td class="no-line text-center"><strong>Final Balance</strong></td>
+            <td class="no-line text-right">$ {{number_format($value->final_balance,2)}}</td>
           </tr>
         </tbody>
       </table>

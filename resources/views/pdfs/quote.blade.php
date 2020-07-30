@@ -158,11 +158,11 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
           @endif
           <tbody>
             @foreach($items as $item)
-            <tr>
-              <td style="width: 40%">{{$item->description}} </td>
-              <td style="width: 20%">{{$item->quantity}} {{$item->type}} </td>
-              <td style="width: 20%">$ {{number_format($item->unit_price,2)}} </td>
-              <td style="width: 20%; text-align: right">$ {{number_format($item->investment,2)}}</td>
+            <tr style="line-height: 4px">
+              <td style="width: 40%;line-height: 4px">{{$item->description}} </td>
+              <td style="width: 20%;line-height: 4px">{{$item->quantity}} {{$item->type}} </td>
+              <td style="width: 20%;line-height: 4px">$ {{number_format($item->unit_price,2)}} </td>
+              <td style="width: 20%;line-height: 4px; text-align: right">$ {{number_format($item->investment,2)}}</td>
             </tr>
             @endforeach
           </tbody>
@@ -200,8 +200,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="no-line"><strong>Total</strong></td>
-            <td class="no-line"><span style="font-weight: bold">$ {{number_format($serviceData->total,2)}} </span></td>
+            <td class="thick-line text-center"><strong>Total</strong></td>
+            <td class="thick-line text-right"><span style="font-weight: bold">$ {{number_format($serviceData->total,2)}} </span></td>
           </tr>
           @else
           <tr>
@@ -218,8 +218,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="no-line text-center" style="width:140px" ><strong>Accepting Proposal</strong></td>
-            <td class="no-line text-right">$ {{number_format($serviceData->accepting_proposal,2)}}</td>
+            <td class="thick-line text-center" style="width:140px" ><strong>Accepting Proposal</strong></td>
+            <td class="thick-line text-right">$ {{number_format($serviceData->accepting_proposal,2)}}</td>
           </tr>
           @if($serviceData->down_payment > 0)
           <tr>
@@ -236,8 +236,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="thick-line text-center"><strong>Final Balance</strong></td>
-            <td class="thick-line text-right">$ {{number_format($serviceData->final_balance,2)}}</td>
+            <td class="no-line text-center"><strong>Final Balance</strong></td>
+            <td class="no-line text-right">$ {{number_format($serviceData->final_balance,2)}}</td>
           </tr>
         </tbody>
       </table>
