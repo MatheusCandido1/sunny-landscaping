@@ -144,15 +144,15 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         </div>
         @foreach($itemData as $group_type => $items)
         <div style="page-break-inside: avoid;"> 
-        <h4>{{$group_type}} </h4>
+        <h4 style="line-height: 5px">{{$group_type}} </h4>
         <table  class="table" width="" class="table">
           @if($loop->first)
           <thead>
             <tr>
-              <th style="text-align: left" scope="col" >Description</th>
-              <th style="" scope="col" >Quantity</th>
-              <th style="" scope="col" >Unit Price</th>
-              <th style="text-align: right" scope="col" >Investment</th>
+              <th  style="text-align: left; line-height: 1px" scope="col" >Description</th>
+              <th style="line-height: 1px" scope="col" >Quantity</th>
+              <th style="line-height: 1px" scope="col" >Unit Price</th>
+              <th style="text-align: right;line-height: 1px" scope="col" >Investment</th>
             </tr>
           </thead>
           @endif
@@ -200,8 +200,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="thick-line text-center"><strong>Total</strong></td>
-            <td class="thick-line text-right"><span style="font-weight: bold">$ {{number_format($serviceData->total,2)}} </span></td>
+            <td class="no-line"><strong>Total</strong></td>
+            <td class="no-line"><span style="font-weight: bold">$ {{number_format($serviceData->total,2)}} </span></td>
           </tr>
           @else
           <tr>
