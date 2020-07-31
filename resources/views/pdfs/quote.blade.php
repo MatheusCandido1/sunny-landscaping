@@ -138,25 +138,27 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
                 <div class="email">{{$customer->email}}</div>
                 <div class="email">Phone: {{$customer->phone}}</div>
             </div>
-            <div style="text-align: right;" class="col invoice-details">
-                <p class="date">Date: {{ date('m/d/Y') }}</p>
+            <div style="text-align: right" class="col invoice-details">
+                <div class="date">Date: {{ date('m/d/Y') }}</div>
             </div>
         </div>
-        
-        @foreach($itemData as $group_type => $items)
         <div style="page-break-inside: avoid;"> 
-          <table  class="table">
-            <thead>
-              <tr>
-                <th  style="text-align: left; line-height: 5px; width: 40%;" scope="col" >Description</th>
-                <th style="line-height: 1px; width: 20%;" scope="col" >Quantity</th>
-                <th style="line-height: 1px; width: 20%" scope="col" >Unit Price</th>
-                <th style="text-align: right;line-height: 1px; width: 20%" scope="col" >Investment</th>
-              </tr>
-            </thead>
+        @foreach($itemData as $group_type => $items)
+          <table class="table">
+          @if($loop->first)
+          <thead>
+            <tr>
+              <th  style="text-align: left; line-height: 5px" scope="col" >Description</th>
+              <th style="line-height: 1px" scope="col" >Quantity</th>
+              <th style="line-height: 1px" scope="col" >Unit Price</th>
+              <th style="text-align: right;line-height: 1px" scope="col" >Investment</th>
+            </tr>
+          </thead>
+          @endif
           </table>
-        <h4 style="line-height: 1px">{{$group_type}} </h4>
-        <table  width="" class="table">
+        <h4 style="line-height: 5px">{{$group_type}} </h4>
+        <table  class="table" width="" class="table">
+         
           <tbody>
             @foreach($items as $item)
             <tr style="line-height: 0px">
@@ -171,7 +173,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
       </div>
         @endforeach
         
-        <table  style="page-break-inside: avoid;" class="table" width="">
+        <table style="page-break-inside: avoid; margin-top: -30px" class="table" width="">
           <tr>
             <td class="no-line"></td>
             <td class="no-line"></td>
@@ -185,7 +187,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td  class="no-line text-center" style="line-height: 5px"><strong>Subtotal</strong></td>
+            <td class="no-line text-center" style="line-height: 5px"><strong>Subtotal</strong></td>
             <td class="no-line text-right" style="line-height: 5px">$ {{number_format($serviceData->subtotal,2)}}</td>
           </tr>
           <tr>
@@ -219,7 +221,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="thick-line text-center"  style="width:140px; line-height:5px" ><strong>Accepting Proposal</strong></td>
+            <td class="thick-line text-center" style="width:140px; line-height: 5px" ><strong>Accepting Proposal</strong></td>
             <td class="thick-line text-right" style="line-height: 5px">$ {{number_format($serviceData->accepting_proposal,2)}}</td>
           </tr>
           @if($serviceData->down_payment > 0)
@@ -228,7 +230,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="no-line text-center" style="line-height: 5px" ><strong>Down Payment</strong></td>
+            <td class="no-line text-center" style="line-height: 5px"><strong>Down Payment</strong></td>
             <td class="no-line text-right" style="line-height: 5px">$ {{number_format($serviceData->down_payment,2)}}</td>
           </tr>
           @endif
