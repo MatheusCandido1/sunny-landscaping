@@ -20,6 +20,7 @@ class CreateVisitsTable extends Migration
             $table->boolean('hoa')->nullable();
             $table->boolean('water_smart_rebate')->nullable();
             $table->string('invoice_number')->nullalbe();
+            $table->string('security_deposit')->nullalbe();
             $table->string('payment_amout')->nullalbe();
             $table->date('contract_date')->nullalbe();
             $table->date('board_date')->nullalbe();
