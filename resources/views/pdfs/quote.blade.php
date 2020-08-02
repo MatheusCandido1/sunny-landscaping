@@ -142,7 +142,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
                 <div class="date">Date: {{ date('m/d/Y') }}</div>
             </div>
         </div>
-        <div style="page-break-inside: avoid;"> 
+        <div style="page-break-inside: avoid; line-height: 0px"> 
         @foreach($itemData as $group_type => $items)
           <table class="table">
           @if($loop->first)
@@ -203,8 +203,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="thick-line text-center" style="line-height: 5px"><strong>Total</strong></td>
-            <td class="thick-line text-right" style="line-height: 5px"><span style="font-weight: bold">$ {{number_format($serviceData->total,2)}} </span></td>
+            <td class="thick-line text-center" style="line-height: 10px"><strong>Total</strong></td>
+            <td class="thick-line text-right" style="line-height: 10px"><span style="font-weight: bold">$ {{number_format($serviceData->total,2)}} </span></td>
           </tr>
           @else
           <tr>

@@ -244,8 +244,8 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 <br>
 </div>
 <div class="page_break"></div>
-<main>
 @foreach($itemData as $service=>$quote)
+<main>
   <div class="row contacts">
     <div style="text-align: right">
      </div>
@@ -268,8 +268,8 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
         <div class="date">Date: {{ date('m/d/Y') }}</div>
     </div>
 </div>
-<div style="page-break-inside: avoid;"> 
-  @foreach($quote as $group_type => $items)
+<div style="page-break-inside: avoid; line-height: 0px"> 
+@foreach($quote as $group_type => $items)
   <table class="table">
   @if($loop->first)
   <thead>
@@ -284,6 +284,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
   </table>
 <h4 style="line-height: 5px">{{$group_type}} </h4>
 <table  class="table" width="" class="table">
+ 
   <tbody>
     @foreach($items as $item)
     <tr style="line-height: 0px">
@@ -297,95 +298,91 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 </table>
 </div>
 @endforeach
-</div>
 
-        @foreach ($serviceData as $value)
-        @if($value->service_id == $service)
-        <table style="page-break-inside: avoid; margin-top: -30px" class="table" width="">
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line" style="line-height: 5px"></td>
-            <td class="no-line" style="line-height: 5px"></td>
-          </tr>
-          @if($value->discount > 0)
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line text-center" style="line-height: 5px"><strong>Subtotal</strong></td>
-            <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->subtotal,2)}}</td>
-          </tr>
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line text-center" style="line-height: 5px"><strong>Discount</strong></td>
-            <td class="no-line text-right" style="line-height: 5px">$ {{(number_format($value->discount,2))}}</td>
-          </tr>
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="thick-line text-center" style="line-height: 5px"><strong>Total</strong></td>
-            <td class="thick-line text-right" style="line-height: 5px"><span style="font-weight: bold">$ {{number_format($value->total,2)}} </span></td>
-          </tr>
-          @else
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line text-center" style="line-height: 5px"><strong>Total</strong></td>
-            <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->total,2)}}</td>
-          </tr>
-          @endif
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="thick-line text-center" style="width:140px; line-height: 5px" ><strong>Accepting Proposal</strong></td>
-            <td class="thick-line text-right" style="line-height: 5px">$ {{number_format($value->accepting_proposal,2)}}</td>
-          </tr>
-          @if($value->down_payment > 0)
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line text-center" style="line-height: 5px"><strong>Down Payment</strong></td>
-            <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->down_payment,2)}}</td>
-          </tr>
-          @endif
-          <tr>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line"></td>
-            <td class="no-line text-center" style="line-height: 5px"><strong>Final Balance</strong></td>
-            <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->final_balance,2)}}</td>
-          </tr>
-        </tbody>
-      </table>
-             @if($value->notes != "")
-      <div class="col-xs-6"><span>Notes: {!! $value->notes !!}</span></div>
-      @endif
-      @endif
-        @endforeach
-        
+@foreach ($serviceData as $value)
+
 <div id="image">
   <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
 </div>
-@if(!($loop->last))
-<div class="page_break"></div>
+          @if($value->service_id == $service)
+          <table style="page-break-inside: avoid; margin-top: -30px" class="table" width="">
+            <tr>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line" style="line-height: 5px"></td>
+              <td class="no-line" style="line-height: 5px"></td>
+            </tr>
+            @if($value->discount > 0)
+            <tr>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line text-center" style="line-height: 5px"><strong>Subtotal</strong></td>
+              <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->subtotal,2)}}</td>
+            </tr>
+            <tr>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line text-center" style="line-height: 5px"><strong>Discount</strong></td>
+              <td class="no-line text-right" style="line-height: 5px">$ {{(number_format($value->discount,2))}}</td>
+            </tr>
+            <tr>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="thick-line text-center" style="line-height: 5px"><strong>Total</strong></td>
+              <td class="thick-line text-right" style="line-height: 5px"><span style="font-weight: bold">$ {{number_format($value->total,2)}} </span></td>
+            </tr>
+            @else
+            <tr>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line text-center" style="line-height: 5px"><strong>Total</strong></td>
+              <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->total,2)}}</td>
+            </tr>
+            @endif
+            <tr>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="thick-line text-center" style="width:140px; line-height: 5px" ><strong>Accepting Proposal</strong></td>
+              <td class="thick-line text-right" style="line-height: 5px">$ {{number_format($value->accepting_proposal,2)}}</td>
+            </tr>
+            @if($value->down_payment > 0)
+            <tr>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line text-center" style="line-height: 5px"><strong>Down Payment</strong></td>
+              <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->down_payment,2)}}</td>
+            </tr>
+            @endif
+            <tr>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line"></td>
+              <td class="no-line text-center" style="line-height: 5px"><strong>Final Balance</strong></td>
+              <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->final_balance,2)}}</td>
+            </tr>
+          </tbody>
+        </table>
+     @if($value->notes != "")
+<div class="col-xs-6"><span>Notes: {!! $value->notes !!}</span></div>
+@endif
 @endif
 @endforeach
 </main>
+@endforeach
 </body>
 
 </html>
