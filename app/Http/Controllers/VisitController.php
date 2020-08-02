@@ -63,7 +63,8 @@ class VisitController extends Controller
             'water_smart_rebate' => $request->water_smart_rebate,
             'customer_id' => $request->customer_id,
             'status_id' => 1,
-            'has_services' => 0
+            'has_services' => 0,
+            'security_deposit' => 500.00
         ]);
 
         for($i = 0; $i < count($request->type); $i++){
@@ -93,7 +94,7 @@ class VisitController extends Controller
     public function details($id){
         try{
             $data = DB::table('visits')
-            ->selectRaw('customers.id as customer_id, referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, statuses.id as visits_status, statuses.name as status_name, visits.contract_date, visits.board_date, visits.proposal_date, visits.waiver_date, visits.call_customer_in, visits.hoa, visits.project_name, visits.parties, visits.water_smart_rebate, visits.id as visit_id')
+            ->selectRaw('customers.id as customer_id, referrals.name as ref_name, cities.name as city_name, customers.state,customers.zipcode,customers.cross_street1, customers.cross_street2,customers.name as customer_name, customers.email, customers.phone, customers.cellphone, customers.address, customers.gate_code, visits.date, visits.invoice_number, statuses.id as visits_status, statuses.name as status_name, visits.contract_date, visits.board_date, visits.proposal_date, visits.waiver_date, visits.call_customer_in, visits.hoa, visits.project_name, visits.parties, visits.security_deposit, visits.water_smart_rebate, visits.id as visit_id')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('cities', 'customers.city_id','=','cities.id')
             ->join('statuses', 'visits.status_id','=','statuses.id')
@@ -178,10 +179,10 @@ class VisitController extends Controller
         try{
 
         $visit = Visit::where('id','=', $id)->first();
-        $visit->fill($request->only('invoice_number','parties','contract_date','proposal_date','project_name','board_date','waiver_date'));
+        $visit->fill($request->only('invoice_number','parties','contract_date','proposal_date','project_name','board_date','security_deposit','waiver_date'));
         $visit->save();
 
-        toast('Informations added with success!','success');
+        toast('Informations updated with success!','success');
         return back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

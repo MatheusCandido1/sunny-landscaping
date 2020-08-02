@@ -36,28 +36,11 @@ class PdfController extends Controller
         }
     }
 
-    public function generateProposal($service_id) 
-    {
-        try{
-        $data = DB::table('services')
-        ->selectRaw('services.updated_at, customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, services.total, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
-        ->join('visits','visits.id','=','services.visit_id')
-        ->join('customers','customers.id','=','visits.customer_id')
-        ->join('cities', 'cities.id','=','customers.city_id')
-        ->where('services.id','=', $service_id)
-        ->get();
-        $pdf = PDF::loadView('pdfs.proposal', compact('data'));
-        return $pdf->setPaper('a4')->stream('items.pdf');
-        }catch (Throwable $e) {
-            toast('Pleasy try again!','error');
-        }
-    }
-
     public function generateFullProposal($visit_id) 
     {
         try{
         $data = DB::table('services')
-        ->selectRaw('visits.proposal_date, services.updated_at, customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, services.total, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
+        ->selectRaw('visits.security_deposit, visits.proposal_date, services.updated_at, customers.name, customers.address, customers.state, customers.phone, customers.zipcode, cities.name as city, customers.cellphone, services.total, customers.company, customers.company_name,customers.company_address,customers.company_state, customers.company_city, customers.company_zipcode')
         ->join('visits','visits.id','=','services.visit_id')
         ->join('customers','customers.id','=','visits.customer_id')
         ->join('cities', 'cities.id','=','customers.city_id')

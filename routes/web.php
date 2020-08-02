@@ -19,7 +19,6 @@ Auth::routes();
 Route::middleware('auth')->group( function () {
 
 // PDFs Routes
-Route::get('pdf/proposal/{service}', 'PdfController@generateProposal')->name('pdf.proposal');
 Route::get('pdf/quote/{service}/{visit}/{type}', 'PdfController@generateQuote')->name('pdf.quote');
 Route::get('pdf/project_page/{service}','PdfController@generateFrontpage')->name('pdf.front');
 Route::get('pdf/waiver/{visit}','PdfController@generateWaiver')->name('pdf.waiver');
