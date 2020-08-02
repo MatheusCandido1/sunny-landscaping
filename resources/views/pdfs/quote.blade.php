@@ -142,24 +142,24 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
                 <div class="date">Date: {{ date('m/d/Y') }}</div>
             </div>
         </div>
-        <div style="page-break-inside: avoid; line-height: 0px"> 
         @foreach($itemData as $group_type => $items)
+        <div style="page-break-inside: avoid"> 
           <table class="table">
           @if($loop->first)
           <thead>
             <tr>
-              <th  style="text-align: left; line-height: 5px" scope="col" >Description</th>
-              <th style="line-height: 1px" scope="col" >Quantity</th>
-              <th style="line-height: 1px" scope="col" >Unit Price</th>
-              <th style="text-align: right;line-height: 1px" scope="col" >Investment</th>
+              <th  style="text-align: left; line-height: 5px; width: 40%;"  >Description</th>
+              <th  style="line-height: 1px; width: 20%;"  >Quantity</th>
+              <th  style="line-height: 1px; width: 20%;"  >Unit Price</th>
+              <th  style="text-align: right;line-height: 1px; width: 20%;" >Investment</th>
             </tr>
           </thead>
           @endif
           </table>
-        <h4 style="line-height: 5px">{{$group_type}} </h4>
-        <table  class="table" width="" class="table">
+        <h4>{{$group_type}} </h4>
+        <table width="" class="table">
          
-          <tbody>
+          <tbody style="page-break-inside: avoid">
             @foreach($items as $item)
             <tr style="line-height: 0px">
               <td style="width: 40%;line-height: 10px">{{$item->description}} </td>
@@ -245,7 +245,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         </tbody>
       </table>
              @if($serviceData->notes != "")
-      <div class="col-xs-6">Notes: {!! $serviceData->notes !!}</div>
+      <div class="col-xs-12">Notes: {!! $serviceData->notes !!}</div>
       @endif
 
         </main>

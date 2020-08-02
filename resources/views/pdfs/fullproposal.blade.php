@@ -279,16 +279,16 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
         <div class="date">Date: {{ date('m/d/Y') }}</div>
     </div>
 </div>
-<div style="page-break-inside: avoid; line-height: 0px"> 
 @foreach($quote as $group_type => $items)
+<div style="page-break-inside: avoid; line-height: 0px"> 
   <table class="table">
   @if($loop->first)
   <thead>
     <tr>
-      <th  style="text-align: left; line-height: 5px" scope="col" >Description</th>
-      <th style="line-height: 1px" scope="col" >Quantity</th>
-      <th style="line-height: 1px" scope="col" >Unit Price</th>
-      <th style="text-align: right;line-height: 1px" scope="col" >Investment</th>
+      <th  style="text-align: left; line-height: 5px; width: 40%;"  >Description</th>
+      <th  style="line-height: 1px; width: 20%;"  >Quantity</th>
+      <th  style="line-height: 1px; width: 20%;"  >Unit Price</th>
+      <th  style="text-align: right;line-height: 1px; width: 20%;" >Investment</th>
     </tr>
   </thead>
   @endif
@@ -388,7 +388,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
           </tbody>
         </table>
      @if($value->notes != "")
-<div class="col-xs-6">Notes: {!! $value->notes !!}</div>
+<div class="col-xs-12">Notes: {!! $value->notes !!}</div>
 @endif
 @endif
 @endforeach
