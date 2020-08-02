@@ -254,6 +254,9 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 <div class="page_break"></div>
 @foreach($itemData as $service=>$quote)
 <main>
+  <div id="image">
+    <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
+  </div>
   <div class="row contacts">
     <div style="text-align: right">
      </div>
@@ -309,6 +312,9 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 
 @foreach ($serviceData as $value)
 
+<div id="image">
+  <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
+</div>
           @if($value->service_id == $service)
           <table style="page-break-inside: avoid; margin-top: -30px" class="table" width="">
             <tr>
