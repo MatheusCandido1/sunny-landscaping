@@ -212,8 +212,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <td class="no-line"></td>
             <td class="no-line"></td>
             <td class="no-line"></td>
-            <td class="no-line text-center" style="line-height: 5px"><strong>Total</strong></td>
-            <td class="no-line text-right" style="line-height: 5px">$ {{number_format($serviceData->total,2)}}</td>
+            <td class="no-line text-center" style="line-height: 10px"><strong>Total</strong></td>
+            <td class="no-line text-right" style="line-height: 10px">$ {{number_format($serviceData->total,2)}}</td>
           </tr>
           @endif
           <tr>
@@ -245,7 +245,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         </tbody>
       </table>
              @if($serviceData->notes != "")
-      <div class="col-xs-6"><span>Notes: {!! $serviceData->notes !!}</span></div>
+      <div class="col-xs-6">Notes: {!! $serviceData->notes !!}</div>
       @endif
 
         </main>

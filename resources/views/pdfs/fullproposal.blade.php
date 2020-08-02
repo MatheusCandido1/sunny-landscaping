@@ -10,7 +10,7 @@
 
 <style>
   @page {
-              margin: 120px 2.5cm 0cm 2.5cm;
+              margin: 15px 15px 15px 15px;
               }
 <!--
  /* Font Definitions */
@@ -63,6 +63,13 @@ left: 0; /* or whatever, position according to taste */
 opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 }
 
+body {
+                margin-top: 3cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
 .page_break { page-break-before: always; }
 
 .company-details {
@@ -71,12 +78,13 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 
             header {
                 position: fixed;
-                top: -100px;
-                left: 0px;
-                right: 0px;
-                height: 100px;
+                top: 0cm;
+                left: 0cm;
+                right: 0cm;
+                height: 3cm;
     border-bottom: 1px solid #f5a15c
             }
+
             /** Define the footer rules **/
             footer {
                 position: fixed; 
@@ -113,7 +121,7 @@ table {
     <div class="row">
       <div class="col">
           <a target="_blank" href="https://sunnypavers.com">
-            <img  style="top: -100px; height: 110px; width: 106px; position: fixed"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
+            <img  style="height: 110px; width: 106px; position: fixed"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
           </a>
       </div>
       <div class="col company-details">
@@ -128,7 +136,7 @@ table {
   </header>
 
   <footer>
-    <span style="font-size: 8px">We accept cash, check or credit card. For payments with credit card, will be added a 3% processing fee. Prices are valid for 60 days after the date of proposal, and are subject to change after that period due to raw material or labor costs</span>
+    Invoice was created on a computer and is valid without the signature and seal.
   </footer>
 <div class=WordSection1>
   <div id="image">
@@ -301,9 +309,6 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 
 @foreach ($serviceData as $value)
 
-<div id="image">
-  <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
-</div>
           @if($value->service_id == $service)
           <table style="page-break-inside: avoid; margin-top: -30px" class="table" width="">
             <tr>
@@ -335,8 +340,8 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
               <td class="no-line"></td>
               <td class="no-line"></td>
               <td class="no-line"></td>
-              <td class="thick-line text-center" style="line-height: 5px"><strong>Total</strong></td>
-              <td class="thick-line text-right" style="line-height: 5px"><span style="font-weight: bold">$ {{number_format($value->total,2)}} </span></td>
+              <td class="thick-line text-center" style="line-height: 10px"><strong>Total</strong></td>
+              <td class="thick-line text-right" style="line-height: 10px"><span style="font-weight: bold">$ {{number_format($value->total,2)}} </span></td>
             </tr>
             @else
             <tr>
@@ -344,8 +349,8 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
               <td class="no-line"></td>
               <td class="no-line"></td>
               <td class="no-line"></td>
-              <td class="no-line text-center" style="line-height: 5px"><strong>Total</strong></td>
-              <td class="no-line text-right" style="line-height: 5px">$ {{number_format($value->total,2)}}</td>
+              <td class="no-line text-center" style="line-height: 10px"><strong>Total</strong></td>
+              <td class="no-line text-right" style="line-height: 10px">$ {{number_format($value->total,2)}}</td>
             </tr>
             @endif
             <tr>
@@ -377,11 +382,14 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
           </tbody>
         </table>
      @if($value->notes != "")
-<div class="col-xs-6"><span>Notes: {!! $value->notes !!}</span></div>
+<div class="col-xs-6">Notes: {!! $value->notes !!}</div>
 @endif
 @endif
 @endforeach
 </main>
+@if(!($loop->last))
+  <div class="page_break"></div>
+  @endif
 @endforeach
 </body>
 
