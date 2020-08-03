@@ -64,7 +64,8 @@ class VisitController extends Controller
             'customer_id' => $request->customer_id,
             'status_id' => 1,
             'has_services' => 0,
-            'security_deposit' => 500.00
+            'security_deposit' => 500.00,
+            'options' => '(materials and labor, taxes included)'
         ]);
 
         for($i = 0; $i < count($request->type); $i++){
