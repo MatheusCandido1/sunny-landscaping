@@ -280,7 +280,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
     </div>
 </div>
 @foreach($quote as $group_type => $items)
-<div style="page-break-inside: avoid; line-height: 0px"> 
+<div style="page-break-inside: avoid; line-height: 10px"> 
   <table class="table">
   @if($loop->first)
   <thead>
