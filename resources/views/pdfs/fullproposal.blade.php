@@ -175,7 +175,7 @@ style='font-size:12.0pt;line-height:120%;'>{{$data[0]->city}}, {{$data[0]->state
 justify'>Thank you for choosing Sunny Landscaping &amp; Pavers Design LLC for
 your home’s landscaping improvement. The <b>anticipated value</b> of investment to install pavers and
 improve your landscaping is estimated in <b>US$ <span>{{number_format($amount[0]->total,2)}}</span></b>
-<b> (materials and labor, tax included).</b> Please sign below with your acceptance of this quotation and we will
+<b> {{$data[0]->options}}</b> Please sign below with your acceptance of this quotation and we will
 begin working on your property as soon as possible. Any changes will have a
 Change Order for approval and will add/deduct from the amount described above.
 A US${{number_format($data[0]->security_deposit,2)}} non-refundable fee will be due upon signature. The same amount
