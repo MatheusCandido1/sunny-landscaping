@@ -287,17 +287,23 @@ ul.timeline > li:before {
                 </div>
                 </div>
                 <div class="form-row">
-                <div class="col-md-6" id="parties">
+                <div class="col-md-4" id="parties">
                         <div class="form-group">
                             <label class="" for="inputLastName">Home Owner or Position in the Company</label>
                         <input name="parties" class="form-control py-4" type="text" value="{{$data->parties}}" placeholder="" />
 
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="" for="inputLastName">Security Deposit</label>
                             <input name="security_deposit" class="form-control py-4" type="text" value="{{$data->security_deposit}}" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="" for="inputLastName">Options (Proposal)</label>
+                            <input name="options" class="form-control py-4" type="text" value="{{$data->options}}" placeholder="" />
                         </div>
                     </div>
                     </div>

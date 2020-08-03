@@ -180,7 +180,7 @@ class VisitController extends Controller
         try{
 
         $visit = Visit::where('id','=', $id)->first();
-        $visit->fill($request->only('invoice_number','parties','contract_date','proposal_date','project_name','board_date','security_deposit','waiver_date'));
+        $visit->fill($request->only('invoice_number','parties','options','contract_date','proposal_date','project_name','board_date','security_deposit','waiver_date'));
         $visit->save();
 
         toast('Informations updated with success!','success');
