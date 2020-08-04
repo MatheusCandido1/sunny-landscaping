@@ -26,6 +26,8 @@
   <p><span style="font-weight: 400;"><strong>Phone #  </strong></span><span style="font-weight: 400;">{{ $data[0]->phone}}</span><span style="font-weight: 400;"><strong> Cell Phone: </strong> {{ $data[0]->cellphone == 0 ? '(No)' : '(Yes)'}}&nbsp;</span></p>
   <p><span style="font-weight: 400;"><strong>Email:  </strong>{{ $data[0]->email}} &nbsp;</span></p>
   <p><span style="font-weight: 400;"><strong>Referred: </strong> {{ $data[0]->ref_name }}&nbsp;</span></p>
+  <p><span style="font-weight: 400;"><strong>Seller: </strong> {{ $data[0]->sel_name }}&nbsp;</span></p>
+
   <p><span style="font-weight: 400;"><strong>Type(s): </strong> @foreach($visits as $visit) @foreach($visit->types as $type) <span class="badge badge-pill badge-info">{{$type->name}}</span>@endforeach  @endforeach&nbsp;</span></p>
   
   </div>
