@@ -58,9 +58,11 @@ class PdfController extends Controller
         $serviceGroup = DB::table('services')
         ->selectRaw('services.id as id')
         ->join('visits','visits.id','=','services.visit_id')
-        ->where('visits.id', '=', $visit_id)
-        ->where('services.status', '=',4)
-        ->orWhere('services.status','=',1)
+        ->where('visits.id', $visit_id)
+            ->where(function($query) use($visit_id){
+                $query->where('services.status',4)
+                ->orWhere('services.status',1);
+            })
         ->get();
 
         $itemData = DB::table('items')
@@ -68,26 +70,31 @@ class PdfController extends Controller
             ->join('item_service','item_service.item_id','=','items.id')
             ->join('services','services.id','=','item_service.service_id')
             ->join('visits','visits.id','=','services.visit_id')
-            ->where('visits.id', '=', $visit_id)
-            ->where('services.status',4)
-            ->orWhere('services.status','=',1)
+            ->where('visits.id', $visit_id)
+            ->where(function($query) use($visit_id){
+                $query->where('services.status',4)
+                ->orWhere('services.status',1);
+            })
             ->get()
             ->groupBy(['service','group_type']);
-        
-
+          
         $serviceData = DB::table('services')
             ->select('services.notes', 'services.id as service_id','subtotal','discount','total','accepting_proposal','down_payment','final_balance')
-            ->where('services.visit_id','=',$visit_id)
-            ->where('services.status','=',4)
-            ->orWhere('services.status','=',1)
+            ->where('services.visit_id', $visit_id)
+            ->where(function($query) use($visit_id){
+                $query->where('services.status',4)
+                ->orWhere('services.status',1);
+            })
             ->get();
 
         $amount = DB::table('services')
             ->selectRaw('sum(services.total) as total')
             ->join('visits', 'visits.id','=','services.visit_id')
-            ->where('visits.id','=',$visit_id)
-            ->where('services.status','=','4')
-            ->orWhere('services.status','=','1')
+            ->where('visits.id', $visit_id)
+            ->where(function($query) use($visit_id){
+                $query->where('services.status',4)
+                ->orWhere('services.status',1);
+            })
             ->get();
 
 
