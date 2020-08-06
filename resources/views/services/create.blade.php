@@ -23,7 +23,7 @@
           <a class="card-link" data-toggle="collapse" href="#collapse1">
           1 - Pavers
           </a>
-          <button type="button" onclick="add1()" class="btn btn-primary text-center btn-sm">
+          <button type="button" onclick="add1()" class="btn btn-primary float-right btn-sm">
           <i class="fas fa-plus"></i> New Item
           </button>
         </div>
