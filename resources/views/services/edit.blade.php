@@ -30,7 +30,7 @@
             <a class="card-link" aria-expanded="true" data-toggle="collapse" href="#collapse1">
             1 - Pavers
             </a>
-            <button type="button" onclick="add1()" class="btn btn-primary float-right btn-sm">
+            <button type="button" onclick="add1()" class="btn btn-primary btn-sm">
             <i class="fas fa-plus"></i> New Item
             </button>
           </div>
@@ -95,7 +95,7 @@
               <a class="card-link" data-toggle="collapse" href="#collapse2">
               2 - Retaining Wall
               </a>
-              <button type="button" onclick="add2()" class="btn btn-primary float-right btn-sm">
+              <button type="button" onclick="add2()" class="btn btn-primary btn-sm">
               <i class="fas fa-plus"></i> New Item
               </button>
             </div>
@@ -161,7 +161,7 @@
                 <a class="card-link" data-toggle="collapse" href="#collapse3">
                 3 - Grass
                 </a>
-                <button type="button" onclick="add3()" class="btn btn-primary float-right btn-sm">
+                <button type="button" onclick="add3()" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i> New Item
                 </button>
               </div>
@@ -226,7 +226,7 @@
                   <a class="card-link" data-toggle="collapse" href="#collapse4">
                   4 - Tress and Plants
                   </a>
-                  <button type="button" onclick="add4()" class="btn btn-primary float-right btn-sm">
+                  <button type="button" onclick="add4()" class="btn btn-primary btn-sm">
                   <i class="fas fa-plus"></i> New Item
                   </button>
                 </div>
@@ -290,7 +290,7 @@
                     <a class="card-link" data-toggle="collapse" href="#collapse5">
                     5 - Irrigation
                     </a>
-                    <button type="button" onclick="add5()" class="btn btn-primary float-right btn-sm">
+                    <button type="button" onclick="add5()" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i> New Item
                     </button>
                   </div>
@@ -354,7 +354,7 @@
                       <a class="card-link" data-toggle="collapse" href="#collapse6">
                       6 - Rocks
                       </a>
-                      <button type="button" onclick="add6()" class="btn btn-primary float-right btn-sm">
+                      <button type="button" onclick="add6()" class="btn btn-primary btn-sm">
                       <i class="fas fa-plus"></i> New Item
                       </button>
                     </div>
@@ -418,7 +418,7 @@
                         <a class="card-link" data-toggle="collapse" href="#collapse7">
                         7 - Fire Pit
                         </a>
-                        <button type="button" onclick="add7()" class="btn btn-primary float-right btn-sm">
+                        <button type="button" onclick="add7()" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i> New Item
                         </button>
                       </div>
@@ -482,7 +482,7 @@
                           <a class="card-link" data-toggle="collapse" href="#collapse8">
                           8 - Drainage
                           </a>
-                          <button type="button" onclick="add8()" class="btn btn-primary float-right btn-sm">
+                          <button type="button" onclick="add8()" class="btn btn-primary btn-sm">
                           <i class="fas fa-plus"></i> New Item
                           </button>
                         </div>
@@ -546,7 +546,7 @@
                             <a class="card-link" data-toggle="collapse" href="#collapse9">
                             9 - transformer and Led Lights
                             </a>
-                            <button type="button" onclick="add9()" class="btn btn-primary float-right btn-sm">
+                            <button type="button" onclick="add9()" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> New Item
                             </button>
                           </div>
@@ -610,7 +610,7 @@
                               <a class="card-link" data-toggle="collapse" href="#collapse10">
                               10 - Dumpster
                               </a>
-                              <button type="button" onclick="add10()" class="btn btn-primary float-right btn-sm">
+                              <button type="button" onclick="add10()" class="btn btn-primary btn-sm">
                               <i class="fas fa-plus"></i> New Item
                               </button>
                             </div>
@@ -674,7 +674,7 @@
                                 <a class="card-link" data-toggle="collapse" href="#collapse11">
                                 11 - Labor
                                 </a>
-                                <button type="button" onclick="add11()" class="btn btn-primary float-right btn-sm">
+                                <button type="button" onclick="add11()" class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus"></i> New Item
                                 </button>
                               </div>
@@ -738,7 +738,7 @@
                                   <a class="card-link" data-toggle="collapse" href="#collapse12">
                                   12 - Extra
                                   </a>
-                                  <button type="button" onclick="add12()" class="btn btn-primary float-right btn-sm">
+                                  <button type="button" onclick="add12()" class="btn btn-primary btn-sm">
                                   <i class="fas fa-plus"></i> New Item
                                   </button>
                                 </div>
@@ -802,7 +802,7 @@
                                     <a class="card-link" data-toggle="collapse" href="#collapse13">
                                     13 - Others
                                     </a>
-                                    <button type="button" onclick="add13()" class="btn btn-primary float-right btn-sm">
+                                    <button type="button" onclick="add13()" class="btn btn-primary btn-sm">
                                     <i class="fas fa-plus"></i> New Item
                                     </button>
                                   </div>
