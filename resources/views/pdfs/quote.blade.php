@@ -89,6 +89,10 @@ left: 0; /* or whatever, position according to taste */
 opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 }
 
+#notes p {
+  line-height: 9px;
+}
+
         </style>
     </head>
     <body>
@@ -162,10 +166,10 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
           <tbody style="page-break-inside: avoid">
             @foreach($items as $item)
             <tr style="line-height: 0px">
-              <td style="width: 40%;line-height: 10px">{{$item->description}} </td>
-              <td style="width: 20%;line-height: 10px">{{$item->quantity}} {{$item->type}} </td>
-              <td style="width: 20%;line-height: 10px">$ {{number_format($item->unit_price,2)}} </td>
-              <td style="width: 20%;line-height: 10px; text-align: right">$ {{number_format($item->investment,2)}}</td>
+              <td style="width: 40%;line-height: 12px">{{$item->description}} </td>
+              <td style="width: 20%;line-height: 12px">{{$item->quantity}} {{$item->type}} </td>
+              <td style="width: 20%;line-height: 12px">$ {{number_format($item->unit_price,2)}} </td>
+              <td style="width: 20%;line-height: 12px; text-align: right">$ {{number_format($item->investment,2)}}</td>
             </tr>
             @endforeach
           </tbody>
@@ -245,7 +249,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         </tbody>
       </table>
              @if($serviceData->notes != "")
-      <div class="col-xs-12">Notes: {!! $serviceData->notes !!}</div>
+      <div id="notes" class="col-xs-12">Notes: {!! $serviceData->notes !!}</div>
       @endif
 
         </main>

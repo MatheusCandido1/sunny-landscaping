@@ -108,6 +108,10 @@ body {
     border-top: 2px solid;
 }
 
+#notes p {
+  line-height: 9px;
+}
+
 tbody:before, tbody:after { display: none; }
 table {
     border-collapse: collapse;
@@ -299,10 +303,10 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
   <tbody>
     @foreach($items as $item)
     <tr style="line-height: 0px">
-      <td style="width: 40%;line-height: 10px">{{$item->description}} </td>
-      <td style="width: 20%;line-height: 10px">{{$item->quantity}} {{$item->type}} </td>
-      <td style="width: 20%;line-height: 10px">$ {{number_format($item->unit_price,2)}} </td>
-      <td style="width: 20%;line-height: 10px; text-align: right">$ {{number_format($item->investment,2)}}</td>
+      <td style="width: 40%;line-height: 12px">{{$item->description}} </td>
+      <td style="width: 20%;line-height: 12px">{{$item->quantity}} {{$item->type}} </td>
+      <td style="width: 20%;line-height: 12px">$ {{number_format($item->unit_price,2)}} </td>
+      <td style="width: 20%;line-height: 12px; text-align: right">$ {{number_format($item->investment,2)}}</td>
     </tr>
     @endforeach
   </tbody>
@@ -388,7 +392,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
           </tbody>
         </table>
      @if($value->notes != "")
-<div class="col-xs-12">Notes: {!! $value->notes !!}</div>
+<div id="notes" class="col-xs-12">Notes: {!! $value->notes !!}</div>
 @endif
 @endif
 @endforeach
