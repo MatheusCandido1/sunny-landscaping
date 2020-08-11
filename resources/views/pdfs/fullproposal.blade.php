@@ -60,7 +60,7 @@ position: absolute;
 position: absolute;
 top: 200; /* or whatever */
 left: 0; /* or whatever, position according to taste */
-opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+opacity: 0.1; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 }
 
 body {
@@ -109,7 +109,7 @@ body {
 }
 
 #notes p {
-  line-height: 9px;
+  line-height: 10px;
 }
 
 tbody:before, tbody:after { display: none; }
@@ -303,10 +303,10 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
   <tbody>
     @foreach($items as $item)
     <tr style="line-height: 0px">
-      <td style="width: 40%;line-height: 12px">{{$item->description}} </td>
-      <td style="width: 20%;line-height: 12px">{{$item->quantity}} {{$item->type}} </td>
-      <td style="width: 20%;line-height: 12px">$ {{number_format($item->unit_price,2)}} </td>
-      <td style="width: 20%;line-height: 12px; text-align: right">$ {{number_format($item->investment,2)}}</td>
+      <td style="width: 40%;line-height: 12px; color: black">{{$item->description}} </td>
+      <td style="width: 20%;line-height: 12px; color: black">{{$item->quantity}} {{$item->type}} </td>
+      <td style="width: 20%;line-height: 12px; color: black">$ {{number_format($item->unit_price,2)}} </td>
+      <td style="width: 20%;line-height: 12px; text-align: right; color: black">$ {{number_format($item->investment,2)}}</td>
     </tr>
     @endforeach
   </tbody>
@@ -320,7 +320,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
   <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
 </div>
           @if($value->service_id == $service)
-          <table style="page-break-inside: avoid; margin-top: -30px" class="table" width="">
+          <table style="page-break-inside: avoid; margin-top: 0px" class="table" width="">
             <tr>
               <td class="no-line"></td>
               <td class="no-line"></td>
@@ -392,7 +392,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
           </tbody>
         </table>
      @if($value->notes != "")
-<div id="notes" class="col-xs-12">Notes: {!! $value->notes !!}</div>
+<div id="notes" class="col-xs-12"><p style="line-height: 12px; font-size: 12px">Notes:</p> {!! $value->notes !!}</div>
 @endif
 @endif
 @endforeach

@@ -24,7 +24,7 @@ position: fixed;
 position: fixed;
 top: 200; /* or whatever */
 left: 0; /* or whatever, position according to taste */
-opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+opacity: 0.1; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 }
 
   </style>

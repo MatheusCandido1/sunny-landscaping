@@ -86,11 +86,11 @@ position: fixed;
 position: fixed;
 top: 200; /* or whatever */
 left: 0; /* or whatever, position according to taste */
-opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+opacity: 0.1; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 }
 
 #notes p {
-  line-height: 9px;
+  line-height: 10px;
 }
 
         </style>
@@ -248,8 +248,8 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
           </tr>
         </tbody>
       </table>
-             @if($serviceData->notes != "")
-      <div id="notes" class="col-xs-12">Notes: {!! $serviceData->notes !!}</div>
+      @if($serviceData->notes != "")
+      <div id="notes" class="col-xs-12"><p style="line-height: 12px; font-size: 12px">Notes:</p> {!! $value->notes !!}</div>
       @endif
 
         </main>
