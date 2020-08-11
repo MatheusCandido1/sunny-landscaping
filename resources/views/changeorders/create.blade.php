@@ -44,6 +44,20 @@
 <div class="table-responsive">
     <table class="table table-bordered"  width="100%" cellspacing="0">
       <tbody>
+      <tr>
+            <td >Options</td>
+            <td style="text-align: right"  scope="col" >
+            <div class="row">
+              <div class="col-lg-12">
+              <select required class="form-control" name="option_1">
+                  <option value="" >Choose and option...</option>
+                  <option value="Additional">Additional</option>
+                  <option value="Removal">Removal</option>
+              </select> 
+              </div>
+            </div>
+            </td>
+      </tr>
         <tr>
           <td >Contract's Total</td>
           <td style="text-align: right"  scope="col" >

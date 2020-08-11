@@ -22,7 +22,6 @@ class CreateTableChangeorder extends Migration
             $table->float('change_order_amount');
             $table->float('revised_contract_amount');
             $table->string('option_1');
-            $table->string('option_2');
             $table->boolean('status');
             $table->integer('visit_id')->unsigned();
             $table->foreign('visit_id')->references('id')->on('visits')->onDelete('cascade');

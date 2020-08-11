@@ -81,6 +81,7 @@ class ChangeOrderController extends Controller
                 'original_contract_amount' => $request->original_contract_amount,
                 'change_order_amount' => $request->change_order_amount,
                 'revised_contract_amount' => $request->revised_contract_amount,
+                'option_1' => $request->option_1,
                 'status' => 1,
                 'visit_id' => $request->visit_id
             ]); 
