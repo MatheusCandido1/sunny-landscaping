@@ -51,6 +51,16 @@ background-repeat: no-repeat;
 position: absolute;
 }
 
+footer {
+                position: fixed; 
+                bottom: 0px; 
+                left: 0px; 
+                right: 0px;
+                height: 50px; 
+                text-align: center;
+                color: #777;
+            }
+
 #image img {
 /* the actual 'watermark' */
 position: absolute;
@@ -64,7 +74,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 
 </head>
 
-<body lang=EN-US>
+<body background="white" lang=EN-US>
 <div class=WordSection1>
   <div id="image">
     <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
@@ -133,7 +143,7 @@ border:none'>
 <p><span style="font-size: 12;">PROJECT ADDRESS: {{ $customerData[0]->address}} {{ $customerData[0]->city_name}}, {{ $customerData[0]->state}} {{ $customerData[0]->zipcode}}&nbsp;</span></p>
 <p><strong>CONTRACTOR SHOULD MODIFY: </strong></p>
 @foreach($elementData as $element)
-<p><span style="font-size: 12;  line-height: 10px;">{{$element->target}}: {{ $element->investment == 0 ? '' : '$'.number_format($element->investment,2).'' }} {{ $element->quantity == 0 ? '' : '- '.$element->quantity.'' }} {{$element->type}} {{ $element->description }}{{ $element->unit_price == 0 ? '' : ' @ $ '.number_format($element->unit_price,2).'' }} {{ $element->type == "" ? '':'/'.$element->type.'' }} </span></p>
+<p><span style="font-size: 12;  line-height: 12px;">{{$element->target}}: {{ $element->investment == 0 ? '' : '$'.number_format($element->investment,2).'' }} {{ $element->quantity == 0 ? '' : '- '.$element->quantity.'' }} {{$element->type}} {{ $element->description }}{{ $element->unit_price == 0 ? '' : ' @ $ '.number_format($element->unit_price,2).'' }} {{ $element->type == "" ? '':'/'.$element->type.'' }} </span></p>
 @endforeach
 @if ($data->discount != 0)
 <p><span style="font-size: 12;">Add: ({{number_format($data->discount,2)}}) - Discount</span></p>
@@ -142,12 +152,12 @@ border:none'>
 <p><span style="font-size: 12;">CHANGE ORDER AMOUNT #{{$data->id}}: US$ {{number_format($data->change_order_amount,2)}} &nbsp; </span></p>
 <p><span style="font-size: 12;"><strong>REVISED CONTRACT AMOUNT: US$  {{number_format($data->revised_contract_amount,2)}} </strong><span></p>
 <span style="font-size: 12;">We hereby agree to the above as an </span><strong>additional </strong><span style="font-size: 12;">project costs to be </span><strong>added </strong><span style="font-size: 12;">to/from the original scope of work. Payment for this Change Order is due upon completion of the change order work. All provisions of contracts between the parties are applicable to this agreement. This Change Order may extend the time required to complete the project.&nbsp;</span></p>
-<p class=MsoNormal align=center style='margin-top: 975px;
-text-align:center;line-height:normal; position: fixed'><span lang=EN-US style='font-size:8.0pt'>We
+<footer class=MsoNormal>
+<span lang=EN-US style='font-size:8.0pt'>We
 accept cash, check and credit card. For payments with credit card, will be
 added a 3% processing fee. Prices are valid for 60 days after the date of
 proposal, and are subject to change after that period due to raw materials or
-labor costs.<o:p></o:p></span></p>
+labor costs.</span></footer>
 </div>
 <br>
 <br>
@@ -156,11 +166,8 @@ labor costs.<o:p></o:p></span></p>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
 <div style="text-align: center">
-  <img  style="height: 35%; width: 35%; position: absolute; margin-top: -60px; margin-left: -60px" src="https://i.ibb.co/4jY1dHg/signature.png" />       
+  <img  style="height: 35%; width: 35%; position: absolute; margin-top: -60px; margin-left: -60px" src="https://imagensbrasil.org/images/2020/08/10/Imagem1.png" data-holder-rendered="true" />       
 </div>
 <p class=MsoNormal style='margin-bottom:0;margin-bottom:.0001pt;line-height:
 normal;border:none'><span style='font-size:16.0pt'>Glaucia Alves</span> </p>
