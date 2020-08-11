@@ -49,7 +49,7 @@ class ServiceController extends Controller
     public function editQuote($visit_id, $service_id, $customer_id)
     {
         try{
-        $serviceData = DB::table('services')->select('id','discount','total','accepting_proposal','down_payment','notes','final_balance')->where('services.id','=',$service_id)->first();
+        $serviceData = DB::table('services')->select('id','discount','subtotal','total','accepting_proposal','down_payment','notes','final_balance')->where('services.id','=',$service_id)->first();
 
         $itemData = DB::table('items')
         ->selectRaw('items.id, items.description, items.quantity, items.type, items.unit_price, items.investment, items.group_type')

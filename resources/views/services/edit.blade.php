@@ -875,7 +875,7 @@
           <td >Discount</td>
           <td >
             <div class="input-group mb-3">
-            <input name="discount" type="text" class="form-control" id="discount"  value="" placeholder="Discount" aria-describedby="basic-addon2">
+            <input name="discount" type="text" class="form-control" id="discount"  value="{{$service->discount}}" placeholder="Discount" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button onclick="Discount()" class="btn btn-success" type="button">Get Discount</button>
               </div>
@@ -885,14 +885,14 @@
         <tr>
           <td >Total</td>
           <td style="text-align: right"  scope="col" >
-          <input type="text" required id="totalwithoutdiscount" name="total" readonly value="" placeholder="Total"   class="form-control">
+          <input type="text" value="{{$service->total}}" required id="totalwithoutdiscount" name="total" readonly placeholder="Total"   class="form-control">
           </td>
         </tr>
         <tr>
           <td >Accepting Proposal</td>
           <td style="text-align: right"  scope="col" >
             <div class="input-group mb-3">
-            <input type="text" value="" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Accepting Proposal">
+            <input type="text" value="{{$service->accepting_proposal}}" required name="accepting_proposal" id="accepting_proposal"    class="form-control" placeholder="Accepting Proposal">
               <div class="input-group-append">
                 <button onclick="PayDown()" class="btn btn-success" type="button">Get Payment Down</button>
               </div>
@@ -902,14 +902,14 @@
         <tr>
           <td >Down Payment</td>
           <td >
-            <input type="text" id="down_payment" required name="down_payment" value="" class="form-control"  placeholder="Payment Down">
+            <input type="text" id="down_payment" value="{{$service->down_payment}}" required name="down_payment"  class="form-control"  placeholder="Payment Down">
           </td>
         </tr>
         <tr>
           <td >Final Balance</td>
           <td>
             <div class="input-group mb-3">
-              <input type="text" id="finalbalance" onkeypress="return false;" required name="final_balance" class="form-control" placeholder="The final balance will be displayed here" value="" >
+              <input type="text" id="finalbalance" value="{{$service->final_balance}}" onkeypress="return false;" required name="final_balance" class="form-control" placeholder="The final balance will be displayed here" value="" >
               <div class="input-group-append">
                 <button onclick="getFinalBalance()" class="btn btn-success" type="button">Get Final Balance</button>
               </div>
@@ -934,15 +934,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
        $('.summernote').summernote({
-        fontSizes: ['6','7','8', '9', '10', '11', '12', '14', '18'],
   toolbar: [
     // [groupName, [list of button]]
     ['style', ['bold', 'italic', 'underline', 'clear']],
     ['font', ['strikethrough', 'superscript', 'subscript']],
-    ['fontsize', ['fontsize']],
     ['color', ['color']],
-    ['para', ['ul', 'ol', 'paragraph']],
-    ['height', ['height']]
+    ['para', ['ul', 'ol', 'paragraph']]
   ]
      });
   });
@@ -1206,7 +1203,7 @@
         total += Number(document.getElementById(i+"total").value);
         }
       }
-      document.getElementById('total').value =total.toFixed(2);
+      document.getElementById('total').value = total.toFixed(2);
     }
 </script>
 @endsection

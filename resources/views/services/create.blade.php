@@ -510,15 +510,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
        $('.summernote').summernote({
-        fontSizes: ['6','7','8', '9', '10', '11', '12', '14', '18'],
   toolbar: [
     // [groupName, [list of button]]
     ['style', ['bold', 'italic', 'underline', 'clear']],
     ['font', ['strikethrough', 'superscript', 'subscript']],
-    ['fontsize', ['fontsize']],
     ['color', ['color']],
-    ['para', ['ul', 'ol', 'paragraph']],
-    ['height', ['height']]
+    ['para', ['ul', 'ol', 'paragraph']]
   ]
      });
   });
