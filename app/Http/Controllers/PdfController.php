@@ -208,7 +208,7 @@ class PdfController extends Controller
     {
         try{
             $data = DB::table('change_orders')
-            ->selectRaw('change_orders.date as order_date, id, discount, subtotal, original_contract_amount, change_order_amount, revised_contract_amount, option_1')
+            ->selectRaw('change_orders.date as order_date, id, discount, subtotal, original_contract_amount, change_order_amount, revised_contract_amount, option_1, change_order_key')
             ->where('change_orders.id','=', $change_id)
             ->first();
 

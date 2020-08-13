@@ -130,7 +130,7 @@ border:none'>
  </tr>
 </table>
 <br><br>
-<h3 style="text-align: center; font-size: 18;"><span style="color: #595959;"><strong>CHANGE ORDER #{{$data->id}}&nbsp;</strong></span></h3>
+<h3 style="text-align: center; font-size: 18;"><span style="color: #595959;"><strong>CHANGE ORDER #{{$data->change_order_key}}&nbsp;</strong></span></h3>
 <div class="row">
   <div class="col-xs-6">
     <p><span style="font-size: 12;">DATE: {{\Carbon\Carbon::parse($data->order_date)->format('m/d/yy')}} &nbsp;</span></p>
