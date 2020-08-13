@@ -71,9 +71,8 @@ class ChangeOrderController extends Controller
             $value = $change_amount->value;
             $newtotal = $total + $value;
 
-            
 
-            return view('changeorders.create', ['customer'=> $customer_id, 'visit' => $visit_id,'itemData' => $itemData,'amount' => $amount, 'change_amount' => $newtotal]);
+            return view('changeorders.create', ['customer'=> $customer_id, 'visit' => $visit_id,'itemData' => $itemData,'change_amount' => $newtotal]);
          }catch (Throwable $e) {
           toast('Pleasy try again!','error');
       }
@@ -90,35 +89,45 @@ class ChangeOrderController extends Controller
         $visit = $request->visit_id;
         $newChangeOrder = new ChangeOrder();
         $changeOrderKey = $newChangeOrder->getLastChangeOrderKey($visit)->latest()->first();
+
+        if(isset($changeOrderKey)){
         $newChangeOrderKey = 0;
-        if(isset($changeOrderKey))
-        {
-            $newChangeOrderKey = $changeOrderKey->change_order_key + 1;
-        }else{
-            $newChangeOrderKey = 1;
-        }
-
+        $newChangeOrderKey = $changeOrderKey->change_order_key + 1;
         $newOriginalAmount = $newChangeOrder->getLastChangeOrderAmount($visit)->latest()->first();
-
         $originalAmount = $newOriginalAmount->revised_contract_amount;
         $newChangeOrderAmount = $request->change_order_amount;
         $newRevised = $originalAmount + $newChangeOrderAmount;
-
-
+        }else{
+            $newChangeOrderKey = 1;  
+        }
         try{
-            
-            $changeOrder = ChangeOrder::create([
-                'change_order_key' => $newChangeOrderKey,
-                'date' => $request->date,
-                'discount' => $request->discount,
-                'subtotal' => $request->subtotal,
-                'original_contract_amount' => $newOriginalAmount->revised_contract_amount,
-                'change_order_amount' => $request->change_order_amount,
-                'revised_contract_amount' => $newRevised,
-                'option_1' => $request->option_1,
-                'status' => 1,
-                'visit_id' => $visit
-            ]); 
+            if(isset($changeOrderKey)){
+                $changeOrder = ChangeOrder::create([
+                    'change_order_key' => $newChangeOrderKey,
+                    'date' => $request->date,
+                    'discount' => $request->discount,
+                    'subtotal' => $request->subtotal,
+                    'original_contract_amount' => $newOriginalAmount->revised_contract_amount,
+                    'change_order_amount' => $request->change_order_amount,
+                    'revised_contract_amount' => $newRevised,
+                    'option_1' => $request->option_1,
+                    'status' => 1,
+                    'visit_id' => $visit
+                ]); 
+            }else{
+                $changeOrder = ChangeOrder::create([
+                    'change_order_key' => $newChangeOrderKey,
+                    'date' => $request->date,
+                    'discount' => $request->discount,
+                    'subtotal' => $request->subtotal,
+                    'original_contract_amount' => $request->original_contract_amount,
+                    'change_order_amount' => $request->change_order_amount,
+                    'revised_contract_amount' => $request->revised_contract_amount,
+                    'option_1' => $request->option_1,
+                    'status' => 1,
+                    'visit_id' => $visit
+                ]); 
+            }
 
             for ($i = 0; $i < count($request->input('id')); $i++) {
                 $element[$i] = new Element();

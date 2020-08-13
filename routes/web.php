@@ -75,7 +75,6 @@ Route::put('edit/{customer}', 'CustomerController@edit')->name('customers.edit')
 // Change Orders Routes
 Route::get('changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderController@changeOrderByVisit')->name('changeorders.changes');
 Route::get('create/changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderController@createChangeOrder')->name('changeorders.createChange');
-
 // Resources Routes
 Route::resources([
     'customers' => 'CustomerController',

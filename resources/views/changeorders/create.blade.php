@@ -14,7 +14,7 @@
     <div class="col-lg-12">
     <div class="card mb-4">
     <div class="card-header">
-      <i class="fas fa-pencil-alt"></i> Changer Order
+      <i class="fas fa-pencil-alt"></i> Changer Order 
       <button onclick="add()" type="button" class="btn btn-primary float-right btn-sm">
         <i class="fas fa-plus"></i> New Item
         </button>
@@ -61,7 +61,7 @@
         <tr>
           <td >Total</td>
           <td style="text-align: right"  scope="col" >
-              <input type="text"  value="$ {{number_format($change_amount,2)}}"   id=""  readonly   class="form-control">
+              <input type="text"  value="{{number_format($change_amount,2)}}"   id=""  readonly   class="form-control">
             
           </td>
         </tr>
@@ -92,11 +92,11 @@
           </td>
         </tr>
         <tr>
-          <td >Change Order Amount</td>
+        <td >Change Order Amount </td>
           <td style="text-align: right"  scope="col" >
               <input type="text"  required name="change_order_amount"   id="total"  readonly   class="form-control" placeholder="Total">
               <input type="hidden"  required name="revised_contract_amount"   id="revised">
-              <input type="text" readonly id="original" name="original_contract_amount" value="{{number_format($change_amount,2)}}"/>
+              <input type="hidden" id="original" name="original_contract_amount" value="{{$change_amount}}"/>
             </td>
         </tr>
 
