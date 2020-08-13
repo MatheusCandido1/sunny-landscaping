@@ -23,10 +23,7 @@ class ChangeOrderController extends Controller
     }
 
     public function changeOrderByVisit($visit_id, $customer_id){
-
-
         try {
-        
             $changeorders = ChangeOrder::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
             return view('changeorders.index', ['changeorders' => $changeorders ,'visit' => $visit_id, 'customer' => $customer_id]);
         } catch (Throwable $e) {
@@ -191,17 +188,26 @@ class ChangeOrderController extends Controller
     public function destroy(ChangeOrder $changeorder)
     {
         try{
-
             $changeorder = ChangeOrder::where('id','=', $changeorder->id)->first();
-            $elements = $changeorder->elements()->select('id')->get();
             
-            for($i = 0; $i < $elements->count(); $i++){
-               Element::where('id','=', $elements[$i]->id)->delete();
+            $newChangeOrder = new ChangeOrder();
+            $changeOrderKey = $newChangeOrder->getLastChangeOrderKey($changeorder->visit_id)->latest()->first();
+
+            if($changeOrderKey->change_order_key == $changeorder->change_order_key){
+                $elements = $changeorder->elements()->select('id')->get();
+            
+                for($i = 0; $i < $elements->count(); $i++){
+                Element::where('id','=', $elements[$i]->id)->delete();
+                }
+                $changeorder->delete();
+                
+                toast('Change order deleted with success!','success');
+                return redirect()->back();
+            }else{
+                toast('You cannot delete this Change Order!','error'); 
+                return redirect()->back();
+
             }
-            $changeorder->delete();
-            
-            toast('Change order deleted with success!','success');
-            return redirect()->back();
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
