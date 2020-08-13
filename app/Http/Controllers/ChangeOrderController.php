@@ -23,6 +23,8 @@ class ChangeOrderController extends Controller
     }
 
     public function changeOrderByVisit($visit_id, $customer_id){
+
+
         try {
             $changeorders = ChangeOrder::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
             return view('changeorders.index', ['changeorders' => $changeorders ,'visit' => $visit_id, 'customer' => $customer_id]);
@@ -73,8 +75,20 @@ class ChangeOrderController extends Controller
      */
     public function store(Request $request)
     {
+        $visit = $request->visit_id;
+        $newChangeOrder = new ChangeOrder();
+        $changeOrderKey = $newChangeOrder->getLastChangeOrderKey($visit)->latest()->first();
+        $newChangeOrderKey = 0;
+        if(isset($changeOrderKey))
+        {
+            $newChangeOrderKey = $changeOrderKey->change_order_key + 1;
+        }else{
+            $newChangeOrderKey = 1;
+        }
         try{
+            
             $changeOrder = ChangeOrder::create([
+                'change_order_key' => $newChangeOrderKey,
                 'date' => $request->date,
                 'discount' => $request->discount,
                 'subtotal' => $request->subtotal,
@@ -83,7 +97,7 @@ class ChangeOrderController extends Controller
                 'revised_contract_amount' => $request->revised_contract_amount,
                 'option_1' => $request->option_1,
                 'status' => 1,
-                'visit_id' => $request->visit_id
+                'visit_id' => $visit
             ]); 
 
             for ($i = 0; $i < count($request->input('id')); $i++) {

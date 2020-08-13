@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ChangeOrder extends Model
 {
@@ -18,5 +19,12 @@ class ChangeOrder extends Model
     public function visit()
     {
         return $this->belongsTo('App\Visit');
+    }
+
+    public function getLastChangeOrderKey($visit_id)
+    {
+        return DB::table('change_orders')
+        ->selectRaw('change_order_key')
+        ->where('visit_id','=',$visit_id);
     }
 }

@@ -28,7 +28,7 @@
                 <tbody>
                   @foreach($changeorders as $orders)
                     <tr>
-                    <td style="text-align: center; ">#{{$orders->id}} </td>
+                    <td style="text-align: center; ">#{{$orders->change_order_key}} </td>
                     <td style="text-align: center">{{\Carbon\Carbon::parse($orders->date)->format('m/d/yy')}} </td>
                     <td style="text-align: center">$ {{number_format($orders->original_contract_amount,2)}}</td>
                     <td style="text-align: center">$ {{number_format($orders->change_order_amount,2)}}</td>
