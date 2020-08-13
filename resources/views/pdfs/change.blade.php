@@ -149,7 +149,7 @@ border:none'>
 <p><span style="font-size: 12;">Add: ({{number_format($data->discount,2)}}) - Discount</span></p>
 @endif
 <p><span style="font-size: 12;">ORIGINAL CONTRACT AMOUNT: US$ {{number_format($data->original_contract_amount,2)}} </span></p>
-<p><span style="font-size: 12;">CHANGE ORDER AMOUNT #{{$data->id}}: US$ {{number_format($data->change_order_amount,2)}} &nbsp; </span></p>
+<p><span style="font-size: 12;">CHANGE ORDER AMOUNT #{{$data->change_order_key}}: US$ {{number_format($data->change_order_amount,2)}} &nbsp; </span></p>
 <p><span style="font-size: 12;"><strong>REVISED CONTRACT AMOUNT: US$  {{number_format($data->revised_contract_amount,2)}} </strong><span></p>
 <span style="font-size: 12;">We hereby agree to the above as an </span><strong>{{$data->option_1}} </strong><span style="font-size: 12;">project costs to be </span><strong>{{$data->option_1 == "Additional" ? 'Added':'Removed'}} </strong><span style="font-size: 12;">{{$data->option_1 == "Additional" ? 'to':'from'}} the original scope of work. Payment for this Change Order is due upon completion of the change order work. All provisions of contracts between the parties are applicable to this agreement. This Change Order may extend the time required to complete the project.&nbsp;</span></p>
 <footer class=MsoNormal>

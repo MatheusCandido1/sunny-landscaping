@@ -59,9 +59,9 @@
             </td>
       </tr>
         <tr>
-          <td >Contract's Total</td>
+          <td >Total</td>
           <td style="text-align: right"  scope="col" >
-              <input type="text"  value="$ {{number_format($amount->total,2)}}"   id=""  readonly   class="form-control">
+              <input type="text"  value="$ {{number_format($change_amount,2)}}"   id=""  readonly   class="form-control">
             
           </td>
         </tr>
@@ -96,7 +96,7 @@
           <td style="text-align: right"  scope="col" >
               <input type="text"  required name="change_order_amount"   id="total"  readonly   class="form-control" placeholder="Total">
               <input type="hidden"  required name="revised_contract_amount"   id="revised">
-              <input type="hidden" readonly id="original" name="original_contract_amount" value="{{$amount->total}}"/>
+              <input type="text" readonly id="original" name="original_contract_amount" value="{{number_format($change_amount,2)}}"/>
             </td>
         </tr>
 

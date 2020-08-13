@@ -26,6 +26,7 @@ class ChangeOrderController extends Controller
 
 
         try {
+        
             $changeorders = ChangeOrder::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
             return view('changeorders.index', ['changeorders' => $changeorders ,'visit' => $visit_id, 'customer' => $customer_id]);
         } catch (Throwable $e) {
@@ -61,7 +62,18 @@ class ChangeOrderController extends Controller
             ->where('visits.id','=',$visit_id)
             ->first();
 
-            return view('changeorders.create', ['customer'=> $customer_id, 'visit' => $visit_id,'itemData' => $itemData,'amount' => $amount]);
+            $change_amount = DB::table('change_orders')
+            ->selectRaw('sum(change_orders.change_order_amount) as value')
+            ->where('change_orders.visit_id', $visit_id)
+            ->first();
+
+            $total = $amount->total;
+            $value = $change_amount->value;
+            $newtotal = $total + $value;
+
+            
+
+            return view('changeorders.create', ['customer'=> $customer_id, 'visit' => $visit_id,'itemData' => $itemData,'amount' => $amount, 'change_amount' => $newtotal]);
          }catch (Throwable $e) {
           toast('Pleasy try again!','error');
       }
@@ -85,6 +97,14 @@ class ChangeOrderController extends Controller
         }else{
             $newChangeOrderKey = 1;
         }
+
+        $newOriginalAmount = $newChangeOrder->getLastChangeOrderAmount($visit)->latest()->first();
+
+        $originalAmount = $newOriginalAmount->revised_contract_amount;
+        $newChangeOrderAmount = $request->change_order_amount;
+        $newRevised = $originalAmount + $newChangeOrderAmount;
+
+
         try{
             
             $changeOrder = ChangeOrder::create([
@@ -92,9 +112,9 @@ class ChangeOrderController extends Controller
                 'date' => $request->date,
                 'discount' => $request->discount,
                 'subtotal' => $request->subtotal,
-                'original_contract_amount' => $request->original_contract_amount,
+                'original_contract_amount' => $newOriginalAmount->revised_contract_amount,
                 'change_order_amount' => $request->change_order_amount,
-                'revised_contract_amount' => $request->revised_contract_amount,
+                'revised_contract_amount' => $newRevised,
                 'option_1' => $request->option_1,
                 'status' => 1,
                 'visit_id' => $visit

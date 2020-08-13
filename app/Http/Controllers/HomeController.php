@@ -67,6 +67,7 @@ class HomeController extends Controller
 
 
 
+
         $monthsDis = DB::table('services')
         ->selectRaw('count(IF(services.status = 2,1,null)) as disapproved')
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
@@ -101,11 +102,12 @@ class HomeController extends Controller
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->first();
 
+        
+
         $disapproved = DB::table('services')
         ->selectRaw('MONTHNAME(services.created_at) as month, sum(services.total) as total, count(services.id) as quantity')
         ->join('visits', 'visits.id','=','services.visit_id')
         ->where('services.status','=','2')
-        ->where('visits.has_services','=',0)
         ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->first();

@@ -27,4 +27,11 @@ class ChangeOrder extends Model
         ->selectRaw('change_order_key')
         ->where('visit_id','=',$visit_id);
     }
+
+    public function getLastChangeOrderAmount($visit_id) 
+    {
+        return DB::table('change_orders')
+        ->selectRaw('revised_contract_amount')
+        ->where('visit_id','=',$visit_id);
+    }
 }
