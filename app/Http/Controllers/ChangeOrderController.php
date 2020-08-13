@@ -206,7 +206,6 @@ class ChangeOrderController extends Controller
             }else{
                 toast('You cannot delete this Change Order!','error'); 
                 return redirect()->back();
-
             }
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

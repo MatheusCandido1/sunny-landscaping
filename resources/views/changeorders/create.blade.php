@@ -14,7 +14,7 @@
     <div class="col-lg-12">
     <div class="card mb-4">
     <div class="card-header">
-      <i class="fas fa-pencil-alt"></i> Changer Order 
+      <i class="fas fa-pencil-alt"></i> Change Order 
       <button onclick="add()" type="button" class="btn btn-primary float-right btn-sm">
         <i class="fas fa-plus"></i> New Item
         </button>
