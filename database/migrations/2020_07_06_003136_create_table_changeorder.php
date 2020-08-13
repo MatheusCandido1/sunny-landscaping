@@ -15,6 +15,7 @@ class CreateTableChangeorder extends Migration
     {
         Schema::create('change_orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('change_order_key');
             $table->dateTime('date');
             $table->float('discount');
             $table->float('subtotal');
