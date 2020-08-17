@@ -125,7 +125,7 @@ table {
     <div class="row">
       <div class="col">
           <a target="_blank" href="https://sunnypavers.com">
-            <img  style="height: 110px; width: 106px; position: fixed"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
+            <img  style="margin-left: 25px; height: 110px; width: 106px; position: fixed"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
           </a>
       </div>
       <div class="col company-details">
