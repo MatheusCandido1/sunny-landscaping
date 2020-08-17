@@ -6,7 +6,7 @@
 <br>
 {{ Breadcrumbs::render('services', $customer, $visit_id) }}
 <div class="card mb-4">
-    <div class="card-header">All your quotes are here!
+    <div class="card-header">All {{$customer_name}}'s quotes are here!
       <a type="button" href="{{ route('services.createQuote', ['visit' => $visit_id, 'customer' => $customer]) }}" class="btn btn-primary float-right btn-sm">
         New Quote
     </a>

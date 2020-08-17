@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Service;
 use App\Visit;
+use App\Customer;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -81,8 +82,9 @@ class ServiceController extends Controller
 
     public function servicesByVisit($visit_id, $customer_id){
         try {
+            $customer_name = Customer::where('id','=', $customer_id)->first();
             $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
-            return view('services.index', ['customer' => $customer_id,'services' => $services,'visit_id' => $visit_id]);
+            return view('services.index', ['customer_name' => $customer_name->name, 'customer' => $customer_id,'services' => $services,'visit_id' => $visit_id]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
