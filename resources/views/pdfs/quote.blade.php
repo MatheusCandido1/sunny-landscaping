@@ -249,7 +249,7 @@ opacity: 0.1; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
         </tbody>
       </table>
       @if($serviceData->notes != "")
-      <div id="notes" class="col-xs-12"><p style="line-height: 12px; font-size: 12px">Notes:</p> {!! $value->notes !!}</div>
+      <div id="notes" class="col-xs-12"><p style="line-height: 12px; font-size: 12px">Notes:</p> {!! $serviceData->notes !!}</div>
       @endif
 
         </main>
