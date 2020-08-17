@@ -154,8 +154,8 @@ class CustomerController extends Controller
             $customer->fill($request->only('name','gender','address','cross_street1','cross_street2','gate_code','city_id','state','zipcode','phone','cellphone','email', 'company','company_name','company_address','company_state','company_zipcode','company_city','referral_id','seller_id','parcel_number'));
             $customer->save();
             toast('Customer updated with success!','success');
-            return redirect()->route('customers.index');
-            }catch (Throwable $e) {
+            return redirect()->route('visits.visitsByCustomer', $customer->id); 
+        }catch (Throwable $e) {
                 toast('Pleasy try again!','error');
             }
     }
