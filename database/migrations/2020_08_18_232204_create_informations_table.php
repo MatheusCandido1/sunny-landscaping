@@ -29,8 +29,6 @@ class CreateInformationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('informations', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('informations');
     }
 }

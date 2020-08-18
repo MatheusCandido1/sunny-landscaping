@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InformationController extends Controller
 {
@@ -14,7 +15,13 @@ class InformationController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $info = DB::table('informations')->first();
+            return view('informations.index', ['info' => $info]);
+        }
+        catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
@@ -55,9 +62,14 @@ class InformationController extends Controller
      * @param  \App\Information  $information
      * @return \Illuminate\Http\Response
      */
-    public function edit(Information $information)
+    public function edit($id)
     {
-        //
+        try{
+            $info = DB::table('informations')->select('id','address','phone1', 'phone2')->where('informations.id','=',$id)->first();
+            return view('informations.edit', ['info' => $info]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**
@@ -67,9 +79,20 @@ class InformationController extends Controller
      * @param  \App\Information  $information
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Information $information)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $info = Information::where('id','=', $id)->first();
+            $info->fill($request->only('address','phone1','phone2'));
+            $info->save();
+
+            toast('Information updated with success!','success');
+
+            return redirect()->route('informations.index'); 
+            } catch (Throwable $e) {
+                toast('Pleasy try again!','error');
+    
+            }
     }
 
     /**

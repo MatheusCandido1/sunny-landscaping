@@ -87,6 +87,7 @@ Route::resources([
     'referrals' => 'ReferralController',
     'types' => 'TypeController',
     'users' => 'UserController',
-    'changeorders' => 'ChangeOrderController'
+    'changeorders' => 'ChangeOrderController',
+    'informations' => 'InformationController'
 ]);
 });

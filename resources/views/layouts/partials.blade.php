@@ -74,6 +74,7 @@
                                     <a style="color: black" class="nav-link" href="{{route('cities.index')}}"></i>Cities</a>
                                     <a style="color: black" class="nav-link" href="{{route('sellers.index')}}"></i>Sellers</a>
                                     <a style="color: black" class="nav-link" href="{{route('referrals.index')}}"></i>Referrals</a>
+                                    <a style="color: black" class="nav-link" href="{{route('informations.index')}}"></i>Company Information</a>
 
                                 </nav>
                             </div>
