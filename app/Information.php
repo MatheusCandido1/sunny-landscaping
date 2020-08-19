@@ -9,6 +9,6 @@ class Information extends Model
     protected $table = "informations";
 
     protected $fillable = [
-        'address','phone1', 'phone2'
+        'address','address2','phone1', 'phone2'
     ];
 }

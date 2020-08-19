@@ -96,9 +96,10 @@ class PdfController extends Controller
                 ->orWhere('services.status',1);
             })
             ->get();
+            $info = DB::table('informations')->first();
 
 
-        $pdf = PDF::loadView('pdfs.fullproposal', compact('amount','serviceData','serviceGroup','data','customer', 'itemData'));
+        $pdf = PDF::loadView('pdfs.fullproposal', compact('info','amount','serviceData','serviceGroup','data','customer', 'itemData'));
         return $pdf->setPaper('a4')->stream('fullproposal.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -266,9 +267,12 @@ class PdfController extends Controller
         ->where('visits.id','=', $visit_id)
         ->get();
 
+        $info = DB::table('informations')->first();
+
+
         $customer = $customerData[0];
         $id = $service_id;
-        $pdf = PDF::loadView('pdfs.quote', compact('data','customer','itemData','serviceData','id'));
+        $pdf = PDF::loadView('pdfs.quote', compact('info','data','customer','itemData','serviceData','id'));
         if($type == "1")
         return $pdf->setPaper('a4')->stream('quote.pdf'); 
         

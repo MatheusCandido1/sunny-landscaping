@@ -104,16 +104,28 @@ opacity: 0.1; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
           <div class="row">
             <div class="col">
                 <a target="_blank" href="https://sunnypavers.com">
-                  <img  style="height: 110px; width: 106px; position: fixed"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
+                  <img  style="margin-left: 25px; height: 110px; width: 106px; position: fixed"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />
                 </a>
             </div>
             <div class="col company-details">
-              <div>   &nbsp;
-              </div>
+              <div class="row">  
+                <div style="margin-left: -175px;" class="col-xs-6" >
+                  <div>&nbsp;</div>
+              <div>{{$info->address}}</div>
+              <div>{{$info->address2}}</div>
+              <div>{{$info->phone1}}</div>
+              <div>{{$info->phone2}}</div>
 
+                </div>
+              
+              
+                <div class="col-xs-6" style="width: 100%; margin-left: -100px" >
+                  <div>&nbsp;</div>
                 <div>NV State Business License # NV20151085480</div>
                 <div>NV State Contractor's Board Licenses:    </div>
                 <div>C-18 # 0080493 - Limit: $245,000 / C-10 # 0081661 - Limit: $245,000</div>
+              </div>
+              </div>
             </div>
         </div>
         </header>

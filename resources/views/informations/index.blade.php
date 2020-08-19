@@ -13,6 +13,7 @@
                 <thead>
                     <tr>
                         <th style="text-align: center" scope="col" >Address</th>
+                        <th style="text-align: center" scope="col" >Address</th>
                         <th style="text-align: center" scope="col" >Phone </th>
                         <th style="text-align: center" scope="col" >Phone (2) </th>
                         <th style="text-align: center; width: 15%" scope="col">Actions</th>
@@ -21,6 +22,7 @@
                 <tbody>
                     <tr>
                         <td style="text-align: center" >{{ $info->address}}</td>
+                        <td style="text-align: center" >{{ $info->address2}}</td>
                         <td style="text-align: center" >{{ $info->phone1}}</td>
                         <td style="text-align: center" >{{ $info->phone2}}</td>
                         <td style="text-align: right;" scope="col">
