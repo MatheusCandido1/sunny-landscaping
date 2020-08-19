@@ -18,13 +18,19 @@
                   <input name="address" class="form-control" id="inputFirstName" type="text" value="{{$info->address}}" />
                   </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label class="" for="address2">City/State/Zipcode</label>
+                <input name="address2" class="form-control" id="inputFirstName" type="text" value="{{$info->address2}}" />
+                </div>
+            </div>
+              <div class="col-md-6">
                 <div class="form-group">
                     <label class="" for="phone1">Phone</label>
                     <input name="phone1" class="form-control" id="inputFirstName" type="text" value="{{$info->phone1}}" />
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label class="" for="phone2">Phone (2)</label>
                     <input name="phone2" class="form-control" id="inputFirstName" type="text" value="{{$info->phone2}}" />

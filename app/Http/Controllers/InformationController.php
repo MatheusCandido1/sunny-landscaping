@@ -65,7 +65,7 @@ class InformationController extends Controller
     public function edit($id)
     {
         try{
-            $info = DB::table('informations')->select('id','address','phone1', 'phone2')->where('informations.id','=',$id)->first();
+            $info = DB::table('informations')->select('id','address','address2','phone1', 'phone2')->where('informations.id','=',$id)->first();
             return view('informations.edit', ['info' => $info]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -83,7 +83,7 @@ class InformationController extends Controller
     {
         try {
             $info = Information::where('id','=', $id)->first();
-            $info->fill($request->only('address','phone1','phone2'));
+            $info->fill($request->only('address','address2','phone1','phone2'));
             $info->save();
 
             toast('Information updated with success!','success');

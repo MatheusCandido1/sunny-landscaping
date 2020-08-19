@@ -13,7 +13,7 @@
                 <thead>
                     <tr>
                         <th style="text-align: center" scope="col" >Address</th>
-                        <th style="text-align: center" scope="col" >Address</th>
+                        <th style="text-align: center" scope="col" >City/State/Zipcode</th>
                         <th style="text-align: center" scope="col" >Phone </th>
                         <th style="text-align: center" scope="col" >Phone (2) </th>
                         <th style="text-align: center; width: 15%" scope="col">Actions</th>
