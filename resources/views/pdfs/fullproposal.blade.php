@@ -404,7 +404,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
           </tbody>
         </table>
      @if($value->notes != "")
-<div id="notes" class="col-xs-12"><p style="line-height: 12px; font-size: 12px">Notes:</p> {!! $value->notes !!}</div>
+<div id="notes" class="col-xs-12"><p style="line-height: 13px; font-size: 12px">Notes:</p> {!! $value->notes !!}</div>
 @endif
 @endif
 @endforeach
