@@ -64,7 +64,7 @@ function fill_datatable(filter_status = '')
             },
             {
                 data: 'action',
-                name: 'action',
+                name: 'Action',
                 orderable: false
             }
         ]
