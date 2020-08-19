@@ -104,13 +104,15 @@ class HomeController extends Controller
 
         
 
-        $disapproved = DB::table('services')
+        $selected = DB::table('services')
         ->selectRaw('MONTHNAME(services.created_at) as month, sum(services.total) as total, count(services.id) as quantity')
         ->join('visits', 'visits.id','=','services.visit_id')
-        ->where('services.status','=','2')
+        ->where('services.status','=',4)
+        ->where('visits.has_services','=',0)
         ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->first();
+
 
 
         $borderColors = [
@@ -146,7 +148,7 @@ class HomeController extends Controller
         ->color($borderColors)
         ->backgroundcolor($fillColors);
        
-        return view('dashboard.home', compact('approved','disapproved','chart','chart2'));
+        return view('dashboard.home', compact('approved','selected','chart','chart2'));
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
