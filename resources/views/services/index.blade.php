@@ -158,7 +158,7 @@
 @section('script')
 <script type="text/javascript">
  $('#dataTable').DataTable({
-    "order": [[ 0, "desc" ]] // Order on init. # is the column, starting at 0
+    "order": [[ 0, "desc" ]] 
 });
 </script>
 @endsection

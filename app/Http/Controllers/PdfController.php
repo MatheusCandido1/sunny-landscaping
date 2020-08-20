@@ -66,7 +66,7 @@ class PdfController extends Controller
         ->get();
 
         $itemData = DB::table('items')
-            ->selectRaw('services.id as service, items.group_type,items.id, items.description, items.quantity, items.type, items.unit_price, items.investment')
+            ->selectRaw('services.quote_key as service, items.group_type,items.id, items.description, items.quantity, items.type, items.unit_price, items.investment')
             ->join('item_service','item_service.item_id','=','items.id')
             ->join('services','services.id','=','item_service.service_id')
             ->join('visits','visits.id','=','services.visit_id')
@@ -79,7 +79,7 @@ class PdfController extends Controller
             ->groupBy(['service','group_type']);
           
         $serviceData = DB::table('services')
-            ->select('services.notes', 'services.id as service_id','subtotal','discount','total','accepting_proposal','down_payment','final_balance')
+            ->select('services.quote_key','services.notes', 'services.id as service_id','subtotal','discount','total','accepting_proposal','down_payment','final_balance')
             ->where('services.visit_id', $visit_id)
             ->where(function($query) use($visit_id){
                 $query->where('services.status',4)
@@ -248,7 +248,7 @@ class PdfController extends Controller
         ->where('services.id','=', $service_id)
         ->get();
 
-        $serviceData = DB::table('services')->select('id','discount','subtotal','total','notes','accepting_proposal','down_payment','final_balance')->where('services.id','=', $service_id)->where('services.visit_id','=',$visit_id)->first();
+        $serviceData = DB::table('services')->select('id','quote_key','discount','subtotal','total','notes','accepting_proposal','down_payment','final_balance')->where('services.id','=', $service_id)->where('services.visit_id','=',$visit_id)->first();
 
       $itemData = DB::table('items')
       ->selectRaw('items.group_type,items.id, items.description, items.quantity, items.type, items.unit_price, items.investment')
@@ -271,7 +271,7 @@ class PdfController extends Controller
 
 
         $customer = $customerData[0];
-        $id = $service_id;
+        $id = $serviceData->quote_key;
         $pdf = PDF::loadView('pdfs.quote', compact('info','data','customer','itemData','serviceData','id'));
         if($type == "1")
         return $pdf->setPaper('a4')->stream('quote.pdf'); 
