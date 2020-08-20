@@ -41,7 +41,7 @@ class ChangeOrderController extends Controller
         try{
 
             $itemData = DB::table('items')
-            ->selectRaw('services.id as service_id, items.group_type,items.id,items.description, items.quantity, items.type, items.unit_price, items.investment')
+            ->selectRaw('services.quote_key as service_id, items.group_type,items.id,items.description, items.quantity, items.type, items.unit_price, items.investment')
             ->join('item_service','item_service.item_id','=','items.id')
             ->join('services','services.id','=','item_service.service_id')
             ->join('visits','visits.id','=','services.visit_id')
