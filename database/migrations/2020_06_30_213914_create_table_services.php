@@ -15,6 +15,7 @@ class CreateTableServices extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('quote_key');
             $table->float('discount');
             $table->float('total');
             $table->float('subtotal');
