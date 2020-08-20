@@ -41,8 +41,13 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $quote = new Service();
+        $quote_key = $quote->getLastQuoteKey()->latest()->first();
+
         try{
         $service = Service::create([
+            'quote_key' => $quote_key->quote_key + 1,
             'discount' => $request->discount,
             'total' => $request->subtotal,
             'subtotal' => $request->total,

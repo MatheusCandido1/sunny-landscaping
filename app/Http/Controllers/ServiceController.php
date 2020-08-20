@@ -82,8 +82,9 @@ class ServiceController extends Controller
 
     public function servicesByVisit($visit_id, $customer_id){
         try {
+
             $customer_name = Customer::where('id','=', $customer_id)->first();
-            $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
+            $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','desc')->get();
             return view('services.index', ['customer_name' => $customer_name->name, 'customer' => $customer_id,'services' => $services,'visit_id' => $visit_id]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -192,7 +193,16 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         try{
-        $service = Service::where('id','=', $service->id)->first();
+            $service = Service::where('id','=', $service->id)->first();
+
+            $quote = new Service();
+            $quote_key = $quote->getLastQuoteKey()->latest()->first();
+            
+            
+        if($service->quote_key != $quote_key->quote_key ) {
+            toast('You can only delete the latest created quote!','info');
+            return redirect()->back();
+        } else {
         $items = $service->items()->select('id')->get();
 
         for($i = 0; $i < $items->count(); $i++){
@@ -202,6 +212,7 @@ class ServiceController extends Controller
         
         toast('Quote deleted with success!','success');
         return redirect()->back();
+        }
     }catch (Throwable $e) {
         toast('Pleasy try again!','error');
     }

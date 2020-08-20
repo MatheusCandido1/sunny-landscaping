@@ -26,7 +26,7 @@
                 <tbody>
                   @foreach($services as $service)
                     <tr>
-                    <td style="text-align: center"> #{{$service->id}}</td>
+                    <td style="text-align: center"> #{{$service->quote_key}}</td>
                     <td  style="text-align: center">$ {{number_format($service->total,2)}}</td>
                     <td style="text-align: center" >{{ \Carbon\Carbon::parse($service->created_at)->format('m/d/yy h:i A')}}</td>
                     
@@ -155,7 +155,12 @@
     </div>
 </div>
 </div>
-<script>
+@section('script')
+<script type="text/javascript">
+ $('#dataTable').DataTable({
+    "order": [[ 0, "desc" ]] // Order on init. # is the column, starting at 0
+});
 </script>
+@endsection
 
 @endsection
