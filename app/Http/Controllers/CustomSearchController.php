@@ -46,7 +46,7 @@ class CustomSearchController extends Controller
       if($request->filter_status == 1)
       {
          $data = DB::table('visits')
-            ->selectRaw('services.status, CONCAT("#",services.id) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
+            ->selectRaw('services.status, CONCAT("#",services.quote_key) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('services', 'visits.id','=','services.visit_id')
             ->where('services.status','=',$request->filter_status)
@@ -62,7 +62,7 @@ class CustomSearchController extends Controller
      }
      else if ($request->filter_status == 0){
       $data2 = DB::table('visits')
-      ->selectRaw('services.status, CONCAT("#",services.id) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
+      ->selectRaw('services.status, CONCAT("#",services.quote_key) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
       ->join('customers','customers.id','=','visits.customer_id')
       ->join('services', 'visits.id','=','services.visit_id')
       ->where('services.status','=',2)
@@ -80,7 +80,7 @@ return datatables()->of($data2)
 ->make(true);
      }else if ($request->filter_status == 2){
       $data3 = DB::table('visits')
-      ->selectRaw('services.status, CONCAT("#",services.id) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
+      ->selectRaw('services.status, CONCAT("#",services.quote_key) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
       ->join('customers','customers.id','=','visits.customer_id')
       ->join('services', 'visits.id','=','services.visit_id')
       ->where('services.status','=',3)
