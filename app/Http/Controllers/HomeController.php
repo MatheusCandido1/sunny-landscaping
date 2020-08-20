@@ -121,7 +121,6 @@ class HomeController extends Controller
             "rgba(92, 184, 92, 1.0)",
             "rgba(41, 43, 44, 1.0)",
             "rgba(240, 173, 78, 1.0)",
-            "rgba(78, 51, 87, 1.0)",
             "rgba(217, 83, 79, 1.0)"
         ];
         $fillColors = [
@@ -130,7 +129,6 @@ class HomeController extends Controller
             "rgba(92, 184, 92,0.5)",
             "rgba(41, 43, 44, 0.5)",
             "rgba(240, 173, 78, 0.5)",
-            "rgba(78, 51, 87, 0.5)",
             "rgba(217, 83, 79, 0.5)"
         ];
 
