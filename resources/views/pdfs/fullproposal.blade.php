@@ -165,7 +165,7 @@ border:none'><span > {{ \Carbon\Carbon::parse($data[0]->proposal_date)->format('
 <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
   style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_name}}</span></b></p>
   <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><b><span
-    style='font-size:12.0pt;line-height:120%;'>{{$data[0]->name}}</span></b></p>
+    style='font-size:12.0pt;line-height:120%;'></span></b><span>c/o:</span><b><span> {{$data[0]->name}}</span></b></p>
   <p class=MsoNormal style='font-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
     style='font-size:12.0pt;line-height:120%;'>{{$data[0]->company_address}}</span></p>
 <p class=MsoNormal style='ffont-size:12;ont-size:12;margin-bottom:0in;margin-bottom:.0001pt;border:none'><span
@@ -279,7 +279,12 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
     <div style="text-align: left" class="col invoice-to">
       <div class="row">
         <div class="col-xs-6">
+            @if($customer->company == 1)
+            <h3 class="to" >{{$customer->company_name}}</h3>
+            <h3 class="to" style="line-height: 10px">c/o: {{$customer->customer_name}}</h3>
+            @else 
             <h3 class="to">{{$customer->customer_name}}</h3>
+            @endif
         </div>
         <div class="col-xs-6">
           <h3 class="to">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quote number: {{$service}}</h3>

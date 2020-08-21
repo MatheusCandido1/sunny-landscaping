@@ -44,7 +44,11 @@
   <tbody>
     <tr>
       <td class="tg-pwgt"><span style="text-align: center; font-size: 16px; font-weight: bold">Name:</span></td>
+      @if($data[0]->company == 1)
+      <td class="tg-pwgt" colspan="3"> <span style="text-align: center; font-size: 12px; font-weight: bold">{{$data[0]->company_name}} <br/> c/o: {{$data[0]->customer_name}}</span></td>
+      @else
       <td class="tg-pwgt" colspan="3"> <span style="text-align: center; font-size: 16px; font-weight: bold">{{$data[0]->customer_name}}</span></td>
+      @endif
       <td class="tg-pwgt"><span style="text-align: center; font-size: 16px; font-weight: bold">HOA:</span></td>
       <td class="tg-pwgt"> <span style="text-align: center; font-size: 16px; font-weight: bold">{{ $data[0]->hoa == 0 ? 'No' : 'Yes'}}</span></td>
       <td class="tg-pwgt"><span style="text-align: center; font-size: 14px; font-weight: bold">E-mailed on: </span></td>

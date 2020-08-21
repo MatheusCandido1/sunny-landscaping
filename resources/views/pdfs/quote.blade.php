@@ -142,8 +142,13 @@ opacity: 0.1; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
             <div style="text-align: left" class="col invoice-to">
               <div class="row">
                 <div class="col-xs-6">
-                    <h3 class="to">{{$customer->customer_name}}</h3>
-                </div>
+                  @if($customer->company == 1)
+                  <h3 class="to" >{{$customer->company_name}}</h3>
+                  <h3 class="to" style="line-height: 10px">c/o: {{$customer->customer_name}}</h3>
+                  @else 
+                  <h3 class="to">{{$customer->customer_name}}</h3>
+                  @endif
+              </div>
                 <div class="col-xs-6">
                   <h3 class="to">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quote number: {{$id}}</h3>
 
