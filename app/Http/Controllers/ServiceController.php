@@ -26,9 +26,14 @@ class ServiceController extends Controller
 
     public function duplicateQuote($service_id)
     {
+        $quote = new Service();
+        $quote_key = $quote->getLastQuoteKey()->latest()->first();
+
         try{
         $service = Service::find($service_id);
+        $service->quote_key = $quote_key->quote_key + 1;
         $newService = $service->replicate();
+
         $newService->push();
 
         $items = $service->items()->select('id')->get();
