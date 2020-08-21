@@ -331,7 +331,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
 <div id="image">
   <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
 </div>
-          @if($value->service_id == $service)
+          @if($value->quote_key == $service)
           <table style="page-break-inside: avoid; margin-top: 0px" class="table" width="">
             <tr>
               <td class="no-line"></td>
