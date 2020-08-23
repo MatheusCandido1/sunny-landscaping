@@ -37,6 +37,10 @@ class CustomSearchController extends Controller
       ->get();
 
       return datatables()->of($data)
+      ->addColumn('action', function($data){
+         $button = '<a href="'. route('dashboard.options', ['start_date' => 1, 'end_date' => 1, 'status' => 1]).'" type="button"  class="btn btn-info">See Details</a>';
+         return $button;
+     })
       ->make(true);
       return view('dashboard.total');
    }

@@ -28,7 +28,14 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
+    public function optionsByStatus($start_date, $end_date, $options) {
+        try {
+            return view('dashboard.options');
+        } catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+            return redirect()->back();
+        }
+    }
 
     public function projectsByStatus(){
         try{

@@ -38,6 +38,7 @@
                         <th style="text-align: center" scope="col">Status</th>
                       <th style="text-align: center" scope="col">Quantity</th>
                         <th style="text-align: center" scope="col">Total</th>
+                        <th style="text-align: center" scope="col">Action</th>
                     </tr>
                 </thead>
             </table>
@@ -73,7 +74,13 @@
     },
     {
      data:'total'
+    },
+    {
+     data: 'action',
+     name: 'action',
+     orderable: false
     }
+
    ]
   });
  }

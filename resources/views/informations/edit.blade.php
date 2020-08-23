@@ -1,9 +1,9 @@
 @extends('layouts.partials')
-@section('title', 'Referrals')
+@section('title', 'Informations')
 @section('content')
         <div class="container-fluid">
             <h1 class="mt-4">Edit Company Information</h1>
-<div class="row">
+        <div class="row">
     <div class="col-lg-12">
     <div class="card mb-4">
         <div class="card-header"><i class="fas fa-comments"></i> Informations</div>
