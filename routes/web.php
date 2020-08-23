@@ -33,6 +33,7 @@ Route::get('pdf/full_proposal/{service}','PdfController@generateFullProposal')->
 Route::get('dashboard/projects/status','HomeController@projectsByStatus')->name('dashboard.status');
 Route::get('dashboard/visits/status', 'HomeController@visitsByStatus')->name('dashboard.visits');
 Route::get('dashboard/total/status', 'HomeController@totalByStatus')->name('dashboard.total');
+Route::get('dashboard/{start_date}/{end_date}/{status}', 'HomeController@optionsByStatus')->name('dashboard.options');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Dashboard Routes
