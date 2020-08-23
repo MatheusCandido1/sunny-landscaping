@@ -28,9 +28,8 @@ class CustomSearchController extends Controller
      }
 
     function sumByStatusAndData(Request $request){
-
       $data = DB::table('services')
-      ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity')
+      ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity, max(last_day(services.created_at)) as end_date, min(LAST_DAY(services.created_at - INTERVAL 1 MONTH) + INTERVAL 1 DAY) as start_date, services.status as new_status')
       ->join('visits', 'visits.id','=','services.visit_id')
       ->whereBetween('services.created_at', array($request->start_date, $request->end_date))
       ->groupBy('services.status')
@@ -38,7 +37,7 @@ class CustomSearchController extends Controller
 
       return datatables()->of($data)
       ->addColumn('action', function($data){
-         $button = '<a href="'. route('dashboard.options', ['start_date' => 1, 'end_date' => 1, 'status' => 1]).'" type="button"  class="btn btn-info">See Details</a>';
+         $button = '<a href="'. route('dashboard.options', ['start_date' => $data->start_date, 'end_date' => $data->end_date, 'status' => $data->new_status]).'" type="button"  class="btn btn-info">See Details</a>';
          return $button;
      })
       ->make(true);
