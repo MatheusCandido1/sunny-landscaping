@@ -30,7 +30,15 @@ class HomeController extends Controller
 
     public function optionsByStatus($start_date, $end_date, $options) {
         try {
-            return view('dashboard.options');
+            $data = DB::table('visits')
+            ->selectRaw('visits.id as visit_id, CONCAT("#",services.quote_key) as service_id, (CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, customers.id as customer_id, customers.name as customer_name')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('services', 'visits.id','=','services.visit_id')
+            ->where('services.status','=',$options)
+            ->whereBetween('services.created_at', array($start_date, $end_date))
+            ->get();
+
+            return view('dashboard.options', ['data' => $data]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
             return redirect()->back();
@@ -72,15 +80,11 @@ class HomeController extends Controller
         ->orderBy('services.created_at','ASC')
         ->pluck('month');
 
-
-
-
         $monthsDis = DB::table('services')
         ->selectRaw('count(IF(services.status = 2,1,null)) as disapproved')
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->orderBy('services.created_at','ASC')
         ->pluck('disapproved');
-        
 
         $monthsAp = DB::table('services')
         ->selectRaw('count(IF(services.status = 1,1,null)) as approved')
