@@ -186,6 +186,7 @@ class ServiceController extends Controller
             {
                 $visit = Visit::where('id','=', $visit_id)->first();
                 $visit->has_services = 0;
+                $visit->status_id = 7;
                 $visit->save();
             }
 
