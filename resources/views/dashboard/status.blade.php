@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <h1 class="mt-4">Current month: {{$currentMonth->format('F')}} </h1>
+            <h1 class="mt-4" id="monthName"></h1>
         </div>
         <div class="col-md-6">
         <a type="button" href="{{ route('dashboard.total' )}}" class="btn btn-outline-success float-right "><i class="fas fa-calendar-check"></i> Use date range filters</a>
@@ -24,8 +24,9 @@
                 <select name="filter_status" id="filter_status" class="form-control" required>
                     <option value="">Select Status</option>
                     <option value="1">Approved</option>
-                    <option value="0">Not Approved</option>
-                    <option value="2">Waiting</option>
+                    <option value="2">Not Approved</option>
+                    <option value="3">Waiting</option>
+                    <option value="4">Sent Proposal</option>
                 </select>
             </div>
         
@@ -104,6 +105,16 @@ $('#filter').click(function(){
         alert('Select at least one filter option');
     }
 });
+
+window.onload = function() {
+    $('#status_data').DataTable().destroy();
+
+    fill_datatable(1); 
+
+    const today = new Date()
+    const month = today.toLocaleString('En', { month: 'long' })
+    document.getElementById('monthName').innerHTML = 'Current Month: ' + month;
+  };
 
 });
 </script>
