@@ -19,21 +19,6 @@
     </div>
 
     </div>
-    <div class="col-md-3">
-      <label class="" for="inputLastName">Start Date</label>
-        <div class="form-group">
-            <input type="date" name="start_date" id="start_date" class="form-control"/>
-        </div>
-        
-    </div>
-    <div class="col-md-3">
-      
-      <label class="" for="inputLastName">End Date</label>
-      <div class="form-group">
-          <input type="date" name="end_date" id="end_date" class="form-control"/>
-      </div>
-      
-  </div>
   <div class="col-md-3">
       
     <div class="form-group">

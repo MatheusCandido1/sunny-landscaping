@@ -157,6 +157,7 @@ class ServiceController extends Controller
             $service->status = 1;
             $service->save();
             $visit->has_services = 1;
+            $visit->status_id = 3;
             $visit->save();
             alert()->success('Quote approved','Now, all the documents will be generated with this quote information!');
             return redirect()->back();
