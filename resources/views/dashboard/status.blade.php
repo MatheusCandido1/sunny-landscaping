@@ -4,32 +4,40 @@
     td { text-align: center; }
 </style>
 <div class="container-fluid">
-    
-<h1 class="mt-4">Current month: {{$currentMonth->format('F')}}</h1>
-  <br>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        
-        <label class="" for="inputLastName">Status</label>
-        <select name="filter_status" id="filter_status" class="form-control" required>
-            <option value="">Select Status</option>
-            <option value="1">Approved</option>
-            <option value="0">Not Approved</option>
-            <option value="2">Waiting</option>
-        </select>
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="mt-4">Current month: {{$currentMonth->format('F')}} </h1>
+        </div>
+        <div class="col-md-6">
+            <a type="button" href="" class="btn btn-outline-success float-right "><i class="fas fa-calendar-check"></i> Use date range filters</a>
+        </div>
     </div>
 
-    </div>
-  <div class="col-md-3">
-      
-    <div class="form-group">
-      <label class="" for="inputLastName">&nbsp;</label>
-    <button type="button" name="filter" id="filter" class="btn btn-primary btn-block">Filter</button>
-    </div>
-</div>
-  </div>
+  <br>
+  
       <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                
+                <label class="" for="inputLastName">Status</label>
+                <select name="filter_status" id="filter_status" class="form-control" required>
+                    <option value="">Select Status</option>
+                    <option value="1">Approved</option>
+                    <option value="0">Not Approved</option>
+                    <option value="2">Waiting</option>
+                </select>
+            </div>
+        
+            </div>
+          <div class="col-md-3">
+              
+            <div class="form-group">
+              <label class="" for="inputLastName">&nbsp;</label>
+            <button type="button" name="filter" id="filter" class="btn btn-primary btn-block float-">Filter</button>
+            </div>
+        </div>
+          </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="status_data" width="100%" cellspacing="0">
                 <thead>
