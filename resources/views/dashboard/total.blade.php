@@ -3,6 +3,9 @@
 <style>
     td { text-align: center; }
 </style>
+<script>
+ 
+  </script>
 <div class="container-fluid">
   <br>
   <div class="row">
@@ -47,6 +50,7 @@
 </div>
 @section('script')
 <script type="text/javascript">
+
  $(document).ready(function(){
  $('.input-daterange').datepicker({
   todayBtn:'linked',
@@ -55,6 +59,17 @@
  });
 
  load_data();
+
+ function convertDate(date) {
+  var yyyy = date.getFullYear().toString();
+  var mm = (date.getMonth()+1).toString();
+  var dd  = date.getDate().toString();
+
+  var mmChars = mm.split('');
+  var ddChars = dd.split('');
+
+  return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+}
 
  function load_data(start_date = '', end_date = '')
  {
@@ -88,6 +103,7 @@
  $('#filter').click(function(){
   var start_date = $('#start_date').val();
   var end_date = $('#end_date').val();
+  console.log(start_date);
   if(start_date != '' &&  end_date != '')
   {
    $('#total_data').DataTable().destroy();
@@ -105,6 +121,22 @@
   $('#total_data').DataTable().destroy();
   load_data();
  });
+
+ window.onload = function() {
+    $('#total_data').DataTable().destroy();
+
+    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    var firstDay = new Date(y, m, 1);
+    var lastDay = new Date(y, m + 1, 0);
+
+    firstDay = convertDate(firstDay);
+    lastDay = convertDate(lastDay);
+    $('#start_date').val(firstDay);
+
+    $('#end_date').val(lastDay);
+
+    load_data(firstDay, lastDay);
+  };
 
 });
   </script>
