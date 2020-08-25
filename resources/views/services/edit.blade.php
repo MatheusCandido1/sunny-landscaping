@@ -817,19 +817,17 @@
                                             <th style="" scope="col" >Unit Price</th>
                                             <th style="" scope="col" >Investment</th>
                                             <th style="" scope="col" >Action</th>
+                          
                                           </tr>
                                         </thead>
                                         <tbody  id="item_fields13">
                                           @foreach($items as $item)
                                           @if($item->group_type == "13 - OTHERS") 
                                           <tr>
-                                            <td>
-                                              <input type="hidden" value="13 - OTHERS" name="group_type[]"> 
-
-                                            </td>
                                              <td> 
+                                              <input type="hidden" value="13 - OTHERS" name="group_type[]"> 
                                                <div class="input-group mb-3"> 
-                                                 <div class="input-group-prepend">
+                                                 <div class="input-group-prepend"> 
                                                   <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                                                    <input type="hidden" name="id[]" value="{{$item->id}}"> 
                                                    <input type="text" name="description[]" required class="form-control" value="{{$item->description}}" placeholder="Description"/> </div>
