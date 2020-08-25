@@ -4,6 +4,8 @@
     td { text-align: center; }
 </style>
 <div class="container-fluid">
+    
+<h1 class="mt-4">Current month: {{$currentMonth->format('F')}}</h1>
   <br>
   <div class="row">
     <div class="col-md-3">

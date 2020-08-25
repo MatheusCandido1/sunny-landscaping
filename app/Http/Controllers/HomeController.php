@@ -6,6 +6,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Charts\StatusChart;
 use App\Status;
+use Carbon\Carbon;
 
 
 use Illuminate\Http\Request;
@@ -47,7 +48,10 @@ class HomeController extends Controller
 
     public function projectsByStatus(){
         try{
-            return view('dashboard.status');
+            $date = Carbon::now();
+            
+
+            return view('dashboard.status', ['currentMonth' => $date]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

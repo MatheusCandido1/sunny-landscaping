@@ -46,6 +46,14 @@ class CustomSearchController extends Controller
     
     function index(Request $request)
     {
+      $date = Carbon::now();
+      $date2 = Carbon::now();
+            $firstDay = $date->firstOfMonth(); 
+            $lastDay = $date2->endOfMonth();
+
+            $firstDay = $firstDay->toDateString();
+            $lastDay = $lastDay->toDateString(); 
+
       if($request->filter_status == 1)
       {
          $data = DB::table('visits')
@@ -53,7 +61,7 @@ class CustomSearchController extends Controller
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('services', 'visits.id','=','services.visit_id')
             ->where('services.status','=',$request->filter_status)
-            ->where('visits.has_services','=', 1)
+            ->whereBetween('services.created_at', array($firstDay, $lastDay))
             ->get();
       return datatables()->of($data)
       ->addColumn('action', function($data){
@@ -70,6 +78,7 @@ class CustomSearchController extends Controller
       ->join('services', 'visits.id','=','services.visit_id')
       ->where('services.status','=',2)
       ->where('visits.has_services','=', 0)
+      ->whereBetween('services.created_at', array($firstDay, $lastDay))
       ->get();
 
 
@@ -88,6 +97,7 @@ return datatables()->of($data2)
       ->join('services', 'visits.id','=','services.visit_id')
       ->where('services.status','=',3)
       ->where('visits.has_services','=', 0)
+      ->whereBetween('services.created_at', array($firstDay, $lastDay))
       ->get();
 return datatables()->of($data3)
 ->addColumn('action', function($data3){
