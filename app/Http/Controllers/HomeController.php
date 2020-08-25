@@ -81,10 +81,10 @@ class HomeController extends Controller
         ->pluck('month');
 
         $monthsDis = DB::table('services')
-        ->selectRaw('count(IF(services.status = 2,1,null)) as disapproved')
+        ->selectRaw('count(IF(services.status = 4,1,null)) as sent_proposal')
         ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
         ->orderBy('services.created_at','ASC')
-        ->pluck('disapproved');
+        ->pluck('sent_proposal');
 
         $monthsAp = DB::table('services')
         ->selectRaw('count(IF(services.status = 1,1,null)) as approved')
@@ -98,8 +98,8 @@ class HomeController extends Controller
             'backgroundColor' => '#5cb85c',
             'fill' => true
             ]);
-        $chart2->dataset('Quotes Disapproved', 'bar',$monthsDis->values())->options([
-            'backgroundColor' => '#d9534f',
+        $chart2->dataset('Sent Proposal', 'bar',$monthsDis->values())->options([
+            'backgroundColor' => '#0275d8',
             'fill' => true
             ]);
 
