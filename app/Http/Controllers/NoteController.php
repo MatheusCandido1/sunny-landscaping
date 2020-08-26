@@ -38,20 +38,11 @@ class NoteController extends Controller
     {
         try{
             $note = new Note();
-            $noteKey = $note->getLastNoteKey($request->visit_id)->latest()->first();
+            $text = $request->note;
+            $visit =  $request->visit_id;
+            
+            $note = $note->storeNote($visit, $text);
 
-            if(isset($noteKey)){
-            $newNoteKey = 0;
-            $newNoteKey = $noteKey->note_key + 1;
-            }else{
-                $newNoteKey = 1;
-            }
-
-        $notes = Note::create([
-            'note_key' => $newNoteKey,
-            'note' => $request->note,
-            'visit_id' => $request->visit_id
-        ]); 
 
             toast('Note created with success!','success');
             return back();

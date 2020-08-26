@@ -206,10 +206,9 @@ class VisitController extends Controller
             $status = new Status();
             $Statusname = $status->getStatusName($status_id);
 
-            $note = Note::create([
-                'note' => 'Project Status changed to '. $Statusname .' by '.Auth::user()->name.'.',
-                'visit_id' => $visit->id
-            ]); 
+            $note = new Note();
+            $note = $note->storeNote($visit->id, 'Project status changed to '. $Statusname .' by '.Auth::user()->name.'.');
+
 
             alert()->success('Visit updated!','Status updated with success');
             return redirect()->back();
@@ -229,7 +228,7 @@ class VisitController extends Controller
             $Statusname = $status->getStatusName($request->status);
 
             $note = Note::create([
-                'note' => 'Project Status changed to '. Statusname .' by '.Auth::user()->name.'.',
+                'note' => 'Project status changed to '. $Statusname .' by '.Auth::user()->name.'.',
                 'visit_id' => $visit_id
             ]); 
 

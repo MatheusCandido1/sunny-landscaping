@@ -177,10 +177,10 @@ class ServiceController extends Controller
             $visit->status_id = 3;
             $visit->save();
 
-            $note = Note::create([
-                'note' => 'Project Status changed to Project Approved by '.Auth::user()->name.'.',
-                'visit_id' => $visit->id
-            ]); 
+            $note = new Note();
+            $note = $note->storeNote($visit->id, 'Project status changed to Project Approved by '.Auth::user()->name.'.');
+
+
 
 
             alert()->success('Quote approved','Now, all the documents will be generated with this quote information!');
@@ -198,6 +198,7 @@ class ServiceController extends Controller
             $date = Carbon::now();
             $service->not_approved_on = $date;
             $service->save();
+
 
             $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
             for($i = 0; $i < $services->count(); $i++){

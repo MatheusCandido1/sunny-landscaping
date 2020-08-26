@@ -22,4 +22,24 @@ class Note extends Model
         ->selectRaw('notes.note_key')
         ->where('notes.visit_id','=',$visit_id);
     }
+
+    public function storeNote($visit_id, $text)
+    {
+            $note = new Note();
+            $noteKey = $note->getLastNoteKey($visit_id)->latest()->first();
+
+            if(isset($noteKey)){
+            $newNoteKey = 0;
+            $newNoteKey = $noteKey->note_key + 1;
+            }else{
+                $newNoteKey = 1;
+            }
+
+
+        $notes = Note::create([
+            'note_key' => $newNoteKey,
+            'note' => $text,
+            'visit_id' => $visit_id
+        ]); 
+    }
 }
