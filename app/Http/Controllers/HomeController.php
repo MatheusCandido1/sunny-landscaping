@@ -95,10 +95,30 @@ class HomeController extends Controller
         ->orderBy('services.created_at','ASC')
         ->pluck('approved');
 
-        $quotesByMonth = DB::table('services')
-        ->selectRaw('count(services.id) as total')
+        $quotesByStatus = DB::table('services')
+        ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, count(services.id) as total')
         ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
-        ->orderBy('services.created_at','ASC')
+        ->groupBy('status')
+        ->orderBy('services.status','ASC')
+        ->get();
+
+        $quotesApproved = DB::table('services')
+        ->selectRaw('count(services.id) as total')
+        ->where(DB::raw('MONTHNAME(services.approved_on)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->first();
+
+        $quotesNotApproved = DB::table('visits')
+        ->selectRaw('count(services.id) as total')
+        ->join('services', 'visits.id','=','services.visit_id')
+        ->where(DB::raw('MONTHNAME(services.not_approved_on)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->where('visits.has_services', 0)
+        ->first();
+
+        $quotesSentProposal = DB::table('visits')
+        ->selectRaw('count(services.id) as total')
+        ->join('services', 'visits.id','=','services.visit_id')
+        ->where(DB::raw('MONTHNAME(services.not_approved_on)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->where('visits.has_services', 0)
         ->first();
         
         $chart2 = new StatusChart;
@@ -166,7 +186,7 @@ class HomeController extends Controller
         ->color($borderColors)
         ->backgroundcolor($fillColors);
        
-        return view('dashboard.home', compact('quotesByMonth','approved','selected','chart','chart2'));
+        return view('dashboard.home', compact('quotesApproved','quotesNotApproved','quotesByStatus','approved','selected','chart','chart2'));
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

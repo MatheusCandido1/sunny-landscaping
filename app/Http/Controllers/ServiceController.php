@@ -210,7 +210,7 @@ class ServiceController extends Controller
             $service->save();
 
             $note2 = new Note();
-            $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' changed to Not Approved by '.Auth::user()->name.'.');
+            $note2 = $note2->storeNote($visit_id, 'Quote #'.$service->quote_key.' changed to Not Approved by '.Auth::user()->name.'.');
 
 
 
@@ -259,7 +259,7 @@ class ServiceController extends Controller
         $service->delete();
 
         $note2 = new Note();
-        $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' Deleted by '.Auth::user()->name.'.');
+        $note2 = $note2->storeNote($service->visit_id, 'Quote #'.$service->quote_key.' deleted by '.Auth::user()->name.'.');
 
         
         toast('Quote deleted with success!','success');

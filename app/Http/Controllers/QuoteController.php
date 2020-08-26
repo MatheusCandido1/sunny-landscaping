@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Service;
+use App\Note;
+use App\Visit;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class QuoteController extends Controller
 {
@@ -44,6 +48,7 @@ class QuoteController extends Controller
         
         $quote = new Service();
         $quote_key = $quote->getLastQuoteKey()->latest()->first();
+        $date = Carbon::now();
 
         try{
         $service = Service::create([
@@ -56,8 +61,21 @@ class QuoteController extends Controller
             'final_balance' => $request->final_balance,
             'notes' => $request->notes,
             'status' => 4,
-            'visit_id' => $request->visit_id
+            'visit_id' => $request->visit_id,
+            'sent_proposal_on' => $date
         ]); 
+
+        $visit = Visit::where('id','=', $service->visit_id)->first();
+        $visit->status_id = 2;
+        $visit->save();
+
+        $note = new Note();
+        $note = $note->storeNote($request->visit_id, 'Project status changed to Sent Proposal by '.Auth::user()->name.'.');
+        $note2 = new Note();
+        $note2 = $note2->storeNote($request->visit_id, 'Quote #'.$service->quote_key.' created by '.Auth::user()->name.'.');
+
+
+
 
 
         for ($i = 0; $i < count($request->input('id')); $i++) {
@@ -112,6 +130,13 @@ class QuoteController extends Controller
         $service = Service::where('id','=', $id)->first();
         $service->fill($request->only('discount','total','subtotal','accepting_proposal','down_payment','status','notes','visit','final_balance'));
         $service->save();
+
+        $note2 = new Note();
+        $note2 = $note2->storeNote($service->visit_id, 'Quote #'.$service->quote_key.' updated by '.Auth::user()->name.'.');
+
+
+
+
         $items = $service->items()->select('id')->get();
         for($i = 0; $i < count($request->input('id')); $i++){
             if($request->input('id')[$i] != null){

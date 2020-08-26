@@ -26,12 +26,31 @@
     </div>
     </div>
     <div class="col-lg-4">
-      <div class="card text-white bg-info" style="">
-      <div class="card-header">Quotes <a type="button" href="" style="color: white" class="btn btn-link float-right btn-sm">
+      <div class="card  bg-light" style="">
+      <div class="card-header">Quotes on {{$approved->month}}  <a type="button" href="" style="color: black" class="btn btn-link float-right btn-sm">
           See all
         </a></div>
         <div class="card-body">
-          <h5> Quantity: {{$quotesByMonth->total}} </h5>
+          <div class="row">
+            <div class="col-lg-6">
+              <h5><span class="badge badge-success"> <i class="fas fa-check"></i> Approved {{$quotesApproved->total}} </span> </h5>
+
+            </div>
+            <div class="col-lg-6">
+              <h5><span class="badge badge-primary"><i class="fas fa-envelope"></i>  Sent Proposal {{$quotesByStatus[3]->total}} </span> </h5>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <h5><span class="badge badge-warning"><i class="fas fa-clock"></i> Waiting  {{$quotesByStatus[2]->total}} </span> </h5>
+
+            </div>
+            <div class="col-lg-6">
+              <h5><span class="badge badge-danger"><i class="fas fa-times"></i> Not Approved  {{$quotesByStatus[1]->total}} </span> </h5>
+
+            </div>
+          </div>
         </div>
       </div>
       </div>
