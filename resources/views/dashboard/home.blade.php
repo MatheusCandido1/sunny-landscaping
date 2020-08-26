@@ -37,17 +37,17 @@
 
             </div>
             <div class="col-lg-6">
-              <h5><span class="badge badge-primary"><i class="fas fa-envelope"></i>  Sent Proposal {{$quotesByStatus[3]->total}} </span> </h5>
+              <h5><span class="badge badge-primary"><i class="fas fa-envelope"></i>  Sent Proposal {{$quotesSentProposal->total}} </span> </h5>
 
             </div>
           </div>
           <div class="row">
             <div class="col-lg-6">
-              <h5><span class="badge badge-warning"><i class="fas fa-clock"></i> Waiting  {{$quotesByStatus[2]->total}} </span> </h5>
+              <h5><span class="badge badge-warning"><i class="fas fa-clock"></i> Waiting  {{$quotesWaiting->total}} </span> </h5>
 
             </div>
             <div class="col-lg-6">
-              <h5><span class="badge badge-danger"><i class="fas fa-times"></i> Not Approved  {{$quotesByStatus[1]->total}} </span> </h5>
+              <h5><span class="badge badge-danger"><i class="fas fa-times"></i> Not Approved  {{$quotesNotApproved->total}} </span> </h5>
 
             </div>
           </div>

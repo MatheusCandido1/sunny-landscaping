@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Service extends Model
 {
     protected $fillable = [
-        'quote_key','discount', 'total', 'subtotal', 'accepting_proposal', 'down_payment', 'final_balance', 'notes','status', 'visit_id', 'approved_on','not_approved_on','sent_proposal_on'
+        'quote_key','discount', 'total', 'subtotal', 'accepting_proposal', 'down_payment', 'final_balance', 'notes','status', 'visit_id', 'approved_on','not_approved_on','sent_proposal_on','waiting_on'
     ];
 
     public function items()

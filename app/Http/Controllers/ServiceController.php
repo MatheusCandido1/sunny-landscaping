@@ -112,6 +112,8 @@ class ServiceController extends Controller
             $has_service = 0;
             $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
             $service->status = 3;
+            $date = Carbon::now();
+            $service->waiting_on = $date;
             $service->save();
 
             $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
@@ -131,7 +133,7 @@ class ServiceController extends Controller
             }
 
             $note2 = new Note();
-            $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' changed to Waiting by '.Auth::user()->name.'.');
+            $note2 = $note2->storeNote($visit_id, 'Quote #'.$service->quote_key.' changed to Waiting by '.Auth::user()->name.'.');
 
 
             alert()->success('Quote waiting','Please let me know when it gets approved or not!');
@@ -156,7 +158,7 @@ class ServiceController extends Controller
             ]); 
 
             $note2 = new Note();
-            $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' changed to Sent Proposal by '.Auth::user()->name.'.');
+            $note2 = $note2->storeNote($visit_id, 'Quote #'.$service->quote_key.' changed to Sent Proposal by '.Auth::user()->name.'.');
 
 
 
@@ -186,9 +188,9 @@ class ServiceController extends Controller
             $visit->save();
 
             $note = new Note();
-            $note = $note->storeNote($visit->id, 'Project status changed to Project Approved by '.Auth::user()->name.'.');
+            $note = $note->storeNote($visit_id, 'Project status changed to Project Approved by '.Auth::user()->name.'.');
             $note2 = new Note();
-            $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' changed to Approved by '.Auth::user()->name.'.');
+            $note2 = $note2->storeNote($visit_id, 'Quote #'.$service->quote_key.' changed to Approved by '.Auth::user()->name.'.');
 
 
 

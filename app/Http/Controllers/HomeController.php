@@ -105,22 +105,35 @@ class HomeController extends Controller
         $quotesApproved = DB::table('services')
         ->selectRaw('count(services.id) as total')
         ->where(DB::raw('MONTHNAME(services.approved_on)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->where('services.status','=',1)
         ->first();
 
-        $quotesNotApproved = DB::table('visits')
+        $quotesNotApproved = DB::table('services')
         ->selectRaw('count(services.id) as total')
-        ->join('services', 'visits.id','=','services.visit_id')
         ->where(DB::raw('MONTHNAME(services.not_approved_on)'),'=',\Carbon\Carbon::now()->format('F'))
-        ->where('visits.has_services', 0)
+        ->join('visits', 'visits.id','=','services.visit_id')
+        ->where('services.status','=',2)
+        ->where('visits.has_services','=',0)
         ->first();
 
-        $quotesSentProposal = DB::table('visits')
+        $quotesSentProposal = DB::table('services')
         ->selectRaw('count(services.id) as total')
-        ->join('services', 'visits.id','=','services.visit_id')
-        ->where(DB::raw('MONTHNAME(services.not_approved_on)'),'=',\Carbon\Carbon::now()->format('F'))
-        ->where('visits.has_services', 0)
+        ->where(DB::raw('MONTHNAME(services.sent_proposal_on)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->join('visits', 'visits.id','=','services.visit_id')
+        ->where('services.status','=',4)
+        ->where('visits.has_services','=',0)
         ->first();
-        
+
+        $quotesWaiting = DB::table('services')
+        ->selectRaw('count(services.id) as total')
+        ->where(DB::raw('MONTHNAME(services.waiting_on)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->join('visits', 'visits.id','=','services.visit_id')
+        ->where('services.status','=',3)
+        ->where('visits.has_services','=',0)
+        ->first();
+
+
+
         $chart2 = new StatusChart;
         $chart2->labels($months->values());
         $chart2->dataset('Quotes Approved', 'bar',$monthsAp->values())->options([
@@ -186,7 +199,7 @@ class HomeController extends Controller
         ->color($borderColors)
         ->backgroundcolor($fillColors);
        
-        return view('dashboard.home', compact('quotesApproved','quotesNotApproved','quotesByStatus','approved','selected','chart','chart2'));
+        return view('dashboard.home', compact('quotesApproved','quotesNotApproved','quotesWaiting','quotesSentProposal','approved','selected','chart','chart2'));
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
