@@ -49,25 +49,6 @@ class HomeController extends Controller
     public function projectsByStatus(){
         try{
 
- $date = Carbon::now();
-      $date2 = Carbon::now();
-            $firstDay = $date->firstOfMonth(); 
-            $lastDay = $date2->endOfMonth();
-
-            $firstDay = $firstDay->toDateString();
-            $lastDay = $lastDay->toDateString(); 
-
-
-            $data = DB::table('visits')
-            ->selectRaw('services.status, CONCAT("#",services.quote_key) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
-            ->join('customers','customers.id','=','visits.customer_id')
-            ->join('services', 'visits.id','=','services.visit_id')
-            ->where('services.status','=',1)
-            ->whereBetween('services.created_at', array($firstDay, $lastDay))
-            ->get();
-
-            //dd($data);
-
             return view('dashboard.status');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

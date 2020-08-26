@@ -55,7 +55,7 @@ class CustomSearchController extends Controller
             $lastDay = $lastDay->toDateString(); 
 
          $data = DB::table('visits')
-            ->selectRaw('services.status, CONCAT("#",services.quote_key) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(visits.date, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
+            ->selectRaw('services.status, CONCAT("#",services.quote_key) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(services.created_at, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('services', 'visits.id','=','services.visit_id')
             ->where('services.status','=',$request->filter_status)
