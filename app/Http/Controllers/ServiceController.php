@@ -130,6 +130,10 @@ class ServiceController extends Controller
                 $visit->save();
             }
 
+            $note2 = new Note();
+            $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' changed to Waiting by '.Auth::user()->name.'.');
+
+
             alert()->success('Quote waiting','Please let me know when it gets approved or not!');
             return redirect()->back();
         }catch (Throwable $e) {
@@ -150,6 +154,10 @@ class ServiceController extends Controller
                 'note' => 'Project Status changed to Sent Proposal by '.Auth::user()->name.'.',
                 'visit_id' => $visit_id
             ]); 
+
+            $note2 = new Note();
+            $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' changed to Sent Proposal by '.Auth::user()->name.'.');
+
 
 
             toast('Note created with success!','success');
@@ -179,6 +187,8 @@ class ServiceController extends Controller
 
             $note = new Note();
             $note = $note->storeNote($visit->id, 'Project status changed to Project Approved by '.Auth::user()->name.'.');
+            $note2 = new Note();
+            $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' changed to Approved by '.Auth::user()->name.'.');
 
 
 
@@ -198,6 +208,10 @@ class ServiceController extends Controller
             $date = Carbon::now();
             $service->not_approved_on = $date;
             $service->save();
+
+            $note2 = new Note();
+            $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' changed to Not Approved by '.Auth::user()->name.'.');
+
 
 
             $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
@@ -243,6 +257,10 @@ class ServiceController extends Controller
            Item::where('id','=', $items[$i]->id)->delete();
         }
         $service->delete();
+
+        $note2 = new Note();
+        $note2 = $note2->storeNote($visit->id, 'Quote #'.$service->quote_key.' Deleted by '.Auth::user()->name.'.');
+
         
         toast('Quote deleted with success!','success');
         return redirect()->back();
