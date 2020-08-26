@@ -103,7 +103,7 @@
       <td class="tg-ai0l">Cash</td>
     </tr>
     <tr>
-      <td class="tg-pwgt" style="font-size: 10px">Sold:</td>
+      <td class="tg-pwgt" style="font-size: 10px">Sunny Contract:</td>
       <td class="tg-pwgt"></td>
       <td class="tg-pwgt"style="font-size: 10px" >Security Deposit:</td>
       <td class="tg-pwgt"></td>
