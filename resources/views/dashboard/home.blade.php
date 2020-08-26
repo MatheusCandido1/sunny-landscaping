@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <br>
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-4">
   <div class="card text-white bg-success" style="">
   <div class="card-header">Approved on {{$approved->month}}  <a type="button" href="{{ route('dashboard.status')}}" style="color: white" class="btn btn-link float-right btn-sm">
       See all
@@ -14,7 +14,7 @@
       </div>
   </div>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-4">
     <div class="card text-white bg-primary" style="">
     <div class="card-header">Sent Proposal on {{$selected->month}} <a type="button" href="{{ route('dashboard.total')}}" style="color: white" class="btn btn-link float-right btn-sm">
         See all
@@ -25,6 +25,16 @@
       </div>
     </div>
     </div>
+    <div class="col-lg-4">
+      <div class="card text-white bg-info" style="">
+      <div class="card-header">Quotes <a type="button" href="" style="color: white" class="btn btn-link float-right btn-sm">
+          See all
+        </a></div>
+        <div class="card-body">
+          <h5> Quantity: {{$quotesByMonth->total}} </h5>
+        </div>
+      </div>
+      </div>
 </div>
 <br>
 <div class="row">

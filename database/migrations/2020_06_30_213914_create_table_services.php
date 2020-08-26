@@ -24,6 +24,9 @@ class CreateTableServices extends Migration
             $table->boolean('status');
             $table->float('final_balance');
             $table->text('notes');
+            $table->date('approved_on')->nullable();
+            $table->date('not_approved_on')->nullable();
+            $table->date('sent_proposal_on')->nullable();
             $table->integer('visit_id')->unsigned();
             $table->foreign('visit_id')->references('id')->on('visits')->onDelete('cascade');
             $table->timestamps();

@@ -95,6 +95,12 @@ class HomeController extends Controller
         ->orderBy('services.created_at','ASC')
         ->pluck('approved');
 
+        $quotesByMonth = DB::table('services')
+        ->selectRaw('count(services.id) as total')
+        ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->orderBy('services.created_at','ASC')
+        ->first();
+        
         $chart2 = new StatusChart;
         $chart2->labels($months->values());
         $chart2->dataset('Quotes Approved', 'bar',$monthsAp->values())->options([
@@ -160,7 +166,7 @@ class HomeController extends Controller
         ->color($borderColors)
         ->backgroundcolor($fillColors);
        
-        return view('dashboard.home', compact('approved','selected','chart','chart2'));
+        return view('dashboard.home', compact('quotesByMonth','approved','selected','chart','chart2'));
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
