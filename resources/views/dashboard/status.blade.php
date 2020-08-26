@@ -9,7 +9,7 @@
             <h1 class="mt-4" id="monthName"></h1>
         </div>
         <div class="col-md-6">
-        <a type="button" href="{{ route('dashboard.total' )}}" class="btn btn-outline-success float-right "><i class="fas fa-calendar-check"></i> Use date range filters</a>
+        <a type="button" href="{{ route('dashboard.total' )}}" class="btn btn-outline-success float-right "><i class="fas fa-calendar-check"></i> Date range filters</a>
         </div>
     </div>
 

@@ -27,7 +27,7 @@
     </div>
     <div class="col-lg-4">
       <div class="card  bg-light" style="">
-      <div class="card-header">Quotes on {{$approved->month}}  <a type="button" href="" style="color: black" class="btn btn-link float-right btn-sm">
+      <div class="card-header">Quotes on {{$approved->month}}  <a type="button" href="{{ route('dashboard.quotes') }}" style="color: black" class="btn btn-link float-right btn-sm">
           See all
         </a></div>
         <div class="card-body">

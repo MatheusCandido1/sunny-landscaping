@@ -46,6 +46,30 @@ class HomeController extends Controller
         }
     }
 
+    public function quotes(){
+        try{
+            $date = Carbon::now();
+      $date2 = Carbon::now();
+            $firstDay = $date->firstOfMonth(); 
+            $lastDay = $date2->endOfMonth();
+
+            $firstDay = $firstDay->toDateString();
+            $lastDay = $lastDay->toDateString(); 
+
+            $data = DB::table('visits')
+            ->selectRaw('visits.id as visit_id, CONCAT("#",services.quote_key) as service_id, (CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, customers.id as customer_id, customers.address as address, customers.name as customer_name')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('services', 'visits.id','=','services.visit_id')
+            ->whereBetween('services.created_at', array($firstDay, $lastDay))
+            ->get();
+           // dd($data); 
+
+            return view('dashboard.quotes', ['quotes' => $data]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
+    }
+
     public function projectsByStatus(){
         try{
 
