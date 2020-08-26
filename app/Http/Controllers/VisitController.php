@@ -7,12 +7,15 @@ use App\Visit;
 use App\Type;
 use App\Customer;
 use App\Status;
+use App\Note;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+
 
 class VisitController extends Controller
 {
@@ -102,14 +105,16 @@ class VisitController extends Controller
             ->join('referrals', 'customers.referral_id','=','referrals.id')
             ->where('visits.id','=', $id)
             ->get();
-    
+
             $note = DB::table('notes')
-            ->selectRaw('notes.id, notes.note, notes.created_at')
+            ->selectRaw('notes.id, notes.note_key, notes.note, notes.created_at')
             ->join('visits', 'visits.id','=','notes.visit_id')
             ->where('notes.visit_id','=',$id)
-            ->orderBy('created_at','ASC')
+            ->orderBy('notes.id','DESC')
             ->get();
 
+
+            
 
             $quoteStatus = DB::table('services')
             ->selectRaw('services.status')
@@ -118,7 +123,8 @@ class VisitController extends Controller
             ->orWhere('services.status','=',1)
             ->where('visits.id', '=', $id)
             ->first();
-            
+
+          
     
             return view('visits.details', ['allow'=>$quoteStatus,'data' => $data[0],  'notes' => $note, 'statuses' => Status::all()]);
             }catch (Throwable $e) {
@@ -196,6 +202,15 @@ class VisitController extends Controller
             $visit = Visit::where('id','=', $visit_id)->first();
             $visit->status_id = $status_id;
             $visit->save();
+
+            $status = new Status();
+            $Statusname = $status->getStatusName($status_id);
+
+            $note = Note::create([
+                'note' => 'Project Status changed to '. $Statusname .' by '.Auth::user()->name.'.',
+                'visit_id' => $visit->id
+            ]); 
+
             alert()->success('Visit updated!','Status updated with success');
             return redirect()->back();
         }catch (Throwable $e) {
@@ -209,6 +224,15 @@ class VisitController extends Controller
             $visit = Visit::where('id','=', $visit_id)->first();
             $visit->status_id = $request->status;
             $visit->save();
+
+            $status = new Status();
+            $Statusname = $status->getStatusName($request->status);
+
+            $note = Note::create([
+                'note' => 'Project Status changed to '. Statusname .' by '.Auth::user()->name.'.',
+                'visit_id' => $visit_id
+            ]); 
+
             alert()->success('Visit updated!','Status updated with success');
             return redirect()->back();
         }catch (Throwable $e) {

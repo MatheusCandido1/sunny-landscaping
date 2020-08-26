@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Service;
 use App\Visit;
+use App\Note;
 use App\Customer;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -127,6 +129,7 @@ class ServiceController extends Controller
                 $visit->has_services = 0;
                 $visit->save();
             }
+
             alert()->success('Quote waiting','Please let me know when it gets approved or not!');
             return redirect()->back();
         }catch (Throwable $e) {
@@ -138,7 +141,20 @@ class ServiceController extends Controller
         try{
             $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
             $service->status = 4;
+            $date = Carbon::now();
+            $service->sent_proposal_on = $date;
             $service->save();
+
+            
+            $note = Note::create([
+                'note' => 'Project Status changed to Sent Proposal by '.Auth::user()->name.'.',
+                'visit_id' => $visit_id
+            ]); 
+
+
+            toast('Note created with success!','success');
+            return back();
+        
             alert()->success('Quote selected','Now, all the documents will be generated with this quote information!');
             return redirect()->back();
         }catch (Throwable $e) {
@@ -153,11 +169,20 @@ class ServiceController extends Controller
             
             $visit = Visit::where('id','=', $visit_id)->first();
             
+            $date = Carbon::now();
             $service->status = 1;
+            $service->approved_on = $date;
             $service->save();
             $visit->has_services = 1;
             $visit->status_id = 3;
             $visit->save();
+
+            $note = Note::create([
+                'note' => 'Project Status changed to Project Approved by '.Auth::user()->name.'.',
+                'visit_id' => $visit->id
+            ]); 
+
+
             alert()->success('Quote approved','Now, all the documents will be generated with this quote information!');
             return redirect()->back();
         }catch (Throwable $e) {
@@ -170,6 +195,8 @@ class ServiceController extends Controller
             $has_service = 0;
             $service = Service::where('id','=',$service_id)->where('visit_id','=',$visit_id)->first();
             $service->status = 2;
+            $date = Carbon::now();
+            $service->not_approved_on = $date;
             $service->save();
 
             $services = Service::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();

@@ -37,9 +37,23 @@ class NoteController extends Controller
     public function store(Request $request)
     {
         try{
-        $note = new Note($request->only('note','visit_id'));
-            $note->save();
-             toast('Note created with success!','success');
+            $note = new Note();
+            $noteKey = $note->getLastNoteKey($request->visit_id)->latest()->first();
+
+            if(isset($noteKey)){
+            $newNoteKey = 0;
+            $newNoteKey = $noteKey->note_key + 1;
+            }else{
+                $newNoteKey = 1;
+            }
+
+        $notes = Note::create([
+            'note_key' => $newNoteKey,
+            'note' => $request->note,
+            'visit_id' => $request->visit_id
+        ]); 
+
+            toast('Note created with success!','success');
             return back();
         }
         catch (Throwable $e) {
@@ -90,9 +104,17 @@ class NoteController extends Controller
     public function destroy(Note $note)
     {
         try{
+
+        $noteKey = $note->getLastNoteKey($note->visit_id)->latest()->first();
+
+        if($note->note_key == $noteKey->note_key) {
         Note::destroy($note->id);
         toast('Note deleted with success!','success');
         return back();
+        }else{
+            toast('You cannot delete this Note!','error'); 
+            return redirect()->back();
+        }
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

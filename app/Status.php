@@ -14,4 +14,10 @@ class Status extends Model
     {
         return $this->hasMany('App\Visit');
     }
+
+    public function getStatusName($id){
+        $status =  Status::where('id','=', $id)->first();
+        $name = $status->name;
+        return $name;
+    }
 }

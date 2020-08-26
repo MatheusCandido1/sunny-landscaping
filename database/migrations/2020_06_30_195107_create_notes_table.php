@@ -15,6 +15,7 @@ class CreateNotesTable extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('note_key');
             $table->text('note');
             $table->integer('visit_id')->unsigned();
             $table->foreign('visit_id')->references('id')->on('visits')->onDelete('cascade');

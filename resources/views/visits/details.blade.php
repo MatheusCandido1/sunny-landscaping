@@ -201,9 +201,9 @@ ul.timeline > li:before {
                     <div class="container">
                         <div>
                             <ul class="timeline scroll">
-                                @foreach($notes as $note)
+                                @foreach($notes->sortByDesc('created_at') as $note)
                                 <li>
-                                    <a style="color: #5cb85c" href="">Note #{{$loop->iteration}}</a>
+                                    <a style="color: #5cb85c" href="">Note #{{$note->note_key}}</a>
                                 <a style="color: #5cb85c" href="" class="float-right">{{ \Carbon\Carbon::parse($note->created_at)->format(' m/d/Y h:i:s')}}</a>
 
                                     <p>{{$note->note}}</p>
