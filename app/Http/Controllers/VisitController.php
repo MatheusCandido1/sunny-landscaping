@@ -33,7 +33,7 @@ class VisitController extends Controller
         try {
             $visits = Visit::with('customers','types','status')->where('customer_id','=',$id)->get();
             $customer = Customer::where('customers.id','=',$id)->first();
-            $statusArray = array(1 => 'outline-secondary', 2 => 'outline-primary', 3 => 'outline-success', 4 => 'outline-dark', 5 => 'outline-info', 6 => 'outline-success', 7 => 'outline-danger');
+            $statusArray = array(1 => 'outline-secondary', 2 => 'outline-primary', 3 => 'outline-success', 4 => 'outline-dark', 5 => 'outline-info', 6 => 'outline-success', 7 => 'outline-info', 8 => 'outline-danger');
             return view('visits.index', ['status' => $statusArray, 'customer' => $customer, 'visits' => $visits,'types' => Type::all()]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
