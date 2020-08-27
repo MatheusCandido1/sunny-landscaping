@@ -25,6 +25,18 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
+                <label class="" for="inputLastName">Status</label>
+                <select name="filter_status" id="filter_status" class="form-control" required>
+                    <option value="">Select Status</option>
+                    <option value="1" >Approved</option>
+                    <option value="2">Not Approved</option>
+                    <option value="3">Waiting</option>
+                    <option value="4" selected>Sent Proposal</option>
+                </select>           
+         </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
                 <label class="" for="inputLastName">&nbsp;</label>
             <button type="button" name="filter" id="filter" class="btn btn-primary btn-block">Filter</button>    
         </div>
@@ -71,14 +83,14 @@
   return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
 }
 
- function load_data(start_date = '', end_date = '')
+ function load_data(start_date = '', end_date = '', filter_status = '')
  {
   $('#total_data').DataTable({
    processing: true,
    serverSide: true,
    ajax: {
     url:'{{ route("customsearch.total") }}',
-    data:{start_date:start_date, end_date:end_date}
+    data:{start_date:start_date, end_date:end_date, filter_status:filter_status}
    },
    columns: [
     {
@@ -103,11 +115,12 @@
  $('#filter').click(function(){
   var start_date = $('#start_date').val();
   var end_date = $('#end_date').val();
-  console.log(start_date);
+  var filter_status = $('#filter_status').val();
+
   if(start_date != '' &&  end_date != '')
   {
    $('#total_data').DataTable().destroy();
-   load_data(start_date, end_date);
+   load_data(start_date, end_date, filter_status);
   }
   else
   {
@@ -135,7 +148,7 @@
 
     $('#end_date').val(lastDay);
 
-    load_data(firstDay, lastDay);
+    load_data(firstDay, lastDay, 4);
   };
 
 });

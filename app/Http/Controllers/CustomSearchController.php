@@ -28,12 +28,40 @@ class CustomSearchController extends Controller
      }
 
     function sumByStatusAndData(Request $request){
-      $data = DB::table('services')
-      ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity, max(last_day(services.created_at)) as end_date, min(LAST_DAY(services.created_at - INTERVAL 1 MONTH) + INTERVAL 1 DAY) as start_date, services.status as new_status')
-      ->join('visits', 'visits.id','=','services.visit_id')
-      ->whereBetween('services.created_at', array($request->start_date, $request->end_date))
-      ->groupBy('services.status')
-      ->get();
+      
+      if($request->filter_status == 1){
+         $data = DB::table('services')
+         ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity, max(last_day(services.approved_on)) as end_date, min(LAST_DAY(services.approved_on - INTERVAL 1 MONTH) + INTERVAL 1 DAY) as start_date, services.status as new_status')
+         ->join('visits', 'visits.id','=','services.visit_id')
+         ->whereBetween('services.approved_on', array($request->start_date, $request->end_date))
+         ->where('services.status', '=', 1)
+         ->groupBy('services.status')
+         ->get();
+      }else if($request->filter_status == 2){
+         $data = DB::table('services')
+         ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity, max(last_day(services.not_approved_on)) as end_date, min(LAST_DAY(services.not_approved_on - INTERVAL 1 MONTH) + INTERVAL 1 DAY) as start_date, services.status as new_status')
+         ->join('visits', 'visits.id','=','services.visit_id')
+         ->whereBetween('services.not_approved_on', array($request->start_date, $request->end_date))
+         ->where('services.status', '=', 2)
+         ->groupBy('services.status')
+         ->get();
+      }else if($request->filter_status == 3){
+         $data = DB::table('services')
+         ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity, max(last_day(services.waiting_on)) as end_date, min(LAST_DAY(services.waiting_on - INTERVAL 1 MONTH) + INTERVAL 1 DAY) as start_date, services.status as new_status')
+         ->join('visits', 'visits.id','=','services.visit_id')
+         ->whereBetween('services.waiting_on', array($request->start_date, $request->end_date))
+         ->where('services.status', '=', 3)
+         ->groupBy('services.status')
+         ->get();
+      }else{
+         $data = DB::table('services')
+         ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, CONCAT("$",FORMAT(sum(services.total),2))  as total, count(services.id) as quantity, max(last_day(services.sent_proposal_on)) as end_date, min(LAST_DAY(services.sent_proposal_on - INTERVAL 1 MONTH) + INTERVAL 1 DAY) as start_date, services.status as new_status')
+         ->join('visits', 'visits.id','=','services.visit_id')
+         ->whereBetween('services.sent_proposal_on', array($request->start_date, $request->end_date))
+         ->where('services.status', '=', 4)
+         ->groupBy('services.status')
+         ->get();
+      }
 
       return datatables()->of($data)
       ->addColumn('action', function($data){
