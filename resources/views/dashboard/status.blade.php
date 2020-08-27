@@ -47,7 +47,7 @@
                         <th style="text-align: center" scope="col">Customer</th>
                         <th style="text-align: center" scope="col">Date</th>
                         <th style="text-align: center" scope="col">Total</th>
-                        <th style="text-align: center" width="20%">action</th>
+                        <th style="text-align: center" width="20%">Action</th>
                     </tr>
                 </thead>
             </table>

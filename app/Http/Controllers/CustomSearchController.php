@@ -18,8 +18,8 @@ class CustomSearchController extends Controller
         ->where('visits.status_id','=',$request->filter_status)
         ->get();
         return datatables()->of($status)
-        ->addColumn('action', function($data){
-         $button = '<a href="'. route('visits.visitsByCustomer', [ 'customer' => "$data->customer_id"]).'" type="button"  class="btn btn-info btn-block">See Visit</a>';
+        ->addColumn('action', function($status){
+         $button = '<a href="'. route('visits.visitsByCustomer', [ 'customer' => "$status->customer_id"]).'" type="button"  class="btn btn-info btn-block">See Visit</a>';
          return $button;
      })
      ->rawColumns(['action'])
@@ -48,27 +48,59 @@ class CustomSearchController extends Controller
     {
       $date = Carbon::now();
       $date2 = Carbon::now();
-            $firstDay = $date->firstOfMonth(); 
-            $lastDay = $date2->endOfMonth();
 
-            $firstDay = $firstDay->toDateString();
-            $lastDay = $lastDay->toDateString(); 
+      $firstDay = $date->firstOfMonth(); 
+      $lastDay = $date2->endOfMonth();
 
+      $firstDay = $firstDay->toDateString();
+      $lastDay = $lastDay->toDateString(); 
+
+      if($request->filter_status == 1){
          $data = DB::table('visits')
-            ->selectRaw('services.status, CONCAT("#",services.quote_key) as service_id,customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(services.created_at, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
+            ->selectRaw('CONCAT("#",services.quote_key) as service_id, customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(services.approved_on, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('services', 'visits.id','=','services.visit_id')
-            ->where('services.status','=',$request->filter_status)
-            ->where('visits.has_services','=', $request->filter_status == 1 ? '1':'0')
-            ->whereBetween('services.created_at', array($firstDay, $lastDay))
+            ->where('services.status','=',1)
+            ->where('visits.has_services','=', 1)
+            ->whereBetween('services.approved_on', array($firstDay, $lastDay))
             ->get();
+      }else if ($request->filter_status == 2){
+         $data = DB::table('visits')
+            ->selectRaw('CONCAT("#",services.quote_key) as service_id, customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(services.not_approved_on, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('services', 'visits.id','=','services.visit_id')
+            ->where('services.status','=',2)
+            ->where('visits.has_services','=', 0)
+            ->whereBetween('services.not_approved_on', array($firstDay, $lastDay))
+            ->get();
+      }else if ($request->filter_status == 3){
+         $data = DB::table('visits')
+            ->selectRaw('CONCAT("#",services.quote_key) as service_id, customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(services.waiting_on, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('services', 'visits.id','=','services.visit_id')
+            ->where('services.status','=',3)
+            ->where('visits.has_services','=', 0)
+            ->whereBetween('services.waiting_on', array($firstDay, $lastDay))
+            ->get();
+      }else {
+         $data = DB::table('visits')
+            ->selectRaw('CONCAT("#",services.quote_key) as service_id, customers.id as customer_id, visits.id as visit_id, customers.name as customer_name, DATE_FORMAT(services.sent_proposal_on, "%m/%d/%Y") as visit_date, CONCAT("$",FORMAT(services.total,2)) as total')
+            ->join('customers','customers.id','=','visits.customer_id')
+            ->join('services', 'visits.id','=','services.visit_id')
+            ->where('services.status','=',4)
+            ->where('visits.has_services','=', 0)
+            ->whereBetween('services.sent_proposal_on', array($firstDay, $lastDay))
+            ->get();
+      }
+
+      
       return datatables()->of($data)
       ->addColumn('action', function($data){
          $button = '<a href="'. route('services.servicesByVisit', ['visit' => "$data->visit_id", 'customer' => "$data->customer_id"]).'" type="button"  class="btn btn-info">See Details</a>';
          return $button;
-     })
-     ->rawColumns(['action'])
-     ->make(true);
+     })->rawColumns(['action'])
+      ->make(true);
+      
      return view('dashboard.status');
     }
-}
+   }

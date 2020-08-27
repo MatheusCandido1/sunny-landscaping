@@ -56,7 +56,7 @@ ul.timeline > li:before {
                         <div class="card-body">
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group mr-5" role="group">
-                        @foreach($statuses->slice(0,6) as $status)
+                        @foreach($statuses as $status)
                     <a href="" type="button" class="btn btn-{{$data->visits_status == $status->id ? 'success':'secondary'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-{{$status->id}}').submit(); }">{{$status->name}}</a>
                     <form id="update-form-{{$status->id}}" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>$status->id]) }}" method="POST" style="display: none;">
                         @csrf
@@ -65,13 +65,6 @@ ul.timeline > li:before {
                     @endforeach
                     </div>
                         
-                    <div class="btn-group " role="group">
-                        <a href="" type="button" class="btn btn-{{$data->visits_status == 7 ? 'danger':'link'}}" onclick="event.preventDefault(); if(confirm('Are you sure you want to update the status?')) { document.getElementById('update-form-x').submit(); }">Project Declined</a>
-                        <form id="update-form-x" action="{{ route('visits.updateStatus',['visit'=>$data->visit_id, 'status'=>7]) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('PUT')
-                        </form>
-                    </div>
                 </div>
                 </div>
                     </div>

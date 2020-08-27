@@ -72,8 +72,8 @@ class HomeController extends Controller
 
     public function projectsByStatus(){
         try{
-
             return view('dashboard.status');
+
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -109,14 +109,14 @@ class HomeController extends Controller
 
         $monthsDis = DB::table('services')
         ->selectRaw('count(IF(services.status = 4,1,null)) as sent_proposal')
-        ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
-        ->orderBy('services.created_at','ASC')
+        ->groupBy(DB::raw('MONTHNAME(services.sent_proposal_on)'))
+        ->orderBy('services.sent_proposal_on','ASC')
         ->pluck('sent_proposal');
 
         $monthsAp = DB::table('services')
         ->selectRaw('count(IF(services.status = 1,1,null)) as approved')
-        ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
-        ->orderBy('services.created_at','ASC')
+        ->groupBy(DB::raw('MONTHNAME(services.approved_on)'))
+        ->orderBy('services.approved_on','ASC')
         ->pluck('approved');
 
         $quotesByStatus = DB::table('services')
@@ -171,13 +171,14 @@ class HomeController extends Controller
 
 
         $approved = DB::table('services')
-        ->selectRaw('MONTHNAME(services.created_at) as month,sum(services.total) as total, count(services.id) as quantity')
+        ->selectRaw('MONTHNAME(services.approved_on) as month,sum(services.total) as total, count(services.id) as quantity')
         ->join('visits', 'visits.id','=','services.visit_id')
         ->where('services.status','=','1')
         ->where('visits.has_services','=',1)
-        ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
-        ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
+        ->where(DB::raw('MONTHNAME(services.approved_on)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->groupBy(DB::raw('MONTHNAME(services.approved_on)'))
         ->first();
+
 
         
 
@@ -186,8 +187,8 @@ class HomeController extends Controller
         ->join('visits', 'visits.id','=','services.visit_id')
         ->where('services.status','=',4)
         ->where('visits.has_services','=',0)
-        ->where(DB::raw('MONTHNAME(services.created_at)'),'=',\Carbon\Carbon::now()->format('F'))
-        ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
+        ->where(DB::raw('MONTHNAME(services.sent_proposal_on)'),'=',\Carbon\Carbon::now()->format('F'))
+        ->groupBy(DB::raw('MONTHNAME(services.sent_proposal_on)'))
         ->first();
 
 
@@ -198,6 +199,8 @@ class HomeController extends Controller
             "rgba(92, 184, 92, 1.0)",
             "rgba(41, 43, 44, 1.0)",
             "rgba(240, 173, 78, 1.0)",
+            "rgba(78, 51, 87, 1.0)",
+            "rgba(179, 210, 14, 1.0)",
             "rgba(217, 83, 79, 1.0)"
         ];
         $fillColors = [
@@ -206,6 +209,8 @@ class HomeController extends Controller
             "rgba(92, 184, 92,0.5)",
             "rgba(41, 43, 44, 0.5)",
             "rgba(240, 173, 78, 0.5)",
+            "rgba(78, 51, 87, 0.5)",
+            "rgba(179, 210, 14, 0.5)",
             "rgba(217, 83, 79, 0.5)"
         ];
 
