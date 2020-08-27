@@ -108,16 +108,20 @@ class HomeController extends Controller
         ->pluck('month');
 
         $monthsDis = DB::table('services')
-        ->selectRaw('count(IF(services.status = 4,1,null)) as sent_proposal')
+        ->selectRaw('count(services.status) as sent_proposal')
+        ->where('services.status','=', 4)
         ->groupBy(DB::raw('MONTHNAME(services.sent_proposal_on)'))
         ->orderBy('services.sent_proposal_on','ASC')
         ->pluck('sent_proposal');
 
+
         $monthsAp = DB::table('services')
-        ->selectRaw('count(IF(services.status = 1,1,null)) as approved')
+        ->selectRaw('count(services.status) as approved')
+        ->where('services.status','=', 1)
         ->groupBy(DB::raw('MONTHNAME(services.approved_on)'))
         ->orderBy('services.approved_on','ASC')
         ->pluck('approved');
+
 
         $quotesByStatus = DB::table('services')
         ->selectRaw('(CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, count(services.id) as total')
