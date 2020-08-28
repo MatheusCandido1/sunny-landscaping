@@ -57,7 +57,7 @@ class HomeController extends Controller
             $lastDay = $lastDay->toDateString(); 
 
             $data = DB::table('visits')
-            ->selectRaw('visits.id as visit_id, CONCAT("#",services.quote_key) as service_id, (CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, customers.id as customer_id, customers.address as address, customers.name as customer_name')
+            ->selectRaw('visits.id as visit_id, CONCAT("#",services.quote_key) as service_id, (CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, customers.id as customer_id, customers.address as address, customers.name as customer_name, services.approved_on, services.not_approved_on, services.sent_proposal_on, services.waiting_on')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('services', 'visits.id','=','services.visit_id')
             ->whereBetween('services.created_at', array($firstDay, $lastDay))
@@ -129,6 +129,14 @@ class HomeController extends Controller
         ->groupBy('status')
         ->orderBy('services.status','ASC')
         ->get();
+
+        $visitsByStatus = DB::table('visits')
+        ->selectRaw('statuses.name as status, count(*) as quantity')
+        ->join('statuses','statuses.id','=','visits.status_id')
+        ->groupBy(DB::raw('statuses.name'))
+        ->orderBy('statuses.id', 'ASC')
+        ->pluck('quantity','status');
+
 
         $quotesApproved = DB::table('services')
         ->selectRaw('count(services.id) as total')
@@ -218,21 +226,21 @@ class HomeController extends Controller
             "rgba(217, 83, 79, 0.5)"
         ];
 
-        $status = DB::table('visits')
-        ->selectRaw('statuses.name as status, count(*) as quantity')
+        for($i = 1; $i < 9; $i++){
+        $quantityByStatus[$i] = DB::table('visits')
+        ->selectRaw('count(*) as quantity')
         ->join('statuses','statuses.id','=','visits.status_id')
-        ->groupBy(DB::raw('statuses.name'))
-        ->orderBy('statuses.id', 'ASC')
-        ->pluck('quantity','status');
+        ->where('visits.status_id','=',$i)
+        ->where(DB::raw('YEAR(visits.date)'),'=',\Carbon\Carbon::now()->format('Y'))
+        ->first();
+        }
+    //    dd($quantityByStatus);
 
 
-        $chart = new StatusChart;
-        $chart->labels($status->keys());
-        $chart->dataset('Quotes Approved', 'doughnut',$status->values())
-        ->color($borderColors)
-        ->backgroundcolor($fillColors);
+
+
        
-        return view('dashboard.home', compact('quotesApproved','quotesNotApproved','quotesWaiting','quotesSentProposal','approved','selected','chart','chart2'));
+        return view('dashboard.home', ['quantityByStatus' => $quantityByStatus,'quotesApproved' => $quotesApproved,'quotesNotApproved' => $quotesApproved,'quotesWaiting' => $quotesWaiting,'quotesSentProposal' => $quotesWaiting,'approved' => $approved,'selected' => $selected,'chart2' => $chart2]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
