@@ -100,27 +100,8 @@ class HomeController extends Controller
     public function index()
     {
         try{ 
+
         
-        $months = DB::table('services')
-        ->selectRaw('MONTHNAME(created_at) as month')
-        ->groupBy(DB::raw('MONTHNAME(services.created_at)'))
-        ->orderBy('services.created_at','ASC')
-        ->pluck('month');
-
-        $monthsDis = DB::table('services')
-        ->selectRaw('count(services.status) as sent_proposal')
-        ->where('services.status','=', 4)
-        ->groupBy(DB::raw('MONTHNAME(services.sent_proposal_on)'))
-        ->orderBy('services.sent_proposal_on','ASC')
-        ->pluck('sent_proposal');
-
-
-        $monthsAp = DB::table('services')
-        ->selectRaw('count(services.status) as approved')
-        ->where('services.status','=', 1)
-        ->groupBy(DB::raw('MONTHNAME(services.approved_on)'))
-        ->orderBy('services.approved_on','ASC')
-        ->pluck('approved');
 
 
         $quotesByStatus = DB::table('services')
@@ -168,11 +149,38 @@ class HomeController extends Controller
         ->where('visits.has_services','=',0)
         ->first();
 
+        $monthsDis = DB::table('services')
+        ->selectRaw('count(visits.id) as sent_proposal')
+        ->join('visits', 'visits.id','=','services.visit_id')
+        ->where('visits.status_id','=', 2)
+        ->groupBy(DB::raw('MONTHNAME(visits.date)'))
+        ->orderBy('visits.date','desc')
+        ->pluck('sent_proposal');
+
+        $monthsAp = DB::table('services')
+        ->selectRaw('count(visits.id) as approved')
+        ->join('visits', 'visits.id','=','services.visit_id')
+        ->where('visits.status_id','=', 3)
+        ->groupBy(DB::raw('MONTHNAME(visits.date)'))
+        ->orderBy('visits.date','desc')
+        ->pluck('approved');
+
+       // dd($monthsDis);
+
+
+     $months = DB::table('services')
+        ->selectRaw('MONTHNAME(date) as month')
+        ->join('visits', 'visits.id','=','services.visit_id')
+        ->groupBy(DB::raw('MONTHNAME(visits.date)'))
+        ->orderBy('visits.date','desc')
+        ->pluck('month');
+
+      //  $months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 
         $chart2 = new StatusChart;
         $chart2->labels($months->values());
-        $chart2->dataset('Quotes Approved', 'bar',$monthsAp->values())->options([
+        $chart2->dataset('Project Approved', 'bar',$monthsAp->values())->options([
             'backgroundColor' => '#5cb85c',
             'fill' => true
             ]);
