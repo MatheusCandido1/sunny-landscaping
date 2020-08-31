@@ -151,6 +151,7 @@ class HomeController extends Controller
 
         $monthsDis = DB::table('visits')
         ->selectRaw('MONTHNAME(visits.date) as month, count(*) as sent_proposal')
+        ->join('customers','customers.id','=','visits.customer_id')
         ->where('visits.status_id','=', 2)
         ->groupBy(DB::raw('MONTHNAME(visits.date)'))
         ->orderBy('visits.date','asc')
@@ -158,6 +159,7 @@ class HomeController extends Controller
 
         $monthsAp = DB::table('visits')
         ->selectRaw('MONTHNAME(visits.date) as month, count(*) as approved')
+        ->join('customers','customers.id','=','visits.customer_id')
         ->where('visits.status_id','=', 3)
         ->groupBy(DB::raw('MONTHNAME(visits.date)'))
         ->orderBy('visits.date','asc')
@@ -188,6 +190,8 @@ class HomeController extends Controller
                 }
             }
         }
+
+        dd($newSent);
         
         $chart2 = new StatusChart;
         $chart2->labels($months);
@@ -242,7 +246,7 @@ class HomeController extends Controller
         for($i = 1; $i < 9; $i++){
         $quantityByStatus[$i] = DB::table('visits')
         ->selectRaw('count(*) as quantity')
-        ->join('statuses','statuses.id','=','visits.status_id')
+        ->join('customers','customers.id','=','visits.customer_id')
         ->where('visits.status_id','=',$i)
         ->where(DB::raw('YEAR(visits.date)'),'=',\Carbon\Carbon::now()->format('Y'))
         ->first();
