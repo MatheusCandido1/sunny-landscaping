@@ -79,9 +79,9 @@ class HomeController extends Controller
         }
     }
 
-    public function visitsByStatus(){
+    public function visitsByStatus($status){
         try{
-            return view('dashboard.visits', ['status' => Status::all()]);
+            return view('dashboard.visits', ['status' => Status::all(), 'id' => $status]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -191,7 +191,6 @@ class HomeController extends Controller
             }
         }
 
-        dd($newSent);
         
         $chart2 = new StatusChart;
         $chart2->labels($months);

@@ -15,6 +15,7 @@ class CustomSearchController extends Controller
         ->selectRaw('customers.id as customer_id, customers.name as customer_name, customers.address as project_address')
         ->join('customers', 'customers.id','=','visits.customer_id')
         ->join('statuses','statuses.id','=','visits.status_id')
+        ->whereBetween('visits.date', array($request->start_date, $request->end_date))
         ->where('visits.status_id','=',$request->filter_status)
         ->get();
         return datatables()->of($status)

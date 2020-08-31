@@ -36,7 +36,7 @@
             <i class="fas fa-chart-bar"></i> Approved and Disapproved by Month
           </div>
           <div class="col-lg-6">
-            <i class="fas fa-chart-pie"></i> Projects by Status <a type="button" href="{{ route('dashboard.visits')}}">
+            <i class="fas fa-chart-pie"></i> Projects by Status <a type="button" href="{{ route('dashboard.visits', ['status' => 1])}}">
               (See visit's details)
             </a><span class="float-right"> <i class="fas fa-file"></i> Quotes <a type="button" href="{{ route('dashboard.quotes') }}">
               (See all quotes) </a></span>
@@ -52,6 +52,7 @@
            <div class="col-lg-6">
             <div class="row">
               <div class="col-lg-6">
+              <a href="{{ route('dashboard.visits', ['status' => 1]) }}" style="text-decoration: none">
             <div class="card text-white bg-info mb-3" style="max-width: 18rem; height: 6rem;">
               <div class="card-body">
                 <h5 class="card-title text-center">Schedule Visit</h5>
@@ -59,8 +60,11 @@
                 </p>
               </div>
             </div>
+                </a>
               </div>
               <div class="col-lg-6">
+                <a href="{{ route('dashboard.visits', ['status' => 2]) }}" style="text-decoration: none">
+
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem; height: 6rem;">
                   <div class="card-body">
                     <h5 class="card-title text-center">Sent Proposal</h5>
@@ -68,10 +72,13 @@
                     </p>
                   </div>
                 </div>
+              </a>
                   </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
+                <a href="{{ route('dashboard.visits', ['status' => 3]) }}" style="text-decoration: none">
+
                 <div class="card text-white mb-3" style="max-width: 18rem; height: 6rem; background-color: #64ea8d
                 ">
 
@@ -81,8 +88,11 @@
                 </p>
               </div>
             </div>
+          </a>
               </div>
               <div class="col-lg-6">
+                <a href="{{ route('dashboard.visits', ['status' => 4]) }}" style="text-decoration: none">
+
                 <div class="card text-white mb-3" style="max-width: 18rem; height: 6rem; background-color: rgba(78, 51, 87, 1.0)">
                   <div class="card-body">
                     <h5 class="card-title text-center">HOA</h5>
@@ -90,10 +100,13 @@
                     </p>
                   </div>
                 </div>
+              </a>
                   </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
+                <a href="{{ route('dashboard.visits', ['status' => 5]) }}" style="text-decoration: none">
+
             <div class="card  bg-light mb-3" style="max-width: 18rem; height: 6rem;">
               <div class="card-body">
                 <h5 class="card-title text-center">Ready to Start</h5>
@@ -101,8 +114,11 @@
                 </p>
               </div>
             </div>
+          </a>
               </div>
               <div class="col-lg-6">
+                <a href="{{ route('dashboard.visits', ['status' => 6]) }}" style="text-decoration: none">
+
                 <div class="card text-white bg-warning mb-3" style="max-width: 18rem; height: 6rem;">
                   <div class="card-body">
                     <h5 class="card-title text-center">Working!</h5>
@@ -110,10 +126,13 @@
                     </p>
                   </div>
                 </div>
+              </a>
                   </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
+                <a href="{{ route('dashboard.visits', ['status' => 7]) }}" style="text-decoration: none">
+
                 <div class="card text-white bg-success mb-3" style="max-width: 18rem; height: 6rem;">
                   <div class="card-body">
                 <h5 class="card-title text-center">Project Concluded</h5>
@@ -121,8 +140,11 @@
                 </p>
               </div>
             </div>
+          </a>
               </div>
               <div class="col-lg-6">
+                <a href="{{ route('dashboard.visits', ['status' => 8]) }}" style="text-decoration: none">
+
                 <div class="card text-white bg-danger mb-3" style="max-width: 18rem; height: 6rem;">
                   <div class="card-body">
                     <h5 class="card-title text-center">Project Declined</h5>
@@ -130,6 +152,7 @@
                     </p>
                   </div>
                 </div>
+              </a>
                   </div>
             </div>
             
