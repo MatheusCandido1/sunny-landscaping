@@ -149,46 +149,56 @@ class HomeController extends Controller
         ->where('visits.has_services','=',0)
         ->first();
 
-        $monthsDis = DB::table('services')
-        ->selectRaw('count(visits.id) as sent_proposal')
-        ->join('visits', 'visits.id','=','services.visit_id')
+        $monthsDis = DB::table('visits')
+        ->selectRaw('MONTHNAME(visits.date) as month, count(*) as sent_proposal')
         ->where('visits.status_id','=', 2)
         ->groupBy(DB::raw('MONTHNAME(visits.date)'))
-        ->orderBy('visits.date','desc')
-        ->pluck('sent_proposal');
+        ->orderBy('visits.date','asc')
+        ->get();
 
-        $monthsAp = DB::table('services')
-        ->selectRaw('count(visits.id) as approved')
-        ->join('visits', 'visits.id','=','services.visit_id')
+        $monthsAp = DB::table('visits')
+        ->selectRaw('MONTHNAME(visits.date) as month, count(*) as approved')
         ->where('visits.status_id','=', 3)
         ->groupBy(DB::raw('MONTHNAME(visits.date)'))
-        ->orderBy('visits.date','desc')
-        ->pluck('approved');
+        ->orderBy('visits.date','asc')
+        ->get();
 
-       // dd($monthsDis);
+        $months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+       
+        for($i = 0; $i < 12; $i++){
+            for($j = 0; $j < count($monthsAp); $j++){
+                if($months[$i] == $monthsAp[$j]->month)
+                {
+                    $newApproved[$i] = $monthsAp[$j]->approved;
+                    break;
+                }else{
+                    $newApproved[$i] = 0;
+                }
+            }
+        }
 
-
-     $months = DB::table('services')
-        ->selectRaw('MONTHNAME(date) as month')
-        ->join('visits', 'visits.id','=','services.visit_id')
-        ->groupBy(DB::raw('MONTHNAME(visits.date)'))
-        ->orderBy('visits.date','desc')
-        ->pluck('month');
-
-      //  $months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-
+        for($i = 0; $i < 12; $i++){
+            for($j = 0; $j < count($monthsDis); $j++){
+                if($months[$i] == $monthsDis[$j]->month)
+                {
+                    $newSent[$i] = $monthsDis[$j]->sent_proposal;
+                    break;
+                }else{
+                    $newSent[$i] = 0;
+                }
+            }
+        }
+        
         $chart2 = new StatusChart;
-        $chart2->labels($months->values());
-        $chart2->dataset('Project Approved', 'bar',$monthsAp->values())->options([
+        $chart2->labels($months);
+        $chart2->dataset('Project Approved', 'bar',$newApproved)->options([
             'backgroundColor' => '#5cb85c',
             'fill' => true
             ]);
-        $chart2->dataset('Sent Proposal', 'bar',$monthsDis->values())->options([
+        $chart2->dataset('Sent Proposal', 'bar',$newSent)->options([
             'backgroundColor' => '#0275d8',
             'fill' => true
             ]);
-
 
         $approved = DB::table('services')
         ->selectRaw('MONTHNAME(services.approved_on) as month,sum(services.total) as total, count(services.id) as quantity')
@@ -199,9 +209,6 @@ class HomeController extends Controller
         ->groupBy(DB::raw('MONTHNAME(services.approved_on)'))
         ->first();
 
-
-        
-
         $selected = DB::table('services')
         ->selectRaw('MONTHNAME(services.created_at) as month, sum(services.total) as total, count(services.id) as quantity')
         ->join('visits', 'visits.id','=','services.visit_id')
@@ -210,8 +217,6 @@ class HomeController extends Controller
         ->where(DB::raw('MONTHNAME(services.sent_proposal_on)'),'=',\Carbon\Carbon::now()->format('F'))
         ->groupBy(DB::raw('MONTHNAME(services.sent_proposal_on)'))
         ->first();
-
-
 
         $borderColors = [
             "rgba(2, 117, 216, 1.0)",
@@ -242,12 +247,7 @@ class HomeController extends Controller
         ->where(DB::raw('YEAR(visits.date)'),'=',\Carbon\Carbon::now()->format('Y'))
         ->first();
         }
-    //    dd($quantityByStatus);
 
-
-
-
-       
         return view('dashboard.home', ['quantityByStatus' => $quantityByStatus,'quotesApproved' => $quotesApproved,'quotesNotApproved' => $quotesApproved,'quotesWaiting' => $quotesWaiting,'quotesSentProposal' => $quotesWaiting,'approved' => $approved,'selected' => $selected,'chart2' => $chart2]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
