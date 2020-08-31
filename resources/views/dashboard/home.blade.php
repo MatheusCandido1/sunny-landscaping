@@ -68,7 +68,7 @@
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem; height: 6rem;">
                   <div class="card-body">
                     <h5 class="card-title text-center">Sent Proposal</h5>
-                    <p class="card-text text-center"><i class="fas fa-envelope"></i> {{$quantityByStatus[2]->quantity}} </h5>
+                    <p class="card-text text-center"><i class="fas fa-envelope"></i> {{$quantityByStatus[2]->quantity}} (34)
                     </p>
                   </div>
                 </div>
@@ -122,7 +122,8 @@
                 <div class="card text-white bg-warning mb-3" style="max-width: 18rem; height: 6rem;">
                   <div class="card-body">
                     <h5 class="card-title text-center">Working!</h5>
-                    <p class="card-text text-center"><i class="fas fa-hammer"></i> {{$quantityByStatus[6]->quantity}} </h5>
+                    <p class="card-text text-center"><i class="fas fa-hammer"></i> {{$quantityByStatus[6]->quantity}} 
+                    </h5>
                     </p>
                   </div>
                 </div>
