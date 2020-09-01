@@ -5,23 +5,23 @@
 <div class="row">
   <div class="col-lg-6">
   <div class="card text-white bg-success" style="">
-  <div class="card-header">Approved on {{$approved->month}}  <a type="button" href="{{ route('dashboard.status')}}" style="color: white" class="btn btn-link float-right btn-sm">
+  <div class="card-header">Approved on {{$actualMonth}}  <a type="button" href="{{ route('dashboard.status')}}" style="color: white" class="btn btn-link float-right btn-sm">
       See all
     </a></div>
     <div class="card-body">
-      <h5 class="card-title">Total amount: US$ {{number_format($approved->total,2)}} </h5> 
-      <h5>Quantity: {{$approved->quantity}}</h5>
+      <h5 class="card-title">Total amount: US$ {{ isset($approved->total) ? number_format($approved->total,2):'0.00'}} </h5> 
+      <h5>Quantity: {{isset($approved->quantity) ? $approved->quantity:'0'}}</h5>
       </div>
   </div>
   </div>
   <div class="col-lg-6">
     <div class="card text-white bg-primary" style="">
-    <div class="card-header">Sent Proposal on {{$selected->month}} <a type="button" href="{{ route('dashboard.total')}}" style="color: white" class="btn btn-link float-right btn-sm">
+    <div class="card-header">Sent Proposal on {{$actualMonth}} <a type="button" href="{{ route('dashboard.total')}}" style="color: white" class="btn btn-link float-right btn-sm">
         See all
       </a></div>
       <div class="card-body">
-        <h5 class="card-title">Total amount: US$ {{number_format($selected->total,2)}} </h5>
-        <h5> Quantity: {{$selected->quantity}} </h5>
+        <h5 class="card-title">Total amount: US$ {{isset($selected->total) ? number_format($selected->total,2):'0.00'}} </h5>
+        <h5> Quantity: {{isset($selected->quantity) ? $selected->quantity:'0'}} </h5>
       </div>
     </div>
     </div>

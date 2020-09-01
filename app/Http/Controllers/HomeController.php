@@ -251,7 +251,7 @@ class HomeController extends Controller
         ->first();
         }
 
-        return view('dashboard.home', ['quantityByStatus' => $quantityByStatus,'quotesApproved' => $quotesApproved,'quotesNotApproved' => $quotesApproved,'quotesWaiting' => $quotesWaiting,'quotesSentProposal' => $quotesWaiting,'approved' => $approved,'selected' => $selected,'chart2' => $chart2]);
+        return view('dashboard.home', ['actualMonth' => \Carbon\Carbon::now()->format('F'), 'quantityByStatus' => $quantityByStatus,'quotesApproved' => $quotesApproved,'quotesNotApproved' => $quotesApproved,'quotesWaiting' => $quotesWaiting,'quotesSentProposal' => $quotesWaiting,'approved' => $approved,'selected' => $selected,'chart2' => $chart2]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
