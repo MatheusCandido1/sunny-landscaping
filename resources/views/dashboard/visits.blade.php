@@ -58,11 +58,13 @@
 @section('script')
 <script type="text/javascript">
 $(document).ready(function(){
- $('.input-daterange').datepicker({
-  todayBtn:'linked',
-  format:'yyyy-mm-dd',
-  autoclose:true
- });
+    from = $( '#start_date' )
+        .datepicker({
+          format: "yyyy-mm-dd"
+        });
+      to = $( "#end_date" ).datepicker({
+        format: 'yyyy-mm-dd'
+      });
 
 fill_datatable();
 

@@ -13,14 +13,14 @@
     <div class="row input-daterange">
         <div class="col-md-3">
             <div class="form-group">
-                <label class="" for="inputLastName">Start Date</label>
-            <input type="text" name="start_date" id="start_date" class="form-control" placeholder="" readonly />
+                <label class="" for="start_date">Start Date</label>
+            <input type="text" name="start_date" id="start_date" class="form-control" />
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label class="" for="inputLastName">End Date</label>
-            <input type="text" name="end_date" id="end_date" class="form-control" placeholder="" readonly />
+                <label class="" for="last_date">End Date</label>
+            <input type="text" name="end_date" id="end_date" class="form-control" />
             </div>
         </div>
         <div class="col-md-3">
@@ -64,13 +64,19 @@
 <script type="text/javascript">
 
  $(document).ready(function(){
- $('.input-daterange').datepicker({
-  todayBtn:'linked',
-  format:'yyyy-mm-dd',
-  autoclose:true
- });
+      from = $( '#start_date' )
+        .datepicker({
+          format: "yyyy-mm-dd"
+        });
+      to = $( "#end_date" ).datepicker({
+        format: 'yyyy-mm-dd'
+      });
+
+
 
  load_data();
+
+ 
 
  function convertDate(date) {
   var yyyy = date.getFullYear().toString();
@@ -128,13 +134,6 @@
   }
  });
 
- $('#refresh').click(function(){
-  $('#start_date').val('');
-  $('#end_date').val('');
-  $('#total_data').DataTable().destroy();
-  load_data();
- });
-
  window.onload = function() {
     $('#total_data').DataTable().destroy();
 
@@ -144,7 +143,7 @@
 
     firstDay = convertDate(firstDay);
     lastDay = convertDate(lastDay);
-    $('#start_date').val(firstDay);
+  $('#start_date').val(firstDay);
 
     $('#end_date').val(lastDay);
 
