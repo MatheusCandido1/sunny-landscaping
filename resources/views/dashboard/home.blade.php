@@ -53,10 +53,12 @@
             <div class="row">
               <div class="col-lg-6">
               <a href="{{ route('dashboard.visits', ['status' => 1]) }}" style="text-decoration: none">
-            <div class="card text-white bg-info mb-3" style="max-width: 18rem; height: 6rem;">
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem; height: 7.5rem;">
               <div class="card-body">
-                <h5 class="card-title text-center">Schedule Visit</h5>
-                <p class="card-text text-center"><i class="fas fa-home"></i> {{$quantityByStatus[1]->quantity}} </h5>
+                <h5 class="card-title text-center">Schedule Visit <i class="fas fa-home"></i></h5>
+                <p class="card-text text-center">{{$actualYear}}: {{$quantityByStatus[1]->quantity}} </p>
+                  <p style="line-height: 0px" class="card-text text-center">{{$actualMonth}}: {{$statusOnMonth[1]->quantity}} 
+
                 </p>
               </div>
             </div>
@@ -65,10 +67,12 @@
               <div class="col-lg-6">
                 <a href="{{ route('dashboard.visits', ['status' => 2]) }}" style="text-decoration: none">
 
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem; height: 6rem;">
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem; height: 7.5rem;">
                   <div class="card-body">
-                    <h5 class="card-title text-center">Sent Proposal</h5>
-                    <p class="card-text text-center"><i class="fas fa-envelope"></i> {{$quantityByStatus[2]->quantity}}
+                    <h5 class="card-title text-center">Sent Proposal <i class="fas fa-envelope"></i></h5>
+                    <p class="card-text text-center">{{$actualYear}}: {{$quantityByStatus[2]->quantity}}</p>
+                      <p style="line-height: 0px" class="card-text text-center">{{$actualMonth}}: {{$statusOnMonth[2]->quantity}} 
+
                     </p>
                   </div>
                 </div>
@@ -79,12 +83,13 @@
               <div class="col-lg-6">
                 <a href="{{ route('dashboard.visits', ['status' => 3]) }}" style="text-decoration: none">
 
-                <div class="card text-white mb-3" style="max-width: 18rem; height: 6rem; background-color: #64ea8d
+                <div class="card text-white mb-3" style="max-width: 18rem; height: 7.5rem; background-color: #64ea8d
                 ">
 
               <div class="card-body">
-                <h5 class="card-title text-center">Project Approved</h5>
-                <p class="card-text text-center"><i class="fas fa-check"></i> {{$quantityByStatus[3]->quantity}} </h5>
+                <h5 class="card-title text-center">Project Approved <i class="fas fa-check"></i></h5> 
+                <p class="card-text text-center">{{$actualYear}}: {{$quantityByStatus[3]->quantity}} </p>
+                  <p style="line-height: 0px" class="card-text text-center">{{$actualMonth}}: {{$statusOnMonth[3]->quantity}}
                 </p>
               </div>
             </div>
@@ -93,10 +98,11 @@
               <div class="col-lg-6">
                 <a href="{{ route('dashboard.visits', ['status' => 4]) }}" style="text-decoration: none">
 
-                <div class="card text-white mb-3" style="max-width: 18rem; height: 6rem; background-color: rgba(78, 51, 87, 1.0)">
+                <div class="card text-white mb-3" style="max-width: 18rem; height: 7.5rem; background-color: rgba(78, 51, 87, 1.0)">
                   <div class="card-body">
-                    <h5 class="card-title text-center">HOA</h5>
-                    <p class="card-text text-center"><i class="fas fa-hotel"></i> {{$quantityByStatus[4]->quantity}} </h5>
+                    <h5 class="card-title text-center">HOA <i class="fas fa-hotel"></i></h5>
+                    <p class="card-text text-center">{{$actualYear}}: {{$quantityByStatus[4]->quantity}} </p>
+                      <p style="line-height: 0px" class="card-text text-center">{{$actualMonth}}: {{$statusOnMonth[4]->quantity}} 
                     </p>
                   </div>
                 </div>
@@ -107,10 +113,11 @@
               <div class="col-lg-6">
                 <a href="{{ route('dashboard.visits', ['status' => 5]) }}" style="text-decoration: none">
 
-            <div class="card  bg-light mb-3" style="max-width: 18rem; height: 6rem;">
+            <div class="card  bg-light mb-3" style="max-width: 18rem; height: 7.5rem;">
               <div class="card-body">
-                <h5 class="card-title text-center">Ready to Start</h5>
-                <p class="card-text text-center"><i class="fas fa-play-circle"></i> {{$quantityByStatus[5]->quantity}} </h5>
+                <h5 class="card-title text-center">Ready to Start <i class="fas fa-play-circle"></i></h5>
+                <p class="card-text text-center">{{$actualYear}}: {{$quantityByStatus[5]->quantity}}</p>
+                  <p style="line-height: 0px" class="card-text text-center">{{$actualMonth}}: {{$statusOnMonth[5]->quantity}}
                 </p>
               </div>
             </div>
@@ -119,11 +126,11 @@
               <div class="col-lg-6">
                 <a href="{{ route('dashboard.visits', ['status' => 6]) }}" style="text-decoration: none">
 
-                <div class="card text-white bg-warning mb-3" style="max-width: 18rem; height: 6rem;">
+                <div class="card text-white bg-warning mb-3" style="max-width: 18rem; height: 7.5rem;">
                   <div class="card-body">
-                    <h5 class="card-title text-center">Working!</h5>
-                    <p class="card-text text-center"><i class="fas fa-hammer"></i> {{$quantityByStatus[6]->quantity}} 
-                    </h5>
+                    <h5 class="card-title text-center">Working! <i class="fas fa-hammer"></i></h5>
+                    <p class="card-text text-center">{{$actualYear}}: {{$quantityByStatus[6]->quantity}} </p>
+                      <p style="line-height: 0px" class="card-text text-center">{{$actualMonth}}: {{$statusOnMonth[6]->quantity}} 
                     </p>
                   </div>
                 </div>
@@ -134,10 +141,11 @@
               <div class="col-lg-6">
                 <a href="{{ route('dashboard.visits', ['status' => 7]) }}" style="text-decoration: none">
 
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem; height: 6rem;">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem; height: 7.5rem;">
                   <div class="card-body">
-                <h5 class="card-title text-center">Project Concluded</h5>
-                <p class="card-text text-center"><i class="fas fa-trophy"></i> {{$quantityByStatus[7]->quantity}} </h5>
+                <h5 class="card-title text-center">Project Concluded <i class="fas fa-trophy"></i></h5>
+                <p class="card-text text-center">{{$actualYear}}: {{$quantityByStatus[7]->quantity}} </p>
+                  <p style="line-height: 0px" class="card-text text-center">{{$actualMonth}}: {{$statusOnMonth[7]->quantity}} 
                 </p>
               </div>
             </div>
@@ -146,10 +154,11 @@
               <div class="col-lg-6">
                 <a href="{{ route('dashboard.visits', ['status' => 8]) }}" style="text-decoration: none">
 
-                <div class="card text-white bg-danger mb-3" style="max-width: 18rem; height: 6rem;">
+                <div class="card text-white bg-danger mb-3" style="max-width: 18rem; height: 7.5rem;">
                   <div class="card-body">
-                    <h5 class="card-title text-center">Project Declined</h5>
-                    <p class="card-text text-center"><i class="fas fa-times"></i> {{$quantityByStatus[8]->quantity}} </h5>
+                    <h5 class="card-title text-center">Project Declined <i class="fas fa-times"></i> </h5>
+                    <p class="card-text text-center">{{$actualYear}}: {{$quantityByStatus[8]->quantity}} </p>
+                      <p style="line-height: 0px" class="card-text text-center">{{$actualMonth}}: {{$statusOnMonth[8]->quantity}} 
                     </p>
                   </div>
                 </div>

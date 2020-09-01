@@ -165,6 +165,18 @@ class HomeController extends Controller
         ->orderBy('visits.date','asc')
         ->get();
 
+        for($i = 1; $i < 9; $i++){
+            $statusOnMonth[$i] = DB::table('visits')
+            ->selectRaw('count(*) as quantity')
+            ->join('statuses','statuses.id','=','visits.status_id')
+            ->where(DB::raw('MONTHNAME(visits.date)'),'=',\Carbon\Carbon::now()->format('F'))
+            ->where('visits.status_id','=',$i)
+            ->orderBy('statuses.id', 'ASC')
+            ->first();
+            }
+
+
+
         $months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
        
         for($i = 0; $i < 12; $i++){
@@ -251,7 +263,7 @@ class HomeController extends Controller
         ->first();
         }
 
-        return view('dashboard.home', ['actualMonth' => \Carbon\Carbon::now()->format('F'), 'quantityByStatus' => $quantityByStatus,'quotesApproved' => $quotesApproved,'quotesNotApproved' => $quotesApproved,'quotesWaiting' => $quotesWaiting,'quotesSentProposal' => $quotesWaiting,'approved' => $approved,'selected' => $selected,'chart2' => $chart2]);
+        return view('dashboard.home', ['statusOnMonth' => $statusOnMonth, 'actualYear' => \Carbon\Carbon::now()->format('Y'), 'actualMonth' => \Carbon\Carbon::now()->format('F'), 'quantityByStatus' => $quantityByStatus,'quotesApproved' => $quotesApproved,'quotesNotApproved' => $quotesApproved,'quotesWaiting' => $quotesWaiting,'quotesSentProposal' => $quotesWaiting,'approved' => $approved,'selected' => $selected,'chart2' => $chart2]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
