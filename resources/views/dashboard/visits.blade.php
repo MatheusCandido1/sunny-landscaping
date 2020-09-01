@@ -58,13 +58,7 @@
 @section('script')
 <script type="text/javascript">
 $(document).ready(function(){
-    from = $( '#start_date' )
-        .datepicker({
-          format: "yyyy-mm-dd"
-        });
-      to = $( "#end_date" ).datepicker({
-        format: 'yyyy-mm-dd'
-      });
+   
 
 fill_datatable();
 
@@ -121,6 +115,14 @@ $('#filter').click(function(){
 
 
 window.onload = function() {
+    from = $( '#start_date' )
+        .datepicker({
+          format: "yyyy-mm-dd"
+        });
+      to = $( "#end_date" ).datepicker({
+        format: 'yyyy-mm-dd'
+      });
+      
     $('#status_data').DataTable().destroy();
 
     var date = new Date(), y = date.getFullYear(), m = date.getMonth();
