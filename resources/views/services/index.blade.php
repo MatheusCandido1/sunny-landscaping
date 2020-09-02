@@ -158,7 +158,7 @@
 @section('script')
 <script type="text/javascript">
  $('#dataTable').DataTable({
-    "order": [[ 0, "desc" ]] 
+    "order": [[ 0, "asc" ]] 
 });
 </script>
 @endsection
