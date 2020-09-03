@@ -544,7 +544,7 @@
                         <div class="card">
                           <div class="card-header">
                             <a class="card-link" data-toggle="collapse" href="#collapse9">
-                            9 - transformer and Led Lights
+                            9 - Transformer and Led Lights
                             </a>
                             <button type="button" onclick="add9()" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> New Item
