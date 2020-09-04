@@ -37,7 +37,7 @@
                   <th style="" scope="col" >Type</th>
                   <th style="" scope="col" >Unit Price</th>
                   <th style="" scope="col" >Investment</th>
-                  <th style="" scope="col" >Action</th>
+                  <th style="text-align: center; width: 15%" scope="col" >Action</th>
 
                 </tr>
               </thead>
@@ -527,7 +527,7 @@
   item++;
       var objTo = document.getElementById('item_fields')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="1 - PAVERS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem1(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="1 - PAVERS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable1.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable1.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem1(this)" class="btn btn-danger mr-1"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse1').collapse("show")
   }
@@ -638,6 +638,55 @@
       objTo.appendChild(divtest);
       $('#collapse13').collapse("show")
   }
+
+  function get_previoussibling(n)
+{
+    x=n.previousSibling;
+    while (x.nodeType!=1)
+      {
+      x=x.previousSibling;
+      }
+    return x;
+} 
+
+function get_nextsibling(n)
+{
+    x=n.nextSibling;
+    while ( x != null && x.nodeType!=1)
+      {
+      x=x.nextSibling;
+      }
+    return x;
+} 
+
+  function moveUpTable1(){
+    var table,
+            row = this.parentNode;
+        
+        while ( row != null ) {
+            if ( row.nodeName == 'TR' ) {
+                break;
+            }
+            row = row.parentNode;
+        }
+        table = row.parentNode;
+        table.insertBefore ( row, get_previoussibling( row ) );
+  }
+
+  function moveDownTable1()
+    {
+        var table,
+            row = this.parentNode;
+        
+        while ( row != null ) {
+            if ( row.nodeName == 'TR' ) {
+                break;
+            }
+            row = row.parentNode;
+        }
+        table = row.parentNode;
+        table.insertBefore ( row, get_nextsibling ( get_nextsibling( row ) ) );
+    }
   
   function deleteItem1(button){
     var empTab = document.getElementById('tb1');
