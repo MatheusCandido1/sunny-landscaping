@@ -37,7 +37,7 @@
                   <th style="" scope="col" >Type</th>
                   <th style="" scope="col" >Unit Price</th>
                   <th style="" scope="col" >Investment</th>
-                  <th style="text-align: center; width: 15%" scope="col" >Action</th>
+                  <th style="text-align: center; width: 18%" scope="col" >Action</th>
 
                 </tr>
               </thead>
@@ -69,7 +69,7 @@
                     <th style="" scope="col" >Type</th>
                     <th style="" scope="col" >Unit Price</th>
                     <th style="" scope="col" >Investment</th>
-                  <th style="" scope="col" >Action</th>
+                  <th style="text-align: center; width: 18%" scope="col" >Action</th>
                   </tr>
                 </thead>
                 <tbody  id="item_fields2">
@@ -99,7 +99,7 @@
                       <th style="" scope="col" >Type</th>
                       <th style="" scope="col" >Unit Price</th>
                       <th style="" scope="col" >Investment</th>
-                      <th style="" scope="col" >Action</th>
+                      <th style="text-align: center; width: 18%" scope="col" >Action</th>
                     </tr>
                   </thead>
                   <tbody  id="item_fields3">
@@ -131,7 +131,7 @@
                         <th style="" scope="col" >Type</th>
                         <th style="" scope="col" >Unit Price</th>
                         <th style="" scope="col" >Investment</th>
-                        <th style="" scope="col" >Action</th>
+                        <th style="text-align: center; width: 18%" scope="col" >Action</th>
 
                       </tr>
                     </thead>
@@ -164,7 +164,7 @@
                           <th style="" scope="col" >Type</th>
                           <th style="" scope="col" >Unit Price</th>
                           <th style="" scope="col" >Investment</th>
-                          <th style="" scope="col" >Action</th>
+                          <th style="text-align: center; width: 18%" scope="col" >Action</th>
                         </tr>
                       </thead>
                       <tbody  id="item_fields5">
@@ -196,7 +196,7 @@
                             <th style="" scope="col" >Type</th>
                             <th style="" scope="col" >Unit Price</th>
                             <th style="" scope="col" >Investment</th>
-                            <th style="" scope="col" >Action</th>
+                            <th style="text-align: center; width: 18%" scope="col" >Action</th>
                           </tr>
                         </thead>
                         <tbody  id="item_fields6">
@@ -228,7 +228,7 @@
                               <th style="" scope="col" >Type</th>
                               <th style="" scope="col" >Unit Price</th>
                               <th style="" scope="col" >Investment</th>
-                              <th style="" scope="col" >Action</th>
+                              <th style="text-align: center; width: 18%" scope="col" >Action</th>
                             </tr>
                           </thead>
                           <tbody  id="item_fields7">
@@ -260,7 +260,7 @@
                                 <th style="" scope="col" >Type</th>
                                 <th style="" scope="col" >Unit Price</th>
                                 <th style="" scope="col" >Investment</th>
-                                <th style="" scope="col" >Action</th>
+                                <th style="text-align: center; width: 18%" scope="col" >Action</th>
                               </tr>
                             </thead>
                             <tbody  id="item_fields8">
@@ -292,7 +292,7 @@
                                   <th style="" scope="col" >Type</th>
                                   <th style="" scope="col" >Unit Price</th>
                                   <th style="" scope="col" >Investment</th>
-                                  <th style="" scope="col" >Action</th>
+                                  <th style="text-align: center; width: 18%" scope="col" >Action</th>
                                 </tr>
                               </thead>
                               <tbody  id="item_fields9">
@@ -324,7 +324,7 @@
                                     <th style="" scope="col" >Type</th>
                                     <th style="" scope="col" >Unit Price</th>
                                     <th style="" scope="col" >Investment</th>
-                                    <th style="" scope="col" >Action</th>
+                                    <th style="text-align: center; width: 18%" scope="col" >Action</th>
 
                                   </tr>
                                 </thead>
@@ -357,7 +357,7 @@
                                       <th style="" scope="col" >Type</th>
                                       <th style="" scope="col" >Unit Price</th>
                                       <th style="" scope="col" >Investment</th>
-                                      <th style="" scope="col" >Action</th>
+                                      <th style="text-align: center; width: 18%" scope="col" >Action</th>
                                     </tr>
                                   </thead>
                                   <tbody  id="item_fields11">
@@ -389,7 +389,7 @@
                                         <th style="" scope="col" >Type</th>
                                         <th style="" scope="col" >Unit Price</th>
                                         <th style="" scope="col" >Investment</th>
-                                        <th style="" scope="col" >Action</th>
+                                        <th style="text-align: center; width: 18%" scope="col" >Action</th>
                                       </tr>
                                     </thead>
                                     <tbody  id="item_fields12">
@@ -422,7 +422,7 @@
                       <th style="" scope="col" >Type</th>
                       <th style="" scope="col" >Unit Price</th>
                       <th style="" scope="col" >Investment</th>
-                      <th style="" scope="col" >Action</th>
+                      <th style="text-align: center; width: 18%" scope="col" >Action</th>
                     </tr>
                   </thead>
                   <tbody  id="item_fields13">
@@ -527,7 +527,7 @@
   item++;
       var objTo = document.getElementById('item_fields')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="1 - PAVERS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable1.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable1.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem1(this)" class="btn btn-danger mr-1"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="1 - PAVERS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem1(this)" class="btn btn-danger mr-1"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse1').collapse("show")
   }
@@ -536,7 +536,7 @@
   item++;
       var objTo = document.getElementById('item_fields2')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="2 - RETAINING WALL" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem2(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="2 - RETAINING WALL" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem2(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse2').collapse("show")
   }
@@ -544,7 +544,7 @@
     item++;
       var objTo = document.getElementById('item_fields3')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="3 - GRASS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem3(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="3 - GRASS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem3(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse3').collapse("show")
   }
@@ -553,7 +553,7 @@
     item++;
       var objTo = document.getElementById('item_fields4')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="4 - TREES AND PLANTS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem4(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="4 - TREES AND PLANTS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem4(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse4').collapse("show")
   }
@@ -562,7 +562,7 @@
     item++;
       var objTo = document.getElementById('item_fields5')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="5 - IRRIGATION" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem5(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="5 - IRRIGATION" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem5(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse5').collapse("show")
   }
@@ -580,7 +580,7 @@
     item++;
       var objTo = document.getElementById('item_fields7')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="7 - FIRE PIT" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem7(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="7 - FIRE PIT" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem7(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse7').collapse("show")
   }
@@ -589,7 +589,7 @@
     item++;
       var objTo = document.getElementById('item_fields8')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="8 - DRAINAGE" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem8(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="8 - DRAINAGE" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem8(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse8').collapse("show")
   }
@@ -598,7 +598,7 @@
     item++;
       var objTo = document.getElementById('item_fields9')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="9 - TRANSFORMER AND LED LIGHTS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem9(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="9 - TRANSFORMER AND LED LIGHTS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem9(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse9').collapse("show")
   }
@@ -607,7 +607,7 @@
     item++;
       var objTo = document.getElementById('item_fields10')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="10 - DUMPSTER" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem10(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="10 - DUMPSTER" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem10(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse10').collapse("show")
   }
@@ -616,7 +616,7 @@
     item++;
       var objTo = document.getElementById('item_fields11')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="11 - LABOR" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem11(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="11 - LABOR" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem11(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse11').collapse("show")
   }
@@ -625,7 +625,7 @@
     item++;
       var objTo = document.getElementById('item_fields12')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="12 - EXTRA" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem12(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="12 - EXTRA" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">  </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem12(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest)
       $('#collapse12').collapse("show")
   }
@@ -634,7 +634,7 @@
   item++;
       var objTo = document.getElementById('item_fields13')
       var divtest = document.createElement("tr");
-      divtest.innerHTML = '<input type="hidden" value="13 - OTHERS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">   </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><button onclick="deleteItem13(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
+      divtest.innerHTML = '<input type="hidden" value="13 - OTHERS" name="group_type[]"><td> <div class="input-group mb-3"> <div class="input-group-prepend"> <input type="hidden" name="id[]" value=""> <input type="text" name="description[]" required class="form-control" value="" placeholder="Description"/> </div> </td> <td> <input id="'+item+'qnt" value="0" onchange="findTotal()" name="qnt[]" type="text" class="form-control" placeholder="Quantity">   </td> <td> <input type="text" required name="type[]" placeholder="" class="form-control"> </td> <td> <div class="input-group mb-3"> <div class="input-group-prepend"> <span class="input-group-text">$</span> </div> <input type="text" value="0" id="'+item+'value" onchange="findTotal()" name="unit_price[]" class="form-control" required placeholder="Unit cost"> </div> </td> <td> <input type="text" id="'+item+'total" readonly name="investment[]" class="form-control items" placeholder="Investment"> </td><td style="text-align: center;" scope="col"><a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down down"></i></a><button onclick="deleteItem13(this)" class="btn btn-danger"><i class="fas fa-trash"/></button></td>';
       objTo.appendChild(divtest);
       $('#collapse13').collapse("show")
   }
@@ -659,7 +659,7 @@ function get_nextsibling(n)
     return x;
 } 
 
-  function moveUpTable1(){
+  function moveUpTable(){
     var table,
             row = this.parentNode;
         
@@ -673,7 +673,7 @@ function get_nextsibling(n)
         table.insertBefore ( row, get_previoussibling( row ) );
   }
 
-  function moveDownTable1()
+  function moveDownTable()
     {
         var table,
             row = this.parentNode;
