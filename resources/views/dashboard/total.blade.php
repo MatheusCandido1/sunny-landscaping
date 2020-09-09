@@ -28,10 +28,10 @@
                 <label class="" for="inputLastName">Status</label>
                 <select name="filter_status" id="filter_status" class="form-control" required>
                     <option value="">Select Status</option>
-                    <option value="1" >Approved</option>
+                    <option {{$status ==  1 ? 'selected':''}} value="1" >Approved</option>
                     <option value="2">Not Approved</option>
                     <option value="3">Waiting</option>
-                    <option value="4" selected>Sent Proposal</option>
+                    <option {{$status ==  4 ? 'selected':''}} value="4">Sent Proposal</option>
                 </select>           
          </div>
         </div>
@@ -146,8 +146,8 @@
   $('#start_date').val(firstDay);
 
     $('#end_date').val(lastDay);
-
-    load_data(firstDay, lastDay, 4);
+  var status_val = {!! $status !!}
+    load_data(firstDay, lastDay, status_val);
   };
 
 });

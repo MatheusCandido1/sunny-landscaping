@@ -70,9 +70,9 @@ class HomeController extends Controller
         }
     }
 
-    public function projectsByStatus(){
+    public function projectsByStatus($status){
         try{
-            return view('dashboard.status');
+            return view('dashboard.status', ['status' => $status]);
 
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
@@ -87,10 +87,10 @@ class HomeController extends Controller
         }
     }
 
-    public function totalByStatus(){
+    public function totalByStatus($status){
         try{
            
-            return view('dashboard.total');
+            return view('dashboard.total', ['status' => $status]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }

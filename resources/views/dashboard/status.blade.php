@@ -9,7 +9,7 @@
             <h1 class="mt-4" id="monthName"></h1>
         </div>
         <div class="col-md-6">
-        <a type="button" href="{{ route('dashboard.total' )}}" class="btn btn-outline-success float-right "><i class="fas fa-calendar-check"></i> Date range filters</a>
+        <a type="button" href="{{ route('dashboard.total', ['status' => 1])}}" class="btn btn-outline-success float-right "><i class="fas fa-calendar-check"></i> Date range filters</a>
         </div>
     </div>
 
@@ -22,8 +22,8 @@
                 
                 <label class="" for="inputLastName">Status</label>
                 <select name="filter_status" id="filter_status" class="form-control" required>
-                    <option value="">Select Status</option>
-                    <option value="1">Approved</option>
+                <option value="">Select Status</option>
+                    <option selected value="1">Approved</option>
                     <option value="2">Not Approved</option>
                     <option value="3">Waiting</option>
                     <option value="4">Sent Proposal</option>
@@ -109,7 +109,9 @@ $('#filter').click(function(){
 window.onload = function() {
     $('#status_data').DataTable().destroy();
 
-    fill_datatable(1); 
+    var status_id_value = {!! $status !!}
+
+    fill_datatable(status_id_value); 
 
     const today = new Date()
     const month = today.toLocaleString('En', { month: 'long' })
