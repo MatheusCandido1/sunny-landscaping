@@ -131,7 +131,6 @@ class PdfController extends Controller
             ->orderBy('change_orders.created_at', 'DESC')
             ->first();
 
-
             
             $pdf = PDF::loadView('pdfs.waiver',compact('data','amount','newvalue'));
             return $pdf->setPaper('a4')->stream('waiver.pdf');
