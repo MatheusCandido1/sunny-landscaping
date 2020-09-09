@@ -31,13 +31,45 @@ class HomeController extends Controller
 
     public function optionsByStatus($start_date, $end_date, $options) {
         try {
+            if($options == 1){
             $data = DB::table('visits')
             ->selectRaw('visits.id as visit_id, CONCAT("#",services.quote_key) as service_id, (CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, customers.id as customer_id, customers.name as customer_name')
             ->join('customers','customers.id','=','visits.customer_id')
             ->join('services', 'visits.id','=','services.visit_id')
             ->where('services.status','=',$options)
-            ->whereBetween('services.created_at', array($start_date, $end_date))
+            ->whereBetween('services.approved_on', array($start_date, $end_date))
             ->get();
+            } else if($options == 2){
+                $data = DB::table('visits')
+                ->selectRaw('visits.id as visit_id, CONCAT("#",services.quote_key) as service_id, (CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, customers.id as customer_id, customers.name as customer_name')
+                ->join('customers','customers.id','=','visits.customer_id')
+                ->join('services', 'visits.id','=','services.visit_id')
+                ->where('services.status','=',$options)
+                ->whereBetween('services.not_approved_on', array($start_date, $end_date))
+                ->get();  
+            }
+
+            else if($options == 3){
+                $data = DB::table('visits')
+                ->selectRaw('visits.id as visit_id, CONCAT("#",services.quote_key) as service_id, (CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, customers.id as customer_id, customers.name as customer_name')
+                ->join('customers','customers.id','=','visits.customer_id')
+                ->join('services', 'visits.id','=','services.visit_id')
+                ->where('services.status','=',$options)
+                ->whereBetween('services.waiting_on', array($start_date, $end_date))
+                ->get();  
+            }
+
+            else {
+                $data = DB::table('visits')
+                ->selectRaw('visits.id as visit_id, CONCAT("#",services.quote_key) as service_id, (CASE WHEN services.status = 2 THEN  "Not Approved" WHEN services.status = 1 THEN "Approved" WHEN services.status = 3 THEN "Waiting" WHEN services.status = 4 THEN "Sent Proposal" END) as status, customers.id as customer_id, customers.name as customer_name')
+                ->join('customers','customers.id','=','visits.customer_id')
+                ->join('services', 'visits.id','=','services.visit_id')
+                ->where('services.status','=',$options)
+                ->whereBetween('services.sent_proposal_on', array($start_date, $end_date))
+                ->get();  
+            }
+
+          //  dd($data);
 
             return view('dashboard.options', ['data' => $data]);
         } catch (Throwable $e) {
