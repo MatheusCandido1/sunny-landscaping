@@ -69,7 +69,6 @@ class HomeController extends Controller
                 ->get();  
             }
 
-          //  dd($data);
 
             return view('dashboard.options', ['data' => $data]);
         } catch (Throwable $e) {

@@ -39,7 +39,11 @@ opacity: 0.1; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
 <p><strong>Property name: </strong>{{ $data[0]->customer_name}}  </p>
 <p><strong>Property location: </strong>{{ $data[0]->address}}, {{ $data[0]->city_name}}, {{ $data[0]->state}} {{ $data[0]->zipcode}} </p>
 <p><strong>Invoice/Payment Application Number: </strong> {{ $data[0]->invoice_number}}</p>
+@if(isset($newvalue))
+<p><strong>Payment amount: </strong>US$ {{number_format($newvalue->total,2)}}</p>
+@else
 <p><strong>Payment amount: </strong>US$ {{number_format($amount[0]->total,2)}}</p>
+@endif
 <p><strong>Amount of Disputed Claims: </strong>ZERO</p>
 <p style="text-align:
 justify">The undersigned has been paid in full for all work, materials and equipment furnished to his

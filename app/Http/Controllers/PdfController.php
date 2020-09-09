@@ -125,7 +125,15 @@ class PdfController extends Controller
             ->get();
 
             
-            $pdf = PDF::loadView('pdfs.waiver',compact('data','amount'));
+            $newvalue = DB::table('change_orders')
+            ->selectRaw('revised_contract_amount as total')
+            ->where('change_orders.visit_id','=', $visit_id)
+            ->orderBy('change_orders.created_at', 'DESC')
+            ->first();
+
+
+            
+            $pdf = PDF::loadView('pdfs.waiver',compact('data','amount','newvalue'));
             return $pdf->setPaper('a4')->stream('waiver.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
