@@ -189,7 +189,7 @@ class HomeController extends Controller
         ->get();
 
         $monthsAp = DB::table('visits')
-        ->selectRaw('MONTHNAME(visits.date) as month, count(*) as approved')
+        ->selectRaw('MONTHNAME(visits.date) as month, count(case when visits.id is null then 0 end) as approved')
         ->join('customers','customers.id','=','visits.customer_id')
         ->where('visits.status_id','=', 3)
         ->groupBy(DB::raw('MONTHNAME(visits.date)'))
@@ -234,7 +234,9 @@ class HomeController extends Controller
             }
         }
 
-        
+        if(!isset($newApproved))
+            $newApproved[] = 0;
+            
         $chart2 = new StatusChart;
         $chart2->labels($months);
         $chart2->dataset('Project Approved', 'bar',$newApproved)->options([
