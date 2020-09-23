@@ -857,7 +857,7 @@
                                                                <input type="text" id="{{$loop->iteration}}value"  value="{{number_format($item->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" class="form-control" placeholder="Unit cost"> </div>
                                                                </td> 
                                                                <td> 
-                                                                 <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{number_format($item->investment,2)}}" class="form-control items" placeholder="Investment">
+                                                                 <input type="text" id="{{$loop->iteration}}total" readonly name="investment[]" value="{{$item->investment}}" class="form-control items" placeholder="Investment">
                                                                  </td>
                                                                  <td style="text-align: center;" scope="col">
                                                                   <a type="button" onclick="moveUpTable.call(this)" style="color: white"  class="btn btn-primary mr-1"><i class="fas fa-arrow-up"></i></a><a type="button" style="color: white" onclick="moveDownTable.call(this)" class="btn btn-primary mr-1"><i class="fas fa-arrow-down"></i></a>
@@ -1252,6 +1252,9 @@ function get_nextsibling(n)
           }
       var value = document.getElementById(i+"value").value;
       var qnt = document.getElementById(i+"qnt").value;
+      
+      value = value.replace(/[^\d\.\-]/g, ""); 
+      qnt = qnt.replace(/[^\d\.\-]/g, ""); 
       var investment = parseFloat(value) * parseFloat(qnt);
       document.getElementById(i+"total").value = investment.toFixed(2);   
         }
