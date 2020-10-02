@@ -80,6 +80,7 @@ class ServiceController extends Controller
         $extra = DB::table('items')->selectRaw('items.group_type, count(*) as quantity')->join('item_service','item_service.item_id','=','items.id')->join('services','services.id','=','item_service.service_id')->where('services.id', '=', $service_id)->where('items.group_type','=','12 - EXTRA')->groupBy('items.group_type')->first();
         $others = DB::table('items')->selectRaw('items.group_type, count(*) as quantity')->join('item_service','item_service.item_id','=','items.id')->join('services','services.id','=','item_service.service_id')->where('services.id', '=', $service_id)->where('items.group_type','=','13 - OTHERS')->groupBy('items.group_type')->first();
 
+
         return view('services.edit', ['extra' => $extra, 'others' => $others, 'grass' => $grass, 'trees' => $trees, 'irrigation' => $irrigation, 'rocks' => $rocks, 'fire' => $fire, 'trans' => $trans, 'dumpster' => $dumpster,'labor' => $labor,'drainage' => $drainage, 'pavers' => $pavers, 'walls' => $walls,  'service_id'=> $service_id,'service' => $serviceData, 'items' => $itemData, 'customer_id' => $customer_id,'visit_id' => $visit_id]);
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

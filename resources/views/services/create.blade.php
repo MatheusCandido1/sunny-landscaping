@@ -691,66 +691,79 @@ function get_nextsibling(n)
   function deleteItem1(button){
     var empTab = document.getElementById('tb1');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem2(button){
     var empTab = document.getElementById('tb2');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem3(button){
     var empTab = document.getElementById('tb3');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem4(button){
     var empTab = document.getElementById('tb4');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem5(button){
     var empTab = document.getElementById('tb5');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem6(button){
     var empTab = document.getElementById('tb6');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem7(button){
     var empTab = document.getElementById('tb7');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem8(button){
     var empTab = document.getElementById('tb8');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem9(button){
     var empTab = document.getElementById('tb9');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem10(button){
     var empTab = document.getElementById('tb10');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem11(button){
     var empTab = document.getElementById('tb11');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem12(button){
     var empTab = document.getElementById('tb12');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function deleteItem13(button){
     var empTab = document.getElementById('tb13');
     empTab.deleteRow(button.parentNode.parentNode.rowIndex);
+    findTotal();
   }
 
   function getFinalBalance(){
