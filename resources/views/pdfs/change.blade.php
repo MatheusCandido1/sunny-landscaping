@@ -160,8 +160,9 @@ border:none'>
 <p><span style="font-size: 12;">CHANGE ORDER AMOUNT #{{$data->change_order_key}}: US$ {{number_format($data->change_order_amount,2)}} &nbsp; </span></p>
 <p><span style="font-size: 12;"><strong>REVISED CONTRACT AMOUNT: US$  {{number_format($data->revised_contract_amount,2)}} </strong><span></p>
 
+ @if(count($elementData) > 5)
   <div class="page_break"></div>
-  
+  @endif
   <div id="image">
     <img src="https://i.ibb.co/n6SVRQr/Logo-Sun.jpg" alt="..." />
   </div>
@@ -180,6 +181,7 @@ border:none'>
 <br>
 <br>
 <br>
+<div style="margin-top: 40px">
 <div style="text-align: center">
   <img  style="height: 35%; width: 35%; position: absolute; margin-top: -60px; margin-left: -60px" src="https://i.ibb.co/4jY1dHg/signature.png" data-holder-rendered="true" />       
 </div>
@@ -188,7 +190,7 @@ normal;border:none'><span style='font-size:16.0pt'>Glaucia Alves</span> </p>
 
 <p class=MsoNormal style='font-size:12.0pt;margin-bottom:0in;margin-bottom:.0001pt;line-height:
 normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
-
+</div>
 <br>
 
 <table class=1 border=1 cellspacing=0 cellpadding=0 width=384 style='margin-left:
