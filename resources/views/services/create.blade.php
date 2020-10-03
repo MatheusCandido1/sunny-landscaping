@@ -27,7 +27,7 @@
           <i class="fas fa-plus"></i> New Item
           </button>
         </div>
-        <div id="collapse1" class="collapse" data-parent="#accordion">
+        <div id="collapse1" class="collapse" >
           <div class="card-body">
             <table id="tb1" class="table table-bordered" width="100%" cellspacing="0">
               <thead>
@@ -38,7 +38,6 @@
                   <th style="" scope="col" >Unit Price</th>
                   <th style="" scope="col" >Investment</th>
                   <th style="text-align: center; width: 18%" scope="col" >Action</th>
-
                 </tr>
               </thead>
               <tbody  id="item_fields">
@@ -59,7 +58,7 @@
             <i class="fas fa-plus"></i> New Item
             </button>
           </div>
-          <div id="collapse2" class="collapse" data-parent="#accordion">
+          <div id="collapse2" class="collapse" >
             <div class="card-body">
               <table id="tb2" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -89,7 +88,7 @@
               <i class="fas fa-plus"></i> New Item
               </button>
             </div>
-            <div id="collapse3" class="collapse" data-parent="#accordion">
+            <div id="collapse3" class="collapse" >
               <div class="card-body">
                 <table  id="tb3" class="table table-bordered" width="100%" cellspacing="0">
                   <thead>
@@ -121,7 +120,7 @@
                 <i class="fas fa-plus"></i> New Item
                 </button>
               </div>
-              <div id="collapse4" class="collapse" data-parent="#accordion">
+              <div id="collapse4" class="collapse" >
                 <div class="card-body">
                   <table id="tb4" class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
@@ -154,7 +153,7 @@
                   <i class="fas fa-plus"></i> New Item
                   </button>
                 </div>
-                <div id="collapse5" class="collapse" data-parent="#accordion">
+                <div id="collapse5" class="collapse">
                   <div class="card-body">
                     <table id="tb5" class="table table-bordered" width="100%" cellspacing="0">
                       <thead>
@@ -186,7 +185,7 @@
                     <i class="fas fa-plus"></i> New Item
                     </button>
                   </div>
-                  <div id="collapse6" class="collapse" data-parent="#accordion">
+                  <div id="collapse6" class="collapse">
                     <div class="card-body">
                       <table id="tb6" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
@@ -218,7 +217,7 @@
                       <i class="fas fa-plus"></i> New Item
                       </button>
                     </div>
-                    <div id="collapse7" class="collapse" data-parent="#accordion">
+                    <div id="collapse7" class="collapse" >
                       <div class="card-body">
                         <table id="tb7" class="table table-bordered" width="100%" cellspacing="0">
                           <thead>
@@ -250,7 +249,7 @@
                         <i class="fas fa-plus"></i> New Item
                         </button>
                       </div>
-                      <div id="collapse8" class="collapse" data-parent="#accordion">
+                      <div id="collapse8" class="collapse">
                         <div class="card-body">
                           <table id="tb8" class="table table-bordered" width="100%" cellspacing="0">
                             <thead>
@@ -282,7 +281,7 @@
                           <i class="fas fa-plus"></i> New Item
                           </button>
                         </div>
-                        <div id="collapse9" class="collapse" data-parent="#accordion">
+                        <div id="collapse9" class="collapse">
                           <div class="card-body">
                             <table id="tb9" class="table table-bordered" width="100%" cellspacing="0">
                               <thead>
@@ -314,7 +313,7 @@
                             <i class="fas fa-plus"></i> New Item
                             </button>
                           </div>
-                          <div id="collapse10" class="collapse" data-parent="#accordion">
+                          <div id="collapse10" class="collapse">
                             <div class="card-body">
                               <table class="table table-bordered" id="tb10" width="100%" cellspacing="0">
                                 <thead>
@@ -347,7 +346,7 @@
                               <i class="fas fa-plus"></i> New Item
                               </button>
                             </div>
-                            <div id="collapse11" class="collapse" data-parent="#accordion">
+                            <div id="collapse11" class="collapse">
                               <div class="card-body">
                                 <table class="table table-bordered" id="tb11" width="100%" cellspacing="0">
                                   <thead>
@@ -379,7 +378,7 @@
                                 <i class="fas fa-plus"></i> New Item
                                 </button>
                               </div>
-                              <div id="collapse12" class="collapse" data-parent="#accordion">
+                              <div id="collapse12" class="collapse">
                                 <div class="card-body">
                                   <table id="tb12" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
@@ -412,7 +411,7 @@
               <i class="fas fa-plus"></i> New Item
               </button>
             </div>
-            <div id="collapse13" class="collapse" data-parent="#accordion">
+            <div id="collapse13" class="collapse">
               <div class="card-body">
                 <table id="tb13" class="table table-bordered" width="100%" cellspacing="0">
                   <thead>
