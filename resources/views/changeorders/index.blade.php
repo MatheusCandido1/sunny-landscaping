@@ -18,7 +18,6 @@
                     <tr>
                         <th style="text-align: center; width: 18%" scope="col" >Change Order #</th>
                         <th style="text-align: center" scope="col" >Date</th>
-                        <th style="text-align: center" scope="col">Original Amount</th>
                         <th style="text-align: center" scope="col">Change Order Amount</th>
                         <th style="text-align: center" scope="col">Revised Contract Amount</th>
                         <th style="text-align: center" scope="col">Document</th>
@@ -30,7 +29,6 @@
                     <tr>
                     <td style="text-align: center; ">#{{$orders->change_order_key}} </td>
                     <td style="text-align: center">{{\Carbon\Carbon::parse($orders->date)->format('m/d/yy')}} </td>
-                    <td style="text-align: center">$ {{number_format($orders->original_contract_amount,2)}}</td>
                     <td style="text-align: center">$ {{number_format($orders->change_order_amount,2)}}</td>
                     
                     <td style="text-align: center">$ {{number_format($orders->revised_contract_amount,2)}}</td>
