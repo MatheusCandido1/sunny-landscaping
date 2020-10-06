@@ -220,6 +220,11 @@ class PdfController extends Controller
             ->where('change_orders.id','=', $change_id)
             ->first();
 
+            $newData = DB::table('change_orders')
+            ->selectRaw('change_orders.date as order_date, id, discount, subtotal, original_contract_amount, change_order_amount, revised_contract_amount, option_1, change_order_key')
+            ->where('change_orders.visit_id','=', $visit_id)
+            ->get();
+
             $customerData = DB::table('visits')
             ->selectRaw('cities.name as city_name, customers.state,customers.zipcode,customers.name as customer_name, customers.address, visits.project_name')
             ->join('customers','customers.id','=','visits.customer_id')
@@ -245,7 +250,7 @@ class PdfController extends Controller
             $total = $amount->total;
 
 
-            $pdf = PDF::loadView('pdfs.change', compact('total','data','customerData','elementData'));
+            $pdf = PDF::loadView('pdfs.change', compact('newData','total','data','customerData','elementData'));
             return $pdf->setPaper('a4')->stream('change.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');

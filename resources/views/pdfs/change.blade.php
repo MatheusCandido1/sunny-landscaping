@@ -158,7 +158,9 @@ border:none'>
 @endif
 <p><span style="font-size: 12;">ORIGINAL CONTRACT AMOUNT: US$ {{number_format($total,2)}} </span></p>
 
-<p><span style="font-size: 12;">CHANGE ORDER AMOUNT #{{$data->change_order_key}}: US$ {{number_format($data->change_order_amount,2)}} &nbsp; </span></p>
+@foreach($newData as $nd)
+<p><span style="font-size: 12;">CHANGE ORDER AMOUNT #{{$nd->change_order_key}}: US$ {{number_format($nd->change_order_amount,2)}} &nbsp; </span></p>
+@endforeach
 <p><span style="font-size: 12;"><strong>REVISED CONTRACT AMOUNT: US$  {{number_format($data->revised_contract_amount,2)}} </strong><span></p>
 
  @if(count($elementData) > 5)
