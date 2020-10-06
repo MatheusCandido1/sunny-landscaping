@@ -156,7 +156,8 @@ border:none'>
 @if ($data->discount != 0)
 <p><span style="font-size: 12;">Add: ({{number_format($data->discount,2)}}) - Discount</span></p>
 @endif
-<p><span style="font-size: 12;">ORIGINAL CONTRACT AMOUNT: US$ {{number_format($data->original_contract_amount,2)}} </span></p>
+<p><span style="font-size: 12;">ORIGINAL CONTRACT AMOUNT: US$ {{number_format($total,2)}} </span></p>
+
 <p><span style="font-size: 12;">CHANGE ORDER AMOUNT #{{$data->change_order_key}}: US$ {{number_format($data->change_order_amount,2)}} &nbsp; </span></p>
 <p><span style="font-size: 12;"><strong>REVISED CONTRACT AMOUNT: US$  {{number_format($data->revised_contract_amount,2)}} </strong><span></p>
 

@@ -59,17 +59,11 @@ class ChangeOrderController extends Controller
             ->where('visits.id','=',$visit_id)
             ->first();
 
-            $change_amount = DB::table('change_orders')
-            ->selectRaw('sum(change_orders.change_order_amount) as value')
-            ->where('change_orders.visit_id', $visit_id)
-            ->first();
 
             $total = $amount->total;
-            $value = $change_amount->value;
-            $newtotal = $total + $value;
 
 
-            return view('changeorders.create', ['customer'=> $customer_id, 'visit' => $visit_id,'itemData' => $itemData,'change_amount' => $newtotal]);
+            return view('changeorders.create', ['customer'=> $customer_id, 'visit' => $visit_id,'itemData' => $itemData,'change_amount' => $total]);
          }catch (Throwable $e) {
           toast('Pleasy try again!','error');
       }

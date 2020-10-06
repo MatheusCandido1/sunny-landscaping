@@ -234,8 +234,18 @@ class PdfController extends Controller
             ->where('change_orders.id', '=', $change_id)
             ->get();
 
+            $amount = DB::table('services')
+            ->selectRaw('sum(services.total) as total')
+            ->join('visits', 'visits.id','=','services.visit_id')
+            ->where('services.status','=','1')
+            ->where('visits.id','=',$visit_id)
+            ->first();
 
-            $pdf = PDF::loadView('pdfs.change', compact('data','customerData','elementData'));
+
+            $total = $amount->total;
+
+
+            $pdf = PDF::loadView('pdfs.change', compact('total','data','customerData','elementData'));
             return $pdf->setPaper('a4')->stream('change.pdf');
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
