@@ -181,19 +181,18 @@ border:none'>
 <br>
 <br>
 <br>
-<div style="margin-top: 40px">
-<div style="text-align: center">
-  <img  style="height: 35%; width: 35%; position: absolute; margin-top: -60px; margin-left: -60px" src="https://i.ibb.co/4jY1dHg/signature.png" data-holder-rendered="true" />       
-</div>
-<p class=MsoNormal style='margin-bottom:0;margin-bottom:.0001pt;line-height:
-normal;border:none'><span style='font-size:16.0pt'>Glaucia Alves</span> </p>
-
-<p class=MsoNormal style='font-size:12.0pt;margin-bottom:0in;margin-bottom:.0001pt;line-height:
-normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
-</div>
-<br>
-
-<table class=1 border=1 cellspacing=0 cellpadding=0 width=384 style='margin-left:
+<div style="margin-top: -20px">
+  <div style="text-align: center">
+    <img  style="height: 35%; width: 35%; position: absolute; margin-top: -60px; margin-left: -60px" src="https://i.ibb.co/4jY1dHg/signature.png" data-holder-rendered="true" />       
+  </div>
+  <p class=MsoNormal style='margin-bottom:0;margin-bottom:.0001pt;line-height:
+  normal;border:none'><span style='font-size:16.0pt'>Glaucia Alves</span> </p>
+  
+  <p class=MsoNormal style='font-size:12.0pt;margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
+  </div>
+  <br>
+  <table class=1 border=1 cellspacing=0 cellpadding=0 width=384 style='margin-left:
  148.25pt;border-collapse:collapse;border:none'>
 
  <tr>
@@ -211,6 +210,9 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
   </td>
  </tr>
 </table>
+ @if(count($elementData) > 5)
+
+
 
 <footer class=MsoNormal>
   <span lang=EN-US style='font-size:8.0pt'>We
@@ -218,6 +220,7 @@ normal;border:none'>Sunny Landscaping &amp; Pavers Design LLC</p>
   added a 3% processing fee. Prices are valid for 60 days after the date of
   proposal, and are subject to change after that period due to raw materials or
   labor costs.</span></footer>
+  @endif
 </body>
 
 </html>
