@@ -20,22 +20,19 @@ class Note extends Model
     {
         return DB::table('notes')
         ->selectRaw('notes.note_key')
-        ->where('notes.visit_id','=',$visit_id);
+        ->where('notes.visit_id',$visit_id);
     }
 
     public function storeNote($visit_id, $text)
     {
             $note = new Note();
-            $noteKey = $note->getLastNoteKey($visit_id)->latest()->first();
-
-            if(isset($noteKey)){
+            $noteKey = $note->getLastNoteKey($visit_id)->latest('note_key')->first();
             $newNoteKey = 0;
+            if(isset($noteKey)){
             $newNoteKey = $noteKey->note_key + 1;
             }else{
                 $newNoteKey = 1;
             }
-
-
         $notes = Note::create([
             'note_key' => $newNoteKey,
             'note' => $text,
