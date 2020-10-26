@@ -96,7 +96,8 @@ class NoteController extends Controller
     {
         try{
 
-        $noteKey = $note->getLastNoteKey($note->visit_id)->latest()->first();
+
+        $noteKey = $note->getLastNoteKey($note->visit_id)->latest('note_key')->first();
 
         if($note->note_key == $noteKey->note_key) {
         Note::destroy($note->id);
