@@ -37,6 +37,9 @@
  
                     </td>
                     <td style="text-align: center;" scope="col">
+                        @if($orders->id == $last)
+                        <a  href="{{route('changeorders.edit', ['changeorder' => $orders->id ,'visit'=>$visit, 'customer' => $customer])}}" type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>  
+                        @endif
                         <a href="" type="button" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this change order?')) { document.getElementById('destroy-form-{{$orders->id}}').submit(); }" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         <form id="destroy-form-{{$orders->id}}" action="{{ route('changeorders.destroy',$orders->id) }}" method="POST" style="display: none;">
                             @csrf

@@ -25,7 +25,9 @@ class ChangeOrderController extends Controller
     public function changeOrderByVisit($visit_id, $customer_id){
         try {
             $changeorders = ChangeOrder::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
-            return view('changeorders.index', ['changeorders' => $changeorders ,'visit' => $visit_id, 'customer' => $customer_id]);
+            $lastchangeorders = ChangeOrder::where('visit_id','=',$visit_id)->orderBy('change_order_key','desc')->first();
+
+            return view('changeorders.index', ['last' =>$lastchangeorders->id, 'changeorders' => $changeorders ,'visit' => $visit_id, 'customer' => $customer_id]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
@@ -137,6 +139,15 @@ class ChangeOrderController extends Controller
         }catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
+    }
+
+    public function editChangeOrder($changeorder, $visit, $customer) {
+        return view('changeorders.edit');
+
+    }
+
+    public function updateChangeOrder(){
+
     }
 
     /**
