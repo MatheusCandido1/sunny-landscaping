@@ -116,6 +116,7 @@ Route::get('changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderControll
 Route::get('create/changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderController@createChangeOrder')->name('changeorders.createChange');
 Route::get('changeorder/{changeorder}/visit/{visit}/customer/{customer}','ChangeOrderController@editChangeOrder')->name('changeorders.edit');
 Route::put('update/{changeorder}','ChangeOrderController@updateChangeOrder')->name('changeorders.update');
+Route::delete('changeorger/{changeorder}','ChangeOrderController@destroy')->name('changeorders.destroy');
 // Resources Routes
 Route::resources([
     'customers' => 'CustomerController',
@@ -128,7 +129,6 @@ Route::resources([
     'referrals' => 'ReferralController',
     'types' => 'TypeController',
     'users' => 'UserController',
-    'changeorders' => 'ChangeOrderController',
     'informations' => 'InformationController'
 ]);
 });
