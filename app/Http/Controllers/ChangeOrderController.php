@@ -153,15 +153,25 @@ class ChangeOrderController extends Controller
         } else {
         $changeorderData = DB::table('change_orders')->select('id','change_order_key','date','discount','subtotal','original_contract_amount','change_order_amount','revised_contract_amount','option_1','status','visit_id')->where('change_orders.id','=',$changeorder)->first();
 
-        $amount = DB::table('services')
-            ->selectRaw('sum(services.total) as total')
-            ->join('visits', 'visits.id','=','services.visit_id')
-            ->where('services.status','=','1')
-            ->where('visits.id','=',$visit)
-            ->first();
+        
+        $newChangeOrder = new ChangeOrder();
+        $newOriginalAmount = $newChangeOrder->getLastChangeOrderAmount($visit)->get();
 
-
-            $total = $amount->total;
+            if(count($newOriginalAmount) > 1) {
+                $num = count($newOriginalAmount)-2;
+                $total = $newOriginalAmount[$num]->revised_contract_amount;
+            }
+            
+            if(count($newOriginalAmount) == 1){
+                $amount = DB::table('services')
+                ->selectRaw('sum(services.total) as total')
+                ->join('visits', 'visits.id','=','services.visit_id')
+                ->where('services.status','=','1')
+                ->where('visits.id','=',$visit)
+                ->first();
+                $total = $amount->total;
+            }
+    
 
         $itemData = DB::table('items')
         ->selectRaw('services.quote_key as service_id, items.group_type,items.id,items.description, items.quantity, items.type, items.unit_price, items.investment')
