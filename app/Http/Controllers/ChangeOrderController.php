@@ -142,7 +142,27 @@ class ChangeOrderController extends Controller
     }
 
     public function editChangeOrder($changeorder, $visit, $customer) {
-        return view('changeorders.edit');
+        $changeorderData = DB::table('change_orders')->select('id','change_order_key','date','discount','subtotal','original_contract_amount','change_order_amount','revised_contract_amount','option_1','status','visit_id')->where('change_orders.id','=',$changeorder)->first();
+
+        
+        $itemData = DB::table('items')
+        ->selectRaw('services.quote_key as service_id, items.group_type,items.id,items.description, items.quantity, items.type, items.unit_price, items.investment')
+        ->join('item_service','item_service.item_id','=','items.id')
+        ->join('services','services.id','=','item_service.service_id')
+        ->join('visits','visits.id','=','services.visit_id')
+        ->where('visits.id', '=', $visit) 
+        ->where('services.status', '=', 1)
+        ->get()
+        ->groupBy('group_type');
+
+       /* $elementData = DB::table('items')
+        ->selectRaw('items.id, items.description, items.quantity, items.type, items.unit_price, items.investment, items.group_type')
+        ->join('item_service','item_service.item_id','=','items.id')
+        ->join('services','services.id','=','item_service.service_id')
+        ->where('services.id', '=', $service_id)
+        ->get(); */
+
+        return view('changeorders.edit', ['itemData' => $itemData, 'visit' => $visit, 'customer'=>$customer, 'changeorder' => $changeorderData]);
 
     }
 

@@ -117,6 +117,7 @@ Route::get('create/changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderC
 Route::get('changeorder/{changeorder}/visit/{visit}/customer/{customer}','ChangeOrderController@editChangeOrder')->name('changeorders.edit');
 Route::put('update/{changeorder}','ChangeOrderController@updateChangeOrder')->name('changeorders.update');
 Route::delete('changeorger/{changeorder}','ChangeOrderController@destroy')->name('changeorders.destroy');
+Route::post('store/changeorder','ChangeOrderController@store')->name('changeorders.store');
 // Resources Routes
 Route::resources([
     'customers' => 'CustomerController',
