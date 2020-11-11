@@ -9,6 +9,8 @@ use App\Visit;
 use App\ChangeOrder;
 use App\Element;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ChangeOrderController extends Controller
 {
@@ -182,46 +184,7 @@ class ChangeOrderController extends Controller
         }
     }
 
-    public function updateChangeOrder(Request $request, $id){
-        try{
-            $changeorder = ChangeOrder::where('id','=', $id)->first();
-
-            dd($changeorder);
-            $changeorder->fill($request->only('date','discount','subtotal','original_contract_amount','change_order_amount','revised_contract_amount','option_1','status'));
-            $changeorder->save();
-
-          
-            $elements = $changeorder->elements()->select('id')->get();
-            for($i = 0; $i < count($request->input('id')); $i++){
-                if($request->input('id')[$i] != null){
-                $changeorder->elements()->detach();
-                }
-            }
     
-            for($i = 0; $i < $elements->count(); $i++){
-                Element::where('id','=', $elements[$i]->id)->delete();
-             }
-    
-             for ($i = 0; $i < count($request->input('id')); $i++) {
-                $element[$i] = new Element();
-                $element[$i]->target = $request->input('target')[$i];
-                $element[$i]->description = $request->input('description')[$i];
-                $element[$i]->quantity = $request->input('quantity')[$i];
-                $element[$i]->type = $request->input('type')[$i];
-                $element[$i]->unit_price = $request->input('unit_price')[$i];
-                $element[$i]->investment = $request->input('investment')[$i];
-                $element[$i]->save();
-                $changeorder->elements()->attach($element[$i]);
-            } 
-    
-            toast('Change Order updated with success!','success');
-    
-           // return redirect()->route('changeorders.changes', ['visit'=>$request->input('visit_id'),'customer'=>$request->input('customer_id')]);
-        }catch (Throwable $e) {
-            toast('Pleasy try again!','error');
-        }
-    }
-
     /**
      * Display the specified resource.
      *
@@ -251,9 +214,40 @@ class ChangeOrderController extends Controller
      * @param  \App\ChangeOrder  $changeOrder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ChangeOrder $changeOrder)
+    public function update(Request $request, $id)
     {
-        //
+        $changeorder = ChangeOrder::where('id','=', $id)->first();
+
+        $changeorder->fill($request->only('date','discount','subtotal','original_contract_amount','change_order_amount','revised_contract_amount','option_1','status'));
+        $changeorder->save();
+
+      
+        $elements = $changeorder->elements()->select('id')->get();
+        for($i = 0; $i < count($request->input('id')); $i++){
+            if($request->input('id')[$i] != null){
+            $changeorder->elements()->detach();
+            }
+        }
+
+        for($i = 0; $i < $elements->count(); $i++){
+            Element::where('id','=', $elements[$i]->id)->delete();
+         }
+
+         for ($i = 0; $i < count($request->input('id')); $i++) {
+            $element[$i] = new Element();
+            $element[$i]->target = $request->input('target')[$i];
+            $element[$i]->description = $request->input('description')[$i];
+            $element[$i]->quantity = $request->input('quantity')[$i];
+            $element[$i]->type = $request->input('type')[$i];
+            $element[$i]->unit_price = $request->input('unit_price')[$i];
+            $element[$i]->investment = $request->input('investment')[$i];
+            $element[$i]->save();
+            $changeorder->elements()->attach($element[$i]);
+        } 
+
+        toast('Change Order updated with success!','success');
+
+        return redirect()->route('changeorders.changes', ['visit'=>$request->visit_id,'customer'=>$request->customer_id]);
     }
 
     /**

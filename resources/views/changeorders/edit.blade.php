@@ -6,13 +6,13 @@
     findTotal();
   };
   </script>
-<form  method="POST" class="form-horizontal style-form" action="{{route('changeorders.update', $changeorder_id)}}" >
+<form  method="POST" class="form-horizontal style-form" action="{{ route('changeorders.update', ['changeroder' => $changeorder_id ])}}" >
     @csrf
     @method('PUT')
   <input type="hidden" readonly name="visit_id" value="{{$visit}}"/>
   <input type="hidden" readonly name="customer_id" value="{{$customer}}"/>
   <div class="container-fluid">
-  <h1 class="mt-4">Edit Change Order #{{$changeorder->change_order_key}}<a type="button" href=""  data-toggle="modal" data-target="#exampleModal" class="btn btn-success float-right btn-sm">
+  <h1 class="mt-4">Edit Change Order #{{$changeorder->change_order_key }}<a type="button" href=""  data-toggle="modal" data-target="#exampleModal" class="btn btn-success float-right btn-sm">
     See Quote(s) Details
   </a></h1>
 
@@ -44,7 +44,6 @@
             @foreach($elementData as $element)
             <tr>
                 <td style="width: 15%">
-                    
                     <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
                      <select onchange="findTotal()" name="target[]" id="{{$loop->iteration}}target" class="form-control">
                          <option {{$element->target == "Add" ? 'selected':''}} value="Add">Add</option> 
@@ -69,7 +68,7 @@
                         <td> 
                             <input type="text" id="{{$loop->iteration}}investment" readonly value="{{number_format($element->investment,2)}}" name="investment[]" placeholder="Investment" class="form-control" >
                         </td> 
-                            <td style="text-align: center;" scope="col"> <button onclick="deleteItem(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                            <td style="text-align: center;" scope="col"> <button onclick="deleteItem(this)"  type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                         </td>
             </tr>   
             @endforeach
@@ -132,9 +131,9 @@
         <tr>
         <td >Change Order Amount </td>
           <td style="text-align: right"  scope="col" >
-          <input type="text"  required name="change_order_amount" value="{{number_format($changeorder->change_order_amount,2)}}"   id="total"  readonly   class="form-control" placeholder="Total">
-          <input type="hidden"  required name="revised_contract_amount" value="{{number_format($changeorder->revised_contract_amount,2)}}"   id="revised">
-          <input type="hidden" id="original" name="original_contract_amount" value="{{number_format($changeorder->original_contract_amount,2)}}"/>
+          <input type="text"   name="change_order_amount" value=""   id="total"    class="form-control" placeholder="Total" required>
+          <input type="hidden"  required name="revised_contract_amount" value=""   id="revised">
+          <input type="hidden" id="original" name="original_contract_amount" value="{{$change_amount}}"/>
             </td>
         </tr>
 
@@ -187,7 +186,14 @@
       </div>
     </div>
   </div>
+  
+@endsection
+@section('script')
 <script type="text/javascript">
+ $("#total").keydown(function(e){
+        e.preventDefault();
+    });
+
   var item = document.getElementById('loopsize').value;
   function add(){
       item++;
@@ -208,6 +214,10 @@
       if((document.getElementById(i+"unit_price") != null) && (document.getElementById(i+"quantity") != null)){
     var value = document.getElementById(i+"unit_price").value;
     var qnt = document.getElementById(i+"quantity").value;
+
+    value = value.replace(/[^\d\.\-]/g, ""); 
+      qnt = qnt.replace(/[^\d\.\-]/g, ""); 
+
     var investment = parseFloat(value) * parseFloat(qnt);
     if(document.getElementById(i+"target").value == "Remove")
     investment = (investment * (-1))

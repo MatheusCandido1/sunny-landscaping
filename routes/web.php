@@ -76,7 +76,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Dashboard Routes
 
-Route::get('sum/status/{status}/{start_date}/{end_date}', 'CustomerSearchController@sumByStatusAndData')->name('json.sumStatys');
+Route::get('sum/status/{status}/{start_date}/{end_date}', 'CustomSearchController@sumByStatusAndData')->name('json.sumStatys');
 
 // Services Routes
 Route::put('approve/status/{service}/{visit}','ServiceController@approve')->name('services.approve');
@@ -112,10 +112,10 @@ Route::get('visit/{visit}', 'VisitController@details')->name('visits.details');
 Route::put('edit/{customer}', 'CustomerController@edit')->name('customers.edit');
 
 // Change Orders Routes
+Route::put('update/changeorder/{changeorder}','ChangeOrderController@update')->name('changeorders.update');
 Route::get('changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderController@changeOrderByVisit')->name('changeorders.changes');
 Route::get('create/changeorder/visit/{visit}/customer/{customer}', 'ChangeOrderController@createChangeOrder')->name('changeorders.createChange');
-Route::get('changeorder/{changeorder}/visit/{visit}/customer/{customer}','ChangeOrderController@editChangeOrder')->name('changeorders.edit');
-Route::put('update/{changeorder}','ChangeOrderController@updateChangeOrder')->name('changeorders.update');
+Route::get('changeorder/{changeorder}/visit/{visit}/customer/{customer}','ChangeOrderController@editChangeOrder')->name('changeorders.editChange');
 Route::delete('changeorger/{changeorder}','ChangeOrderController@destroy')->name('changeorders.destroy');
 Route::post('store/changeorder','ChangeOrderController@store')->name('changeorders.store');
 // Resources Routes
