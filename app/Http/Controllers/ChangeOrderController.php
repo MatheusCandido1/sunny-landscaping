@@ -142,9 +142,25 @@ class ChangeOrderController extends Controller
     }
 
     public function editChangeOrder($changeorder, $visit, $customer) {
+        $lastchangeorders = ChangeOrder::where('visit_id','=',$visit)->orderBy('change_order_key','desc')->first();
+
+        if($lastchangeorders->id != $changeorder)
+        {
+            toast('You cannot edit this Change Order!','error'); 
+            return redirect()->back();
+        } else {
         $changeorderData = DB::table('change_orders')->select('id','change_order_key','date','discount','subtotal','original_contract_amount','change_order_amount','revised_contract_amount','option_1','status','visit_id')->where('change_orders.id','=',$changeorder)->first();
 
-        
+        $amount = DB::table('services')
+            ->selectRaw('sum(services.total) as total')
+            ->join('visits', 'visits.id','=','services.visit_id')
+            ->where('services.status','=','1')
+            ->where('visits.id','=',$visit)
+            ->first();
+
+
+            $total = $amount->total;
+
         $itemData = DB::table('items')
         ->selectRaw('services.quote_key as service_id, items.group_type,items.id,items.description, items.quantity, items.type, items.unit_price, items.investment')
         ->join('item_service','item_service.item_id','=','items.id')
@@ -155,19 +171,55 @@ class ChangeOrderController extends Controller
         ->get()
         ->groupBy('group_type');
 
-       /* $elementData = DB::table('items')
-        ->selectRaw('items.id, items.description, items.quantity, items.type, items.unit_price, items.investment, items.group_type')
-        ->join('item_service','item_service.item_id','=','items.id')
-        ->join('services','services.id','=','item_service.service_id')
-        ->where('services.id', '=', $service_id)
-        ->get(); */
+        $elementData = DB::table('elements')
+        ->selectRaw('elements.id, elements.target, elements.investment, elements.quantity, elements.description, elements.unit_price, elements.type')
+        ->join('element_changeorder','element_changeorder.element_id','=','elements.id')
+        ->join('change_orders','change_orders.id','=','element_changeorder.changeorder_id')
+        ->where('change_orders.id', '=', $changeorder)
+        ->get(); 
 
-        return view('changeorders.edit', ['itemData' => $itemData, 'visit' => $visit, 'customer'=>$customer, 'changeorder' => $changeorderData]);
-
+        return view('changeorders.edit', ['change_amount' => $total, 'changeorder_id' => $changeorder, 'elementData'=>$elementData, 'itemData' => $itemData, 'visit' => $visit, 'customer'=>$customer, 'changeorder' => $changeorderData]);
+        }
     }
 
-    public function updateChangeOrder(){
+    public function updateChangeOrder(Request $request, $id){
+        try{
+            $changeorder = ChangeOrder::where('id','=', $id)->first();
 
+            dd($changeorder);
+            $changeorder->fill($request->only('date','discount','subtotal','original_contract_amount','change_order_amount','revised_contract_amount','option_1','status'));
+            $changeorder->save();
+
+          
+            $elements = $changeorder->elements()->select('id')->get();
+            for($i = 0; $i < count($request->input('id')); $i++){
+                if($request->input('id')[$i] != null){
+                $changeorder->elements()->detach();
+                }
+            }
+    
+            for($i = 0; $i < $elements->count(); $i++){
+                Element::where('id','=', $elements[$i]->id)->delete();
+             }
+    
+             for ($i = 0; $i < count($request->input('id')); $i++) {
+                $element[$i] = new Element();
+                $element[$i]->target = $request->input('target')[$i];
+                $element[$i]->description = $request->input('description')[$i];
+                $element[$i]->quantity = $request->input('quantity')[$i];
+                $element[$i]->type = $request->input('type')[$i];
+                $element[$i]->unit_price = $request->input('unit_price')[$i];
+                $element[$i]->investment = $request->input('investment')[$i];
+                $element[$i]->save();
+                $changeorder->elements()->attach($element[$i]);
+            } 
+    
+            toast('Change Order updated with success!','success');
+    
+           // return redirect()->route('changeorders.changes', ['visit'=>$request->input('visit_id'),'customer'=>$request->input('customer_id')]);
+        }catch (Throwable $e) {
+            toast('Pleasy try again!','error');
+        }
     }
 
     /**

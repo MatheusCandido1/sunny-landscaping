@@ -1,12 +1,18 @@
 @extends('layouts.partials')
 @section('title', 'Change Order')
 @section('content')
-<form  method="POST" class="form-horizontal style-form" action="{{route('changeorders.store')}}" >
-  @csrf
+<script>
+    window.onload = function() {
+    findTotal();
+  };
+  </script>
+<form  method="POST" class="form-horizontal style-form" action="{{route('changeorders.update', $changeorder_id)}}" >
+    @csrf
+    @method('PUT')
   <input type="hidden" readonly name="visit_id" value="{{$visit}}"/>
   <input type="hidden" readonly name="customer_id" value="{{$customer}}"/>
   <div class="container-fluid">
-  <h1 class="mt-4">Change Order<a type="button" href=""  data-toggle="modal" data-target="#exampleModal" class="btn btn-success float-right btn-sm">
+  <h1 class="mt-4">Edit Change Order #{{$changeorder->change_order_key}}<a type="button" href=""  data-toggle="modal" data-target="#exampleModal" class="btn btn-success float-right btn-sm">
     See Quote(s) Details
   </a></h1>
 
@@ -35,11 +41,38 @@
           </tr>
         </thead>
         <tbody id="item_rows">
+            @foreach($elementData as $element)
             <tr>
-
-
-
-            </tr>
+                <td style="width: 15%">
+                    
+                    <input type="hidden" id="loopsize" value="{{$loop->count}}"> 
+                     <select onchange="findTotal()" name="target[]" id="{{$loop->iteration}}target" class="form-control">
+                         <option {{$element->target == "Add" ? 'selected':''}} value="Add">Add</option> 
+                         <option {{$element->target == "Remove" ? 'selected':''}} value="Remove">Remove</option> 
+                         <option {{$element->target == "Edit" ? 'selected':''}} value="Edit">Edit</option>
+                     </select> 
+                    </td> 
+                    <td> 
+                        <div class="input-group">
+                        <input type="hidden" name="id[]" value="{{$element->id}}"> 
+                            <input type="text" id="" value="{{$element->description}}" name="description[]" placeholder="Description" class="form-control" >
+                         </td> 
+                         <td>
+                            <input type="number" id="{{$loop->iteration}}quantity" value="{{$element->quantity}}" onchange="findTotal()" name="quantity[]" placeholder="Quantity" class="form-control" >
+                         </td>
+                         <td>
+                            <input type="text" id="type" value="{{$element->type}}" name="type[]" placeholder="Type" class="form-control" > 
+                        </td> 
+                        <td> 
+                            <input type="text" id="{{$loop->iteration}}unit_price" value="{{number_format($element->unit_price,2)}}" onchange="findTotal()" name="unit_price[]" placeholder="Unit Price" class="form-control" > 
+                        </td> 
+                        <td> 
+                            <input type="text" id="{{$loop->iteration}}investment" readonly value="{{number_format($element->investment,2)}}" name="investment[]" placeholder="Investment" class="form-control" >
+                        </td> 
+                            <td style="text-align: center;" scope="col"> <button onclick="deleteItem(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </td>
+            </tr>   
+            @endforeach
         </tbody>
       </table>
     </div>
@@ -66,7 +99,7 @@
         <tr>
           <td >Total</td>
           <td style="text-align: right"  scope="col" >
-              <input type="text"  value="{{number_format($changeorder->change_order_amount,2)}}"   id=""  readonly   class="form-control">
+              <input type="text"  value="{{number_format($change_amount,2)}}"   id=""  readonly   class="form-control">
             
           </td>
         </tr>
@@ -155,7 +188,7 @@
     </div>
   </div>
 <script type="text/javascript">
-  var item = 0;
+  var item = document.getElementById('loopsize').value;
   function add(){
       item++;
       var objTo = document.getElementById('item_rows')
