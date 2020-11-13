@@ -66,7 +66,7 @@ that are subject of this waiver and release.</p>
 <div style="margin-top: 210px">
 <p style="font-size:8.0pt;text-align:center; margin: 0">License # C-18 0080493 Limit Amount $245,000.00 </p>
 <p style="font-size:8.0pt;text-align:center;margin: 0">License # C-18 0081661 Limit Amount $245,000.00 </p>
-<p style="font-size:8.0pt;text-align:center;margin: 0"> 3183 Ramrod St., Las Vegas, NV 89108 Office &ndash; (702) 202-2882 Fax &ndash; (702) 202-2882</p>
+<p style="font-size:8.0pt;text-align:center;margin: 0">4364 E. Alexander Rd., Las Vegas, NV 89115 Office &ndash; (702) 202-2882 Fax &ndash; (702) 202-2882</p>
 </div>
 </body>
 </html>

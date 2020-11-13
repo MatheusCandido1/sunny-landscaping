@@ -43,7 +43,7 @@ opacity: 0.2; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
   <footer>
     <p style="font-size:11.0pt;text-align:center; margin: 0">License # C-18 0080493 Limit Amount $245,000.00 </p>
     <p style="font-size:11.0pt;text-align:center;margin: 0">License # C-18 0081661 Limit Amount $245,000.00 </p>
-    <p style="font-size:11.0pt;text-align:center;margin: 0"> 3183 Ramrod St., Las Vegas, NV 89108 Office &ndash; (702) 202-2882 Fax &ndash; (702) 202-2882</p>
+    <p style="font-size:11.0pt;text-align:center;margin: 0"> 4364 E. Alexander Rd., Las Vegas, NV 89115 Office &ndash; (702) 202-2882 Fax &ndash; (702) 202-2882</p>
   </footer>
   <div style="text-align: left">
     <img  style="height: 35%; width: 35%; position: relative"src="https://i.ibb.co/z7T374Q/Logo-2.jpg" data-holder-rendered="true" />       
