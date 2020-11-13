@@ -104,11 +104,10 @@ border:none'>
   90%;border:none'><span style='font-size:20.0pt;line-height:90%;color:#11826D'>Sunny
   Landscaping &amp; Pavers Design LLC</span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  110%;border:none'><span style='font-size:10.0pt;line-height:110%'>3183 Ramrod
-  St.,</span></p>
+  110%;border:none'><span style='font-size:10.0pt;line-height:110%'>4364 E. Alexander Rd,</span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   110%;border:none'><span style='font-size:10.0pt;line-height:110%'>Las Vegas,
-  NV 89108</span></p>
+  NV 89115</span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   110%;border:none'><span style='font-size:10.0pt;line-height:110%'>Cell: (702)
   445-8948</span></p>
