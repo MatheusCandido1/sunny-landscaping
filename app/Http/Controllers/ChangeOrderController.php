@@ -28,8 +28,14 @@ class ChangeOrderController extends Controller
         try {
             $changeorders = ChangeOrder::where('visit_id','=',$visit_id)->orderBy('created_at','asc')->get();
             $lastchangeorders = ChangeOrder::where('visit_id','=',$visit_id)->orderBy('change_order_key','desc')->first();
+            
+            if(!isset($lastchangeorders)){
+                $last = 0;
+            } else {
+                $last = $lastchangeorders->id;
+            }
 
-            return view('changeorders.index', ['last' =>$lastchangeorders->id, 'changeorders' => $changeorders ,'visit' => $visit_id, 'customer' => $customer_id]);
+            return view('changeorders.index', ['last' => $last, 'changeorders' => $changeorders ,'visit' => $visit_id, 'customer' => $customer_id]);
         } catch (Throwable $e) {
             toast('Pleasy try again!','error');
         }
